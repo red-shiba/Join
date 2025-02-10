@@ -27,7 +27,7 @@ section {
 }
 
 .mainFrame {
-  @include dFlex($jc: center, $ai: center, $g: 0px);
+  @include dFlex($jc: none, $ai: center, $g: 0px);
   width: 100%;
   border: 3px solid yellow;
 }

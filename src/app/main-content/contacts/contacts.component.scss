@@ -43,14 +43,12 @@ h3 {
 
 .contact-list {
   display: flex;
-  align-items: center;
   padding: 5px 0;
   flex-direction: column;
-}
-.contact-list {
-  overflow-y: auto; /* Scrollbar aktivieren */
-  max-height: 330px; /* Maximale Höhe für Scrollbereich */
-  padding-right: 5px; /* Platz für Scrollbar */
+  overflow-y: auto;
+  max-height: 330px;
+  padding: 20px;
+  gap: 10px;
 }
 
 /* Scrollbar Styling */
@@ -75,6 +73,11 @@ h3 {
   display: flex;
   align-items: center;
   gap: 20px;
+  padding: 8px;
+  &:hover {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+  }
 }
 
 .avatar {
@@ -99,6 +102,6 @@ h3 {
 }
 
 .email {
-  color: gray;
+  color: #007cee;
   font-size: 0.9em;
 }
