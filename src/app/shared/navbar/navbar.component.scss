@@ -1,0 +1,8 @@
+@import './../../../styles.scss';
+section {
+    @include dFlex($jc: center, $ai: center, $g: 0px);
+    background-color: #2A3647;
+    color: #FFFFFF;
+    width: 100%;
+    height: 100%;
+}
