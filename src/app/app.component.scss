@@ -6,28 +6,32 @@ section {
   width: 1440px;
   margin: 0 auto;
   border: 3px solid red;
+  height: 100vh;
 }
 
 .leftFrame {
-  width: 20%;
+  width: 17%;
   border: 3px solid blue;
 }
 
 .masterFrame {
   @include dFlex($jc: center, $ai: center, $g: 0px);
   flex-direction: column;
-  width: 80%;
+  width: 83%;
+  height: 100%;
   border: 3px solid black;
 }
 
 .topFrame {
-  @include dFlex($jc: center, $ai: center, $g: 0px);
+  // @include dFlex($jc: space-between, $ai: center, $g: 0px);
   width: 100%;
+  height: auto;
   border: 3px solid green;
 }
 
 .mainFrame {
-  @include dFlex($jc: none, $ai: center, $g: 0px);
+  // @include dFlex($jc: none, $ai: center, $g: 0px);
   width: 100%;
+  flex-grow: 1;
   border: 3px solid yellow;
 }

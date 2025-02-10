@@ -1,0 +1,31 @@
+.container-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 20px;
+  font-family: Inter;
+
+  h3 {
+    font-size: 19px;
+    font-weight: 400;
+  }
+}
+
+.header-account {
+  display: flex;
+  align-items: center;
+
+  .info-help {
+    width: 24px;
+    height: 24px;
+  }
+
+  .user-badget {
+    width: 36px;
+    height: 36px;
+  }
+
+  &:hover {
+    filter: grayscale(100%);
+  }
+}
