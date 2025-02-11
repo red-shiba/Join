@@ -4,7 +4,17 @@
     <img src="/assets/logo/person_add.png" alt="add-contact-button" />
   </button>
   <div class="contact-list">
-    <h3>A</h3>
+
+<ul>
+  <li *ngFor="let contact of getList()">
+    {{ contact.name }}
+  </li>
+</ul>
+
+
+
+
+    <!-- <h3>A</h3>
     <div class="single-contact">
       <div class="avatar">AM</div>
       <div class="info">
@@ -53,4 +63,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
