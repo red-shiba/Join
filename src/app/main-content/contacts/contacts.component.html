@@ -5,11 +5,19 @@
   </button>
   <div class="contact-list">
 
-<ul>
+<!-- <ul>
   <li *ngFor="let contact of getList()">
     {{ contact.name }}
   </li>
-</ul>
+</ul> -->
+<h3>A</h3>
+<div class="single-contact" *ngFor="let contact of getList()">
+  <div class="avatar">AM</div>
+  <div class="info">
+    <p class="name">{{ contact.name }}</p>
+    <p class="email">schulz&#64;hotmail.com</p>
+  </div>
+</div>
 
 
 
