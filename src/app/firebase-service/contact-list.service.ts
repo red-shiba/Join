@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Contact } from '../interfaces/contact';
-import { Firestore, collection, collectionData, doc, onSnapshot } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, collectionData, doc, onSnapshot } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -16,6 +16,13 @@ export class ContactListService {
   constructor() { 
     this.unsubContacts = this.subContactList();
 
+  }
+
+  async addContact(contact: {}) {
+    await addDoc(this.getContactRef(), contact).catch(
+      (error) => { console.error(error) }
+    ).then(
+      (docRef) => {console.log('Document written with ID: ', docRef?.id);});
   }
 
   setContactObject(obj: any, id: string): Contact {
@@ -39,9 +46,7 @@ export class ContactListService {
         this.contacts.push(this.setContactObject(element.data(), element.id));
       });
     });
-
   }
-
 
   getContactRef() {
     return collection(this.firestore, 'contact');

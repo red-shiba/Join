@@ -1,0 +1,24 @@
+<div style="background: white; width: 300px; height: 300px; position: fixed; top: 100px; left: 50%; transform: translateX(-50%); z-index: 1000;">
+    <h2>Test: Dialog ist da!</h2>
+    <button (click)="addDialogCloseed.emit(false)">Schließen</button>
+
+<div class="add_dialog_wrapper">
+    <div class="input_wrapper">
+        <p>Name</p>
+        <input [(ngModel)]="name" type="text">
+    </div>
+    <div class="input_wrapper">
+        <p>Email</p>
+        <input [(ngModel)]="email" name="" id="" cols="30" rows="10">
+    </div>
+    <div class="input_wrapper">
+        <p>Phone</p>
+        <input [(ngModel)]="phone" name="" id="" cols="30" rows="10">
+    </div>
+    <div class="btn_wrapper">
+        <button class="btn emptyBtn" (click)="addDialogCloseed.emit(false)">Cancel</button>
+        <button class="btn fullBtn" (click)="addContact()">Create contact</button>
+    </div>
+    
+</div>
+</div>

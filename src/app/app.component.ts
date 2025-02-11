@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './shared/header/header.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
@@ -7,7 +8,13 @@ import { DashBoardComponent } from './main-content/dash-board/dash-board.compone
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, NavbarComponent, DashBoardComponent],
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    HeaderComponent,
+    NavbarComponent,
+    DashBoardComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

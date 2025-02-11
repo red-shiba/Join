@@ -1,22 +1,24 @@
 <div class="contact-container">
-  <button class="add-contact-btn">
+  <button class="add-contact-btn" (click)="openDialog()">
     Add new contact
     <img src="/assets/logo/person_add.png" alt="add-contact-button" />
   </button>
-  <div class="contact-list">
 
-<!-- <ul>
-  <li *ngFor="let contact of getList()">
-    {{ contact.name }}
-  </li>
-</ul> -->
-<div class="single-contact" *ngFor="let contact of getList()">
-  <div class="avatar">{{ getInitials(contact.name) }}</div>
-  <div class="info">
-    <p class="name">{{ contact.name }}</p>
-    <p class="email">{{ contact.email }}</p>
+  <div class="contact-list">
+    <div class="single-contact" *ngFor="let contact of getList()">
+      <div class="avatar">{{ getInitials(contact.name) }}</div>
+      <div class="info">
+        <p class="name">{{ contact.name }}</p>
+        <p class="email">{{ contact.email }}</p>
+      </div>
+    </div>
   </div>
 </div>
+
+<!-- Dialogfenster nur anzeigen, wenn isDialogOpen true ist -->
+<p *ngIf="isDialogOpen">Dialog Status: Geöffnet</p>
+<app-add-contact-dialog *ngIf="isDialogOpen" (addDialogCloseed)="closeDialog($event)"></app-add-contact-dialog>
+
 
 
 
