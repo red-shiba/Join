@@ -1,4 +1,21 @@
 .single-contact {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 75px 55px;
+}
+
+.headline {
   width: 300px;
   height: 100%;
+  display: flex;
+  align-items: center;
+  padding-bottom: 50px;
+  gap: 20px;
+}
+.seperator {
+  width: 0px;
+  height: 45px;
+  border: 2px solid rgb(41, 171, 226);
+  background-color: rgb(41, 171, 226);
 }
