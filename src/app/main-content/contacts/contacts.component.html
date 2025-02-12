@@ -23,7 +23,13 @@
 
     <!-- Dialogfenster nur anzeigen, wenn isDialogOpen true ist -->
     <p *ngIf="isDialogOpen">Dialog Status: Geöffnet</p>
-    <app-add-contact-dialog *ngIf="isDialogOpen" (addDialogCloseed)="closeDialog($event)"></app-add-contact-dialog>
+    <app-add-contact-dialog
+      *ngIf="isDialogOpen"
+      (addDialogCloseed)="closeDialog($event)"
+    ></app-add-contact-dialog>
   </div>
-  <app-single-contact *ngIf="selectedContact" [contact]="selectedContact"></app-single-contact>
+  <app-single-contact
+    *ngIf="selectedContact"
+    [contact]="selectedContact"
+  ></app-single-contact>
 </section>
