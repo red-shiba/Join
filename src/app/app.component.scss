@@ -3,7 +3,7 @@
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  padding-bottom: 70px;
+  // padding-bottom: 70px;
   box-sizing: border-box;
 
   @media (max-width: 768px) {
@@ -14,8 +14,18 @@
 .section-inner {
   width: 100%;
   max-width: 1920px;
+  height: 100vh;
   display: flex;
   border: 3px solid red;
+}
+
+.masterFrame {
+  width: 100%;
+}
+
+.leftFrame {
+  width: 20%;
+  height: 100%;
 }
 
 // Mobile Navigation Styles
