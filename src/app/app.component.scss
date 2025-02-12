@@ -5,13 +5,13 @@ section {
   box-sizing: border-box;
   width: 1440px;
   margin: 0 auto;
-  border: 3px solid red;
+  // border: 3px solid red;
   height: 100vh;
 }
 
 .leftFrame {
   width: 17%;
-  border: 3px solid blue;
+  // border: 3px solid blue;
 }
 
 .masterFrame {
@@ -19,20 +19,20 @@ section {
   flex-direction: column;
   width: 83%;
   height: 100%;
-  border: 3px solid black;
+  // border: 3px solid black;
 }
 
 .topFrame {
   // @include dFlex($jc: space-between, $ai: center, $g: 0px);
   width: 100%;
   height: auto;
-  border: 3px solid green;
+  // border: 3px solid green;
 }
 
 .mainFrame {
   // @include dFlex($jc: none, $ai: center, $g: 0px);
   width: 100%;
   flex-grow: 1;
-  border: 3px solid yellow;
+  // border: 3px solid yellow;
 }
 
