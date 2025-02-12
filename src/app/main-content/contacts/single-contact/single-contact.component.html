@@ -5,15 +5,36 @@
     <p>Better with a team</p>
   </div>
   <div class="nameRow"> 
-    <div class="avatar">{{ getInitials(contact.name) }}</div>
-    <div class="nameEdit">
-        <div class="name"><p class="name">{{ contact.name }}</p></div>
-        <div class="edit"></div>
+    <div class="nameContainer">
+      <div class="avatar">{{ getInitials(contact.name) }}</div>
+      <div class="nameEdit">
+          <div class="name"><p class="name">{{ contact.name }}</p></div>
+          <div class="edit">
+            <div>
+              <img src="/assets/icons/edit.png" alt="edit-icon" />
+              <p>Edit</p>
+            </div>
+          <div class="deleteIcon">
+            <img src="/assets/icons/delete.png" alt="delete-icon" />
+            <p>Delete</p>
+          </div>
+
+
+
+          </div>
+      </div>
     </div>
 
     <div class="subline"></div>
-      <div class="emailRow"><p class="email">{{ contact.email }}</p></div>
-      <div class="phoneRow"><p class="email">{{ contact.phone }}</p></div>
+      <div class="emailRow">
+        <p>Contact Information</p>
+        <p><b>Email</b></p>
+        <p class="email">{{ contact.email }}</p>
+      </div>
+      <div class="phoneRow">
+        <p><b>Phone</b></p>
+        <p class="email">{{ contact.phone }}</p>
+      </div>
   </div>
 </div>
 
