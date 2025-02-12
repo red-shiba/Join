@@ -11,11 +11,11 @@
           <div class="name"><p>{{ contact.name }}</p></div>
           <div class="edit">
             <div class="editIcon">
-              <img src="/assets/icons/edit.png" alt="edit-icon" />
-              <p>Edit</p>
+              <img (click)="openDialog()" class="contact-link" src="/assets/icons/edit.png" alt="edit-icon"/>
+              <p (click)="openDialog()" class="contact-link">Edit</p>
             </div>
           <div class="deleteIcon">
-            <img src="/assets/icons/delete.png" alt="delete-icon" />
+            <img src="/assets/icons/delete.png" alt="delete-icon"/>
             <p>Delete</p>
           </div>
           </div>
@@ -33,7 +33,14 @@
         <p class="email">{{ contact.phone }}</p>
       </div>
   </div>
+
+
+      <!-- Dialogfenster nur anzeigen, wenn isDialogOpen true ist -->
+      <p *ngIf="isDialogOpen">Dialog Status: Geöffnet</p>
+      <app-edit-contact-dialog *ngIf="isDialogOpen" (editDialogClosed)="closeDialog($event)"></app-edit-contact-dialog>
+
+
+
+
+
 </div>
-
-
-

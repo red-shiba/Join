@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Contact } from '../interfaces/contact';
-import { Firestore, addDoc, collection, collectionData, doc, onSnapshot, updateDoc } from '@angular/fire/firestore';
+import { Firestore, addDoc, deleteDoc, collection, collectionData, doc, onSnapshot, updateDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -16,6 +16,12 @@ export class ContactListService {
   constructor() { 
     this.unsubContacts = this.subContactList();
 
+  }
+
+  async deleteContact(colId: "contact", docId: string) {
+    await deleteDoc(this.getSingleDocRef(colId, docId)).catch(
+      (err) => {console.log(err)}
+    )
   }
 
   async updateContact(contact: Contact) {
