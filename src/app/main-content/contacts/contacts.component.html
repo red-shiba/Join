@@ -5,71 +5,22 @@
   </button>
 
   <div class="contact-list">
-    <div class="single-contact" *ngFor="let contact of getList()">
+    <h3>A</h3>
+    @for (contact of getList(); track contact.email) {
+    <div class="single-contact">
       <div class="avatar">{{ getInitials(contact.name) }}</div>
       <div class="info">
         <p class="name">{{ contact.name }}</p>
         <p class="email">{{ contact.email }}</p>
       </div>
     </div>
+    }
   </div>
+
+  <!-- Dialogfenster nur anzeigen, wenn isDialogOpen true ist -->
+  <p *ngIf="isDialogOpen">Dialog Status: Geöffnet</p>
+  <app-add-contact-dialog
+    *ngIf="isDialogOpen"
+    (addDialogCloseed)="closeDialog($event)"
+  ></app-add-contact-dialog>
 </div>
-
-<!-- Dialogfenster nur anzeigen, wenn isDialogOpen true ist -->
-<p *ngIf="isDialogOpen">Dialog Status: Geöffnet</p>
-<app-add-contact-dialog *ngIf="isDialogOpen" (addDialogCloseed)="closeDialog($event)"></app-add-contact-dialog>
-
-
-
-
-
-    <!-- <h3>A</h3>
-    <div class="single-contact">
-      <div class="avatar">AM</div>
-      <div class="info">
-        <p class="name">Anton Mayer</p>
-        <p class="email">schulz&#64;hotmail.com</p>
-      </div>
-    </div>
-    <div class="contact">
-      <div class="single-contact">
-        <div class="avatar">CM</div>
-        <div class="info">
-          <p class="name">Corina Meyer</p>
-          <p class="email">schulz&#64;hotmail.com</p>
-        </div>
-      </div>
-
-      <div class="contact">
-        <h3>B</h3>
-        <div class="single-contact">
-          <div class="avatar">AM</div>
-          <div class="info">
-            <p class="name">Anton Mayer</p>
-            <p class="email">schulz&#64;hotmail.com</p>
-          </div>
-        </div>
-      </div>
-      <div class="contact">
-        <div class="single-contact">
-          <div class="avatar">AM</div>
-          <div class="info">
-            <p class="name">Anton Mayer</p>
-            <p class="email">schulz&#64;hotmail.com</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="contact">
-        <h3>C</h3>
-        <div class="single-contact">
-          <div class="avatar">AM</div>
-          <div class="info">
-            <p class="name">Anton Mayer</p>
-            <p class="email">schulz&#64;hotmail.com</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
