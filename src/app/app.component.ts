@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './shared/header/header.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
-import { DashBoardComponent } from './main-content/dash-board/dash-board.component';
+import { ContactsComponent } from './main-content/contacts/contacts.component';
+import { SummaryComponent } from './main-content/summary/summary.component';
 
 @Component({
   selector: 'app-root',
@@ -13,10 +14,11 @@ import { DashBoardComponent } from './main-content/dash-board/dash-board.compone
     RouterOutlet,
     HeaderComponent,
     NavbarComponent,
-    DashBoardComponent,
+    SummaryComponent,
+    ContactsComponent,
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'join';
