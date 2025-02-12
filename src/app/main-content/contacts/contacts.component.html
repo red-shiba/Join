@@ -1,26 +1,29 @@
-<div class="contact-container">
-  <button class="add-contact-btn" (click)="openDialog()">
-    Add new contact
-    <img src="/assets/logo/person_add.png" alt="add-contact-button" />
-  </button>
+<section>
+  <div class="contact-container">
+    <button class="add-contact-btn" (click)="openDialog()">
+      Add new contact
+      <img src="/assets/logo/person_add.png" alt="add-contact-button" />
+    </button>
 
-  <div class="contact-list">
-    <h3>A</h3>
-    @for (contact of getList(); track contact.email) {
-    <div class="single-contact">
-      <div class="avatar">{{ getInitials(contact.name) }}</div>
-      <div class="info">
-        <p class="name">{{ contact.name }}</p>
-        <p class="email">{{ contact.email }}</p>
+    <div class="contact-list">
+      <h3>A</h3>
+      @for (contact of getList(); track contact.email) {
+      <div class="single-contact">
+        <div class="avatar">{{ getInitials(contact.name) }}</div>
+        <div class="info">
+          <p class="name">{{ contact.name }}</p>
+          <p class="email">{{ contact.email }}</p>
+        </div>
       </div>
+      }
     </div>
-    }
-  </div>
 
-  <!-- Dialogfenster nur anzeigen, wenn isDialogOpen true ist -->
-  <p *ngIf="isDialogOpen">Dialog Status: Geöffnet</p>
-  <app-add-contact-dialog
-    *ngIf="isDialogOpen"
-    (addDialogCloseed)="closeDialog($event)"
-  ></app-add-contact-dialog>
-</div>
+    <!-- Dialogfenster nur anzeigen, wenn isDialogOpen true ist -->
+    <p *ngIf="isDialogOpen">Dialog Status: Geöffnet</p>
+    <app-add-contact-dialog
+      *ngIf="isDialogOpen"
+      (addDialogCloseed)="closeDialog($event)"
+    ></app-add-contact-dialog>
+  </div>
+  <app-single-contact></app-single-contact>
+</section>
