@@ -9,7 +9,7 @@ import { EditContactDialogComponent } from '../../../dialogs/edit-contact-dialog
   standalone: true,
   imports: [FormsModule, CommonModule, EditContactDialogComponent], // Ensure this path is correct
   templateUrl: './single-contact.component.html',
-  styleUrl: './single-contact.component.scss'
+  styleUrl: './single-contact.component.scss',
 })
 export class SingleContactComponent {
   @Input() contact: any;
