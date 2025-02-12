@@ -5,9 +5,9 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-single-contact',
   standalone: true,
-  imports: [ FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './single-contact.component.html',
-  styleUrl: './single-contact.component.scss'
+  styleUrl: './single-contact.component.scss',
 })
 export class SingleContactComponent {
   @Input() contact: any;
