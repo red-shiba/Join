@@ -12,31 +12,40 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './edit-contact-dialog.component.scss'
 })
 export class EditContactDialogComponent {
+  @Input() contact: Contact | null = null;
   @Output() editDialogClosed: EventEmitter<boolean> = new EventEmitter();
-  @Input() contact! : Contact;
-  edit = false;
+  @Output() contactUpdated: EventEmitter<Contact> = new EventEmitter();
+
   name = '';
   email = '';
   phone = 0;
 
   constructor(public contactService: ContactListService) {}
 
-  openEdit(){
-    this.edit = true;
-  }
-
-  closeEdit(){
-    this.edit = false;
-    this.saveContact();
-  }
-
-  deleteContact(){
-    if (this.contact.id) {
-      this.contactService.deleteContact( "contact", this.contact.id);
+  ngOnChanges() {
+    if (this.contact) {
+      this.name = this.contact.name;
+      this.email = this.contact.email;
+      this.phone = this.contact.phone;
     }
   }
 
-  saveContact(){
-    this.contactService.updateContact(this.contact)
+  closeDialog() {
+    this.editDialogClosed.emit(false);
   }
-} 
+
+  updateContact() {
+    if (!this.contact) return;
+    
+    let updatedContact: Contact = {
+      ...this.contact,
+      name: this.name,
+      email: this.email,
+      phone: this.phone,
+    };
+
+    this.contactService.updateContact(updatedContact);
+    this.contactUpdated.emit(updatedContact);
+    this.closeDialog();
+  }
+}
