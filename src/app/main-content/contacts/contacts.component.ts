@@ -37,6 +37,30 @@ export class ContactsComponent {
       .join('') // Buchstaben zusammenfügen
       .toUpperCase(); // Großbuchstaben
   }
+  // Gibt eine Liste der alphabetischen Buchstaben zurück, für die Kontakte vorhanden sind
+  getAlphabeticalLetters(): string[] {
+    const letters = new Set<string>();
+
+    // Durchlaufe alle Kontakte und sammle die Anfangsbuchstaben
+    for (const contact of this.getList()) {
+      if (contact.name) {
+        const firstLetter = contact.name[0].toUpperCase();
+        letters.add(firstLetter);
+      }
+    }
+
+    // Konvertiere das Set in ein Array und sortiere es
+    return Array.from(letters).sort();
+  }
+
+  // Gibt die Kontakte für einen bestimmten Buchstaben zurück
+  getContactsByLetter(letter: string): Contact[] {
+    return this.getList()
+      .filter(
+        (contact) => contact.name && contact.name[0].toUpperCase() === letter
+      ) // Filtere nach Buchstabe
+      .sort((a, b) => a.name.localeCompare(b.name)); // Sortiere alphabetisch
+  }
 
   openDialog() {
     console.log('Dialog wird geöffnet');

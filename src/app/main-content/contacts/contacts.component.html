@@ -6,8 +6,9 @@
     </button>
 
     <div class="contact-list">
-      <h3>A</h3>
-      @for (contact of getList(); track contact.email) {
+      @for (letter of getAlphabeticalLetters(); track letter) {
+      <div class="contact-letter">{{ letter }}</div>
+      @for (contact of getContactsByLetter(letter); track contact.email) {
       <a (click)="selectContact(contact)" class="contact-link">
         <div class="single-contact">
           <div class="avatar">{{ getInitials(contact.name) }}</div>
@@ -15,9 +16,9 @@
             <p class="name">{{ contact.name }}</p>
             <p class="email">{{ contact.email }}</p>
           </div>
-        </div></a
-      >
-      }
+        </div>
+      </a>
+      } }
     </div>
 
     <!-- Dialogfenster nur anzeigen, wenn isDialogOpen true ist -->
