@@ -1,9 +1,20 @@
 <router-outlet></router-outlet>
-<section>
-  <div class="leftFrame"><app-navbar></app-navbar></div>
-  <div class="masterFrame">
-    <div class="topFrame"><app-header></app-header></div>
-    <div class="mainFrame"><app-summary></app-summary></div>
-    <div class="mainFrame"><app-contacts></app-contacts></div>
+<section class="section-container">
+  <div class="section-inner">
+    <div class="leftFrame"><app-navbar></app-navbar></div>
+    <div class="masterFrame">
+      <div class="topFrame"><app-header></app-header></div>
+      <div class="mainFrame"><app-summary></app-summary></div>
+      <div class="mainFrame"><app-contacts></app-contacts></div>
+    </div>
   </div>
 </section>
+
+
+<!-- Mobile Navigation-->
+<nav class="mobile-nav">
+  <a href="#summary"><img src="../../../assets/icons/summary.png" alt="Summary Icon"></a>
+  <a href="#add-task"><img src="../../../assets/icons/addtask.png" alt="Add Task Icon"></a>
+  <a href="#board"><img src="../../../assets/icons/board.png" alt="Board Icon"></a>
+  <a href="#contacts"><img src="../../../assets/icons/contacts.png" alt="Contacts Icon"></a>
+</nav>
