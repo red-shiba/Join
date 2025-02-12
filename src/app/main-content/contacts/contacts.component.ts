@@ -21,6 +21,7 @@ import { SingleContactComponent } from './single-contact/single-contact.componen
 export class ContactsComponent {
   contactList: Contact[] = [];
   isDialogOpen = false;
+  selectedContact: Contact | null = null;
 
   constructor(private contactListService: ContactListService) {}
 
@@ -45,5 +46,10 @@ export class ContactsComponent {
   closeDialog(event: boolean) {
     console.log('Dialog wird geschlossen', event);
     this.isDialogOpen = false; // Schließt das Fenster, wenn das Event ausgelöst wird
+  }
+
+  selectContact(contact: Contact) {
+    this.selectedContact = contact; // Setzt den ausgewählten Kontakt
+    console.log('Ausgewählter Kontakt:', contact);
   }
 }
