@@ -2,7 +2,7 @@
   <div class="contact-container">
     <button class="add-contact-btn" (click)="openDialog()">
       Add new contact
-      <img src="/assets/logo/person_add.png" alt="add-contact-button" />
+      <img src="/assets/icons/person_add.png" alt="add-contact-button" />
     </button>
 
     <div class="contact-list">
@@ -28,7 +28,13 @@
 
     <!-- Dialogfenster nur anzeigen, wenn isDialogOpen true ist -->
     <p *ngIf="isDialogOpen">Dialog Status: Geöffnet</p>
-    <app-add-contact-dialog *ngIf="isDialogOpen" (addDialogCloseed)="closeDialog($event)"></app-add-contact-dialog>
+    <app-add-contact-dialog
+      *ngIf="isDialogOpen"
+      (addDialogCloseed)="closeDialog($event)"
+    ></app-add-contact-dialog>
   </div>
-    <app-single-contact *ngIf="selectedContact" [contact]="selectedContact"></app-single-contact>
+  <app-single-contact
+    *ngIf="selectedContact"
+    [contact]="selectedContact"
+  ></app-single-contact>
 </section>

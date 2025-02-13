@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './edit-contact-dialog.component.html',
-  styleUrl: './edit-contact-dialog.component.scss'
+  styleUrl: './edit-contact-dialog.component.scss',
 })
 export class EditContactDialogComponent {
   @Input() contact: Contact | null = null;
@@ -36,7 +36,7 @@ export class EditContactDialogComponent {
 
   updateContact() {
     if (!this.contact) return;
-    
+
     let updatedContact: Contact = {
       ...this.contact,
       name: this.name,

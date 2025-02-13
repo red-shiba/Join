@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './add-contact-dialog.component.html',
-  styleUrl: './add-contact-dialog.component.scss'
+  styleUrl: './add-contact-dialog.component.scss',
 })
 export class AddContactDialogComponent {
   @Output() addDialogCloseed: EventEmitter<boolean> = new EventEmitter();
@@ -28,16 +28,16 @@ export class AddContactDialogComponent {
 
   addContact() {
     let contact: Contact = {
-      type: "contact",
+      type: 'contact',
       name: this.name,
       email: this.email,
       phone: this.phone,
-    }
+    };
     this.contactService.addContact(contact);
     // this.addDialogCloseed.emit(false);
     this.closeDialog();
   }
-  
+
   getInitials(name: string): string {
     if (!name) return '';
     return name
@@ -46,4 +46,4 @@ export class AddContactDialogComponent {
       .join('') // Buchstaben zusammenfügen
       .toUpperCase(); // Großbuchstaben
   }
-} 
+}
