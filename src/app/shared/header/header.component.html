@@ -4,8 +4,21 @@
             <h3>Kanban Project Management Tool</h3>
         </div>
         <div class="header-account">
-            <img class="info-help" src="../../../assets/icons/help.png" alt="information">
-            <img class="user-badget" src="../../../assets/icons/User profile initials.png" alt="profil-image">
+            <div class="header-info">
+                <img class="info-help" src="../../../assets/icons/help.png" alt="information">
+            </div>
+            <div class="header-profilpic">
+                <div class="user-badge" (click)="toggleDropdown()">
+                    <span class="initials"></span>
+                </div>
+            </div>
         </div>
     </div>
 </section>
+@if (isDropdownOpen) {
+<div class="dropdown-menu">
+    <a href="#" class="dropdown-item">Legal Notice</a>
+    <a href="#" class="dropdown-item">Privacy Policy</a>
+    <a href="#" class="dropdown-item">Log out</a>
+</div>
+}
