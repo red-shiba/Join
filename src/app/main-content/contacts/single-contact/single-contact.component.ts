@@ -43,7 +43,9 @@ export class SingleContactComponent {
 
   deleteContact() {
     if (this.contact.id) {
-      this.contactService.deleteContact('contact', this.contact.id);
+      this.contactService.deleteContact('contact', this.contact.id).then(() => {
+        window.location.reload();
+      });
     }
   }
 }
