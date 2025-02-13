@@ -43,6 +43,14 @@
     height: 66px;
   }
 }
+.leftFrame p::after {
+  content: "";
+  display: block;
+  width: 75px;
+  height: 2px;
+  background-color: $color-primary-hover;
+  margin: 5px;
+}
 
 .middleFrame {
   display: flex;

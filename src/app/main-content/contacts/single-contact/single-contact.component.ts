@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common'; 
+import { CommonModule } from '@angular/common';
 import { EditContactDialogComponent } from '../../../dialogs/edit-contact-dialog/edit-contact-dialog.component';
 import { ContactListService } from '../../../firebase-service/contact-list.service';
 

@@ -129,6 +129,14 @@ p {
   color: #ffffff;
   padding-bottom: 80px;
 }
+#tasks::after {
+  content: "";
+  display: block;
+  width: 85px;
+  height: 2px;
+  background-color: $color-primary-hover;
+  margin: 5px;
+}
 
 .btn {
   height: 48px;
