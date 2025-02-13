@@ -8,8 +8,9 @@
     </div>
 
     <div class="middleFrame">
-        <div class="avatar">
-            {{ getInitials(name) }}
+        <div class="avatar" [ngClass]="{'with-initials': name}">
+            <img *ngIf="!name" src="assets/icons/dummyContact.png">
+            <div *ngIf="name" class="initials">{{ getInitials(name) }}</div>
         </div>
     </div>
 
