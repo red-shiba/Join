@@ -1,7 +1,7 @@
 export interface Contact {
-    id?: string;
-    type: "contact";
-    name: string;
-    email: string;
-    phone: number;
+  id?: string;
+  type: 'contact';
+  name: string;
+  email: string;
+  phone: number;
 }

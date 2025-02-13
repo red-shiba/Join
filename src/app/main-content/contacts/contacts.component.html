@@ -10,8 +10,13 @@
       <div class="contact-letter">{{ letter }}</div>
       @for (contact of getContactsByLetter(letter); track contact.email) {
       <a (click)="selectContact(contact)" class="contact-link">
-        <div class="single-contact">
-          <div class="avatar">{{ getInitials(contact.name) }}</div>
+        <div
+          class="single-contact"
+          [ngClass]="{ selected: isSelected(contact) }"
+        >
+          <div class="avatar">
+            {{ getInitials(contact.name) }}
+          </div>
           <div class="info">
             <p class="name">{{ contact.name }}</p>
             <p class="email">{{ contact.email }}</p>

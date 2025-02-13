@@ -22,6 +22,24 @@ export class ContactsComponent {
   contactList: Contact[] = [];
   isDialogOpen = false;
   selectedContact: Contact | null = null;
+  // Liste der Hintergrundfarben
+  profileBgColors: string[] = [
+    '#ff7a00', // $profile-bg-1
+    '#ff5eb3', // $profile-bg-2
+    '#6e52ff', // $profile-bg-3
+    '#0038ff', // $profile-bg-4
+    '#9327ff', // $profile-bg-5
+    '#fc71ff', // $profile-bg-6
+    '#00bee8', // $profile-bg-7
+    '#1fd7c1', // $profile-bg-8
+    '#ffa35e', // $profile-bg-9
+    '#ffbb2b', // $profile-bg-10
+    '#ffc701', // $profile-bg-11
+    '#ffe62b', // $profile-bg-12
+    '#c3ff2b', // $profile-bg-13
+    '#ff745e', // $profile-bg-14
+    '#ff4646', // $profile-bg-15
+  ];
 
   constructor(private contactListService: ContactListService) {}
 
@@ -39,12 +57,12 @@ export class ContactsComponent {
   }
   // Gibt eine Liste der alphabetischen Buchstaben zurück, für die Kontakte vorhanden sind
   getAlphabeticalLetters(): string[] {
-    const letters = new Set<string>();
+    let letters = new Set<string>();
 
     // Durchlaufe alle Kontakte und sammle die Anfangsbuchstaben
-    for (const contact of this.getList()) {
+    for (let contact of this.getList()) {
       if (contact.name) {
-        const firstLetter = contact.name[0].toUpperCase();
+        let firstLetter = contact.name[0].toUpperCase();
         letters.add(firstLetter);
       }
     }
@@ -73,7 +91,16 @@ export class ContactsComponent {
   }
 
   selectContact(contact: Contact) {
-    this.selectedContact = contact; // Setzt den ausgewählten Kontakt
-    console.log('Ausgewählter Kontakt:', contact);
+    if (this.selectedContact === contact) {
+      // Wenn der gleiche Kontakt erneut angeklickt wird, setze die Auswahl zurück
+      this.selectedContact = null;
+    } else {
+      // Andernfalls setze den neuen Kontakt als ausgewählt
+      this.selectedContact = contact;
+    }
+    console.log('Ausgewählter Kontakt:', this.selectedContact);
+  }
+  isSelected(contact: Contact): boolean {
+    return this.selectedContact === contact;
   }
 }
