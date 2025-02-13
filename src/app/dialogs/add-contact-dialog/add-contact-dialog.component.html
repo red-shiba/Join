@@ -1,37 +1,56 @@
 <div class="container">
-<div class="add_dialog_wrapper">
-
+  <div class="add_dialog_wrapper">
     <div class="leftFrame">
-        <img src="/assets/logo/logo.png" alt="">
-        <p>Add contact</p>
-        <p id="tasks">Tasks are better with a team!</p>
+      <img src="/assets/logo/logo.png" alt="" />
+      <p>Add contact</p>
+      <p id="tasks">Tasks are better with a team!</p>
     </div>
 
     <div class="middleFrame">
-        <div class="avatar" [ngClass]="{'with-initials': name}">
-            <img *ngIf="!name" src="assets/icons/dummyContact.png">
-            <div *ngIf="name" class="initials">{{ getInitials(name) }}</div>
-        </div>
+      <div class="avatar" [ngClass]="{ 'with-initials': name }">
+        <img *ngIf="!name" src="assets/icons/dummyContact.png" />
+        <div *ngIf="name" class="initials">{{ getInitials(name) }}</div>
+      </div>
     </div>
 
     <div class="rightFrame">
-        <div class="close" (click)="addDialogCloseed.emit(false)">
-            <img src="/assets/icons/close.png" alt="">
-        </div>
-        <div class="input_wrapper">
-            <input [(ngModel)]="name" type="text" placeholder="Name">
-        </div>
-        <div class="input_wrapper">
-            <input [(ngModel)]="email" name="" id="" cols="30" rows="10" placeholder="Email">
-        </div>
-        <div class="input_wrapper">
-            <input [(ngModel)]="phone" name="" id="" cols="30" rows="10" placeholder="Phone">
-        </div>
-        <div class="btn_wrapper">
-            <button class="btn emptyBtn" (click)="addDialogCloseed.emit(false)">Cancel</button>
-            <button class="btn fullBtn" (click)="addContact()">Create contact</button>
-        </div>
+      <div class="close" (click)="addDialogCloseed.emit(false)"></div>
+      <div class="input_wrapper">
+        <input [(ngModel)]="name" type="text" placeholder="Name" />
+        <img
+          src="/assets/icons/person_add.png"
+          alt="Icon"
+          class="person_icon"
+        />
+      </div>
+      <div class="input_wrapper">
+        <input
+          [(ngModel)]="email"
+          name=""
+          id="name"
+          cols="30"
+          rows="10"
+          placeholder="Email"
+        />
+      </div>
+      <div class="input_wrapper">
+        <input
+          [(ngModel)]="phone"
+          name=""
+          id=""
+          cols="30"
+          rows="10"
+          placeholder="Phone"
+        />
+      </div>
+      <div class="btn_wrapper">
+        <button class="btn emptyBtn" (click)="addDialogCloseed.emit(false)">
+          Cancel
+        </button>
+        <button class="btn fullBtn" (click)="addContact()">
+          Create contact
+        </button>
+      </div>
     </div>
-    
-</div>
+  </div>
 </div>
