@@ -43,14 +43,14 @@ export class ContactsComponent {
 
     // Durchlaufe alle Kontakte und sammle die Anfangsbuchstaben
     for (let contact of this.getList()) {
-      if (contact.name) {
+      if (!letters.includes(contact.name[0].toUpperCase())) {
         let firstLetter = contact.name[0].toUpperCase();
         letters.push(firstLetter);
       }
     }
 
     // Konvertiere das Set in ein Array und sortiere es
-    return Array.from(letters).sort();
+    return letters.sort();
   }
 
   // Gibt die Kontakte für einen bestimmten Buchstaben zurück
