@@ -48,4 +48,13 @@ export class EditContactDialogComponent {
     this.contactUpdated.emit(updatedContact);
     this.closeDialog();
   }
+
+  getInitials(name: string): string {
+    if (!name) return '';
+    return name
+      .split(' ') // Name in Wörter splitten
+      .map((word) => word[0]) // Erstes Zeichen jedes Wortes nehmen
+      .join('') // Buchstaben zusammenfügen
+      .toUpperCase(); // Großbuchstaben
+  }
 }
