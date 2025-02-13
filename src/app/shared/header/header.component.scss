@@ -2,6 +2,7 @@
   width: 100%;
   background-color: rgb(255, 255, 255);
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .container-inner {
@@ -20,18 +21,72 @@
 .header-account {
   display: flex;
   align-items: center;
+  position: relative;
 
   .info-help {
+    margin-top: 6px;
     width: 24px;
     height: 24px;
+
+    &:hover {
+      transform: scale(1.1);
+      cursor: pointer;
+    }
   }
 
-  .user-badget {
-    width: 36px;
-    height: 36px;
-  }
+  .header-profilpic {
+    margin-left: 10px;
 
-  &:hover {
-    filter: grayscale(100%);
+    .user-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid #000;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background-color 0.3s ease;
+
+      .initials {
+        font-size: 14px;
+        font-weight: bold;
+        color: #000;
+      }
+
+      &:hover {
+        background-color: #f0f0f0;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.dropdown-menu {
+  position: absolute;
+  margin-top: 3px;
+  top: 1;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  z-index: 1001;
+  background-color: #2a3647;
+  border: 1px solid #ddd;
+  border-radius: 20px 0 20px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  min-width: 120px;
+  padding: 25px 15px;
+  gap: 8px;
+
+  .dropdown-item {
+    padding: 5px 5px;
+    text-decoration: none;
+    color: #d6d6d6;
+    font-size: 15px;
+    font-weight: 300;
+
+    &:hover {
+      background-color: #2a3d59;
+    }
   }
 }
