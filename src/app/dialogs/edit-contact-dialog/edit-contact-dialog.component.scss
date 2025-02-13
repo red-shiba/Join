@@ -1,58 +1,108 @@
+.container {
+    background: white;
+    width: 300px; 
+    height: 300px; 
+    position: fixed; 
+    top: 100px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    z-index: 1000;
+}
+
 .add_dialog_wrapper{
-    padding: 32px 64px;
-    width: 500px;
+    box-sizing: border-box;
+    border: 1px solid green;
+    width: 800px;
     background-color: #2A3647;
     border-radius: 32px;
     display: flex;
-    flex-direction: column;
-    gap: 32px;
+    gap: 0px;
+    overflow: hidden; /* Ensure children do not overflow */
 }
 
-@media screen and (max-width: 500px) {
-    .add_dialog_wrapper{
-        width: 100vw;
-        padding: 16px 32px;
+.leftFrame {
+    box-sizing: content-box;
+    display: flex;
+    flex-direction: column;
+    align-items: space-around;
+    justify-content: center;
+    padding-left: 28px;
+    width: 400px;
+    background-color: #2A3647;
+    flex-shrink: 0; 
+    >p{
+        font-size: 61px;
+        color: #FFFFFF;
+        margin: 16px 0;
+    }
+    >img {
+        width: 54px;
+        height: 66px;
     }
 }
 
+.middleFrame {
+    box-sizing: content-box;
+    width: 30%;
+}
+
+.rightFrame {
+    box-sizing: content-box;
+    width: 500px;
+    color: #000000;
+    background-color: #FFFFFF;
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+// @media screen and (max-width: 800px) {
+//     .add_dialog_wrapper{
+//         width: 100vw;
+//         padding: 16px 32px;
+//     }
+// }
+
 .input_wrapper{
     color: white;
+    border: 3px solid red;
+    padding: 16px 32px;
+    width: 70%;
     >p{
         font-size: 26px;
         margin: 16px 0;
     }
     >input{
         color: #B6C4C9;
-        outline: none;
-        border: none;
+        outline: #29ABE2;
+        border: 1px solid #29ABE2;
         padding: 16px 16px;
         border-radius: 16px;
-        width: 100%;
-        background-color: #313131;
+        width: 80%;
+        background-color: #FFFFFF;
     }
 }
 
 .btn_wrapper{
-    width: 100%;
+    width: 70%;
     display: flex;
     align-items: center;
     justify-content: space-around;
+    border: 3px solid red;
 }
 
 p {
     font-size: 26px;
     margin: 16px 0;
-    color: white;
+    color: #000000;
 }
 
 .btn{
     height: 48px;
     display: flex;
     align-items: center;
-    border: 2px solid #313131;
-    color: #313131;
+    border: 2px solid #2A3647;
+    color: #2A3647;
     
-    border-radius: 24px;
+    border-radius: 10px;
     padding: 16px 24px;
     cursor: pointer;
     >div{
@@ -61,5 +111,9 @@ p {
         justify-content: center;
         height: 24px;
         width: 24px;
+    }
+    &:hover{
+        background-color: #2A3647;
+        color: #FFFFFF;
     }
 }
