@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'; 
 import { EditContactDialogComponent } from '../../../dialogs/edit-contact-dialog/edit-contact-dialog.component';
+import { ContactListService } from '../../../firebase-service/contact-list.service';
 
 @Component({
   selector: 'app-single-contact',
@@ -13,7 +14,9 @@ import { EditContactDialogComponent } from '../../../dialogs/edit-contact-dialog
 export class SingleContactComponent {
   @Input() contact: any;
   isDialogOpen = false;
-  selectedContact: any = null;  // Neuer State für das ausgewählte Kontaktobjekt
+  selectedContact: any = null;
+
+  constructor(private contactService: ContactListService) {}
 
   getInitials(name: string): string {
     if (!name) return '';
@@ -25,18 +28,22 @@ export class SingleContactComponent {
   }
 
   openDialog() {
-    console.log('Dialog wird geöffnet');
-    this.selectedContact = { ...this.contact };  // Kopie des Kontakts erstellen
+    this.selectedContact = { ...this.contact };
     this.isDialogOpen = true;
   }
 
-  closeDialog(event: boolean) {
-    console.log('Dialog wird geschlossen', event);
+  closeDialog() {
     this.isDialogOpen = false;
   }
 
   updateContact(updatedContact: any) {
-    this.contact = { ...updatedContact }; // Lokale Kopie aktualisieren
+    this.contactService.updateContact(updatedContact);
     this.isDialogOpen = false;
+  }
+
+  deleteContact() {
+    if (this.contact.id) {
+      this.contactService.deleteContact('contact', this.contact.id);
+    }
   }
 }

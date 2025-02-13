@@ -22,14 +22,17 @@
             <p (click)="openDialog()" class="contact-link">Edit</p>
           </div>
           <div class="deleteIcon">
-            <img src="/assets/icons/delete.png" alt="delete-icon" />
-            <p>Delete</p>
+            <img  
+              (click)="deleteContact()" 
+              class="contact-link" 
+              src="/assets/icons/delete.png" 
+              alt="delete-icon" />
+            <p (click)="deleteContact()" class="contact-link">Delete</p>
           </div>
         </div>
       </div>
     </div>
   </div>
-
   <div class="subline"></div>
   <div class="emailRow">
     <p>Contact Information</p>
@@ -40,14 +43,7 @@
     <p><b>Phone</b></p>
     <p class="phone">{{ contact.phone }}</p>
   </div>
-
-  <!-- Dialogfenster nur anzeigen, wenn isDialogOpen true ist -->
   <p *ngIf="isDialogOpen">Dialog Status: Geöffnet</p>
-  <app-edit-contact-dialog
-    *ngIf="isDialogOpen"
-    [contact]="selectedContact"
-    (editDialogClosed)="closeDialog($event)"
-    (contactUpdated)="updateContact($event)"
-  >
+  <app-edit-contact-dialog *ngIf="isDialogOpen" [contact]="selectedContact" (editDialogClosed)="closeDialog()" (contactUpdated)="updateContact($event)">
   </app-edit-contact-dialog>
 </div>
