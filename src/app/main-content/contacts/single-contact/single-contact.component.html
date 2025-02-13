@@ -22,8 +22,8 @@
             <p (click)="openDialog()" class="contact-link">Edit</p>
           </div>
           <div class="deleteIcon">
-            <img src="/assets/icons/delete.png" alt="delete-icon" />
-            <p>Delete</p>
+            <img (click)="deleteContact()" src="/assets/icons/delete.png" alt="delete-icon" />
+            <p (click)="deleteContact()">Delete</p>
           </div>
         </div>
       </div>
