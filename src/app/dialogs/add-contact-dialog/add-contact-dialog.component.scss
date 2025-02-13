@@ -44,6 +44,19 @@
     height: 66px;
   }
 }
+#tasks {
+  font-size: 24px;
+  color: #ffffff;
+  padding-bottom: 80px;
+}
+#tasks::after {
+  content: "";
+  display: block;
+  width: 85px;
+  height: 2px;
+  background-color: $color-primary-hover;
+  margin: 5px;
+}
 
 .middleFrame {
   display: flex;
@@ -51,7 +64,7 @@
   align-items: center;
   width: 350px;
   background-color: #ffffff;
-  padding-bottom: 100px;
+  margin-right: -3px;
 }
 
 .avatar {
@@ -68,12 +81,11 @@
 }
 
 .rightFrame {
-  // padding-top: 80px;
   box-sizing: content-box;
   width: 400px;
   color: #000000;
   background-color: #ffffff;
-  flex-shrink: 0; /* Prevent shrinking */
+  // flex-shrink: 0; /* Prevent shrinking */
 }
 
 .close {
@@ -108,7 +120,24 @@
     border-radius: 16px;
     width: 80%;
     background-color: #ffffff;
+    background-position: right 10px center; /* Position des Icons */
+    background-repeat: no-repeat;
+    background-size: 20px; /* Größe des Icons */
   }
+}
+/* Icon für das Name-Feld */
+.input_name {
+  background-image: url("/assets/icons/person.png");
+}
+
+/* Icon für das E-Mail-Feld */
+.input_email {
+  background-image: url("/assets/icons/mail.png");
+}
+
+/* Icon für das Passwort-Feld */
+.input_phone {
+  background-image: url("/assets/icons/call.png");
 }
 
 .btn_wrapper {
@@ -122,20 +151,6 @@ p {
   font-size: 28px;
   margin: 16px 0;
   color: #000000;
-}
-
-#tasks {
-  font-size: 24px;
-  color: #ffffff;
-  padding-bottom: 80px;
-}
-#tasks::after {
-  content: "";
-  display: block;
-  width: 85px;
-  height: 2px;
-  background-color: $color-primary-hover;
-  margin: 5px;
 }
 
 .btn {

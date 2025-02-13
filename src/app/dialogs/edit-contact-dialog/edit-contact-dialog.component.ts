@@ -29,7 +29,6 @@ export class EditContactDialogComponent {
       this.phone = this.contact.phone;
     }
   }
-
   closeDialog() {
     this.editDialogClosed.emit(false);
   }

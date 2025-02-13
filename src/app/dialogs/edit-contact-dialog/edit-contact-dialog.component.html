@@ -4,23 +4,29 @@
       <img src="/assets/logo/logo.png" alt="" />
       <p>Edit contact</p>
     </div>
-    <div class="middleFrame"></div>
-    <div class="rightFrame">
-      <p>Edit Contacts</p>
-      <div class="input_wrapper">
-        <input [(ngModel)]="name" type="text" />
+
+    <div class="middleFrame">
+      <div class="avatar" [ngClass]="{ 'with-initials': name }">
+        <!-- <img *ngIf="!name" src="assets/icons/dummyContact.png" /> -->
+        <div *ngIf="name" class="initials">{{ getInitials(name) }}</div>
       </div>
-      <div class="input_wrapper">
-        <input [(ngModel)]="email" name="" id="" />
-      </div>
-      <div class="input_wrapper">
-        <input [(ngModel)]="phone" name="" id="" />
-      </div>
-      <div class="btn_wrapper">
-        <button class="btn emptyBtn" (click)="editDialogClosed.emit(false)">
-          Cancel
-        </button>
-        <button class="btn fullBtn" (click)="updateContact()">Save</button>
+
+      <div class="rightFrame">
+        <div class="input_wrapper">
+          <input [(ngModel)]="name" type="text" Class="input_name" />
+        </div>
+        <div class="input_wrapper">
+          <input [(ngModel)]="email" name="" Class="input_email" />
+        </div>
+        <div class="input_wrapper">
+          <input [(ngModel)]="phone" name="" Class="input_phone" />
+        </div>
+        <div class="btn_wrapper">
+          <button class="btn emptyBtn" (click)="editDialogClosed.emit(false)">
+            Cancel
+          </button>
+          <button class="btn fullBtn" (click)="updateContact()">Save</button>
+        </div>
       </div>
     </div>
   </div>
