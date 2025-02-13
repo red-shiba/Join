@@ -1,21 +1,42 @@
-<div style="background: white; width: 300px; height: 300px; position: fixed; top: 100px; left: 50%; transform: translateX(-50%); z-index: 1000;">
-<div class="add_dialog_wrapper">
-    <div class="input_wrapper">
-        <p>Name</p>
-        <input [(ngModel)]="name" type="text">
+<div class="container">
+  <div class="add_dialog_wrapper">
+    <div class="add_left">
+      <img src="/assets/logo/logo.png" alt="" />
+      <p>Add contact</p>
+      <p>task are better with a team!</p>
     </div>
-    <div class="input_wrapper">
-        <p>Email</p>
-        <input [(ngModel)]="email" name="" id="" cols="30" rows="10">
+    <div class="add_information">
+      <div class="input_wrapper">
+        <input [(ngModel)]="name" placeholder="name" type="text" />
+      </div>
+      <div class="input_wrapper">
+        <input
+          [(ngModel)]="email"
+          placeholder="email"
+          name=""
+          id=""
+          cols="30"
+          rows="10"
+        />
+      </div>
+      <div class="input_wrapper">
+        <input
+          [(ngModel)]="phone"
+          placeholder="phone"
+          name=""
+          id=""
+          cols="30"
+          rows="10"
+        />
+      </div>
+      <div class="btn_wrapper">
+        <button class="btn emptyBtn" (click)="addDialogCloseed.emit(false)">
+          Cancel
+        </button>
+        <button class="btn fullBtn" (click)="addContact()">
+          Create contact
+        </button>
+      </div>
     </div>
-    <div class="input_wrapper">
-        <p>Phone</p>
-        <input [(ngModel)]="phone" name="" id="" cols="30" rows="10">
-    </div>
-    <div class="btn_wrapper">
-        <button class="btn emptyBtn" (click)="addDialogCloseed.emit(false)">Cancel</button>
-        <button class="btn fullBtn" (click)="addContact()">Create contact</button>
-    </div>
-    
-</div>
+  </div>
 </div>
