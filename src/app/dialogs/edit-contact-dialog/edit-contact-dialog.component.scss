@@ -102,7 +102,7 @@
   width: 400px;
   color: #000000;
   background-color: #ffffff;
-  // flex-shrink: 0; /* Prevent shrinking */
+  flex-shrink: 0; /* Prevent shrinking */
   margin-left: 30px;
 }
 
@@ -116,16 +116,18 @@
 .close {
   display: flex;
   justify-content: right;
-  cursor: pointer;
-  color: white;
-  padding: 16px 32px;
-  width: 70%;
+  color: black;
+  padding: 16px 0px;
+  width: 80%;
+  >img {
+    cursor: pointer;
+  }
 }
 
 .input_wrapper {
   color: white;
   padding: 16px 22px;
-  width: 100%;
+  width: 80%;
   > p {
     font-size: 26px;
     margin: 16px 0;
@@ -162,6 +164,7 @@
   width: 80%;
   display: flex;
   align-items: center;
+  padding-bottom: 30px;
   justify-content: space-around;
 }
 

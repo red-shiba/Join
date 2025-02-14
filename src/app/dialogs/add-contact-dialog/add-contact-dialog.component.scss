@@ -103,21 +103,23 @@
   font-weight: bold;
 }
 
+.close {
+  display: flex;
+  justify-content: right;
+  color: black;
+  padding: 16px 32px;
+  width: 70%;
+  >img {
+    cursor: pointer;
+  }
+}
+
 .rightFrame {
   box-sizing: content-box;
   width: 400px;
   color: #000000;
   background-color: #ffffff;
-  // flex-shrink: 0; /* Prevent shrinking */
-}
-
-.close {
-  display: flex;
-  justify-content: right;
-  cursor: pointer;
-  color: white;
-  padding: 16px 32px;
-  width: 70%;
+  flex-shrink: 0; /* Prevent shrinking */
 }
 
 // @media screen and (max-width: 500px) {
