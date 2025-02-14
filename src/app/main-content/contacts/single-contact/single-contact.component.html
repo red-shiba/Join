@@ -44,14 +44,6 @@
     <p><b>Phone</b></p>
     <p class="phone">{{ contact.phone }}</p>
   </div>
-
-  <!-- Dialogfenster nur anzeigen, wenn isDialogOpen true ist -->
   <p *ngIf="isDialogOpen">Dialog Status: Geöffnet</p>
-  <app-edit-contact-dialog
-    *ngIf="isDialogOpen"
-    [contact]="selectedContact"
-    (editDialogClosed)="closeDialog()"
-    (contactUpdated)="updateContact($event)"
-  >
-  </app-edit-contact-dialog>
+  <app-edit-contact-dialog *ngIf="isDialogOpen" [contact]="selectedContact" (editDialogClosed)="closeDialog()" (contactUpdated)="updateContact($event)"></app-edit-contact-dialog>
 </div>
