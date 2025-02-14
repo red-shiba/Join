@@ -6,7 +6,7 @@
   </div>
   <div class="nameRow">
     <div class="nameContainer">
-      <div class="avatar">{{ getInitials(contact.name) }}</div>
+      <div class="avatar" [ngStyle]="{ 'background-color': avatarColor }">{{ getInitials(contact.name) }}</div>
       <div class="nameEdit">
         <div class="name">
           <p>{{ contact.name }}</p>

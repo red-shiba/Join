@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AddContactDialogComponent } from '../../dialogs/add-contact-dialog/add-contact-dialog.component';
 import { SingleContactComponent } from './single-contact/single-contact.component';
+import { AvatarColorService } from '../../services/avatar-color.service';
 
 @Component({
   selector: 'app-contacts',
@@ -23,7 +24,14 @@ export class ContactsComponent {
   isDialogOpen = false;
   selectedContact: Contact | null = null;
 
-  constructor(private contactListService: ContactListService) {}
+  constructor(
+    private contactListService: ContactListService,
+    private avatarColorService: AvatarColorService
+  ) {}
+
+  getAvatarColor(contact: Contact): string {
+    return this.avatarColorService.getAvatarColor(contact);
+  }
 
   getList(): Contact[] {
     return this.contactListService.contacts;

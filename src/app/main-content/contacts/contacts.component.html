@@ -14,7 +14,7 @@
           class="single-contact"
           [ngClass]="{ selected: isSelected(contact) }"
         >
-          <div class="avatar">
+          <div class="avatar" [ngStyle]="{ 'background-color': getAvatarColor(contact) }">
             {{ getInitials(contact.name) }}
           </div>
           <div class="info">
