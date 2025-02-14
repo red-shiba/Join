@@ -1,35 +1,80 @@
+<div class="add_dialog_wrapper" [class.closing]="isClosing">
+  <div class="leftFrame">
+    <img src="/assets/logo/logo.png" alt="" />
+    <p>Add contact</p>
+    <p id="tasks">Tasks are better with a team!</p>
+  </div>
 
-  <div class="add_dialog_wrapper" [class.closing]="isClosing">
-    <div class="leftFrame">
-      <img src="/assets/logo/logo.png" alt="" />
-      <p>Add contact</p>
-      <p id="tasks">Tasks are better with a team!</p>
-    </div>
-
-    <div class="middleFrame">
-      <div class="avatar" [ngClass]="{ 'with-initials': name }">
-        <img *ngIf="!name" src="assets/icons/dummyContact.png" />
-        <div *ngIf="name" class="initials">{{ getInitials(name) }}</div>
-      </div>
-    </div>
-
-    <div class="rightFrame">
-      <div class="close">
-        <img src="/assets/icons/Close.png" (click)="closeDialog()">
-      </div>
-      <div class="input_wrapper">
-        <input [(ngModel)]="name" type="text" placeholder="Name" class="input_name"/>
-      </div>
-      <div class="input_wrapper">
-        <input [(ngModel)]="email" type="email" placeholder="Email" class="input_email"/>
-      </div>
-      <div class="input_wrapper">
-        <input [(ngModel)]="phone" type="tel" placeholder="Phone" class="input_phone"/>
-      </div>
-      <div class="btn_wrapper">
-        <button class="btn emptyBtn" (click)="closeDialog()">Cancel</button>
-        <button class="btn fullBtn" (click)="addContact()">Create contact</button>
-      </div>
+  <div class="middleFrame">
+    <div class="avatar" [ngClass]="{ 'with-initials': name }">
+      <img *ngIf="!name" src="assets/icons/dummyContact.png" />
+      <div *ngIf="name" class="initials">{{ getInitials(name) }}</div>
     </div>
   </div>
+
+  <div class="rightFrame">
+    <div class="close">
+      <img src="/assets/icons/Close.png" (click)="closeDialog()">
+    </div>
+    <div class="input_wrapper" [class.error]="nameInput.invalid && nameInput.touched">
+      <div class="input_container">
+        <label *ngIf="isNameFocused || name" class="floating_label">Name</label>
+        <input 
+          [(ngModel)]="name"
+          #nameInput="ngModel"
+          type="text"
+          class="input_name"
+          placeholder="Name"
+          required
+          (focus)="isNameFocused = true"
+          (blur)="isNameFocused = false"
+        />
+        <p *ngIf="nameInput.invalid && nameInput.touched" class="errorMessage">Name erforderlich</p>
+      </div>
+    </div>
+    <div class="input_wrapper" [class.error]="emailInput.invalid && emailInput.touched">
+      <div class="input_container">
+        <label *ngIf="isEmailFocused || email" class="floating_label">Email</label>
+        <input 
+          [(ngModel)]="email"
+          #emailInput="ngModel"
+          type="email"
+          class="input_email"
+          placeholder="Email"
+          required
+          pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
+          (focus)="isEmailFocused = true"
+          (blur)="isEmailFocused = false"
+        />
+        <p *ngIf="emailInput.invalid && emailInput.touched" class="errorMessage">Gültige Email erforderlich</p>
+      </div>
+    </div>
+    <div class="input_wrapper" [class.error]="phoneInput.invalid && phoneInput.touched">
+      <div class="input_container">
+        <label *ngIf="isPhoneFocused || phone" class="floating_label">Telefon</label>
+        <input 
+          [(ngModel)]="phone"
+          #phoneInput="ngModel"
+          type="tel"
+          class="input_phone"
+          placeholder="Phone"
+          required
+          pattern="^[0-9+\s]+$"
+          (focus)="isPhoneFocused = true"
+          (blur)="isPhoneFocused = false"
+        />
+        <p *ngIf="phoneInput.invalid && phoneInput.touched" class="errorMessage">Gültige Telefonnummer erforderlich</p>
+      </div>
+    </div>
+
+    <div class="btn_wrapper">
+      <button class="btn emptyBtn" (click)="closeDialog()">Cancel</button>
+      <button class="btn fullBtn" 
+      [disabled]="nameInput.invalid || emailInput.invalid || phoneInput.invalid" 
+      [ngClass]="{ 'hover': !(nameInput.invalid || emailInput.invalid || phoneInput.invalid)}"
+      (click)="addContact()">Create contact</button>
+    </div>
+  </div>
+</div>
+
 

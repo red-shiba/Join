@@ -17,6 +17,10 @@ export class AddContactDialogComponent {
   email = '';
   phone = 0;
   isClosing = false;
+  
+  isNameFocused: boolean = false;
+  isEmailFocused: boolean = false;
+  isPhoneFocused: boolean = false;
 
   constructor(public contactService: ContactListService) {}
 
@@ -28,12 +32,15 @@ export class AddContactDialogComponent {
   }
 
   addContact() {
+    if (!this.name || !this.email || !this.phone) return;
+
     let contact: Contact = {
       type: 'contact',
       name: this.name,
       email: this.email,
       phone: this.phone,
     };
+    
     this.contactService.addContact(contact);
     this.closeDialog();
   }
