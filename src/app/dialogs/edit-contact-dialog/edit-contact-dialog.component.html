@@ -13,18 +13,71 @@
       <div class="close">
         <img src="/assets/icons/Close.png" (click)="closeDialog()">
       </div>
-      <div class="input_wrapper">
-        <input [(ngModel)]="name" type="text" class="input_name" />
+      <div class="input_wrapper" [class.error]="nameInput.invalid && nameInput.touched">
+        <div class="input_container">
+          <label *ngIf="isNameFocused || name" class="floating_label">Name</label>
+          <input 
+            [(ngModel)]="name"
+            #nameInput="ngModel"
+            type="text"
+            class="input_name"
+            required
+            pattern="^[a-zA-ZäöüÄÖÜß\s\-]+$"
+            (focus)="isNameFocused = true"
+            (blur)="isNameFocused = false"
+          />
+          <p *ngIf="nameInput.invalid && nameInput.touched" class="errorMessage">
+            Bitte einen Namen ein
+          </p>
+        </div>
       </div>
-      <div class="input_wrapper">
-        <input [(ngModel)]="email" type="text" class="input_email" />
+
+      <div class="input_wrapper" [class.error]="emailInput.invalid && emailInput.touched">
+        <div class="input_container">
+          <label *ngIf="isFocused || email" class="floating_label">Email</label>
+          <input 
+            [(ngModel)]="email"
+            #emailInput="ngModel"
+            type="email"
+            class="input_email"
+            required
+            pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
+            (focus)="isFocused = true"
+            (blur)="isFocused = false"
+          />
+          <p *ngIf="emailInput.invalid && emailInput.touched" class="errorMessage">
+            Bitte eine gültige Email eingeben
+          </p>
+        </div>
       </div>
-      <div class="input_wrapper">
-        <input [(ngModel)]="phone" type="text" class="input_phone" />
+      
+
+      <div class="input_wrapper" [class.error]="phoneInput.invalid && phoneInput.touched">
+        <div class="input_container">
+          <label *ngIf="isPhoneFocused || phone" class="floating_label">Telefon</label>
+          <input 
+            [(ngModel)]="phone"
+            #phoneInput="ngModel"
+            type="tel"
+            class="input_phone"
+            required
+            pattern="^[0-9+\s]+$"
+            (focus)="isPhoneFocused = true"
+            (blur)="isPhoneFocused = false"
+          />
+          <p *ngIf="phoneInput.invalid && phoneInput.touched" class="errorMessage">
+            Bitte eine gültige Telefonnummer eingeben
+          </p>
+        </div>
       </div>
       <div class="btn_wrapper">
         <button class="btn emptyBtn" (click)="closeDialog()">Cancel</button>
-        <button class="btn fullBtn" (click)="updateContact()">Save</button>
+        <button 
+          class="btn fullBtn" 
+          [disabled]="nameInput.invalid || emailInput.invalid || phoneInput.invalid" 
+          [ngClass]="{ 'hover': !(nameInput.invalid || emailInput.invalid || phoneInput.invalid)}" 
+          (click)="updateContact()">Save
+        </button>
       </div>
     </div>
   </div>

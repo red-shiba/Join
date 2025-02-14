@@ -102,16 +102,9 @@
   width: 400px;
   color: #000000;
   background-color: #ffffff;
-  flex-shrink: 0; /* Prevent shrinking */
+  flex-shrink: 0;
   margin-left: 30px;
 }
-
-// @media screen and (max-width: 800px) {
-//     .add_dialog_wrapper{
-//         width: 100vw;
-//         padding: 16px 32px;
-//     }
-// }
 
 .close {
   display: flex;
@@ -125,39 +118,116 @@
 }
 
 .input_wrapper {
-  color: white;
-  padding: 16px 22px;
+  position: relative;
   width: 80%;
-  > p {
-    font-size: 26px;
-    margin: 16px 0;
+  padding: 16px 22px;
+  color: white;
+
+  .input_container {
+    position: relative;
+    width: 100%;
   }
-  > input {
-    color: #000000;
-    outline: #29abe2;
-    border: 1px solid #29abe2;
-    padding: 16px 16px;
+
+  .floating_label {
+    position: absolute;
+    top: -10px;
+    left: 16px;
+    background: white;
+    color: #29abe2;
+    font-size: 14px;
+    padding: 0 4px;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .input_email {
+    color: #000;
+    border: 1px solid #d3d3d3; /* Standard: hellgrauer Rahmen */
+    padding: 16px;
     border-radius: 16px;
-    width: 80%;
-    background-color: #ffffff;
-    background-position: right 10px center; /* Position des Icons */
-    background-repeat: no-repeat;
-    background-size: 20px; /* Größe des Icons */
+    width: 100%;
+    background-color: white;
+    outline: none;
+    transition: border 0.3s ease-in-out;
+
+    &:focus {
+      border: 2px solid #29abe2; /* Blauer Rahmen beim Fokus */
+    }
+  }
+
+  /* Fehlerzustand: Roter Rahmen & rote Fehlermeldung */
+  &.error .input_email {
+    border: 2px solid red;
+  }
+
+  .input_name {
+    color: #000;
+    border: 1px solid #d3d3d3; /* Standard: hellgrauer Rahmen */
+    padding: 16px;
+    border-radius: 16px;
+    width: 100%;
+    background-color: white;
+    outline: none;
+    transition: border 0.3s ease-in-out;
+
+    &:focus {
+      border: 2px solid #29abe2; /* Blauer Rahmen beim Fokus */
+    }
+  }
+
+  &.error .input_name {
+    border: 2px solid red;
+  }
+
+  .input_phone {
+    color: #000;
+    border: 1px solid #d3d3d3; /* Standard: hellgrauer Rahmen */
+    padding: 16px;
+    border-radius: 16px;
+    width: 100%;
+    background-color: white;
+    outline: none;
+    transition: border 0.3s ease-in-out;
+
+    &:focus {
+      border: 2px solid #29abe2; /* Blauer Rahmen beim Fokus */
+    }
+  }
+
+  &.error .input_phone {
+    border: 2px solid red;
+  }
+
+  .errorMessage {
+    color: red;
+    font-size: 14px;
+    position: absolute;
+    bottom: -18px;
+    left: 16px;
+    background: white;
+    padding: 2px 4px;
   }
 }
+
+
 /* Icon für das Name-Feld */
 .input_name {
   background-image: url("/assets/icons/person.png");
+  background-repeat: no-repeat;
+  background-position: right;
 }
 
 /* Icon für das E-Mail-Feld */
 .input_email {
   background-image: url("/assets/icons/mail.png");
+  background-repeat: no-repeat;
+  background-position: right;
 }
 
 /* Icon für das Passwort-Feld */
 .input_phone {
   background-image: url("/assets/icons/call.png");
+  background-repeat: no-repeat;
+  background-position: right;
 }
 
 .btn_wrapper {
@@ -180,7 +250,6 @@ p {
   align-items: center;
   border: 2px solid #2a3647;
   color: #2a3647;
-
   border-radius: 10px;
   padding: 16px 24px;
   cursor: pointer;

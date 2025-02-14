@@ -16,9 +16,12 @@ export class EditContactDialogComponent {
   @Output() editDialogClosed: EventEmitter<boolean> = new EventEmitter();
   @Output() contactUpdated: EventEmitter<Contact> = new EventEmitter();
 
-  name = '';
-  email = '';
-  phone = 0;
+  name: string = '';
+  email: string = '';
+  phone: number = 0;
+  isFocused: boolean = false;
+  isNameFocused: boolean = false;
+  isPhoneFocused: boolean = false;
   isClosing = false;
 
   constructor(public contactService: ContactListService) {}
