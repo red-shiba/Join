@@ -72,17 +72,14 @@
     justify-content: flex-start;
   }
 
-  .header-heading {
-    display: none;
-  }
+  .container-inner {
+    h1 {
+      display: none;
+    }
 
-  .header-logo-mobil {
-    display: block;
-    // margin: 10px 0;
-  }
-
-  .header-logo-mobil img {
-    width: 100%;
+    img {
+      display: block;
+    }
   }
 }
 
@@ -100,7 +97,7 @@
 
   .masterFrame {
     width: 100%;
-    padding: 5px 5px 70px 5px;
+    // padding: 5px 5px 70px 5px;
     align-items: stretch;
     justify-content: flex-start;
     text-align: center;

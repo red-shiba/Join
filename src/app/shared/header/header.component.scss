@@ -11,15 +11,21 @@
   justify-content: space-between;
   padding: 0px 20px;
   font-family: Inter;
+}
 
-  h1 {
-    font-size: 19px;
-    font-weight: 400;
-  }
+h1 {
+  font-size: 18px;
+  font-weight: 400;
 }
 
 .header-logo-mobil {
   display: none;
+}
+
+@media (max-width: 768px) {
+  .header-logo-mobil {
+    display: block;
+  }
 }
 
 .header-account {
@@ -40,6 +46,7 @@
 
   .header-profilpic {
     margin-left: 10px;
+    padding: 8px 0;
 
     .user-badge {
       width: 36px;
@@ -75,7 +82,6 @@
   flex-direction: column;
   z-index: 1001;
   background-color: #2a3647;
-  border: 1px solid #ddd;
   border-radius: 20px 0 20px 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   min-width: 120px;
