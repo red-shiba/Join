@@ -16,14 +16,15 @@ export class AddContactDialogComponent {
   name = '';
   email = '';
   phone = 0;
+  isClosing = false;
 
   constructor(public contactService: ContactListService) {}
 
   closeDialog() {
-    this.name = '';
-    this.email = '';
-    this.phone = 0;
-    this.addDialogCloseed.emit(false);
+    this.isClosing = true;
+    setTimeout(() => {
+      this.addDialogCloseed.emit(false);
+    }, 180);
   }
 
   addContact() {
@@ -34,16 +35,15 @@ export class AddContactDialogComponent {
       phone: this.phone,
     };
     this.contactService.addContact(contact);
-    // this.addDialogCloseed.emit(false);
     this.closeDialog();
   }
 
   getInitials(name: string): string {
     if (!name) return '';
     return name
-      .split(' ') // Name in Wörter splitten
-      .map((word) => word[0]) // Erstes Zeichen jedes Wortes nehmen
-      .join('') // Buchstaben zusammenfügen
-      .toUpperCase(); // Großbuchstaben
+      .split(' ')
+      .map((word) => word[0])
+      .join('')
+      .toUpperCase();
   }
 }

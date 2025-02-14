@@ -1,5 +1,5 @@
-<div class="container">
-  <div class="add_dialog_wrapper">
+
+  <div class="add_dialog_wrapper" [class.closing]="isClosing">
     <div class="leftFrame">
       <img src="/assets/logo/logo.png" alt="" />
       <p>Add contact</p>
@@ -14,7 +14,7 @@
     </div>
 
     <div class="rightFrame">
-      <div class="close" (click)="addDialogCloseed.emit(false)"></div>
+      <div class="close" (click)="closeDialog()"></div>
       <div class="input_wrapper">
         <input
           [(ngModel)]="name"
@@ -26,10 +26,7 @@
       <div class="input_wrapper">
         <input
           [(ngModel)]="email"
-          name=""
-          id="name"
-          cols="30"
-          rows="10"
+          type="email"
           placeholder="Email"
           class="input_email"
         />
@@ -37,22 +34,15 @@
       <div class="input_wrapper">
         <input
           [(ngModel)]="phone"
-          name=""
-          id=""
-          cols="30"
-          rows="10"
+          type="tel"
           placeholder="Phone"
           class="input_phone"
         />
       </div>
       <div class="btn_wrapper">
-        <button class="btn emptyBtn" (click)="addDialogCloseed.emit(false)">
-          Cancel
-        </button>
-        <button class="btn fullBtn" (click)="addContact()">
-          Create contact
-        </button>
+        <button class="btn emptyBtn" (click)="closeDialog()">Cancel</button>
+        <button class="btn fullBtn" (click)="addContact()">Create contact</button>
       </div>
     </div>
   </div>
-</div>
+

@@ -19,6 +19,7 @@ export class EditContactDialogComponent {
   name = '';
   email = '';
   phone = 0;
+  isClosing = false;
 
   constructor(public contactService: ContactListService) {}
 
@@ -29,8 +30,12 @@ export class EditContactDialogComponent {
       this.phone = this.contact.phone;
     }
   }
+
   closeDialog() {
-    this.editDialogClosed.emit(false);
+    this.isClosing = true;
+    setTimeout(() => {
+      this.editDialogClosed.emit(false);
+    }, 180);
   }
 
   updateContact() {
@@ -51,9 +56,9 @@ export class EditContactDialogComponent {
   getInitials(name: string): string {
     if (!name) return '';
     return name
-      .split(' ') // Name in Wörter splitten
-      .map((word) => word[0]) // Erstes Zeichen jedes Wortes nehmen
-      .join('') // Buchstaben zusammenfügen
-      .toUpperCase(); // Großbuchstaben
+      .split(' ') 
+      .map((word) => word[0])
+      .join('')
+      .toUpperCase();
   }
 }
