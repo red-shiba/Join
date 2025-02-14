@@ -5,7 +5,9 @@
   </div>
 
   <div class="middleFrame">
-    <div class="avatar" [ngClass]="{ 'with-initials': name }">
+    <div class="avatar" 
+    [ngClass]="{ 'with-initials': name }" 
+    [ngStyle]="{ 'background-color': avatarColor }">
       <div *ngIf="name" class="initials">{{ getInitials(name) }}</div>
     </div>
 

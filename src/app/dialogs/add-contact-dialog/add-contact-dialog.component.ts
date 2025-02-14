@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { Contact } from '../../interfaces/contact';
 import { ContactListService } from '../../firebase-service/contact-list.service';
+import { AvatarColorService } from '../../services/avatar-color.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -17,12 +18,19 @@ export class AddContactDialogComponent {
   email = '';
   phone = 0;
   isClosing = false;
-  
+
   isNameFocused: boolean = false;
   isEmailFocused: boolean = false;
   isPhoneFocused: boolean = false;
 
-  constructor(public contactService: ContactListService) {}
+  constructor(
+    public contactService: ContactListService,
+    private avatarColorService: AvatarColorService
+  ) {}
+
+  get avatarColor(): string {
+    return this.email ? this.avatarColorService.getAvatarColor({ email: this.email } as Contact) : '#ccc';
+  }
 
   closeDialog() {
     this.isClosing = true;
@@ -40,7 +48,7 @@ export class AddContactDialogComponent {
       email: this.email,
       phone: this.phone,
     };
-    
+
     this.contactService.addContact(contact);
     this.closeDialog();
   }

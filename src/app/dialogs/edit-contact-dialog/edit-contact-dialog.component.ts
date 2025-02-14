@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { Contact } from '../../interfaces/contact';
 import { ContactListService } from '../../firebase-service/contact-list.service';
+import { AvatarColorService } from '../../services/avatar-color.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -24,7 +25,14 @@ export class EditContactDialogComponent {
   isPhoneFocused: boolean = false;
   isClosing = false;
 
-  constructor(public contactService: ContactListService) {}
+  constructor(
+    public contactService: ContactListService,
+    private avatarColorService: AvatarColorService
+  ) {}
+
+  get avatarColor(): string {
+    return this.email ? this.avatarColorService.getAvatarColor({ email: this.email } as Contact) : '#ccc';
+  }
 
   ngOnChanges() {
     if (this.contact) {
