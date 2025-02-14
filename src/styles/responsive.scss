@@ -71,6 +71,19 @@
     align-items: stretch;
     justify-content: flex-start;
   }
+
+  .header-heading {
+    display: none;
+  }
+
+  .header-logo-mobil {
+    display: block;
+    // margin: 10px 0;
+  }
+
+  .header-logo-mobil img {
+    width: 100%;
+  }
 }
 
 /* Mobile Breakpoint */

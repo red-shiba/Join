@@ -12,10 +12,14 @@
   padding: 0px 20px;
   font-family: Inter;
 
-  h3 {
+  h1 {
     font-size: 19px;
     font-weight: 400;
   }
+}
+
+.header-logo-mobil {
+  display: none;
 }
 
 .header-account {
