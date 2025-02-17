@@ -9,7 +9,7 @@
     <div class="avatar" 
     [ngClass]="{ 'with-initials': name }" 
     [ngStyle]="{ 'background-color': avatarColor }">
-      <img *ngIf="!name" src="assets/icons/dummyContact.png" />
+      <img *ngIf="!name" src="assets/icons/dummyContact.png"/>
       <div *ngIf="name" class="initials">{{ getInitials(name) }}</div>
     </div>
   </div>
@@ -31,7 +31,7 @@
           (focus)="isNameFocused = true"
           (blur)="isNameFocused = false"
         />
-        <p *ngIf="nameInput.invalid && nameInput.touched" class="errorMessage">Name erforderlich</p>
+        <p *ngIf="nameInput.invalid && nameInput.touched" class="errorMessage">Name required</p>
       </div>
     </div>
     <div class="input_wrapper" [class.error]="emailInput.invalid && emailInput.touched">
@@ -48,7 +48,7 @@
           (focus)="isEmailFocused = true"
           (blur)="isEmailFocused = false"
         />
-        <p *ngIf="emailInput.invalid && emailInput.touched" class="errorMessage">Gültige Email erforderlich</p>
+        <p *ngIf="emailInput.invalid && emailInput.touched" class="errorMessage">Email required</p>
       </div>
     </div>
     <div class="input_wrapper" [class.error]="phoneInput.invalid && phoneInput.touched">
@@ -65,7 +65,7 @@
           (focus)="isPhoneFocused = true"
           (blur)="isPhoneFocused = false"
         />
-        <p *ngIf="phoneInput.invalid && phoneInput.touched" class="errorMessage">Gültige Telefonnummer erforderlich</p>
+        <p *ngIf="phoneInput.invalid && phoneInput.touched" class="errorMessage">Number required</p>
       </div>
     </div>
 

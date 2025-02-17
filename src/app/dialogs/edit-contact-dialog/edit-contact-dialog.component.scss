@@ -200,7 +200,7 @@
     color: red;
     font-size: 14px;
     position: absolute;
-    bottom: -44px;
+    bottom: -40px;
     left: 16px;
     background: white;
     padding: 2px 4px;
@@ -251,6 +251,7 @@ p {
   border-radius: 10px;
   padding: 16px 24px;
   cursor: pointer;
+  margin-top: 20px;
   > div {
     display: flex;
     align-items: center;

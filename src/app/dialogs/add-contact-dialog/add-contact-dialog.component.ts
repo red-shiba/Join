@@ -18,6 +18,7 @@ export class AddContactDialogComponent {
   email = '';
   phone = 0;
   isClosing = false;
+  avatarColor: string = '#ccc';
 
   isNameFocused: boolean = false;
   isEmailFocused: boolean = false;
@@ -27,10 +28,6 @@ export class AddContactDialogComponent {
     public contactService: ContactListService,
     private avatarColorService: AvatarColorService
   ) {}
-
-  get avatarColor(): string {
-    return this.email ? this.avatarColorService.getAvatarColor({ email: this.email } as Contact) : '#ccc';
-  }
 
   closeDialog() {
     this.isClosing = true;
