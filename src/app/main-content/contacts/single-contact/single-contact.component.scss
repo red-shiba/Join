@@ -13,6 +13,7 @@
 
 .slide-show {
   animation: slideInFromRight 0.5s ease-out forwards;
+  z-index: 0;
 }
 .single-contact {
   display: flex;
