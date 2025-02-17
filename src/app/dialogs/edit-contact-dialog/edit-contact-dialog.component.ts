@@ -19,7 +19,7 @@ export class EditContactDialogComponent {
 
   name: string = '';
   email: string = '';
-  phone: number = 0;
+  phone: string = '';
   isFocused: boolean = false;
   isNameFocused: boolean = false;
   isPhoneFocused: boolean = false;
