@@ -1,9 +1,13 @@
 <div class="shaddowBox" [class.closing]="isClosing" (click)="closeDialog()">
-<div class="add_dialog_wrapper" [class.closing]="isClosing" (click)="$event.stopPropagation()">
-  <div class="leftFrame">
-    <img src="/assets/logo/logo.png" alt="" />
-    <p>Edit contact</p>
-  </div>
+  <div
+    class="add_dialog_wrapper"
+    [class.closing]="isClosing"
+    (click)="$event.stopPropagation()"
+  >
+    <div class="leftFrame">
+      <img src="/assets/logo/logo.png" alt="Join-logo" />
+      <p>Edit contact</p>
+    </div>
 
     <div class="middleFrame">
       <div
@@ -16,7 +20,7 @@
 
       <div class="rightFrame">
         <div class="close">
-          <img src="/assets/icons/Close.png" (click)="closeDialog()" />
+          <img src="/assets/icons/close.png" (click)="closeDialog()" />
         </div>
         <div
           class="input_wrapper"
@@ -40,7 +44,7 @@
               *ngIf="nameInput.invalid && nameInput.touched"
               class="errorMessage"
             >
-            Name required
+              Name required
             </p>
           </div>
         </div>
@@ -67,7 +71,7 @@
               *ngIf="emailInput.invalid && emailInput.touched"
               class="errorMessage"
             >
-            Email required
+              Email required
             </p>
           </div>
         </div>
@@ -94,7 +98,7 @@
               *ngIf="phoneInput.invalid && phoneInput.touched"
               class="errorMessage"
             >
-            Number required
+              Number required
             </p>
           </div>
         </div>

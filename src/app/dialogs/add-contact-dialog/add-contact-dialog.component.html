@@ -1,10 +1,14 @@
 <div class="shaddowBox" [class.closing]="isClosing" (click)="closeDialog()">
-<div class="add_dialog_wrapper" [class.closing]="isClosing" (click)="$event.stopPropagation()">
-  <div class="leftFrame">
-    <img src="/assets/logo/logo.png" alt="" />
-    <p>Add contact</p>
-    <p id="tasks">Tasks are better with a team!</p>
-  </div>
+  <div
+    class="add_dialog_wrapper"
+    [class.closing]="isClosing"
+    (click)="$event.stopPropagation()"
+  >
+    <div class="leftFrame">
+      <img src="/assets/logo/logo.png" alt="" />
+      <p>Add contact</p>
+      <p id="tasks">Tasks are better with a team!</p>
+    </div>
 
     <div class="middleFrame">
       <div
@@ -19,7 +23,7 @@
 
     <div class="rightFrame">
       <div class="close">
-        <img src="/assets/icons/Close.png" (click)="closeDialog()" />
+        <img src="/assets/icons/close.png" (click)="closeDialog()" />
       </div>
       <div
         class="input_wrapper"
