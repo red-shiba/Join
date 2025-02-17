@@ -41,6 +41,15 @@
   .masterFrame {
     width: 75%;
   }
+
+  .contact-container {
+    max-width: 100%;
+    border-radius: 0;
+  }
+
+  .singleFrame {
+    display: none;
+  }
 }
 
 @media (max-width: 780px) {

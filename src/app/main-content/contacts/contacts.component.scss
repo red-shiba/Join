@@ -2,11 +2,11 @@
 section {
   display: flex;
   height: calc(100vh - 96px);
-  max-width: 1240px;
+  max-width: 100%;
   width: 100%;
 }
 .contact-container {
-  max-width: 456px;
+  max-width: 356px;
   width: 100%;
   background: white;
   border-radius: 8px;
@@ -39,7 +39,7 @@ section {
   align-items: center;
   justify-content: center;
   gap: 20px;
-  transition: all 0.3s ease-in-out; /* Weicher Übergang */
+  transition: all 0.3s ease-in-out;
 
   /* Icon-Größe */
   img {
@@ -141,4 +141,10 @@ a {
 .email {
   color: $color-primary-hover;
   font-size: 0.9em;
+}
+
+@media screen and (max-width: 980px) {
+  .contact-container {
+    max-width: 100%;
+  }
 }
