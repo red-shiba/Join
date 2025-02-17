@@ -3,9 +3,9 @@
 .single-contact {
   display: flex;
   flex-direction: column;
-  width: 90%;
-  height: 50%;
   margin: 0px 45px;
+  width: 1100px;
+  width: 100%;
 }
 
 .editIcon:hover .contact-link {
@@ -21,7 +21,7 @@
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 20px;
   > h2 {
@@ -39,14 +39,14 @@
 }
 
 .avatar {
-  width: 65px;
-  height: 65px;
+  width: 120px;
+  height: 120px;
   border-radius: 100%;
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: bold;
+  font-size: 47px;
   margin-right: 10px;
   margin-top: 30px;
 }
@@ -55,8 +55,8 @@
   color: #000000;
   display: flex;
   flex-direction: column;
-  width: 90%;
-  height: 400px;
+  max-width: 1240px;
+  width: 100%;
   gap: 20px;
   padding-bottom: 20px;
 }
@@ -64,6 +64,8 @@
 .nameContainer {
   display: flex;
   align-items: flex-start;
+  max-width: 1000px;
+  width: 100%;
   gap: 20px;
   padding: 20px;
 }
@@ -72,7 +74,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 70%;
   gap: 20px;
   padding: 20px;
 }
@@ -81,8 +82,10 @@
   display: flex;
   width: 100%;
   justify-content: flex-start;
-  font-weight: bold;
-  font-size: 24px;
+  font-size: 47px;
+  > p {
+    margin: 0px;
+  }
 }
 
 .edit {
@@ -90,7 +93,6 @@
   align-items: center;
   width: 100%;
   gap: 20px;
-  padding: 20px;
 }
 
 .editIcon {
