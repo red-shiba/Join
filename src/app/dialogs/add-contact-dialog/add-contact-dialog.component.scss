@@ -70,15 +70,23 @@
   width: 350px;
   background-color: #2a3647;
   flex-shrink: 0;
-  > p {
-    font-size: 61px;
+  > img {
+    width: 54px;
+    height: 66px;
+  }
+  > p:nth-child(2) {
+    font-size: clamp(24px, 5vw, 61px);
+    font-weight: 400px;
     color: #ffffff;
     margin: 0px 0;
     margin-top: 10px;
   }
-  > img {
-    width: 54px;
-    height: 66px;
+  > p:nth-child(3) {
+    font-size: clamp(16px, 3vw, 24px);
+    font-weight: 400px;
+    color: #ffffff;
+    margin: 0px 0;
+    margin-top: 10px;
   }
 }
 #tasks {
@@ -146,22 +154,22 @@
     width: 100%;
   }
 
-  .floating_label {
-    position: absolute;
-    top: -10px;
-    left: 16px;
-    background: white;
-    color: #29abe2;
-    font-size: 14px;
-    padding: 0 4px;
-    transition: all 0.3s ease-in-out;
-  }
+  // .floating_label {
+  //   position: absolute;
+  //   top: -10px;
+  //   left: 16px;
+  //   background: white;
+  //   color: #29abe2;
+  //   font-size: 14px;
+  //   padding: 0 4px;
+  //   transition: all 0.3s ease-in-out;
+  // }
 
   input {
     color: #000;
     border: 1px solid #d3d3d3; /* Standard: hellgrauer Rahmen */
     padding: 16px;
-    border-radius: 16px;
+    border-radius: 10px;
     width: 100%;
     background-color: white;
     outline: none;
@@ -226,10 +234,9 @@
 }
 
 .btn_wrapper {
-  width: 80%;
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  gap: 24px;
+  margin-left: 18px;
 }
 
 p {
