@@ -8,6 +8,15 @@
   margin: 0px 45px;
 }
 
+.editIcon:hover .contact-link {
+  font-weight: bold;
+  color: $color-primary-hover;
+}
+
+.editIcon:hover .edit-icon-path {
+  stroke: $color-primary-hover;
+}
+
 .headline {
   width: 100%;
   height: 100%;
