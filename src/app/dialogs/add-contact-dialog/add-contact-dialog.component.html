@@ -70,8 +70,8 @@
     </div>
 
     <div class="btn_wrapper">
-      <button class="btn emptyBtn" (click)="closeDialog()">Cancel</button>
-      <button class="btn fullBtn" 
+      <button class="cbtn cancelBtn" (click)="closeDialog()">Cancel</button>
+      <button class="btn createBtn" 
       [disabled]="nameInput.invalid || emailInput.invalid || phoneInput.invalid" 
       [ngClass]="{ 'hover': !(nameInput.invalid || emailInput.invalid || phoneInput.invalid)}"
       (click)="addContact()">Create contact</button>
