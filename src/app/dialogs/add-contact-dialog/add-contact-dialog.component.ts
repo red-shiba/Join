@@ -16,7 +16,7 @@ export class AddContactDialogComponent {
   @Output() addDialogCloseed: EventEmitter<boolean> = new EventEmitter();
   name = '';
   email = '';
-  phone = 0;
+  phone = '';
   isClosing = false;
   avatarColor: string = '#ccc';
 

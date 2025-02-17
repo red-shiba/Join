@@ -49,6 +49,7 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  will-change: transform, opacity;
   animation: slideIn 0.2s ease-out;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

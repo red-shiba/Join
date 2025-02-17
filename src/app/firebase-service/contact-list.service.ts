@@ -63,7 +63,7 @@ export class ContactListService {
       type: obj.type || 'contact',
       name: obj.name || '',
       email: obj.email || '',
-      phone: obj.phone || 0,
+      phone: obj.phone || '',
     };
   }
 
