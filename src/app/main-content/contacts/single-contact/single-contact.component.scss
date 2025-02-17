@@ -1,5 +1,19 @@
 @import "./../../../../styles.scss";
+/* Animation für das Einfliegen von rechts nach links */
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
 
+.slide-show {
+  animation: slideInFromRight 0.5s ease-out forwards;
+}
 .single-contact {
   display: flex;
   flex-direction: column;

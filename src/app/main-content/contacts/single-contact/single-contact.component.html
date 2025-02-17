@@ -4,50 +4,52 @@
     <div class="seperator"></div>
     <p>Better with a team</p>
   </div>
-  <div class="nameRow">
-    <div class="nameContainer">
-      <div class="avatar" [ngStyle]="{ 'background-color': avatarColor }">
-        {{ getInitials(contact.name) }}
-      </div>
-      <div class="nameEdit">
-        <div class="name">
-          <p>{{ contact.name }}</p>
+  <div class="slide-show">
+    <div class="nameRow">
+      <div class="nameContainer">
+        <div class="avatar" [ngStyle]="{ 'background-color': avatarColor }">
+          {{ getInitials(contact.name) }}
         </div>
-        <div class="edit">
-          <div class="editIcon" (click)="openDialog()">
-            <img
-              class="edit-icon"
-              src="/assets/icons/edit.png"
-              width="24"
-              height="24"
-              alt="Delete Icon"
-            />
-            <p (click)="openDialog()" class="contact-link">Edit</p>
+        <div class="nameEdit">
+          <div class="name">
+            <p>{{ contact.name }}</p>
           </div>
-          <div class="deleteIcon" (click)="deleteContact()">
-            <img
-              class="delete-icon"
-              src="/assets/icons/delete.png"
-              width="24"
-              height="24"
-              alt="Delete Icon"
-            />
-            <p (click)="deleteContact()" class="contact-link">Delete</p>
+          <div class="edit">
+            <div class="editIcon" (click)="openDialog()">
+              <img
+                class="edit-icon"
+                src="/assets/icons/edit.png"
+                width="24"
+                height="24"
+                alt="Delete Icon"
+              />
+              <p (click)="openDialog()" class="contact-link">Edit</p>
+            </div>
+            <div class="deleteIcon" (click)="deleteContact()">
+              <img
+                class="delete-icon"
+                src="/assets/icons/delete.png"
+                width="24"
+                height="24"
+                alt="Delete Icon"
+              />
+              <p (click)="deleteContact()" class="contact-link">Delete</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="subline"></div>
-  <div class="emailRow">
-    <p>Contact Information</p>
-    <p><b>Email</b></p>
-    <p class="email">{{ contact.email }}</p>
-  </div>
-  <div class="phoneRow">
-    <p><b>Phone</b></p>
-    <p class="phone">{{ contact.phone }}</p>
+    <div class="subline"></div>
+    <div class="emailRow">
+      <p>Contact Information</p>
+      <p><b>Email</b></p>
+      <p class="email">{{ contact.email }}</p>
+    </div>
+    <div class="phoneRow">
+      <p><b>Phone</b></p>
+      <p class="phone">{{ contact.phone }}</p>
+    </div>
   </div>
   <p *ngIf="isDialogOpen">Dialog Status: Geöffnet</p>
   <app-edit-contact-dialog
