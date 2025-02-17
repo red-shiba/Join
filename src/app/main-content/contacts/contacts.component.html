@@ -28,5 +28,7 @@
     <p *ngIf="isDialogOpen">Dialog Status: Geöffnet</p>
     <app-add-contact-dialog *ngIf="isDialogOpen" (addDialogCloseed)="closeDialog($event)"></app-add-contact-dialog>
   </div>
+  <div class="singleFrame">
   <app-single-contact *ngIf="selectedContact" [contact]="selectedContact"></app-single-contact>
+</div>
 </section>
