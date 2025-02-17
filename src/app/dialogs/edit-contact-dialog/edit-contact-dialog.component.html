@@ -1,5 +1,5 @@
 <div class="shaddowBox" [class.closing]="isClosing" (click)="closeDialog()">
-<div class="add_dialog_wrapper" [class.closing]="isClosing">
+<div class="add_dialog_wrapper" [class.closing]="isClosing" (click)="$event.stopPropagation()">
   <div class="leftFrame">
     <img src="/assets/logo/logo.png" alt="" />
     <p>Edit contact</p>
