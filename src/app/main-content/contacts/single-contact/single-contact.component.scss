@@ -103,6 +103,10 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  width: 26px;
+  height: 24px;
+  margin-right: 5px;
+  padding-right: 30px;
   gap: 13px;
   > img {
     width: 24px;
@@ -119,13 +123,6 @@
     width: 24px;
     height: 24px;
   }
-}
-.editIcon:hover .edit-icon {
-  content: url("/assets/icons/edit-blue.png");
-}
-
-.deleteIcon:hover .delete-icon {
-  content: url("/assets/icons/delete-blue.png");
 }
 
 .editIcon:hover .contact-link,
