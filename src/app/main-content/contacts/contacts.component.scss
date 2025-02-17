@@ -1,11 +1,10 @@
 @import "./../../../styles.scss";
 section {
   display: flex;
-  height: 100%;
+  height: calc(100vh - 96px);
 }
 .contact-container {
   width: 380px;
-  height: 91.4vh;
   background: white;
   border-radius: 8px;
   padding: 10px;
