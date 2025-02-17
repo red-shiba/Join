@@ -15,32 +15,24 @@
         </div>
         <div class="edit">
           <div class="editIcon" (click)="openDialog()">
-            <svg
-              class="contact-link"
+            <img
+              class="edit-icon"
+              src="/assets/icons/edit.png"
               width="24"
               height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                class="edit-icon-path"
-                d="M3 17.25V21H6.75L17.81 9.94L14.06 6.19L3 17.25Z"
-                stroke="black"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
+              alt="Delete Icon"
+            />
             <p (click)="openDialog()" class="contact-link">Edit</p>
           </div>
-          <div class="deleteIcon">
+          <div class="deleteIcon" (click)="deleteContact()">
             <img
-              (click)="deleteContact()"
+              class="delete-icon"
               src="/assets/icons/delete.png"
-              alt="delete-icon"
+              width="24"
+              height="24"
+              alt="Delete Icon"
             />
-            <p (click)="deleteContact()">Delete</p>
+            <p (click)="deleteContact()" class="contact-link">Delete</p>
           </div>
         </div>
       </div>
