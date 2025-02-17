@@ -231,13 +231,6 @@
   background-position: calc(100% - 15px) center;
 }
 
-.cancelBtn {
-  background-image: url("/assets/icons/iconoir_cancel.png");
-  background-repeat: no-repeat;
-  background-position: right;
-  background-position: calc(100% - 10px) center;
-}
-
 .createBtn {
   background-image: url("/assets/icons/checkBtn.png");
   background-repeat: no-repeat;
@@ -286,7 +279,7 @@ p {
     padding-top: 8px;
     padding-bottom: 8px;
     padding-left: 16px;
-    padding-right: 36px;
+    padding-right: 16px;
     cursor: pointer;
     margin-top: 20px;
     &:hover {
