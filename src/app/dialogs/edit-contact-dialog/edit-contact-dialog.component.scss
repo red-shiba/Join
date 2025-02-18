@@ -70,7 +70,7 @@
   background-color: #2a3647;
   flex-shrink: 0;
   > p {
-    font-size: 61px;
+    font-size: clamp(24px, 5vw, 61px);
     color: #ffffff;
     margin: 16px 0;
   }
