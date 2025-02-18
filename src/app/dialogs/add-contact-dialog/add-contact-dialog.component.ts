@@ -23,9 +23,7 @@ export class AddContactDialogComponent {
   isEmailFocused: boolean = false;
   isPhoneFocused: boolean = false;
 
-  constructor(
-    public contactService: ContactListService,
-  ) {}
+  constructor(public contactService: ContactListService) {}
 
   closeDialog() {
     this.isClosing = true;
@@ -36,14 +34,14 @@ export class AddContactDialogComponent {
 
   addContact() {
     if (!this.name || !this.email || !this.phone) return;
-  
+
     let contact: Contact = {
       type: 'contact',
       name: this.name,
       email: this.email,
       phone: this.phone,
     };
-  
+
     this.contactService.addContact(contact).then(() => {
       this.addDialogCloseed.emit(true); // Sende true, um Neuladen zu triggern
     });
