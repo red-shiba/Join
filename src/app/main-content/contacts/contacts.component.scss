@@ -17,10 +17,42 @@ section {
   align-items: center;
 }
 
+.rightMainFrame {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  width: 100%;
+  max-width: 100%;
+}
+
 .singleFrame {
   display: flex;
   max-width: 1230px;
   width: 100%;
+}
+.headline {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  padding-left: 26px;
+  > h2 {
+    font-size: 61px;
+    margin: 0px;
+  }
+  > p {
+    font-size: 27px;
+    margin: 0px;
+  }
+}
+.seperator {
+  width: 0px;
+  height: 45px;
+  border: 2px solid rgb(41, 171, 226);
+  background-color: rgb(41, 171, 226);
 }
 
 .add-contact-btn {

@@ -1,7 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { Contact } from '../../interfaces/contact';
 import { ContactListService } from '../../firebase-service/contact-list.service';
-import { AvatarColorService } from '../../services/avatar-color.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -26,7 +25,6 @@ export class AddContactDialogComponent {
 
   constructor(
     public contactService: ContactListService,
-    private avatarColorService: AvatarColorService
   ) {}
 
   closeDialog() {
@@ -38,16 +36,17 @@ export class AddContactDialogComponent {
 
   addContact() {
     if (!this.name || !this.email || !this.phone) return;
-
+  
     let contact: Contact = {
       type: 'contact',
       name: this.name,
       email: this.email,
       phone: this.phone,
     };
-
-    this.contactService.addContact(contact);
-    this.closeDialog();
+  
+    this.contactService.addContact(contact).then(() => {
+      this.addDialogCloseed.emit(true); // Sende true, um Neuladen zu triggern
+    });
   }
 
   getInitials(name: string): string {
