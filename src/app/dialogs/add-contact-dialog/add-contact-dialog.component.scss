@@ -71,15 +71,23 @@
   width: 350px;
   background-color: #2a3647;
   flex-shrink: 0;
-  > p {
-    font-size: 61px;
+  > img {
+    width: 54px;
+    height: 66px;
+  }
+  > p:nth-child(2) {
+    font-size: clamp(24px, 5vw, 61px);
+    font-weight: 400px;
     color: #ffffff;
     margin: 0px 0;
     margin-top: 10px;
   }
-  > img {
-    width: 54px;
-    height: 66px;
+  > p:nth-child(3) {
+    font-size: clamp(16px, 3vw, 24px);
+    font-weight: 400px;
+    color: #ffffff;
+    margin: 0px 0;
+    margin-top: 10px;
   }
 }
 #tasks {
@@ -122,8 +130,8 @@
   justify-content: right;
   color: black;
   padding: 16px 32px;
-  width: 70%;
-  >img {
+  width: 76%;
+  > img {
     cursor: pointer;
   }
 }
@@ -147,22 +155,22 @@
     width: 100%;
   }
 
-  .floating_label {
-    position: absolute;
-    top: -10px;
-    left: 16px;
-    background: white;
-    color: #29abe2;
-    font-size: 14px;
-    padding: 0 4px;
-    transition: all 0.3s ease-in-out;
-  }
+  // .floating_label {
+  //   position: absolute;
+  //   top: -10px;
+  //   left: 16px;
+  //   background: white;
+  //   color: #29abe2;
+  //   font-size: 14px;
+  //   padding: 0 4px;
+  //   transition: all 0.3s ease-in-out;
+  // }
 
   input {
     color: #000;
     border: 1px solid #d3d3d3; /* Standard: hellgrauer Rahmen */
     padding: 16px;
-    border-radius: 16px;
+    border-radius: 10px;
     width: 100%;
     background-color: white;
     outline: none;
@@ -227,10 +235,9 @@
 }
 
 .btn_wrapper {
-  width: 80%;
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  gap: 24px;
+  margin-left: 18px;
 }
 
 p {
@@ -240,15 +247,13 @@ p {
 }
 
 .btn {
+  width: 200px;
   height: 48px;
   background-color: #2a3647;
-  color: #FFFFFF;
+  color: #ffffff;
   border-radius: 10px;
   border: none;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 36px;
+  padding: 16px;
   cursor: pointer;
   margin-top: 20px;
   &:hover {
@@ -258,21 +263,20 @@ p {
   }
 }
 
-  .cbtn {
-    height: 48px;
-    background-color: #FFFFFF;
-    color: #2A3647;
-    border-radius: 10px;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    padding-left: 16px;
-    padding-right: 36px;
-    cursor: pointer;
-    margin-top: 20px;
-    &:hover {
-      border: 1px solid #29abe2;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-      color: #2A3647;
-    }
+.cbtn {
+  height: 48px;
+  background-color: #ffffff;
+  color: #2a3647;
+  border-radius: 10px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 36px;
+  cursor: pointer;
+  margin-top: 20px;
+  &:hover {
+    border: 1px solid #29abe2;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    color: #2a3647;
+  }
 }
-

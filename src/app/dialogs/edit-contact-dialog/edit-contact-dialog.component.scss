@@ -123,7 +123,7 @@
   justify-content: right;
   color: black;
   padding: 16px 0px;
-  width: 80%;
+  width: 93%;
   > img {
     cursor: pointer;
   }
@@ -155,7 +155,7 @@
     color: #000;
     border: 1px solid #d3d3d3; /* Standard: hellgrauer Rahmen */
     padding: 16px;
-    border-radius: 16px;
+    border-radius: 10px;
     width: 100%;
     background-color: white;
     outline: none;
@@ -175,7 +175,7 @@
     color: #000;
     border: 1px solid #d3d3d3; /* Standard: hellgrauer Rahmen */
     padding: 16px;
-    border-radius: 16px;
+    border-radius: 10px;
     width: 100%;
     background-color: white;
     outline: none;
@@ -252,11 +252,10 @@
 }
 
 .btn_wrapper {
-  width: 80%;
   display: flex;
-  align-items: center;
   padding-bottom: 30px;
-  justify-content: space-around;
+  gap: 23px;
+  padding: 0px 22px;
 }
 
 p {
