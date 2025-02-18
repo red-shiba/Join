@@ -28,7 +28,7 @@
 
 .shaddowBox {
   display: flex;
-  
+
   position: absolute;
   top: 0px;
   left: 0px;
@@ -126,11 +126,10 @@
 }
 
 .close {
-  display: flex;
-  justify-content: right;
-  color: black;
+  position: relative;
   padding: 16px 32px;
-  width: 76%;
+  left: 270px;
+  content: url(/assets/icons/Close.png);
   > img {
     cursor: pointer;
   }
@@ -278,5 +277,40 @@ p {
     border: 1px solid #29abe2;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     color: #2a3647;
+  }
+}
+@media (max-width: 970px) {
+  .add_dialog_wrapper {
+    width: 400px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .middleFrame {
+    display: flex;
+    justify-content: center;
+    background-color: #ffffff;
+    align-items: center;
+    width: 100%;
+  }
+  .leftFrame {
+    margin-top: 35px;
+    > img {
+      display: none;
+    }
+  }
+  #tasks {
+    font-size: 24px;
+    color: #ffffff;
+  }
+  .rightFrame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .close {
+    left: 150px;
+    top: -350px;
+    content: url(/assets/icons/close-white.png);
   }
 }
