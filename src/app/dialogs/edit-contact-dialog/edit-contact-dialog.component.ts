@@ -72,4 +72,12 @@ export class EditContactDialogComponent {
       .join('')
       .toUpperCase();
   }
+
+  deleteContact() {
+    if (this.contact && this.contact.id) {
+      this.contactService.deleteContact('contact', this.contact.id).then(() => {
+        window.location.reload();
+      });
+    }
+  }
 }

@@ -45,7 +45,9 @@ export class SingleContactComponent {
   }
 
   updateContact(updatedContact: any) {
-    this.contactService.updateContact(updatedContact);
+    this.contactService.updateContact(updatedContact).then(() => {
+      this.contact = updatedContact;
+    });
     this.isDialogOpen = false;
   }
 
