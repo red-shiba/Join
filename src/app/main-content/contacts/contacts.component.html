@@ -5,6 +5,11 @@
       <img src="/assets/icons/person_add.png" alt="add-contact-button" />
     </button>
 
+    <button class="add-contact-btn-mobil" (click)="openDialog()">
+      Add new contact
+      <img src="/assets/icons/person_add.png" alt="add-contact-button" />
+    </button>
+
     <div class="contact-list">
       @for (letter of getAlphabeticalLetters(); track letter) {
       <div class="contact-letter">{{ letter }}</div>
@@ -29,14 +34,14 @@
   <div class="rightMainFrame">
 
     <div class="headline">
-    <h2>Contacts</h2>
-    <div class="seperator"></div>
-    <p>Better with a team</p>
-  </div>
-  <div class="singleFrame">
-    <app-single-contact *ngIf="selectedContact" [contact]="selectedContact"></app-single-contact>
-  </div>
+      <h2>Contacts</h2>
+      <div class="seperator"></div>
+      <p>Better with a team</p>
+    </div>
+    <div class="singleFrame">
+      <app-single-contact *ngIf="selectedContact" [contact]="selectedContact"></app-single-contact>
+    </div>
 
-</div>
+  </div>
 
 </section>
