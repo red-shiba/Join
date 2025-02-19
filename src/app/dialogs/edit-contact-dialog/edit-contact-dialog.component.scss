@@ -6,6 +6,7 @@
     transform: translateX(100%);
     opacity: 0;
   }
+
   to {
     top: 25%;
     transform: translateX(0);
@@ -19,6 +20,7 @@
     transform: translateX(0);
     opacity: 1;
   }
+
   to {
     top: 25%;
     transform: translateX(100%);
@@ -69,16 +71,19 @@
   width: 350px;
   background-color: #2a3647;
   flex-shrink: 0;
-  > p {
+
+  >p {
     font-size: clamp(24px, 5vw, 61px);
     color: #ffffff;
     margin: 16px 0;
   }
-  > img {
+
+  >img {
     width: 54px;
     height: 66px;
   }
 }
+
 .leftFrame p::after {
   content: "";
   display: block;
@@ -124,7 +129,8 @@
   color: black;
   padding: 16px 0px;
   width: 93%;
-  > img {
+
+  >img {
     cursor: pointer;
   }
 }
@@ -153,7 +159,8 @@
 
   .input_email {
     color: #000;
-    border: 1px solid #d3d3d3; /* Standard: hellgrauer Rahmen */
+    border: 1px solid #d3d3d3;
+    /* Standard: hellgrauer Rahmen */
     padding: 16px;
     border-radius: 10px;
     width: 100%;
@@ -162,7 +169,8 @@
     transition: border 0.3s ease-in-out;
 
     &:focus {
-      border: 2px solid #29abe2; /* Blauer Rahmen beim Fokus */
+      border: 2px solid #29abe2;
+      /* Blauer Rahmen beim Fokus */
     }
   }
 
@@ -173,7 +181,8 @@
 
   .input_name {
     color: #000;
-    border: 1px solid #d3d3d3; /* Standard: hellgrauer Rahmen */
+    border: 1px solid #d3d3d3;
+    /* Standard: hellgrauer Rahmen */
     padding: 16px;
     border-radius: 10px;
     width: 100%;
@@ -182,7 +191,8 @@
     transition: border 0.3s ease-in-out;
 
     &:focus {
-      border: 2px solid #29abe2; /* Blauer Rahmen beim Fokus */
+      border: 2px solid #29abe2;
+      /* Blauer Rahmen beim Fokus */
     }
   }
 
@@ -192,7 +202,8 @@
 
   .input_phone {
     color: #000;
-    border: 1px solid #d3d3d3; /* Standard: hellgrauer Rahmen */
+    border: 1px solid #d3d3d3;
+    /* Standard: hellgrauer Rahmen */
     padding: 16px;
     border-radius: 16px;
     width: 100%;
@@ -201,7 +212,8 @@
     transition: border 0.3s ease-in-out;
 
     &:focus {
-      border: 2px solid #29abe2; /* Blauer Rahmen beim Fokus */
+      border: 2px solid #29abe2;
+      /* Blauer Rahmen beim Fokus */
     }
   }
 
@@ -276,6 +288,7 @@ p {
   padding-right: 36px;
   cursor: pointer;
   margin-top: 20px;
+
   &:hover {
     background-color: #29abe2;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
@@ -294,9 +307,64 @@ p {
   padding-right: 16px;
   cursor: pointer;
   margin-top: 20px;
+
   &:hover {
     border: 1px solid #29abe2;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     color: #2a3647;
+  }
+}
+
+@media (max-width: 970px) {
+  .add_dialog_wrapper {
+    width: 400px;
+    height: 76vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .middleFrame {
+    display: flex;
+    justify-content: center;
+    background-color: #ffffff;
+    align-items: center;
+    width: 100%;
+  }
+
+  .leftFrame {
+    margin-top: 35px;
+
+    >img {
+      display: none;
+    }
+
+    >p:nth-child(2) {
+      font-size: 47px;
+    }
+
+    >p:nth-child(3) {
+      font-size: 20px;
+    }
+  }
+
+  #tasks {
+    font-size: 24px;
+    color: #ffffff;
+  }
+
+  .rightFrame {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .close {
+    left: 320px;
+    top: -350px;
+    content: url(/assets/icons/close-white.png);
+  }
+
+  .cancelBtn {
+    display: none;
   }
 }
