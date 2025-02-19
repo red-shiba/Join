@@ -208,6 +208,42 @@ a {
     border: 2px solid rgb(41, 171, 226);
     background-color: rgb(41, 171, 226);
   }
+
+  .add-contact-btn {
+    display: none !important;
+  }
+  .add-contact-btn-mobil {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border-radius: 50px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    border: none;
+    background-color: #2a3647;
+
+    img {
+      height: 25px;
+      padding: 5px;
+    }
+
+    &:hover {
+      background-color: $color-primary-hover;
+    }
+  }
+
+  .rightMainFrame {
+    display: none;
+  }
+
+  .contact-list {
+    width: 100%;
+  }
 }
 
 @media (max-width: 960px) {

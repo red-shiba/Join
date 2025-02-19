@@ -1,0 +1,48 @@
+* {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  padding: 0;
+  max-width: 100%;
+  word-wrap: break-word;
+  text-align: left;
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+p,
+ul {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+@media (max-width: 320px) {
+  body {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  h3 {
+    font-size: 16px;
+  }
+}
