@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Contact } from '../../interfaces/contact';
 import { ContactListService } from '../../firebase-service/contact-list.service';
 import { FormsModule } from '@angular/forms';
@@ -23,11 +23,28 @@ export class ContactsComponent {
   contactList: Contact[] = [];
   isDialogOpen = false;
   selectedContact: Contact | null = null;
+  isMobileView = false;
 
   constructor(
     private contactListService: ContactListService,
     private avatarColorService: AvatarColorService
   ) {}
+
+  ngOnInit(): void {
+    this.checkMobileView();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.checkMobileView();
+  }
+
+  checkMobileView() {
+    this.isMobileView = window.innerWidth < 621;
+    if (!this.isMobileView) {
+      this.selectedContact = null; // Setzt Kontakt zurück, wenn man auf Desktop wechselt
+    }
+  }
 
   getAvatarColor(contact: Contact): string {
     return this.avatarColorService.getAvatarColor(contact);
@@ -88,9 +105,23 @@ export class ContactsComponent {
       // Andernfalls setze den neuen Kontakt als ausgewählt
       this.selectedContact = contact;
     }
+
+    if (this.isMobileView) {
+      document.querySelector('.contact-container')?.classList.add('hide-list');
+      document.querySelector('.rightMainFrame')?.classList.remove('hide');
+    }
+
     console.log('Ausgewählter Kontakt:', this.selectedContact);
   }
+
+  showContactContainer() {
+    document.querySelector('.rightMainFrame')?.classList.add('hide');
+    document.querySelector('.contact-container')?.classList.remove('hide-list');
+    this.selectedContact = null;
+  }
+
   isSelected(contact: Contact): boolean {
     return this.selectedContact === contact;
   }
+
 }

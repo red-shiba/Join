@@ -14,8 +14,14 @@
       <div class="contact-letter">{{ letter }}</div>
       @for (contact of getContactsByLetter(letter); track contact.email) {
       <a (click)="selectContact(contact)" class="contact-link">
-        <div class="single-contact" [ngClass]="{ selected: isSelected(contact) }">
-          <div class="avatar" [ngStyle]="{ 'background-color': getAvatarColor(contact) }">
+        <div
+          class="single-contact"
+          [ngClass]="{ selected: isSelected(contact) }"
+        >
+          <div
+            class="avatar"
+            [ngStyle]="{ 'background-color': getAvatarColor(contact) }"
+          >
             {{ getInitials(contact.name) }}
           </div>
           <div class="info">
@@ -27,21 +33,29 @@
       } }
     </div>
     <p *ngIf="isDialogOpen">Dialog Status: Geöffnet</p>
-    <app-add-contact-dialog *ngIf="isDialogOpen" (addDialogCloseed)="closeDialog($event)"></app-add-contact-dialog>
+    <app-add-contact-dialog
+      *ngIf="isDialogOpen"
+      (addDialogCloseed)="closeDialog($event)"
+    ></app-add-contact-dialog>
   </div>
 
-  <div class="rightMainFrame">
-
-    <div class="headline">
-      <h2>Contacts</h2>
-      <div class="seperator"></div>
-      <p>Better with a team</p>
-      <div class="seperatorDown"></div>
+  <div class="rightMainFrame" *ngIf="selectedContact">
+    <div class="headSection">
+      <div class="headline">
+        <h2>Contacts</h2>
+        <div class="seperator"></div>
+        <p>Better with a team</p>
+        <div class="seperatorDown"></div>
+      </div>
+      <button class="back-btn" (click)="showContactContainer()">
+        <img src="/assets/icons/arrow-back-blue.svg" alt="Back Button" />
+      </button>
     </div>
     <div class="singleFrame">
-      <app-single-contact *ngIf="selectedContact" [contact]="selectedContact"></app-single-contact>
+      <app-single-contact
+        *ngIf="selectedContact"
+        [contact]="selectedContact"
+      ></app-single-contact>
     </div>
-
   </div>
-
 </section>
