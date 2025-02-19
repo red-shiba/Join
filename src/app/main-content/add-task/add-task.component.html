@@ -34,18 +34,22 @@
                     <input type="date" id="dueDate" name="dueDate" required>
 
                     <p>Priority</p>
-                    <div>
-                        <input type="radio" id="urgent" name="priority" value="urgent" required>
-                        <label for="urgent">🚨 Urgent</label>
+                    <div class="priority-buttons">
+                        <button type="button" class="priority-btn" data-priority="urgent">
+                            <span class="icon">🚨</span>
+                            <span class="text">Urgent</span>
+                        </button>
+                        <button type="button" class="priority-btn" data-priority="medium">
+                            <span class="icon">⏳</span>
+                            <span class="text">Medium</span>
+                        </button>
+                        <button type="button" class="priority-btn" data-priority="low">
+                            <span class="icon">🍃</span>
+                            <span class="text">Low</span>
+                        </button>
                     </div>
-                    <div>
-                        <input type="radio" id="medium" name="priority" value="medium">
-                        <label for="medium">⏳ Medium</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="low" name="priority" value="low">
-                        <label for="low">🍃 Low</label>
-                    </div>
+
+                    <input type="hidden" id="selectedPriority" name="priority" value="">
 
                     <p>Category</p>
                     <select id="category" name="category" required>
