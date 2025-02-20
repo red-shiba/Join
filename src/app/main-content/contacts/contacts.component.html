@@ -52,6 +52,9 @@
       </button>
     </div>
     <div class="singleFrame">
+      <button class="option-btn-mobil" (click)="openMobileOptionMenu()">
+        <img src="/assets/icons/more_vert.png" alt="more options" />
+      </button>
       <app-single-contact
         *ngIf="selectedContact"
         [contact]="selectedContact"
