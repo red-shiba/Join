@@ -1,6 +1,11 @@
 <div class="board-section">
   <div class="headline-container">
-    <h3>Board</h3>
+    <div class="headline">
+      <h3>Board</h3>
+      <button class="add-task-btn-mobile">
+        <img src="/assets/icons/add.png" alt="add-contact-button" />
+      </button>
+    </div>
     <div class="search-box">
       <div class="search-container">
         <input type="text" class="search-input" placeholder="Find Task" />
@@ -12,12 +17,13 @@
           />
         </div>
       </div>
-      <button class="add-contact-btn">
+      <button class="add-task-btn">
         Add task
         <img src="/assets/icons/add.png" alt="add-contact-button" />
       </button>
     </div>
   </div>
+
   <div class="drag-and-drop-container">
     <div class="dragndrop-container">
       <div class="info-dragdrop">
@@ -73,7 +79,6 @@
     <div class="dragndrop-container">
       <div class="info-dragdrop">
         <h2>Done</h2>
-        <img class="plus-icon" src="/assets/icons/plus.png" alt="plus Icon" />
       </div>
       <div
         cdkDropList
