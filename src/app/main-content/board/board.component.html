@@ -1,57 +1,80 @@
-<div cdkDropListGroup>
-  <div class="dragndrop-container">
-    <h2>To do</h2>
-
-    <div
-      cdkDropList
-      [cdkDropListData]="['todo']"
-      class="board-list"
-      (cdkDropListDropped)="drop($event)">
-      @for (todo of getList(); track todoList) {
-        <div class="board-box" cdkDrag>{{todo['title']}}</div>
-      }
+<div class="board-section">
+  <div class="headline-container">
+    <h3>Bord</h3>
+    <div class="search-box">
+      <input type="text" placeholder="Find Task" />
+      <div class="add-task">
+        <button>Add task +</button>
+      </div>
     </div>
   </div>
+  <div class="drag-and-drop-container">
+    <div class="dragndrop-container">
+      <div class="info-dragdrop">
+        <h2>To do</h2>
+        <img class="plus-icon" src="/assets/icons/plus.png" alt="plus Icon" />
+      </div>
+      <div
+        cdkDropList
+        [cdkDropListData]="['todo']"
+        class="board-list"
+        (cdkDropListDropped)="drop($event)"
+      >
+        @for (todo of getList(); track todoList) {
+        <div class="board-box" cdkDrag>{{ todo["title"] }}</div>
+        }
+      </div>
+    </div>
 
-  <div class="dragndrop-container">
-      <h2>Await feedback</h2>
-  
+    <div class="dragndrop-container">
+      <div class="info-dragdrop">
+        <h2>Await feedback</h2>
+        <img class="plus-icon" src="/assets/icons/plus.png" alt="plus Icon" />
+      </div>
       <div
         cdkDropList
         [cdkDropListData]="['inprogress']"
         class="board-list"
-        (cdkDropListDropped)="drop($event)">
+        (cdkDropListDropped)="drop($event)"
+      >
         @for (todo of getList(); track todoList) {
-          <div class="board-box" cdkDrag>{{todo['title']}}</div>
+        <div class="board-box" cdkDrag>{{ todo["title"] }}</div>
         }
       </div>
     </div>
 
     <div class="dragndrop-container">
-      <h2>Done</h2>
-  
+      <div class="info-dragdrop">
+        <h2>Progress</h2>
+        <img class="plus-icon" src="/assets/icons/plus.png" alt="plus Icon" />
+      </div>
       <div
         cdkDropList
         [cdkDropListData]="['awaitfeedback']"
         class="board-list"
-        (cdkDropListDropped)="drop($event)">
-      @for (todo of getList(); track todoList) {
-        <div class="board-box" cdkDrag>{{todo['title']}}</div>
-      }
+        (cdkDropListDropped)="drop($event)"
+      >
+        @for (todo of getList(); track todoList) {
+        <div class="board-box" cdkDrag>{{ todo["title"] }}</div>
+        }
       </div>
     </div>
 
     <div class="dragndrop-container">
-      <h2>In progress</h2>
-  
+      <div class="info-dragdrop">
+        <h2>Done</h2>
+        <img class="plus-icon" src="/assets/icons/plus.png" alt="plus Icon" />
+      </div>
       <div
         cdkDropList
         [cdkDropListData]="['done']"
         class="board-list"
-        (cdkDropListDropped)="drop($event)">
+        (cdkDropListDropped)="drop($event)"
+      >
         @for (todo of getList(); track todoList) {
-          <div class="board-box" cdkDrag>{{todo['title']}}</div>
+        <div class="board-box" cdkDrag>{{ todo["title"] }}</div>
         }
       </div>
     </div>
+  </div>
 </div>
