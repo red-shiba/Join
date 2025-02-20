@@ -37,7 +37,9 @@
         (cdkDropListDropped)="drop($event)"
       >
         @for (todo of getList(); track todoList) {
-        <div class="board-box" cdkDrag>{{ todo["title"] }}</div>
+        <div class="board-box" cdkDrag>
+          <app-single-todo [todo]="todo"></app-single-todo>
+        </div>
         }
       </div>
     </div>
@@ -54,7 +56,9 @@
         (cdkDropListDropped)="drop($event)"
       >
         @for (todo of getList(); track todoList) {
-        <div class="board-box" cdkDrag>{{ todo["title"] }}</div>
+        <div class="board-box" cdkDrag>
+          <app-single-todo [todo]="todo"></app-single-todo>
+        </div>
         }
       </div>
     </div>
@@ -71,7 +75,9 @@
         (cdkDropListDropped)="drop($event)"
       >
         @for (todo of getList(); track todoList) {
-        <div class="board-box" cdkDrag>{{ todo["title"] }}</div>
+        <div class="board-box" cdkDrag>
+          <app-single-todo [todo]="todo"></app-single-todo>
+        </div>
         }
       </div>
     </div>
@@ -87,7 +93,9 @@
         (cdkDropListDropped)="drop($event)"
       >
         @for (todo of getList(); track todoList) {
-        <div class="board-box" cdkDrag>{{ todo["title"] }}</div>
+        <div class="board-box" cdkDrag>
+          <app-single-todo [todo]="todo"></app-single-todo>
+        </div>
         }
       </div>
     </div>

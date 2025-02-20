@@ -12,34 +12,44 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
+import { SingleTodoComponent } from './single-todo/single-todo.component';
 
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [CdkDropListGroup, CdkDropList, CdkDrag, FormsModule, CommonModule],
+  imports: [
+    CdkDropList,
+    CdkDrag,
+    FormsModule,
+    CommonModule,
+    SingleTodoComponent,
+  ],
   templateUrl: './board.component.html',
-  styleUrl: './board.component.scss'
+  styleUrl: './board.component.scss',
 })
 export class BoardComponent {
-[x: string]: unknown;
+  [x: string]: unknown;
   todoList: Todo[] = [];
-
 
   constructor(private todoListService: TodoListService) {}
 
-    getList(): Todo[] {
-      return this.todoListService.todos;
-    }
+  getList(): Todo[] {
+    return this.todoListService.todos;
+  }
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
     } else {
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
         event.previousIndex,
-        event.currentIndex,
+        event.currentIndex
       );
     }
   }

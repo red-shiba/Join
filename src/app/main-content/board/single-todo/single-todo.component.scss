@@ -1,0 +1,29 @@
+.single-container {
+  position: relative;
+  display: flex;
+  padding: 1rem;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: auto;
+  height: fit-content;
+  border-radius: 1.5rem;
+}
+.progress-container {
+  width: 100px;
+  height: 8px;
+  background: #eee;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 50%;
+  background: #3b82f6;
+  transition: width 0.3s ease-in-out;
+}
+.Subtasks {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+}
