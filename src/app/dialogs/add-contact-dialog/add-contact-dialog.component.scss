@@ -140,6 +140,10 @@
   cursor: pointer;
 }
 
+.close2 {
+  display: none;
+}
+
 .rightFrame {
   box-sizing: content-box;
   width: 400px;
@@ -375,10 +379,10 @@ p {
     display: none;
     }
 
-    .close2 {
-      display: flex;
-      cursor: p;
-      width: 95%;
-      justify-content: flex-end;
-      padding-top: 10px;
-    }
+  .close2 {
+    display: flex;
+    cursor: p;
+    width: 95%;
+    justify-content: flex-end;
+    padding-top: 10px;
+  }
