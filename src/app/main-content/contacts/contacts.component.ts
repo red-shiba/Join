@@ -28,7 +28,7 @@ export class ContactsComponent {
   constructor(
     private contactListService: ContactListService,
     private avatarColorService: AvatarColorService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.checkMobileView();
@@ -108,16 +108,16 @@ export class ContactsComponent {
 
     if (this.isMobileView) {
       document.querySelector('.contact-container')?.classList.add('hide-list');
-      document.querySelector('.rightMainFrame')?.classList.remove('hide');
+      document.querySelector('.rightMainFrame')?.classList.add('show');
     }
 
     console.log('Ausgewählter Kontakt:', this.selectedContact);
   }
 
   showContactContainer() {
-    document.querySelector('.rightMainFrame')?.classList.add('hide');
-    document.querySelector('.contact-container')?.classList.remove('hide-list');
     this.selectedContact = null;
+    document.querySelector('.rightMainFrame')?.classList.remove('show');
+    document.querySelector('.contact-container')?.classList.remove('hide-list');
   }
 
   isSelected(contact: Contact): boolean {

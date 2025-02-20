@@ -115,7 +115,7 @@ a {
   padding: 5px 0;
   flex-direction: column;
   overflow-y: auto;
-  // width: 50%;
+  width: 90%;
   max-height: 97%;
   padding: 20px;
   gap: 10px;
@@ -196,6 +196,10 @@ a {
   display: none;
 }
 
+.option-btn-mobil {
+  display: none;
+}
+
 @media (max-width: 1200px) {
   .headline {
     display: flex;
@@ -258,12 +262,12 @@ a {
 
 @media (max-width: 620px) {
   .rightMainFrame {
-    display: flex;
+    display: none;
     width: 100%;
   }
 
-  .rightMainFrame.hide {
-    display: none;
+  .rightMainFrame.show {
+    display: flex;
   }
 
   .headSection {
@@ -330,6 +334,10 @@ a {
 
   .contact-container.hide-list {
     display: none;
+  }
+
+  .option-btn-mobil {
+    display: flex;
   }
 
 }
