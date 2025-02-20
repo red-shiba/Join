@@ -72,13 +72,13 @@
   background-color: #2a3647;
   flex-shrink: 0;
 
-  >p {
+  > p {
     font-size: clamp(24px, 5vw, 61px);
     color: #ffffff;
     margin: 16px 0;
   }
 
-  >img {
+  > img {
     width: 54px;
     height: 66px;
   }
@@ -119,11 +119,11 @@
   padding: 16px 32px;
   left: 310px;
   cursor: pointer;
-  }
+}
 
-  .close2 {
-    display: none;
-  }
+.close2 {
+  display: none;
+}
 
 .input_wrapper {
   position: relative;
@@ -141,7 +141,7 @@
     top: -10px;
     left: 16px;
     background: white;
-    color: #29abe2;
+    color: $color-primary-hover;
     font-size: 14px;
     padding: 0 4px;
     transition: all 0.3s ease-in-out;
@@ -329,14 +329,14 @@ p {
     background-color: #2a3647;
     flex-shrink: 0;
     padding-top: 20px;
-  
-    >p {
+
+    > p {
       font-size: 48px;
       color: #ffffff;
       margin: 16px 0;
     }
-  
-    >img {
+
+    > img {
       width: 54px;
       height: 66px;
     }
@@ -399,13 +399,13 @@ p {
 
   .close {
     display: none;
-    }
+  }
 
-    .close2 {
-      display: flex;
-      cursor: pointer;
-      width: 95%;
-      justify-content: flex-end;
-      padding-top: 10px;
-    }
+  .close2 {
+    display: flex;
+    cursor: pointer;
+    width: 95%;
+    justify-content: flex-end;
+    padding-top: 10px;
+  }
 }

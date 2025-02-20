@@ -3,26 +3,90 @@
 .board-section {
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 30px;
 }
 .headline-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  margin-top: -30px;
   > h3 {
     font-size: 61px;
     font-weight: 700;
-    color: $color-primary-active;
+    color: $color-input-text;
+    font-family: "inter", sans-serif;
   }
 }
 .search-box {
   display: flex;
+  align-items: center;
   gap: 10px;
+  padding-right: 30px;
+}
+.search-container {
+  position: relative;
+  display: inline-block;
+}
+
+.search-input {
+  width: 312px;
+  height: 35px;
+  padding: 8px 16px 8px 16px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  font-size: 14px;
+  &:focus {
+    border: 2px solid $color-primary-hover;
+  }
+}
+.search-icon-container {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  border-left: 1px solid #ccc;
+  padding-left: 5px;
+}
+
+.search-icon {
+  width: 35px;
+  height: 35px;
 }
 .drag-and-drop-container {
   display: flex;
+  justify-content: space-evenly;
+}
+.add-contact-btn {
+  max-width: 160px;
+  width: 100%;
+  height: 48px;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  background: #2a3647;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 10px;
+  transition: all 0.3s ease-in-out;
+
+  img {
+    height: 32px;
+  }
+
+  &:hover {
+    background: $color-primary-hover;
+
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
 }
 .info-dragdrop {
   display: flex;
@@ -45,18 +109,21 @@
   margin: 0px 10px 0px 0px;
   display: inline-block;
   vertical-align: top;
+  margin-top: -50px;
   // padding-left: 10px;
   // padding-right: 10px;
 }
 
 .board-list {
-  border: solid 1px #ccc;
-  width: 260px;
-  height: 360px;
-  background: white;
-  border-radius: 4px;
-  overflow: hidden;
-  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  text-align: left;
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
 .board-box {
@@ -97,7 +164,24 @@
 }
 
 @media (max-width: 770px) {
+  .headline-container {
+    flex-direction: column;
+    margin-top: 0;
+    margin-bottom: 60px;
+    justify-content: none;
+    align-items: none;
+
+    > h3 {
+      margin: 0;
+    }
+  }
   .drag-and-drop-container {
     flex-direction: column;
+  }
+}
+
+@media (max-width: 615px) {
+  .add-contact-btn {
+    display: none;
   }
 }

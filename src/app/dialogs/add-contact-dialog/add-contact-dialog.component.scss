@@ -74,12 +74,12 @@
   background-color: #2a3647;
   flex-shrink: 0;
 
-  >img {
+  > img {
     width: 54px;
     height: 66px;
   }
 
-  >p:nth-child(2) {
+  > p:nth-child(2) {
     font-size: 61px;
     font-weight: 400px;
     color: #ffffff;
@@ -87,7 +87,7 @@
     margin-top: 10px;
   }
 
-  >p:nth-child(3) {
+  > p:nth-child(3) {
     font-size: 24px;
     font-weight: 400px;
     color: #ffffff;
@@ -176,8 +176,7 @@
     transition: border 0.3s ease-in-out;
 
     &:focus {
-      border: 2px solid #29abe2;
-      /* Blauer Rahmen beim Fokus */
+      border: 2px solid $color-primary-hover;
     }
   }
 
@@ -305,8 +304,8 @@ p {
     background-color: #2a3647;
     flex-shrink: 0;
     padding-top: 20px;
-  
-    >p:nth-child(2) {
+
+    > p:nth-child(2) {
       font-size: 48px;
       font-weight: 400px;
       color: #ffffff;
@@ -314,22 +313,22 @@ p {
       margin-top: 10px;
     }
   }
-  
-    >img {
-      width: 54px;
-      height: 66px;
-    }
-    .close {
-      display: none;
-      }
-  
-    .close2 {
-      display: flex;
-      cursor: pointer;
-      width: 95%;
-      justify-content: flex-end;
-      padding-top: 10px;
-    }
+
+  > img {
+    width: 54px;
+    height: 66px;
+  }
+  .close {
+    display: none;
+  }
+
+  .close2 {
+    display: flex;
+    cursor: pointer;
+    width: 95%;
+    justify-content: flex-end;
+    padding-top: 10px;
+  }
 
   .middleFrame {
     display: flex;
@@ -386,4 +385,3 @@ p {
     display: none;
   }
 }
-
