@@ -49,8 +49,8 @@
         [cdkDropListData]="['done']"
         class="board-list"
         (cdkDropListDropped)="drop($event)">
-        @for (item of getList(); track item) {
-          <div class="board-box" cdkDrag>{{item}}</div>
+        @for (todo of getList(); track todoList) {
+          <div class="board-box" cdkDrag>{{todo['title']}}</div>
         }
       </div>
     </div>
