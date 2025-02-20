@@ -13,7 +13,7 @@ import {
   standalone: true,
   imports: [CdkDropListGroup, CdkDropList, CdkDrag],
   templateUrl: './board.component.html',
-  styleUrl: './board.component.scss'
+  styleUrl: './board.component.scss',
 })
 export class BoardComponent {
   todo = ['Placeholder'];
@@ -26,15 +26,18 @@ export class BoardComponent {
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
     } else {
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
         event.previousIndex,
-        event.currentIndex,
+        event.currentIndex
       );
     }
   }
 }
-
