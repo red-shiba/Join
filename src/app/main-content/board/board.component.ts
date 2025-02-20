@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+import { Todo } from '../../interfaces/todos';
+import { TodoListService } from '../../firebase-service/todo-list.service';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
 import {
   CdkDragDrop,
   CdkDrag,
@@ -11,18 +16,20 @@ import {
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [CdkDropListGroup, CdkDropList, CdkDrag],
+  imports: [CdkDropListGroup, CdkDropList, CdkDrag, FormsModule, CommonModule],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss'
 })
 export class BoardComponent {
-  todo = ['Placeholder'];
+[x: string]: unknown;
+  todoList: Todo[] = [];
 
-  inprogress = ['Contact Form & Imprint'];
 
-  awaitfeedback = ['HTML Base Template Creation', 'Daily Kochwelt Recipe'];
+  constructor(private todoListService: TodoListService) {}
 
-  done = ['CSS Architecture Planning'];
+    getList(): Todo[] {
+      return this.todoListService.todos;
+    }
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {

@@ -1,57 +1,57 @@
 <div cdkDropListGroup>
-    <div class="dragndrop-container">
-      <h2>To do</h2>
+  <div class="dragndrop-container">
+    <h2>To do</h2>
+
+    <div
+      cdkDropList
+      [cdkDropListData]="['todo']"
+      class="board-list"
+      (cdkDropListDropped)="drop($event)">
+      @for (todo of getList(); track todoList) {
+        <div class="board-box" cdkDrag>{{todo['title']}}</div>
+      }
+    </div>
+  </div>
+
+  <div class="dragndrop-container">
+      <h2>Await feedback</h2>
   
       <div
         cdkDropList
-        [cdkDropListData]="todo"
+        [cdkDropListData]="['inprogress']"
         class="board-list"
         (cdkDropListDropped)="drop($event)">
-        @for (item of todo; track item) {
+        @for (todo of getList(); track todoList) {
+          <div class="board-box" cdkDrag>{{todo['title']}}</div>
+        }
+      </div>
+    </div>
+
+    <div class="dragndrop-container">
+      <h2>Done</h2>
+  
+      <div
+        cdkDropList
+        [cdkDropListData]="['awaitfeedback']"
+        class="board-list"
+        (cdkDropListDropped)="drop($event)">
+      @for (todo of getList(); track todoList) {
+        <div class="board-box" cdkDrag>{{todo['title']}}</div>
+      }
+      </div>
+    </div>
+
+    <div class="dragndrop-container">
+      <h2>In progress</h2>
+  
+      <div
+        cdkDropList
+        [cdkDropListData]="['done']"
+        class="board-list"
+        (cdkDropListDropped)="drop($event)">
+        @for (item of getList(); track item) {
           <div class="board-box" cdkDrag>{{item}}</div>
         }
       </div>
     </div>
-  
-    <div class="dragndrop-container">
-        <h2>Await feedback</h2>
-    
-        <div
-          cdkDropList
-          [cdkDropListData]="inprogress"
-          class="board-list"
-          (cdkDropListDropped)="drop($event)">
-          @for (item of inprogress; track item) {
-            <div class="board-box" cdkDrag>{{item}}</div>
-          }
-        </div>
-      </div>
-
-      <div class="dragndrop-container">
-        <h2>Done</h2>
-    
-        <div
-          cdkDropList
-          [cdkDropListData]="awaitfeedback"
-          class="board-list"
-          (cdkDropListDropped)="drop($event)">
-          @for (item of awaitfeedback; track item) {
-            <div class="board-box" cdkDrag>{{item}}</div>
-          }
-        </div>
-      </div>
-
-      <div class="dragndrop-container">
-        <h2>In progress</h2>
-    
-        <div
-          cdkDropList
-          [cdkDropListData]="done"
-          class="board-list"
-          (cdkDropListDropped)="drop($event)">
-          @for (item of done; track item) {
-            <div class="board-box" cdkDrag>{{item}}</div>
-          }
-        </div>
-      </div>
-  </div>
+</div>
