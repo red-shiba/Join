@@ -319,7 +319,18 @@ p {
       width: 54px;
       height: 66px;
     }
-  }
+    .close {
+      display: none;
+      }
+  
+    .close2 {
+      display: flex;
+      cursor: pointer;
+      width: 95%;
+      justify-content: flex-end;
+      padding-top: 10px;
+    }
+
   .middleFrame {
     display: flex;
     flex-direction: column;
@@ -374,15 +385,5 @@ p {
   .cancelBtn {
     display: none;
   }
+}
 
-  .close {
-    display: none;
-    }
-
-  .close2 {
-    display: flex;
-    cursor: p;
-    width: 95%;
-    justify-content: flex-end;
-    padding-top: 10px;
-  }
