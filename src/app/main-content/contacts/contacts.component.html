@@ -39,14 +39,15 @@
     ></app-add-contact-dialog>
   </div>
 
-  <div class="rightMainFrame" *ngIf="selectedContact">
-    <div class="headSection">
-      <div class="headline">
-        <h2>Contacts</h2>
-        <div class="seperator"></div>
-        <p>Better with a team</p>
-        <div class="seperatorDown"></div>
-      </div>
+  <div class="rightMainFrame">
+    <div class="headline">
+      <h2>Contacts</h2>
+      <div class="seperator"></div>
+      <p>Better with a team</p>
+      <div class="seperatorDown"></div>
+    </div>
+    <div class="headSection" *ngIf="selectedContact">
+
       <button class="back-btn" (click)="showContactContainer()">
         <img src="/assets/icons/arrow-back-blue.svg" alt="Back Button" />
       </button>

@@ -2,8 +2,10 @@
   <div
     class="add_dialog_wrapper"
     [class.closing]="isClosing"
-    (click)="$event.stopPropagation()"
-  >
+    (click)="$event.stopPropagation()">
+    <div class="close2">
+      <img src="/assets/icons/close-white.png" (click)="closeDialog()" />
+    </div>
     <div class="leftFrame">
       <img src="/assets/logo/logo.png" alt="" />
       <p>Add contact</p>

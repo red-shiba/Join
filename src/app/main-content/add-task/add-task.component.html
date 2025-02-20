@@ -1,0 +1,74 @@
+<section class="add-task-container">
+    <div class="add-task-inner-container">
+        <h2>Add Task</h2>
+        <div class="add-task-form">
+            <div class="form-left">
+
+
+                <form>
+                    <div class="form-container form-left-title">
+                        <label for="title">Title</label>
+                        <input type="text" id="title" name="title" required>
+                    </div>
+
+                    <div class="form-container form-left-desciption">
+                        <label for="description">Description:</label>
+                        <textarea id="description" name="description" rows="4"></textarea>
+                    </div>
+
+                    <div class="form-container">
+                        <label for="assignedTo">Assigned to</label>
+                        <select id="assignedTo" name="assignedTo" multiple>
+                            <option value="1">Test Nutzer</option>
+                        </select>
+                    </div>
+                </form>
+
+
+            </div>
+            <div class="devider"></div>
+            <div class="form-right">
+
+                <form id="taskForm">
+                    <p>Due Date</p>
+                    <input type="date" id="dueDate" name="dueDate" required>
+
+                    <p>Priority</p>
+                    <div class="priority-buttons">
+                        <button type="button" class="priority-btn" data-priority="urgent">
+                            <span class="icon">🚨</span>
+                            <span class="text">Urgent</span>
+                        </button>
+                        <button type="button" class="priority-btn" data-priority="medium">
+                            <span class="icon">⏳</span>
+                            <span class="text">Medium</span>
+                        </button>
+                        <button type="button" class="priority-btn" data-priority="low">
+                            <span class="icon">🍃</span>
+                            <span class="text">Low</span>
+                        </button>
+                    </div>
+
+                    <input type="hidden" id="selectedPriority" name="priority" value="">
+
+                    <p>Category</p>
+                    <select id="category" name="category" required>
+                        <option value="">Select task category</option>
+                        <option value="projektA">Projekt A</option>
+                        <option value="marketing">Marketing</option>
+                        <option value="kundensupport">Kundensupport</option>
+                    </select>
+
+                    <p>Subtasks</p>
+                    <div id="subtaskContainer">
+                        <input type="text" id="subtaskInput" placeholder="Neue Unteraufgabe">
+                        <button type="button">+</button>
+                    </div>
+                    <ul id="subtaskList"></ul>
+                </form>
+
+            </div>
+        </div>
+        <div class="add-task-btn"></div>
+    </div>
+</section>

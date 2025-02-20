@@ -137,10 +137,11 @@
   padding: 16px 32px;
   left: 270px;
   content: url(/assets/icons/Close.png);
+  cursor: pointer;
+}
 
-  >img {
-    cursor: pointer;
-  }
+.close2 {
+  display: none;
 }
 
 .rightFrame {
@@ -162,17 +163,6 @@
     position: relative;
     width: 100%;
   }
-
-  // .floating_label {
-  //   position: absolute;
-  //   top: -10px;
-  //   left: 16px;
-  //   background: white;
-  //   color: #29abe2;
-  //   font-size: 14px;
-  //   padding: 0 4px;
-  //   transition: all 0.3s ease-in-out;
-  // }
 
   input {
     color: #000;
@@ -292,57 +282,108 @@ p {
     color: #2a3647;
   }
 }
-
 @media (max-width: 970px) {
   .add_dialog_wrapper {
-    width: 400px;
-    height: 76vh;
+    display: flex;
+    position: relative;
+    max-width: 400px;
+    width: 100%;
+    height: 820px;
     display: flex;
     flex-direction: column;
-  }
-
-  .middleFrame {
-    display: flex;
-    justify-content: center;
-    background-color: #ffffff;
-    align-items: center;
-    width: 100%;
   }
 
   .leftFrame {
-    margin-top: 35px;
-
-    >img {
-      display: none;
-    }
-
+    box-sizing: content-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-left: 46px;
+    width: 350px;
+    height: 352px;
+    background-color: #2a3647;
+    flex-shrink: 0;
+    padding-top: 20px;
+  
     >p:nth-child(2) {
-      font-size: 47px;
+      font-size: 48px;
+      font-weight: 400px;
+      color: #ffffff;
+      margin: 0px 0;
+      margin-top: 10px;
+    }
+  }
+  
+    >img {
+      width: 54px;
+      height: 66px;
+    }
+    .close {
+      display: none;
+      }
+  
+    .close2 {
+      display: flex;
+      cursor: pointer;
+      width: 95%;
+      justify-content: flex-end;
+      padding-top: 10px;
     }
 
-    >p:nth-child(3) {
-      font-size: 20px;
-    }
+  .middleFrame {
+    display: flex;
+    flex-direction: column;
+    // justify-content: flex-end;
+    background-color: #ffffff;
+    padding-top: 60px;
+    // align-items: center;
+    max-width: 400px;
+    width: 100%;
+    height: 400px;
   }
 
   #tasks {
-    font-size: 24px;
+    font-size: 18px;
     color: #ffffff;
   }
-
   .rightFrame {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
+    box-sizing: content-box;
+    max-width: 400px;
+    width: 100%;
+    height: 430px;
+    color: #000000;
+    background-color: #ffffff;
+    flex-shrink: 0;
+    margin-left: 0px;
   }
 
-  .close {
-    left: 320px;
-    top: -350px;
-    content: url(/assets/icons/close-white.png);
+  .btn_wrapper {
+    box-sizing: content-box;
+    max-width: 370px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    // padding-bottom: 40px;
+    gap: 23px;
+  }
+
+  .avatar {
+    position: absolute;
+    top: 340px;
+    width: 120px;
+    height: 120px;
+    border-radius: 100%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 47px;
+    font-weight: bold;
   }
 
   .cancelBtn {
     display: none;
   }
 }
+
