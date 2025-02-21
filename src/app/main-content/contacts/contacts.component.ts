@@ -24,6 +24,7 @@ export class ContactsComponent {
   isDialogOpen = false;
   selectedContact: Contact | null = null;
   isMobileView = false;
+  isDropdownOpen = false;
 
   constructor(
     private contactListService: ContactListService,
@@ -122,6 +123,10 @@ export class ContactsComponent {
 
   isSelected(contact: Contact): boolean {
     return this.selectedContact === contact;
+  }
+
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
   }
 
 }

@@ -193,3 +193,9 @@
     }
   }
 }
+
+@media (max-width: 620px) {
+  .edit {
+    display: none;
+  }
+}

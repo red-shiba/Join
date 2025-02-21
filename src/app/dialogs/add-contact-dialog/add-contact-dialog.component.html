@@ -1,8 +1,5 @@
 <div class="shaddowBox" [class.closing]="isClosing" (click)="closeDialog()">
-  <div
-    class="add_dialog_wrapper"
-    [class.closing]="isClosing"
-    (click)="$event.stopPropagation()">
+  <div class="add_dialog_wrapper" [class.closing]="isClosing" (click)="$event.stopPropagation()">
     <div class="close2">
       <img src="/assets/icons/close-white.png" (click)="closeDialog()" />
     </div>
@@ -13,11 +10,7 @@
     </div>
 
     <div class="middleFrame">
-      <div
-        class="avatar"
-        [ngClass]="{ 'with-initials': name }"
-        [ngStyle]="{ 'background-color': avatarColor }"
-      >
+      <div class="avatar" [ngClass]="{ 'with-initials': name }" [ngStyle]="{ 'background-color': avatarColor }">
         <img *ngIf="!name" src="assets/icons/dummyContact.png" />
         <div *ngIf="name" class="initials">{{ getInitials(name) }}</div>
       </div>
@@ -27,83 +20,33 @@
       <div class="close" (click)="closeDialog()">
         <!-- <img src="/assets/icons/Close.png" (click)="closeDialog()" /> -->
       </div>
-      <div
-        class="input_wrapper"
-        [class.error]="nameInput.invalid && nameInput.touched"
-      >
+      <div class="input_wrapper" [class.error]="nameInput.invalid && nameInput.touched">
         <div class="input_container">
-          <label *ngIf="isNameFocused || name" class="floating_label"
-            >Name</label
-          >
-          <input
-            [(ngModel)]="name"
-            #nameInput="ngModel"
-            type="text"
-            class="input_name"
-            placeholder="Name"
-            minlength="3"
-            required
-            (focus)="isNameFocused = true"
-            (blur)="isNameFocused = false"
-          />
-          <p
-            *ngIf="nameInput.invalid && nameInput.touched"
-            class="errorMessage"
-          >
+          <!-- <label *ngIf="isNameFocused || name" class="floating_label">Name</label> -->
+          <input [(ngModel)]="name" #nameInput="ngModel" type="text" class="input_name" placeholder="Name" minlength="3"
+            required (focus)="isNameFocused = true" (blur)="isNameFocused = false" />
+          <p *ngIf="nameInput.invalid && nameInput.touched" class="errorMessage">
             Name required
           </p>
         </div>
       </div>
-      <div
-        class="input_wrapper"
-        [class.error]="emailInput.invalid && emailInput.touched"
-      >
+      <div class="input_wrapper" [class.error]="emailInput.invalid && emailInput.touched">
         <div class="input_container">
-          <label *ngIf="isEmailFocused || email" class="floating_label"
-            >Email</label
-          >
-          <input
-            [(ngModel)]="email"
-            #emailInput="ngModel"
-            type="email"
-            class="input_email"
-            placeholder="Email"
-            required
-            pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
-            (focus)="isEmailFocused = true"
-            (blur)="isEmailFocused = false"
-          />
-          <p
-            *ngIf="emailInput.invalid && emailInput.touched"
-            class="errorMessage"
-          >
+          <!-- <label *ngIf="isEmailFocused || email" class="floating_label">Email</label> -->
+          <input [(ngModel)]="email" #emailInput="ngModel" type="email" class="input_email" placeholder="Email" required
+            pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" (focus)="isEmailFocused = true"
+            (blur)="isEmailFocused = false" />
+          <p *ngIf="emailInput.invalid && emailInput.touched" class="errorMessage">
             Email required
           </p>
         </div>
       </div>
-      <div
-        class="input_wrapper"
-        [class.error]="phoneInput.invalid && phoneInput.touched"
-      >
+      <div class="input_wrapper" [class.error]="phoneInput.invalid && phoneInput.touched">
         <div class="input_container">
-          <label *ngIf="isPhoneFocused || phone" class="floating_label"
-            >Telefon</label
-          >
-          <input
-            [(ngModel)]="phone"
-            #phoneInput="ngModel"
-            type="tel"
-            class="input_phone"
-            placeholder="Phone"
-            required
-            pattern="^[0-9+\s]+$"
-            (focus)="isPhoneFocused = true"
-            (blur)="isPhoneFocused = false"
-          />
-          <p
-            *ngIf="phoneInput.invalid && phoneInput.touched"
-            class="errorMessage"
-          >
+          <!-- <label *ngIf="isPhoneFocused || phone" class="floating_label">Telefon</label> -->
+          <input [(ngModel)]="phone" #phoneInput="ngModel" type="tel" class="input_phone" placeholder="Phone" required
+            pattern="^[0-9+\s]+$" (focus)="isPhoneFocused = true" (blur)="isPhoneFocused = false" />
+          <p *ngIf="phoneInput.invalid && phoneInput.touched" class="errorMessage">
             Number required
           </p>
         </div>
@@ -111,20 +54,15 @@
 
       <div class="btn_wrapper">
         <button class="cbtn cancelBtn" (click)="closeDialog()">Cancel</button>
-        <button
-          class="btn createBtn"
-          [disabled]="
+        <button class="btn createBtn" [disabled]="
             nameInput.invalid || emailInput.invalid || phoneInput.invalid
-          "
-          [ngClass]="{
+          " [ngClass]="{
             hover: !(
               nameInput.invalid ||
               emailInput.invalid ||
               phoneInput.invalid
             )
-          }"
-          (click)="addContact()"
-        >
+          }" (click)="addContact()">
           Create contact
         </button>
       </div>

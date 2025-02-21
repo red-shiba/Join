@@ -7,7 +7,7 @@ import { BoardComponent } from './main-content/board/board.component';
 import { AddTaskComponent } from './main-content/add-task/add-task.component';
 
 export const routes: Routes = [
-  { path: '', component: ContactsComponent },
+  { path: 'contacts', component: ContactsComponent },
   { path: 'privacypolicy', component: PrivacyPolicyComponent },
   { path: 'legalnotice', component: LegalNoticeComponent },
   { path: 'helpsection', component: HelpSectionComponent },

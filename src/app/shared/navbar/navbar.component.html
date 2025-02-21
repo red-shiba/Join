@@ -1,25 +1,25 @@
 <section>
   <img class="logo-img" src="assets/logo/logo.png" alt="Join logo" />
   <nav class="navi">
-    <div class="nav-item">
-      <a href="#summary">
+    <div class="nav-item" [class.active-nav]="isActive('/summary')">
+      <a href="summary">
         <img src="../../../assets/icons/summary.png" alt="Summary Icon" />
         Summary
       </a>
     </div>
-    <div class="nav-item">
+    <div class="nav-item" [class.active-nav]="isActive('/add-task')">
       <a href="add-task">
         <img src="../../../assets/icons/addtask.png" alt="add-task Icon" /> Add
         Task
       </a>
     </div>
-    <div class="nav-item">
+    <div class="nav-item" [class.active-nav]="isActive('/board')">
       <a href="board">
         <img src="../../../assets/icons/board.png" alt="board Icon" /> Board
       </a>
     </div>
-    <div class="nav-item">
-      <a href="#contacts">
+    <div class="nav-item" [class.active-nav]="isActive('/contacts')">
+      <a href="contacts">
         <img src="../../../assets/icons/contacts.png" alt="board Icon" />
         Contacts
       </a>

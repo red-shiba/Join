@@ -2,13 +2,13 @@
 
 @keyframes slideIn {
   from {
-    top: 25%;
+    top: 33%;
     transform: translateX(100%);
     opacity: 0;
   }
 
   to {
-    top: 25%;
+    top: 33%;
     transform: translateX(0);
     opacity: 1;
   }
@@ -16,13 +16,13 @@
 
 @keyframes slideOut {
   from {
-    top: 25%;
+    top: 33%;
     transform: translateX(0);
     opacity: 1;
   }
 
   to {
-    top: 25%;
+    top: 33%;
     transform: translateX(100%);
     opacity: 0;
   }
@@ -30,7 +30,6 @@
 
 .shaddowBox {
   display: flex;
-
   position: absolute;
   top: 0px;
   left: 0px;
@@ -54,13 +53,13 @@
   top: 50%;
   transform: translate(-50%, -50%);
   will-change: transform, opacity;
-  animation: slideIn 0.2s ease-out;
+  animation: slideIn 0.2s linear;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .add_dialog_wrapper.closing {
-  animation: slideOut 0.2s ease-out;
+  animation: slideOut 0.2s linear;
 }
 
 .leftFrame {
@@ -74,12 +73,12 @@
   background-color: #2a3647;
   flex-shrink: 0;
 
-  > img {
+  >img {
     width: 54px;
     height: 66px;
   }
 
-  > p:nth-child(2) {
+  >p:nth-child(2) {
     font-size: 61px;
     font-weight: 400px;
     color: #ffffff;
@@ -87,7 +86,7 @@
     margin-top: 10px;
   }
 
-  > p:nth-child(3) {
+  >p:nth-child(3) {
     font-size: 24px;
     font-weight: 400px;
     color: #ffffff;
@@ -281,6 +280,7 @@ p {
     color: #2a3647;
   }
 }
+
 @media (max-width: 970px) {
   .add_dialog_wrapper {
     display: flex;
@@ -305,7 +305,7 @@ p {
     flex-shrink: 0;
     padding-top: 20px;
 
-    > p:nth-child(2) {
+    >p:nth-child(2) {
       font-size: 48px;
       font-weight: 400px;
       color: #ffffff;
@@ -314,10 +314,11 @@ p {
     }
   }
 
-  > img {
+  >img {
     width: 54px;
     height: 66px;
   }
+
   .close {
     display: none;
   }
@@ -346,6 +347,7 @@ p {
     font-size: 18px;
     color: #ffffff;
   }
+
   .rightFrame {
     box-sizing: content-box;
     max-width: 400px;

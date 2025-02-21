@@ -8,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
-
+  isActive(route: string): boolean {
+    return window.location.pathname === route;
+  }
 }

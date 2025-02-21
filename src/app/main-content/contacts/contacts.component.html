@@ -14,14 +14,8 @@
       <div class="contact-letter">{{ letter }}</div>
       @for (contact of getContactsByLetter(letter); track contact.email) {
       <a (click)="selectContact(contact)" class="contact-link">
-        <div
-          class="single-contact"
-          [ngClass]="{ selected: isSelected(contact) }"
-        >
-          <div
-            class="avatar"
-            [ngStyle]="{ 'background-color': getAvatarColor(contact) }"
-          >
+        <div class="single-contact" [ngClass]="{ selected: isSelected(contact) }">
+          <div class="avatar" [ngStyle]="{ 'background-color': getAvatarColor(contact) }">
             {{ getInitials(contact.name) }}
           </div>
           <div class="info">
@@ -33,32 +27,34 @@
       } }
     </div>
     <p *ngIf="isDialogOpen">Dialog Status: Geöffnet</p>
-    <app-add-contact-dialog
-      *ngIf="isDialogOpen"
-      (addDialogCloseed)="closeDialog($event)"
-    ></app-add-contact-dialog>
+    <app-add-contact-dialog *ngIf="isDialogOpen" (addDialogCloseed)="closeDialog($event)"></app-add-contact-dialog>
   </div>
 
   <div class="rightMainFrame">
-    <div class="headline">
-      <h2>Contacts</h2>
-      <div class="seperator"></div>
-      <p>Better with a team</p>
-      <div class="seperatorDown"></div>
-    </div>
-    <div class="headSection" *ngIf="selectedContact">
-      <button class="back-btn" (click)="showContactContainer()">
-        <img src="/assets/icons/arrow-back-blue.svg" alt="Back Button" />
-      </button>
+    <div class="topMainFrameMobile">
+      <div class="headline">
+        <h2>Contacts</h2>
+        <div class="seperator"></div>
+        <p>Better with a team</p>
+        <div class="seperatorDown"></div>
+      </div>
+      <div class="headSection" *ngIf="selectedContact">
+        <button class="back-btn" (click)="showContactContainer()">
+          <img src="/assets/icons/arrow-back-blue.svg" alt="Back Button" />
+        </button>
+      </div>
     </div>
     <div class="singleFrame">
-      <button class="option-btn-mobil">
+      <button class="option-btn-mobile" (click)="toggleDropdown()">
         <img src="/assets/icons/more_vert.png" alt="more options" />
       </button>
-      <app-single-contact
-        *ngIf="selectedContact"
-        [contact]="selectedContact"
-      ></app-single-contact>
+      <app-single-contact *ngIf="selectedContact" [contact]="selectedContact"></app-single-contact>
     </div>
   </div>
 </section>
+<!-- @if (isDropdownOpen) {
+<div class="dropdown-menu-mobile">
+  <a href="#" class="dropdown-item" (click)="openDialog()">Edit</a>
+  <a href="#" class="dropdown-item" (click)="deleteContact()">Delete</a>
+</div>
+} -->

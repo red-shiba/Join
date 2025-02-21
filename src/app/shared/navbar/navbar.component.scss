@@ -32,7 +32,7 @@ section {
     font-size: $font-regular;
     font-weight: 200;
     padding: 15px 25%;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
     width: 100%;
     box-sizing: border-box;
 
@@ -45,6 +45,11 @@ section {
       height: 24px;
     }
   }
+}
+
+.active-nav {
+  background-color: #091931;
+  color: white;
 }
 
 .legal-notice-links {

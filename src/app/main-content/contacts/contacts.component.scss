@@ -196,7 +196,7 @@ a {
   display: none;
 }
 
-.option-btn-mobil {
+.option-btn-mobile {
   display: none;
 }
 
@@ -260,6 +260,12 @@ a {
   }
 }
 
+@media (max-width: 768px) {
+  .contact-list {
+    margin-bottom: 80px;
+  }
+}
+
 @media (max-width: 620px) {
   .rightMainFrame {
     display: none;
@@ -273,6 +279,7 @@ a {
   .headSection {
     display: flex;
     padding-right: 20px;
+    justify-content: flex-end;
   }
 
   .headSection img {
@@ -288,6 +295,11 @@ a {
     cursor: pointer;
     margin-bottom: 10px;
     padding: 10px;
+  }
+
+  .topMainFrameMobile {
+    display: flex;
+    align-items: baseline;
   }
 
   .add-contact-btn {
@@ -336,8 +348,53 @@ a {
     display: none;
   }
 
-  .option-btn-mobil {
+  .option-btn-mobile {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 30px;
+    margin-bottom: 120px;
+    border-radius: 50px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    border: none;
+    background-color: #2a3647;
+
+    img {
+      height: 25px;
+      padding: 5px;
+    }
+  }
+
+  .dropdown-menu-mobile {
+    position: absolute;
+    margin-top: 3px;
+    top: 1;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1001;
+    background-color: #2a3647;
+    border-radius: 20px 0 20px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    min-width: 120px;
+    padding: 25px 15px;
+    gap: 8px;
+
+    .dropdown-item {
+      padding: 5px 5px;
+      text-decoration: none;
+      color: #d6d6d6;
+      font-size: 15px;
+      font-weight: 300;
+
+      &:hover {
+        background-color: #2a3d59;
+      }
+    }
   }
 
 }
