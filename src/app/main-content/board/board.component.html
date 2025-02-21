@@ -30,13 +30,15 @@
         <h2>To do</h2>
         <img class="plus-icon" src="/assets/icons/plus.png" alt="plus Icon" />
       </div>
+
       <div
         cdkDropList
-        [cdkDropListData]="['todo']"
-        class="board-list"
-        (cdkDropListDropped)="drop($event)"
+        #todoList="cdkDropList"
+        [cdkDropListData]="getList('todoList')"
+        [cdkDropListConnectedTo]="[inprogressList, awaitFeedbackList, doneList]"
+        (cdkDropListDropped)="drop($event, 'todo')"
       >
-        @for (todo of getList(); track todoList) {
+        @for (todo of getList('todoList'); track todo.id) {
         <div class="board-box" cdkDrag>
           <app-single-todo [todo]="todo"></app-single-todo>
         </div>
@@ -49,13 +51,15 @@
         <h2>Await feedback</h2>
         <img class="plus-icon" src="/assets/icons/plus.png" alt="plus Icon" />
       </div>
+
       <div
         cdkDropList
-        [cdkDropListData]="['inprogress']"
-        class="board-list"
-        (cdkDropListDropped)="drop($event)"
+        #awaitFeedbackList="cdkDropList"
+        [cdkDropListData]="getList('awaitFeedbackList')"
+        [cdkDropListConnectedTo]="[todoList, inprogressList, doneList]"
+        (cdkDropListDropped)="drop($event, 'awaitfeedback')"
       >
-        @for (todo of getList(); track todoList) {
+        @for (todo of getList('awaitFeedbackList'); track todo.id) {
         <div class="board-box" cdkDrag>
           <app-single-todo [todo]="todo"></app-single-todo>
         </div>
@@ -68,13 +72,15 @@
         <h2>Progress</h2>
         <img class="plus-icon" src="/assets/icons/plus.png" alt="plus Icon" />
       </div>
+
       <div
         cdkDropList
-        [cdkDropListData]="['awaitfeedback']"
-        class="board-list"
-        (cdkDropListDropped)="drop($event)"
+        #inprogressList="cdkDropList"
+        [cdkDropListData]="getList('inProgressList')"
+        [cdkDropListConnectedTo]="[todoList, awaitFeedbackList, doneList]"
+        (cdkDropListDropped)="drop($event, 'inprogress')"
       >
-        @for (todo of getList(); track todoList) {
+        @for (todo of getList('inProgressList'); track todo.id) {
         <div class="board-box" cdkDrag>
           <app-single-todo [todo]="todo"></app-single-todo>
         </div>
@@ -86,13 +92,15 @@
       <div class="info-dragdrop">
         <h2>Done</h2>
       </div>
+
       <div
         cdkDropList
-        [cdkDropListData]="['done']"
-        class="board-list"
-        (cdkDropListDropped)="drop($event)"
+        #doneList="cdkDropList"
+        [cdkDropListData]="getList('doneList')"
+        [cdkDropListConnectedTo]="[todoList, inprogressList, awaitFeedbackList]"
+        (cdkDropListDropped)="drop($event, 'done')"
       >
-        @for (todo of getList(); track todoList) {
+        @for (todo of getList('doneList'); track todo.id) {
         <div class="board-box" cdkDrag>
           <app-single-todo [todo]="todo"></app-single-todo>
         </div>

@@ -12,8 +12,5 @@ import { TodoListService } from '../../../firebase-service/todo-list.service';
 export class SingleTodoComponent {
   constructor(private todoListService: TodoListService) {}
   @Input() todo: Todo | null = null;
-
-  getList(): Todo[] {
-    return this.todoListService.todos;
-  }
+  
 }

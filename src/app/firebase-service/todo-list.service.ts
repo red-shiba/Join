@@ -1,38 +1,64 @@
 import { Injectable, inject } from '@angular/core';
 import { Todo } from '../interfaces/todos';
 import { Firestore, query, limit, addDoc, deleteDoc, collection, collectionData, doc, onSnapshot, updateDoc } from '@angular/fire/firestore';
+import { BehaviorSubject } from 'rxjs';
+import { getDoc } from "@angular/fire/firestore";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoListService {
+  private todosSubject = new BehaviorSubject<Todo[]>([]);
+  todos$ = this.todosSubject.asObservable();
   todos: Todo [] = [];
   awaitfeedbacks: Todo [] = [];
+  inprogress: Todo [] = [];
+  done: Todo [] = [];
 
   unsubTodos;
   unsubAwaitfeedbacks;
+  unsubInprogress;
+  unsubDone;
 
   firestore: Firestore = inject(Firestore);
 
   constructor() {
     this.unsubTodos = this.subTodosList();
     this.unsubAwaitfeedbacks = this.subAwaitfeedbackList();
+    this.unsubInprogress = this.subInprogressList();
+    this.unsubDone = this.subDoneList();
    }
 
-   async deleteTodo(colId: "todo", docId: string) {
+   async deleteTodo(colId: "todo" | "inprogress" | "awaitfeedback" | "done", docId: string) {
        await deleteDoc(this.getSingleDocRef(colId, docId)).catch(
          (err) => {console.log(err)}
        )
      }
-   
+
      async updateTodo(todo: Todo) {
-       if(todo.id) {
-         let docRef = this.getSingleDocRef(this.getColIdFromTodo(todo), todo.id)
-         await updateDoc(docRef, this.getCleanJson(todo)).catch(
-           (error) => { console.error(error) }
-         );
-       }
-     }
+      if (!todo.id) return;
+    
+      const docRef = doc(this.firestore, `${todo.type}/${todo.id}`);
+      const docSnap = await getDoc(docRef);
+    
+      if (!docSnap.exists()) {
+        console.warn("Dokument existiert nicht:", todo.type, todo.id);
+        return; // Keine Aktualisierung durchführen
+      }
+    
+      await updateDoc(docRef, { ...todo }).catch(error =>
+        console.error("Fehler beim Update:", error)
+      );
+    }
+
+    //  async updateTodo(todo: Todo) {
+    //    if(todo.id) {
+    //      let docRef = this.getSingleDocRef(this.getColIdFromTodo(todo), todo.id)
+    //      await updateDoc(docRef, this.getCleanJson(todo)).catch(
+    //        (error) => { console.error(error) }
+    //      );
+    //    }
+    //  }
    
      getCleanJson(todo: Todo):{} {
        return {
@@ -47,15 +73,11 @@ export class TodoListService {
      }
    }
    
-     getColIdFromTodo(todo: Todo) {
-       if(todo.type === 'todo') {
-         return 'todos';
-       } else {
-         return 'awaitfeedback';
-       }
-     }
+   getColIdFromTodo(todo: Todo) {
+    return todo.type; // Gibt "todo", "inprogress", "awaitfeedback" oder "done" zurück
+  }
 
-    async addTodo(item: Todo, colId: "todos" | "awaitfeedback") {
+    async addTodo(item: Todo, colId: "todo" | "inprogress" | "awaitfeedback" | "done") {
       if (colId === "awaitfeedback") {
         await addDoc(this.getAwaitfeedbackRef(), item).catch(
           (err) => { console.error(err) }
@@ -88,43 +110,48 @@ export class TodoListService {
      ngonDestroy() {
        this.unsubTodos();
        this.unsubAwaitfeedbacks();
+       this.unsubInprogress();
+       this.unsubDone();
      }
-
-     subAwaitfeedbackList() {
+    
+    subTodosList() {
       return onSnapshot(this.getTodosRef(), (list) => {
+        this.todos = [];
+        list.forEach((element) => {
+          this.todos.push(this.setTodoObject(element.data(), element.id));
+        });
+      });
+    }
+     
+    subAwaitfeedbackList() {
+      return onSnapshot(this.getAwaitfeedbackRef(), (list) => {
         this.awaitfeedbacks = [];
         list.forEach((element) => {
           this.awaitfeedbacks.push(this.setTodoObject(element.data(), element.id));
         });
       });
     }
-   
-    //  subTodosList() {
-    //    return onSnapshot(this.getTodosRef(), (list) => {
-    //      this.todos = [];
-    //      list.forEach((element) => {
-    //        this.todos.push(this.setTodoObject(element.data(), element.id));
-    //      });
-    //    });
-    //  }
+    
+    subInprogressList() {
+      return onSnapshot(this.getInprogressRef(), (list) => {
+        this.inprogress = [];
+        if (list.empty) {  //  Wenn keine Einträge vorhanden sind
+          console.warn("Keine Tasks in 'inprogress'.");
+          this.inprogress = [];  // Stelle sicher, dass es nicht undefined ist
+        } else {
+          list.forEach((element) => {
+            this.inprogress.push(this.setTodoObject(element.data(), element.id));
+          });
+        }
+        this.todosSubject.next(this.inprogress);  // 🔄 Update Observable
+      });
+    }
 
-    subTodosList() {
-      const q = query(this.getTodosRef(), limit(100));
-      return onSnapshot(q, (list) => {
-        this.todos = [];
-        list.forEach(element => {
-          this.todos.push(this.setNoteObject(element.data(), element.id));
-        });
-        list.docChanges().forEach((change) => {
-          if (change.type === "added") {
-              console.log("New note: ", change.doc.data());
-          }
-          if (change.type === "modified") {
-              console.log("Modified note: ", change.doc.data());
-          }
-          if (change.type === "removed") {
-              console.log("Removed note: ", change.doc.data());
-          }
+    subDoneList(){
+      return onSnapshot(this.getDoneRef(), (list) => { 
+        this.done = [];
+        list.forEach((element) => {
+          this.done.push(this.setTodoObject(element.data(), element.id));
         });
       });
     }
@@ -150,8 +177,17 @@ export class TodoListService {
      getAwaitfeedbackRef() {
       return collection(this.firestore, 'awaitfeedback')
      }
+
+     getInprogressRef() {
+      return collection(this.firestore, 'inprogress')
+     }
+
+     getDoneRef() {
+      return collection(this.firestore, 'done')
+     }
    
      getSingleDocRef(colId: string, docId: string) {
-       return doc(collection(this.firestore, colId), docId);
-     }
+      return doc(collection(this.firestore, colId), docId);
+    }
+    
 }
