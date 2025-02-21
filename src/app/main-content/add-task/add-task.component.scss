@@ -1,48 +1,160 @@
+p {
+  margin-block-start: 1em;
+  margin-block-end: 0.5em;
+}
+
 .add-task-container {
   width: 100%;
   padding-top: 20px;
-  //   padding-left: 100px;
+  font-family: inter;
 }
 
 .add-task-form {
   width: 100%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
+  font-family: inter;
 }
 
 .add-task-inner-container h2 {
   font-size: 61px;
-  font-weight: 500;
+  font-weight: 600;
   padding-left: 100px;
+  font-family: inter;
+  padding-top: 100px;
+  margin-bottom: -30px;
 }
 
-.form-left {
-  width: 49%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 100px;
-}
-
+.form-left,
 .form-right {
-  width: 49%;
+  width: 48%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
   padding: 100px;
+  font-family: inter;
 }
 
 .form-container {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
+  margin-bottom: 20px;
 }
 
 .devider {
   width: 2px;
   background-color: rgb(223, 221, 221);
   height: 500px;
-  margin-left: 2%;
-  margin-right: 2%;
+  margin: 0 1%;
+}
+
+input[type="text"],
+input[type="date"],
+textarea,
+select {
+  border: 2px solid rgb(233, 233, 233);
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 15px;
+  font-family: inter;
+  font-size: 15px;
+  color: rgb(204, 204, 204);
+}
+
+textarea {
+  height: 100%;
+}
+
+.priority-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.priority-buttons button {
+  font-family: inter;
+  font-weight: 500;
+  font-size: 17px;
+  color: rgb(102, 102, 102);
+}
+
+.priority-btn {
+  border-radius: 10px;
+  border: 2px solid rgb(233, 233, 233);
+  background-color: white;
+  padding: 15px 20px;
+  flex: 1;
+  margin-right: 10px;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+// Subtask
+.subtask-container {
+  position: relative;
+  width: 100%;
+  align-items: center;
+}
+
+#subtaskInput {
+  width: 100%;
+  padding-right: 30px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-button {
+  position: absolute;
+  right: 10px;
+  top: 53%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: #2a3d59;
+  pointer-events: auto;
+  font-weight: 700;
+}
+
+// Assign
+
+.assign-container {
+  position: relative;
+  width: 100%;
+  align-items: center;
+}
+
+#assignInput {
+  width: 100%;
+  padding-right: 30px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-button-assign {
+  position: absolute;
+  right: 10px;
+  top: 53%;
+  transform: translateY(-50%);
+  font-size: 25px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: #2a3d59;
+  pointer-events: auto;
+  font-weight: 700;
+}
+
+#subtaskInput::placeholder {
+  color: #999;
 }

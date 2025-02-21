@@ -7,20 +7,29 @@
 
                 <form>
                     <div class="form-container form-left-title">
-                        <label for="title">Title</label>
-                        <input type="text" id="title" name="title" required>
+                        <label for="title">
+                            <p>Title</p>
+                        </label>
+                        <input type="text" id="title" name="title" required placeholder="Enter a Title">
                     </div>
 
                     <div class="form-container form-left-desciption">
-                        <label for="description">Description:</label>
-                        <textarea id="description" name="description" rows="4"></textarea>
+                        <label for="description">
+                            <p>Description</p>
+                        </label>
+                        <textarea id="description" name="description" rows="4"
+                            placeholder="Enter a Description"></textarea>
                     </div>
 
                     <div class="form-container">
-                        <label for="assignedTo">Assigned to</label>
-                        <select id="assignedTo" name="assignedTo" multiple>
-                            <option value="1">Test Nutzer</option>
-                        </select>
+                        <label for="assignedTo">
+                            <p>Assigned to</p>
+                        </label>
+                        <div class="assign-container">
+                            <input type="text" id="assignInput" placeholder="select contact to assign">
+                            <button class="add-button-assign" onclick="addAssign()">&#9662;</button>
+                        </div>
+                        <ul id="assignList"></ul>
                     </div>
                 </form>
 
@@ -31,21 +40,21 @@
 
                 <form id="taskForm">
                     <p>Due Date</p>
-                    <input type="date" id="dueDate" name="dueDate" required>
+                    <input type="date" id="dueDate" name="dueDate" required placeholder="dd/mm/yyyy">
 
-                    <p>Priority</p>
+                    <p>Prio</p>
                     <div class="priority-buttons">
                         <button type="button" class="priority-btn" data-priority="urgent">
-                            <span class="icon">🚨</span>
                             <span class="text">Urgent</span>
+                            <span class="icon">🚨</span>
                         </button>
                         <button type="button" class="priority-btn" data-priority="medium">
-                            <span class="icon">⏳</span>
                             <span class="text">Medium</span>
+                            <span class="icon">⏳</span>
                         </button>
                         <button type="button" class="priority-btn" data-priority="low">
-                            <span class="icon">🍃</span>
                             <span class="text">Low</span>
+                            <span class="icon">🍃</span>
                         </button>
                     </div>
 
@@ -60,9 +69,9 @@
                     </select>
 
                     <p>Subtasks</p>
-                    <div id="subtaskContainer">
-                        <input type="text" id="subtaskInput" placeholder="Neue Unteraufgabe">
-                        <button type="button">+</button>
+                    <div class="subtask-container">
+                        <input type="text" id="subtaskInput" placeholder="Add new subtask">
+                        <button class="add-button" onclick="addSubtask()">+</button>
                     </div>
                     <ul id="subtaskList"></ul>
                 </form>
