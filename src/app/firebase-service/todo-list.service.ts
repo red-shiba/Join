@@ -1,19 +1,22 @@
 import { Injectable, inject } from '@angular/core';
 import { Todo } from '../interfaces/todos';
-import { Firestore, addDoc, deleteDoc, collection, collectionData, doc, onSnapshot, updateDoc } from '@angular/fire/firestore';
+import { Firestore, query, limit, addDoc, deleteDoc, collection, collectionData, doc, onSnapshot, updateDoc } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoListService {
-  todos: Todo[] = [];
+  todos: Todo [] = [];
+  awaitfeedbacks: Todo [] = [];
 
   unsubTodos;
+  unsubAwaitfeedbacks;
 
   firestore: Firestore = inject(Firestore);
 
   constructor() {
-    this.unsubTodos = this.subTodoList();
+    this.unsubTodos = this.subTodosList();
+    this.unsubAwaitfeedbacks = this.subAwaitfeedbackList();
    }
 
    async deleteTodo(colId: "todo", docId: string) {
@@ -46,18 +49,27 @@ export class TodoListService {
    
      getColIdFromTodo(todo: Todo) {
        if(todo.type === 'todo') {
-         return 'todo';
+         return 'todos';
        } else {
-         return 'todo';
+         return 'awaitfeedback';
        }
      }
-   
-     async addTodo(todo: {}) {
-       await addDoc(this.getTodoRef(), todo).catch(
-         (error) => { console.error(error) }
-       ).then(
-         (docRef) => {console.log('Document written with ID: ', docRef?.id);});
-     }
+
+    async addTodo(item: Todo, colId: "todos" | "awaitfeedback") {
+      if (colId === "awaitfeedback") {
+        await addDoc(this.getAwaitfeedbackRef(), item).catch(
+          (err) => { console.error(err) }
+        ).then(
+          (docRef) => { console.log("Document written with ID: ", docRef?.id) }
+        );
+      } else {
+        await addDoc(this.getTodosRef(), item).catch(
+          (err) => { console.error(err) }
+        ).then(
+          (docRef) => { console.log("Document written with ID: ", docRef?.id) }
+        );
+      }
+    }
    
      setTodoObject(obj: any, id: string): Todo {
        return {
@@ -75,19 +87,68 @@ export class TodoListService {
    
      ngonDestroy() {
        this.unsubTodos();
+       this.unsubAwaitfeedbacks();
      }
+
+     subAwaitfeedbackList() {
+      return onSnapshot(this.getTodosRef(), (list) => {
+        this.awaitfeedbacks = [];
+        list.forEach((element) => {
+          this.awaitfeedbacks.push(this.setTodoObject(element.data(), element.id));
+        });
+      });
+    }
    
-     subTodoList() {
-       return onSnapshot(this.getTodoRef(), (list) => {
-         this.todos = [];
-         list.forEach((element) => {
-           this.todos.push(this.setTodoObject(element.data(), element.id));
-         });
-       });
-     }
+    //  subTodosList() {
+    //    return onSnapshot(this.getTodosRef(), (list) => {
+    //      this.todos = [];
+    //      list.forEach((element) => {
+    //        this.todos.push(this.setTodoObject(element.data(), element.id));
+    //      });
+    //    });
+    //  }
+
+    subTodosList() {
+      const q = query(this.getTodosRef(), limit(100));
+      return onSnapshot(q, (list) => {
+        this.todos = [];
+        list.forEach(element => {
+          this.todos.push(this.setNoteObject(element.data(), element.id));
+        });
+        list.docChanges().forEach((change) => {
+          if (change.type === "added") {
+              console.log("New note: ", change.doc.data());
+          }
+          if (change.type === "modified") {
+              console.log("Modified note: ", change.doc.data());
+          }
+          if (change.type === "removed") {
+              console.log("Removed note: ", change.doc.data());
+          }
+        });
+      });
+    }
+
+     setNoteObject(obj: any, id: string): Todo {
+      return {
+        id: id,
+        type: obj.type || 'todo',
+        title: obj.title || "",
+        description: obj.description || "",
+        assignedTo: obj.assignedTo || "",
+        dueDate: obj.dueDate || "",
+        priority: obj.priority || "",
+        category: obj.category || "",
+        subtasks: obj.subtasks || "",
+      }
+    }
    
-     getTodoRef() {
+     getTodosRef() {
        return collection(this.firestore, 'todo');
+     }
+
+     getAwaitfeedbackRef() {
+      return collection(this.firestore, 'awaitfeedback')
      }
    
      getSingleDocRef(colId: string, docId: string) {

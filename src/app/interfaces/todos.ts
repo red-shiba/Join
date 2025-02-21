@@ -1,6 +1,6 @@
 export interface Todo {
     id?: string;
-    type: 'todo';
+    type: 'todo' | 'awaitfeedback';
     title: string;
     description: string;
     assignedTo: string;
