@@ -362,7 +362,7 @@ p {
   .btn_wrapper {
     box-sizing: content-box;
     max-width: 370px;
-    width: 100%;
+    // width: 100%;
     display: flex;
     justify-content: center;
     // padding-bottom: 40px;
@@ -385,5 +385,41 @@ p {
 
   .cancelBtn {
     display: none;
+  }
+}
+
+@media (max-height: 1000px) {
+  .add_dialog_wrapper {
+    height: 650px;
+  }
+
+  .leftFrame {
+    height: 160px;
+
+    img {
+      display: none;
+    }
+  }
+
+  .avatar {
+    position: absolute;
+    top: 225px;
+    width: 120px;
+    height: 0px;
+    border-radius: 100%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 47px;
+    font-weight: bold;
+  }
+
+  .btn_wrapper {}
+}
+
+@media (max-height: 670px) {
+  .btn {
+    margin-top: -4px;
   }
 }
