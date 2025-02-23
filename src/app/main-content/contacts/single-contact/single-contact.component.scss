@@ -63,7 +63,7 @@
   justify-content: flex-start;
   font-size: 47px;
 
-  >p {
+  > p {
     margin: 0px;
   }
 }
@@ -85,7 +85,7 @@
   padding-right: 30px;
   gap: 8px;
 
-  >img {
+  > img {
     width: 24px;
     height: 24px;
   }
@@ -97,7 +97,7 @@
   cursor: pointer;
   gap: 8px;
 
-  >img {
+  > img {
     width: 24px;
     height: 24px;
   }
@@ -109,7 +109,7 @@
 
 .editIcon:hover .contact-link {
   color: $color-primary-hover;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .deleteIcon:hover .delete-icon {
@@ -118,7 +118,7 @@
 
 .deleteIcon:hover .contact-link {
   color: $color-primary-hover;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .email {
@@ -135,7 +135,7 @@
     font-size: 28px;
     font-weight: 700;
 
-    >p {
+    > p {
       margin: 0px;
     }
   }
@@ -156,7 +156,7 @@
     font-size: 24px;
     font-weight: 700;
 
-    >p {
+    > p {
       margin: 0px;
     }
   }
@@ -177,18 +177,17 @@
     font-size: 20px;
     font-weight: 700;
 
-    >p {
+    > p {
       margin: 0px;
     }
   }
-
 }
 
 @media (max-width: 768px) {
   .name {
     font-size: 26px;
 
-    >p {
+    > p {
       margin: 0px;
     }
   }
