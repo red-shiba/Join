@@ -43,7 +43,7 @@ export class AddTaskComponent {
     console.log("🔵 addTodo() wurde aufgerufen!");
 
     if (!this.title || !this.dueDate || !this.category) {
-      console.warn("⚠️ Task-Erstellung fehlgeschlagen: Fehlende Pflichtfelder!");
+      console.warn("Task-Erstellung fehlgeschlagen: Fehlende Pflichtfelder!");
       return;
     }
 
@@ -60,9 +60,9 @@ export class AddTaskComponent {
     };
 
     this.todoListService.addTodo(newTask, "todo").then(() => {
-      console.log("✅ Task erfolgreich hinzugefügt:", newTask);
+      console.log("Task erfolgreich hinzugefügt:", newTask);
     }).catch((error) => {
-      console.error("❌ Fehler beim Speichern des Tasks:", error);
+      console.error("Fehler beim Speichern des Tasks:", error);
     });
 
     // Felder zurücksetzen

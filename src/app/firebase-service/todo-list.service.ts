@@ -80,9 +80,9 @@ export class TodoListService {
   async addTodo(item: Todo, colId: "todo" | "inprogress" | "awaitfeedback" | "done") {
     try {
       const docRef = await addDoc(collection(this.firestore, colId), item);
-      console.log(`✅ Task wurde in "${colId}" gespeichert mit ID:`, docRef.id);
+      console.log(`Task wurde in "${colId}" gespeichert mit ID:`, docRef.id);
     } catch (err) {
-      console.error(`❌ Fehler beim Speichern in "${colId}":`, err);
+      console.error(`Fehler beim Speichern in "${colId}":`, err);
     }
   }
    
@@ -136,7 +136,7 @@ export class TodoListService {
             this.inprogress.push(this.setTodoObject(element.data(), element.id));
           });
         }
-        this.todosSubject.next(this.inprogress);  // 🔄 Update Observable
+        this.todosSubject.next(this.inprogress);  // Update Observable
       });
     }
 
