@@ -179,19 +179,19 @@ export class TodoListService {
       });
     }
 
-     setNoteObject(obj: any, id: string): Todo {
-      return {
-        id: id,
-        type: obj.type || 'todo',
-        title: obj.title || "",
-        description: obj.description || "",
-        assignedTo: obj.assignedTo || "",
-        dueDate: obj.dueDate || "",
-        priority: obj.priority || "",
-        category: obj.category || "",
-        subtasks: obj.subtasks || "",
-      }
-    }
+    //  setNoteObject(obj: any, id: string): Todo {
+    //   return {
+    //     id: id,
+    //     type: obj.type || 'todo',
+    //     title: obj.title || "",
+    //     description: obj.description || "",
+    //     assignedTo: obj.assignedTo || "",
+    //     dueDate: obj.dueDate || "",
+    //     priority: obj.priority || "",
+    //     category: obj.category || "",
+    //     subtasks: obj.subtasks || "",
+    //   }
+    // }
    
      getTodosRef() {
        return collection(this.firestore, 'todo');
