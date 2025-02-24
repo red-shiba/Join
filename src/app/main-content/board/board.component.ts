@@ -39,6 +39,7 @@ export class BoardComponent {
   constructor(private todoListService: TodoListService) {}
 
   ngOnInit() {
+    this.todoListService.deleteTodo("N2IMzQHfagJ88y9qnBst");
     this.todoListService.todos$.subscribe((todos) => {
       this.todoList = todos;
       console.log('Todos aus Observable erhalten:', todos);

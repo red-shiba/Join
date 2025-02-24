@@ -29,27 +29,39 @@ export class TodoListService {
     this.unsubDone = this.subDoneList();
    }
 
-   async deleteTodo(colId: "todo" | "inprogress" | "awaitfeedback" | "done", docId: string) {
-       await deleteDoc(this.getSingleDocRef(colId, docId)).catch(
-         (err) => {console.log(err)}
-       )
-     }
-
-     async updateTodo(todo: Todo) {
-      if (!todo.id) return;
-    
-      const docRef = doc(this.firestore, `${todo.type}/${todo.id}`);
+   async deleteTodo(docId: string) {
+    const collections = ["todo", "inprogress", "awaitfeedback", "done"];
+  
+    for (const colId of collections) {
+      const docRef = this.getSingleDocRef(colId, docId);
       const docSnap = await getDoc(docRef);
-    
-      if (!docSnap.exists()) {
-        console.warn("Dokument existiert nicht:", todo.type, todo.id);
-        return; // Keine Aktualisierung durchführen
+  
+      if (docSnap.exists()) {
+        try {
+          await deleteDoc(docRef);
+          console.log(`Dokument ${docId} erfolgreich aus ${colId} gelöscht.`);
+        } catch (err) {
+          console.error(`Fehler beim Löschen von ${docId} aus ${colId}:`, err);
+        }
       }
-    
-      await updateDoc(docRef, { ...todo }).catch(error =>
-        console.error("Fehler beim Update:", error)
-      );
     }
+  }
+
+   async updateTodo(todo: Todo) {
+    if (!todo.id) return;
+  
+    const docRef = doc(this.firestore, `${todo.type}/${todo.id}`);
+    const docSnap = await getDoc(docRef);
+  
+    if (!docSnap.exists()) {
+      console.warn("Dokument existiert nicht:", todo.type, todo.id);
+      return; // Keine Aktualisierung durchführen
+    }
+  
+    await updateDoc(docRef, { ...todo }).catch(error =>
+      console.error("Fehler beim Update:", error)
+    );
+  }
 
     //  async updateTodo(todo: Todo) {
     //    if(todo.id) {
@@ -128,17 +140,14 @@ export class TodoListService {
     async moveTodo(todo: Todo, newStatus: "todo" | "inprogress" | "awaitfeedback" | "done") {
       if (!todo.id) return;
     
-      // Referenzen zur alten und neuen Sammlung
-      const oldDocRef = doc(this.firestore, `${todo.type}/${todo.id}`);
+      // Zuerst den Task aus allen Sammlungen löschen
+      await this.deleteTodo(todo.id);
+    
+      // Neuen Task in der Ziel-Sammlung erstellen
       const newDocRef = doc(this.firestore, `${newStatus}/${todo.id}`);
     
       try {
-        // Lösche den Task aus der alten Sammlung
-        await deleteDoc(oldDocRef);
-    
-        // Erstelle den Task in der neuen Sammlung mit demselben Inhalt
         await setDoc(newDocRef, { ...todo, type: newStatus });
-    
         console.log("Task erfolgreich verschoben!");
       } catch (error) {
         console.error("Fehler beim Verschieben:", error);
@@ -201,7 +210,7 @@ export class TodoListService {
      }
    
      getSingleDocRef(colId: string, docId: string) {
-      return doc(collection(this.firestore, colId), docId);
+      return doc(this.firestore, colId, docId);
     }
     
 }
