@@ -54,9 +54,8 @@
                 <p>Category</p>
                 <select id="category" name="category" required [(ngModel)]="category">
                     <option value="">Select task category</option>
-                    <option value="projektA">Projekt A</option>
-                    <option value="marketing">Marketing</option>
-                    <option value="kundensupport">Kundensupport</option>
+                    <option value="Technical Task">Technical Task</option>
+                    <option value="User Story">User Story</option>
                 </select>
 
                 <p>Subtasks</p>
@@ -68,6 +67,7 @@
                     </ul>
                 </div>
             </div>
+            
         </div>
         <div class="add-task-btn">
             <button class="cbtn cancelBtn" (click)="closeDialog()">Cancel</button>
@@ -75,6 +75,7 @@
                 Create Task
             </button>
         </div>
+
     </div>
 </section>
 
