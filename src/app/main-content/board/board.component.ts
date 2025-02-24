@@ -64,15 +64,11 @@ export class BoardComponent {
     event: CdkDragDrop<Todo[]>,
     newCategory: 'todo' | 'inprogress' | 'awaitfeedback' | 'done'
   ) {
-    const movedTodo = event.previousContainer.data[event.previousIndex];
-  
     if (event.previousContainer === event.container) {
-      moveItemInArray(
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
+      const movedTodo = event.previousContainer.data[event.previousIndex];
+  
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
@@ -80,17 +76,16 @@ export class BoardComponent {
         event.currentIndex
       );
   
-      // Firestore-Update mit neuer Kategorie
+      // Setze die neue Kategorie im lokalen Zustand
       movedTodo.type = newCategory;
   
-      this.todoListService
-        .updateTodo(movedTodo)
-        .then(() => {
-          console.log('Task erfolgreich verschoben');
-        })
-        .catch((err) => console.error('Fehler beim Update:', err));
+      // Firebase-Update durchführen
+      this.todoListService.moveTodo(movedTodo, newCategory)
+        .then(() => console.log('Task erfolgreich in Firestore aktualisiert'))
+        .catch((err) => console.error('Fehler beim Firebase-Update:', err));
     }
   }
+
   openOverlay() {
     this.isOverlayOpen = true;
   }

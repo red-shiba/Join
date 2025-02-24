@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Todo } from '../interfaces/todos';
-import { Firestore, query, limit, addDoc, deleteDoc, collection, collectionData, doc, onSnapshot, updateDoc } from '@angular/fire/firestore';
+import { Firestore, query, setDoc, addDoc, deleteDoc, collection, collectionData, doc, onSnapshot, updateDoc } from '@angular/fire/firestore';
 import { BehaviorSubject } from 'rxjs';
 import { getDoc } from "@angular/fire/firestore";
 
@@ -127,18 +127,22 @@ export class TodoListService {
 
     async moveTodo(todo: Todo, newStatus: "todo" | "inprogress" | "awaitfeedback" | "done") {
       if (!todo.id) return;
-      
-      const docRef = doc(this.firestore, `${todo.type}/${todo.id}`);
-      const docSnap = await getDoc(docRef);
     
-      if (!docSnap.exists()) {
-        console.warn("Dokument existiert nicht:", todo.id);
-        return;
+      // Referenzen zur alten und neuen Sammlung
+      const oldDocRef = doc(this.firestore, `${todo.type}/${todo.id}`);
+      const newDocRef = doc(this.firestore, `${newStatus}/${todo.id}`);
+    
+      try {
+        // Lösche den Task aus der alten Sammlung
+        await deleteDoc(oldDocRef);
+    
+        // Erstelle den Task in der neuen Sammlung mit demselben Inhalt
+        await setDoc(newDocRef, { ...todo, type: newStatus });
+    
+        console.log("Task erfolgreich verschoben!");
+      } catch (error) {
+        console.error("Fehler beim Verschieben:", error);
       }
-    
-      await updateDoc(docRef, { type: newStatus })
-        .then(() => console.log("Task erfolgreich verschoben!"))
-        .catch((error) => console.error("Fehler beim Verschieben:", error));
     }
     
     subInprogressList() {
