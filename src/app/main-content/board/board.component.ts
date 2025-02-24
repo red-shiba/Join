@@ -12,6 +12,7 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { SingleTodoComponent } from './single-todo/single-todo.component';
+import { TaskCardComponent } from '../../dialogs/task-card/task-card.component';
 
 @Component({
   selector: 'app-board',
@@ -22,48 +23,56 @@ import { SingleTodoComponent } from './single-todo/single-todo.component';
     FormsModule,
     CommonModule,
     SingleTodoComponent,
+    TaskCardComponent,
   ],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss',
 })
 export class BoardComponent {
-  @Input() todo!:Todo;
+  @Input() todo!: Todo;
   todoList: Todo[] = [];
   awaitFeedbackList: Todo[] = [];
-  inProgressList: Todo [] = [];
-  doneList: Todo [] = [];
+  inProgressList: Todo[] = [];
+  doneList: Todo[] = [];
+  isOverlayOpen = false;
 
-  constructor(private todoListService: TodoListService) {
-  }
+  constructor(private todoListService: TodoListService) {}
 
   ngOnInit() {
     this.todoListService.todos$.subscribe((todos) => {
       this.todoList = todos;
-      console.log("Todos aus Observable erhalten:", todos);
+      console.log('Todos aus Observable erhalten:', todos);
     });
   }
 
   getList(listId: string): Todo[] {
     switch (listId) {
-      case "todoList":
+      case 'todoList':
         return this.todoListService.todos;
-      case "awaitFeedbackList":
+      case 'awaitFeedbackList':
         return this.todoListService.awaitfeedbacks;
-      case "inProgressList":
+      case 'inProgressList':
         return this.todoListService.inprogress;
-      case "doneList":
+      case 'doneList':
         return this.todoListService.done;
       default:
         return [];
     }
   }
 
-  drop(event: CdkDragDrop<Todo[]>, newCategory: "todo" | "inprogress" | "awaitfeedback" | "done") {
+  drop(
+    event: CdkDragDrop<Todo[]>,
+    newCategory: 'todo' | 'inprogress' | 'awaitfeedback' | 'done'
+  ) {
     const movedTodo = event.previousContainer.data[event.previousIndex];
 
     if (event.previousContainer === event.container) {
       // Falls innerhalb derselben Liste verschoben wurde
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
     } else {
       // Falls in eine neue Liste verschoben wurde
       transferArrayItem(
@@ -78,6 +87,11 @@ export class BoardComponent {
       this.todoListService.updateTodo(movedTodo);
     }
   }
-}
-  
+  openOverlay() {
+    this.isOverlayOpen = true;
+  }
 
+  closeOverlay() {
+    this.isOverlayOpen = false;
+  }
+}

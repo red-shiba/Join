@@ -71,6 +71,13 @@
   width: 35px;
   height: 35px;
 }
+.dragndrop-container {
+  width: 240px;
+  max-width: 100%;
+  margin: 0px 10px 0px 0px;
+  display: inline-block;
+  vertical-align: top;
+}
 .drag-and-drop-container {
   display: flex;
   justify-content: space-evenly;
@@ -126,7 +133,6 @@
   margin: 0px 10px 0px 0px;
   display: inline-block;
   vertical-align: top;
-  margin-top: -50px;
 }
 
 .board-list {

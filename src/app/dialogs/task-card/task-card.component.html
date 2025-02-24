@@ -1,0 +1,14 @@
+<div
+  class="shaddowBox"
+  [class.closing]="isClosing"
+  (click)="closeOverlay.emit()"
+>
+  <div
+    class="task_card_wrapper"
+    [class.closing]="isClosing"
+    (click)="$event.stopPropagation()"
+  >
+    <p>Hallo ich mache hier Morgen weiter</p>
+    <p>P.s Dima</p>
+  </div>
+</div>
