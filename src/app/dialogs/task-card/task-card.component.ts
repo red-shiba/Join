@@ -8,10 +8,10 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrl: './task-card.component.scss',
 })
 export class TaskCardComponent {
-  @Output() closeOverlay = new EventEmitter<void>();
+  @Output() closeOverlay = new EventEmitter<boolean>();
   isClosing = false;
 
   close() {
-    this.closeOverlay.emit(); // Event an `board` senden
+    this.closeOverlay.emit();
   }
 }
