@@ -2,20 +2,11 @@
   <div class="container-inner">
     <div>
       <h1 class="header-heading">Kanban Project Management Tool</h1>
-      <img
-        class="header-logo-mobil"
-        src="../../../assets/logo/logo-dark.png"
-        alt="Join-logo"
-      />
+      <img class="header-logo-mobil" src="../../../assets/logo/logo-dark.png" alt="Join-logo" />
     </div>
     <div class="header-account">
       <div class="header-info">
-        <a href="helpsection"
-          ><img
-            class="info-help"
-            src="../../../assets/icons/help.png"
-            alt="information"
-        /></a>
+        <a href="helpsection"><img class="info-help" src="../../../assets/icons/help.png" alt="information" /></a>
       </div>
       <div class="header-profilpic">
         <div class="user-badge" (click)="toggleDropdown()">
@@ -27,8 +18,8 @@
 </section>
 @if (isDropdownOpen) {
 <div class="dropdown-menu">
-  <a href="#" class="dropdown-item">Legal Notice</a>
-  <a href="#" class="dropdown-item">Privacy Policy</a>
+  <a href="legalnotice" class="dropdown-item">Legal Notice</a>
+  <a href="privacypolicy" class="dropdown-item">Privacy Policy</a>
   <a href="#" class="dropdown-item">Log out</a>
 </div>
 }

@@ -129,4 +129,11 @@ export class ContactsComponent {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
 
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: Event) {
+    const targetElement = event.target as HTMLElement;
+    if (!targetElement.closest('.option-btn-mobile') && !targetElement.closest('.dropdown-menu-mobile')) {
+      this.isDropdownOpen = false;
+    }
+  }
 }
