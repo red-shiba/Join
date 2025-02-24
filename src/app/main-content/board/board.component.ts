@@ -48,13 +48,13 @@ export class BoardComponent {
   getList(listId: string): Todo[] {
     switch (listId) {
       case 'todoList':
-        return this.todoListService.todos;
+        return this.todoListService.todos || [];
       case 'awaitFeedbackList':
-        return this.todoListService.awaitfeedbacks;
+        return this.todoListService.awaitfeedbacks || [];
       case 'inProgressList':
-        return this.todoListService.inprogress;
+        return this.todoListService.inprogress || [];
       case 'doneList':
-        return this.todoListService.done;
+        return this.todoListService.done || [];
       default:
         return [];
     }
@@ -65,26 +65,30 @@ export class BoardComponent {
     newCategory: 'todo' | 'inprogress' | 'awaitfeedback' | 'done'
   ) {
     const movedTodo = event.previousContainer.data[event.previousIndex];
-
+  
     if (event.previousContainer === event.container) {
-      // Falls innerhalb derselben Liste verschoben wurde
       moveItemInArray(
         event.container.data,
         event.previousIndex,
         event.currentIndex
       );
     } else {
-      // Falls in eine neue Liste verschoben wurde
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex
       );
-
+  
       // Firestore-Update mit neuer Kategorie
       movedTodo.type = newCategory;
-      this.todoListService.updateTodo(movedTodo);
+  
+      this.todoListService
+        .updateTodo(movedTodo)
+        .then(() => {
+          console.log('Task erfolgreich verschoben');
+        })
+        .catch((err) => console.error('Fehler beim Update:', err));
     }
   }
   openOverlay() {

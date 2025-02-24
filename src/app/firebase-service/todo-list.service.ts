@@ -124,19 +124,36 @@ export class TodoListService {
         });
       });
     }
+
+    async moveTodo(todo: Todo, newStatus: "todo" | "inprogress" | "awaitfeedback" | "done") {
+      if (!todo.id) return;
+      
+      const docRef = doc(this.firestore, `${todo.type}/${todo.id}`);
+      const docSnap = await getDoc(docRef);
+    
+      if (!docSnap.exists()) {
+        console.warn("Dokument existiert nicht:", todo.id);
+        return;
+      }
+    
+      await updateDoc(docRef, { type: newStatus })
+        .then(() => console.log("Task erfolgreich verschoben!"))
+        .catch((error) => console.error("Fehler beim Verschieben:", error));
+    }
     
     subInprogressList() {
       return onSnapshot(this.getInprogressRef(), (list) => {
         this.inprogress = [];
-        if (list.empty) {  //  Wenn keine Einträge vorhanden sind
-          console.warn("Keine Tasks in 'inprogress'.");
-          this.inprogress = [];  // Stelle sicher, dass es nicht undefined ist
+    
+        if (list.empty) {
+          console.warn('Keine Tasks in "inprogress".');
         } else {
           list.forEach((element) => {
             this.inprogress.push(this.setTodoObject(element.data(), element.id));
           });
         }
-        this.todosSubject.next(this.inprogress);  // Update Observable
+    
+        this.todosSubject.next([...this.inprogress]); // Immer aktualisieren!
       });
     }
 

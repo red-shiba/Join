@@ -38,12 +38,16 @@
         [cdkDropListConnectedTo]="[inprogressList, awaitFeedbackList, doneList]"
         (cdkDropListDropped)="drop($event, 'todo')"
       >
+      @if (getList('todoList').length > 0) {
         @for (todo of getList('todoList'); track todo.id) {
-        <div class="board-box" cdkDrag>
-          <app-single-todo [todo]="todo"></app-single-todo>
-        </div>
+          <div class="board-box" cdkDrag>
+            <app-single-todo [todo]="todo"></app-single-todo>
+          </div>
         }
-      </div>
+      } @else {
+        <div class="empty-placeholder">No tasks To do</div>
+      }
+    </div>
     </div>
 
     <div class="dragndrop-container" (click)="openOverlay()">
@@ -59,12 +63,16 @@
         [cdkDropListConnectedTo]="[todoList, inprogressList, doneList]"
         (cdkDropListDropped)="drop($event, 'awaitfeedback')"
       >
+      @if (getList('awaitFeedbackList').length > 0) {
         @for (todo of getList('awaitFeedbackList'); track todo.id) {
-        <div class="board-box" cdkDrag>
-          <app-single-todo [todo]="todo"></app-single-todo>
-        </div>
+          <div class="board-box" cdkDrag>
+            <app-single-todo [todo]="todo"></app-single-todo>
+          </div>
         }
-      </div>
+      } @else {
+        <div class="empty-placeholder">No tasks To do</div>
+      }
+    </div>
     </div>
 
     <div class="dragndrop-container" (click)="openOverlay()">
@@ -80,12 +88,16 @@
         [cdkDropListConnectedTo]="[todoList, awaitFeedbackList, doneList]"
         (cdkDropListDropped)="drop($event, 'inprogress')"
       >
+      @if (getList('inProgressList').length > 0) {
         @for (todo of getList('inProgressList'); track todo.id) {
-        <div class="board-box" cdkDrag>
-          <app-single-todo [todo]="todo"></app-single-todo>
-        </div>
+          <div class="board-box" cdkDrag>
+            <app-single-todo [todo]="todo"></app-single-todo>
+          </div>
         }
-      </div>
+      } @else {
+        <div class="empty-placeholder">No tasks To do</div>
+      }
+    </div>
     </div>
 
     <div class="dragndrop-container" (click)="openOverlay()">
@@ -100,12 +112,16 @@
         [cdkDropListConnectedTo]="[todoList, inprogressList, awaitFeedbackList]"
         (cdkDropListDropped)="drop($event, 'done')"
       >
+      @if (getList('doneList').length > 0) {
         @for (todo of getList('doneList'); track todo.id) {
-        <div class="board-box" cdkDrag>
-          <app-single-todo [todo]="todo"></app-single-todo>
-        </div>
+          <div class="board-box" cdkDrag>
+            <app-single-todo [todo]="todo"></app-single-todo>
+          </div>
         }
-      </div>
+      } @else {
+        <div class="empty-placeholder">No tasks To do</div>
+      }
+    </div>
     </div>
   </div>
   <div *ngIf="isOverlayOpen" class="overlay">
