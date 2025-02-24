@@ -77,21 +77,14 @@ export class TodoListService {
     return todo.type; // Gibt "todo", "inprogress", "awaitfeedback" oder "done" zurück
   }
 
-    async addTodo(item: Todo, colId: "todo" | "inprogress" | "awaitfeedback" | "done") {
-      if (colId === "awaitfeedback") {
-        await addDoc(this.getAwaitfeedbackRef(), item).catch(
-          (err) => { console.error(err) }
-        ).then(
-          (docRef) => { console.log("Document written with ID: ", docRef?.id) }
-        );
-      } else {
-        await addDoc(this.getTodosRef(), item).catch(
-          (err) => { console.error(err) }
-        ).then(
-          (docRef) => { console.log("Document written with ID: ", docRef?.id) }
-        );
-      }
+  async addTodo(item: Todo, colId: "todo" | "inprogress" | "awaitfeedback" | "done") {
+    try {
+      const docRef = await addDoc(collection(this.firestore, colId), item);
+      console.log(`✅ Task wurde in "${colId}" gespeichert mit ID:`, docRef.id);
+    } catch (err) {
+      console.error(`❌ Fehler beim Speichern in "${colId}":`, err);
     }
+  }
    
      setTodoObject(obj: any, id: string): Todo {
        return {

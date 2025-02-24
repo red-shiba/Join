@@ -3,81 +3,78 @@
         <h2>Add Task</h2>
         <div class="add-task-form">
             <div class="form-left">
+                <div class="form-container form-left-title">
+                    <label for="title">
+                        <p>Title</p>
+                    </label>
+                    <input type="text" id="title" name="title" required placeholder="Enter a Title" [(ngModel)]="title">
+                </div>
 
+                <div class="form-container form-left-description">
+                    <label for="description">
+                        <p>Description</p>
+                    </label>
+                    <textarea id="description" name="description" rows="4" placeholder="Enter a Description" [(ngModel)]="description"></textarea>
+                </div>
 
-                <form>
-                    <div class="form-container form-left-title">
-                        <label for="title">
-                            <p>Title</p>
-                        </label>
-                        <input type="text" id="title" name="title" required placeholder="Enter a Title">
+                <div class="form-container">
+                    <label for="assignedTo">
+                        <p>Assigned to</p>
+                    </label>
+                    <div class="assign-container">
+                        <input type="text" id="assignInput" name="assignedTo" placeholder="Select contact to assign" [(ngModel)]="assignedTo">
+                        <button type="button" class="add-button-assign" (click)="addAssign()">&#9662;</button>
                     </div>
-
-                    <div class="form-container form-left-desciption">
-                        <label for="description">
-                            <p>Description</p>
-                        </label>
-                        <textarea id="description" name="description" rows="4"
-                            placeholder="Enter a Description"></textarea>
-                    </div>
-
-                    <div class="form-container">
-                        <label for="assignedTo">
-                            <p>Assigned to</p>
-                        </label>
-                        <div class="assign-container">
-                            <input type="text" id="assignInput" placeholder="select contact to assign">
-                            <button class="add-button-assign" onclick="addAssign()">&#9662;</button>
-                        </div>
-                        <ul id="assignList"></ul>
-                    </div>
-                </form>
-
-
+                    <ul id="assignList"></ul>
+                </div>
             </div>
-            <div class="devider"></div>
+            <div class="divider"></div>
             <div class="form-right">
+                <p>Due Date</p>
+                <input type="date" id="dueDate" name="dueDate" required [(ngModel)]="dueDate" placeholder="dd/mm/yyyy">
 
-                <form id="taskForm">
-                    <p>Due Date</p>
-                    <input type="date" id="dueDate" name="dueDate" required placeholder="dd/mm/yyyy">
+                <p>Prio</p>
+                <div class="priority-buttons">
+                    <button type="button" class="priority-btn" data-priority="urgent" (click)="setPriority('urgent')">
+                        <span class="text">Urgent</span>
+                        <span class="icon">🚨</span>
+                    </button>
+                    <button type="button" class="priority-btn" data-priority="medium" (click)="setPriority('medium')">
+                        <span class="text">Medium</span>
+                        <span class="icon">⏳</span>
+                    </button>
+                    <button type="button" class="priority-btn" data-priority="low" (click)="setPriority('low')">
+                        <span class="text">Low</span>
+                        <span class="icon">🍃</span>
+                    </button>
+                </div>
 
-                    <p>Prio</p>
-                    <div class="priority-buttons">
-                        <button type="button" class="priority-btn" data-priority="urgent">
-                            <span class="text">Urgent</span>
-                            <span class="icon">🚨</span>
-                        </button>
-                        <button type="button" class="priority-btn" data-priority="medium">
-                            <span class="text">Medium</span>
-                            <span class="icon">⏳</span>
-                        </button>
-                        <button type="button" class="priority-btn" data-priority="low">
-                            <span class="text">Low</span>
-                            <span class="icon">🍃</span>
-                        </button>
-                    </div>
+                <input type="hidden" id="selectedPriority" name="priority" [(ngModel)]="priority">
 
-                    <input type="hidden" id="selectedPriority" name="priority" value="">
+                <p>Category</p>
+                <select id="category" name="category" required [(ngModel)]="category">
+                    <option value="">Select task category</option>
+                    <option value="projektA">Projekt A</option>
+                    <option value="marketing">Marketing</option>
+                    <option value="kundensupport">Kundensupport</option>
+                </select>
 
-                    <p>Category</p>
-                    <select id="category" name="category" required>
-                        <option value="">Select task category</option>
-                        <option value="projektA">Projekt A</option>
-                        <option value="marketing">Marketing</option>
-                        <option value="kundensupport">Kundensupport</option>
-                    </select>
-
-                    <p>Subtasks</p>
-                    <div class="subtask-container">
-                        <input type="text" id="subtaskInput" placeholder="Add new subtask">
-                        <button class="add-button" onclick="addSubtask()">+</button>
-                    </div>
-                    <ul id="subtaskList"></ul>
-                </form>
-
+                <p>Subtasks</p>
+                <div class="subtask-container">
+                    <input type="text" id="subtaskInput" name="subtaskInput" [(ngModel)]="subtaskInput" placeholder="Add new subtask">
+                    <button type="button" class="add-button" (click)="addSubtask()">+</button>
+                    <ul id="subtaskList">
+                        <li *ngFor="let subtask of subtasks">{{ subtask }}</li>
+                    </ul>
+                </div>
             </div>
         </div>
-        <div class="add-task-btn"></div>
+        <div class="add-task-btn">
+            <button class="cbtn cancelBtn" (click)="closeDialog()">Cancel</button>
+            <button class="btn createBtn" [disabled]="!title || !dueDate || !category" (click)="addTodo()">
+                Create Task
+            </button>
+        </div>
     </div>
 </section>
+
