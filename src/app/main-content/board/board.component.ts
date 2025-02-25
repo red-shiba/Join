@@ -42,7 +42,6 @@ export class BoardComponent {
   ngOnInit() {
     this.todoListService.todos$.subscribe((todos) => {
       this.todoList = todos;
-      console.log('Todos aus Observable erhalten:', todos);
     });
   }
 
