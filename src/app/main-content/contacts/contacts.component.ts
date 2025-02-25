@@ -28,27 +28,38 @@ export class ContactsComponent {
   isMobileView = false;
   isDropdownOpen = false;
   DropdownDialogOpen = false;
+  private mobileQuery!: MediaQueryList;
 
   constructor(
     private contactListService: ContactListService,
-    private avatarColorService: AvatarColorService
+    private avatarColorService: AvatarColorService,
   ) { }
 
   ngOnInit(): void {
-    this.checkMobileView();
+    this.initMediaQueryListener();
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize() {
-    this.checkMobileView();
+  ngOnDestroy(): void {
+    // Listener sauber entfernen
+    this.mobileQuery.removeEventListener("change", this.handleMediaChange);
   }
 
-  checkMobileView() {
-    this.isMobileView = window.innerWidth < 621;
+  initMediaQueryListener() {
+    this.mobileQuery = window.matchMedia("(max-width: 620px)");
+
+    // Initialer Check
+    this.handleMediaChange(this.mobileQuery);
+
+    // Event Listener für dynamische Änderungen
+    this.mobileQuery.addEventListener("change", this.handleMediaChange);
+  }
+
+  handleMediaChange = (event: MediaQueryListEvent | MediaQueryList) => {
+    this.isMobileView = event.matches;
     if (!this.isMobileView) {
-      this.selectedContact = null; // Setzt Kontakt zurück, wenn man auf Desktop wechselt
+      this.selectedContact = null; // Kontakt zurücksetzen, wenn zu Desktop gewechselt wird
     }
-  }
+  };
 
   getAvatarColor(contact: Contact): string {
     return this.avatarColorService.getAvatarColor(contact);
