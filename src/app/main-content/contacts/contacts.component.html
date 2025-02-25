@@ -45,16 +45,18 @@
       </div>
     </div>
     <div class="singleFrame">
-      <button class="option-btn-mobile" (click)="toggleDropdown()">
-        <img src="/assets/icons/more_vert.png" alt="more options" />
-      </button>
       <app-single-contact *ngIf="selectedContact" [contact]="selectedContact"></app-single-contact>
     </div>
+    <button class="option-btn-mobile" (click)="toggleDropdown()">
+      <img src="/assets/icons/more_vert.png" alt="more options" />
+    </button>
+    @if (isDropdownOpen) {
+    <div class="dropdown-menu-mobile">
+      <a class="dropdown-item" (click)="isDropdownDialogOpen()">Edit</a>
+      <a class="dropdown-item" (click)="deleteContact()">Delete</a>
+    </div>
+    }
+    <app-edit-contact-dialog *ngIf="DropdownDialogOpen" [contact]="selectedContact"
+      (editDialogClosed)="isDropdowncloseDialog()" (contactUpdated)="updateContact($event)"></app-edit-contact-dialog>
   </div>
 </section>
-@if (isDropdownOpen) {
-<div class="dropdown-menu-mobile">
-  <a href="#" class="dropdown-item" (click)="openDialog()">Edit</a>
-  <a href="#" class="dropdown-item">Delete</a>
-</div>
-}

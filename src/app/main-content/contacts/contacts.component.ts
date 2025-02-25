@@ -4,6 +4,7 @@ import { ContactListService } from '../../firebase-service/contact-list.service'
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AddContactDialogComponent } from '../../dialogs/add-contact-dialog/add-contact-dialog.component';
+import { EditContactDialogComponent } from '../../dialogs/edit-contact-dialog/edit-contact-dialog.component';
 import { SingleContactComponent } from './single-contact/single-contact.component';
 import { AvatarColorService } from '../../services/avatar-color.service';
 
@@ -15,6 +16,7 @@ import { AvatarColorService } from '../../services/avatar-color.service';
     CommonModule,
     AddContactDialogComponent,
     SingleContactComponent,
+    EditContactDialogComponent
   ],
   templateUrl: './contacts.component.html',
   styleUrl: './contacts.component.scss',
@@ -25,6 +27,7 @@ export class ContactsComponent {
   selectedContact: Contact | null = null;
   isMobileView = false;
   isDropdownOpen = false;
+  DropdownDialogOpen = false;
 
   constructor(
     private contactListService: ContactListService,
@@ -93,9 +96,20 @@ export class ContactsComponent {
     this.isDialogOpen = true; // Öffnet das Dialogfenster
   }
 
+  isDropdownDialogOpen() {
+    console.log('Dropdown Dialog offen');
+    this.DropdownDialogOpen = true;
+    this.isDropdownOpen = false;
+  }
+
   closeDialog(event: boolean) {
     console.log('Dialog wird geschlossen', event);
     this.isDialogOpen = false; // Schließt das Fenster, wenn das Event ausgelöst wird
+  }
+
+  isDropdowncloseDialog() {
+    console.log('Dropdown Dialog geschlossen');
+    this.DropdownDialogOpen = false;
   }
 
   selectContact(contact: Contact) {
@@ -127,6 +141,22 @@ export class ContactsComponent {
 
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  updateContact(updatedContact: any) {
+    this.contactListService.updateContact(updatedContact).then(() => {
+      this.selectedContact = updatedContact;
+    });
+    this.isDialogOpen = false;
+  }
+
+  deleteContact() {
+    if (this.selectedContact && this.selectedContact.id) {
+      this.contactListService.deleteContact('contact', this.selectedContact.id).then(() => {
+        window.location.reload();
+      });
+    }
+    this.isDropdownOpen = false;
   }
 
   @HostListener('document:click', ['$event'])

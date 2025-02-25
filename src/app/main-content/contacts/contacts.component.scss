@@ -361,7 +361,7 @@ a {
     padding-top: 6px;
     padding-bottom: 6px;
     border: none;
-    background-color: #2a3647;
+    background-color: $color-primary;
 
     img {
       height: 25px;
@@ -371,18 +371,20 @@ a {
 
   .dropdown-menu-mobile {
     position: absolute;
-    margin-top: 3px;
-    top: 657px;
-    right: 53px;
+    bottom: 0;
+    right: 0;
+    // transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     z-index: 1001;
-    background-color: #2a3647;
+    background-color: $color-primary;
     border-radius: 20px 20px 0px 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     min-width: 120px;
     padding: 25px 15px;
     gap: 8px;
+    margin-right: 53px;
+    margin-bottom: 143px;
 
     .dropdown-item {
       padding: 5px 5px;
