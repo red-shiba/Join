@@ -8,7 +8,7 @@
       <div class="header-task">
         <div class="task-category">{{ [todo?.category] }}</div>
         <div class="close" (click)="closeOverlay.emit()">
-          <img src="/assets/icons/close.png" alt="Close" />
+          <img src="/assets/icons/close.png" alt="close" />
         </div>
       </div>
       <p>{{ todo?.title }}</p>
@@ -21,7 +21,10 @@
         <p>Priority:</p>
         <div class="priority-icon">
           <span>{{ todo?.priority }}</span>
-          <img [src]="getPriorityIcon(todo?.priority)" alt="priority-icon" />
+          <img
+            [src]="getPriorityIcon(todo?.priority)"
+            alt="{{ todo?.priority }}"
+          />
         </div>
       </div>
       <div class="assigned">
@@ -34,7 +37,11 @@
       <div class="subtasks">
         <p>Subtasks</p>
         <div class="subtask-container">
-          <img src="/assets/icons/check_box.png" alt="check_box" />
+          <img
+            [src]="isChecked ? checkedImage : uncheckedImage"
+            alt="check_box"
+            (click)="toggleCheckBox()"
+          />
           <span> hier kommt ein Task{{ todo?.subtasks }}</span>
         </div>
       </div>
