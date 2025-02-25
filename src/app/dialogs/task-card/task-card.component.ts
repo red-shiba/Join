@@ -15,13 +15,11 @@ export class TaskCardComponent {
   @Output() closeOverlay = new EventEmitter<boolean>();
   isClosing = false;
 
-  // Pfade zu den Bildern
   uncheckedImage = '/assets/icons/check_box.png';
   checkedImage = '/assets/icons/check_ed.png';
-  // Zustand der Checkbox
+
   isChecked = false;
 
-  // Funktion zum Wechseln des Zustands
   toggleCheckBox() {
     this.isChecked = !this.isChecked;
   }

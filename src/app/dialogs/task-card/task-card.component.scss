@@ -103,3 +103,63 @@
     height: 20px;
   }
 }
+.delete-edit-container {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 10px;
+}
+.edit {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+}
+
+.editIcon {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: 26px;
+  height: 24px;
+  margin-right: 5px;
+  padding-right: 30px;
+  gap: 8px;
+  border-left: 1px solid #ccc;
+  border-spacing: 1em 0.5em;
+
+  > img {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.deleteIcon {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 8px;
+
+  > img {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.editIcon:hover .edit-icon {
+  content: url("/assets/icons/edit-blue.png");
+}
+
+.editIcon:hover .contact-link {
+  color: $color-primary-hover;
+  font-weight: 700;
+}
+
+.deleteIcon:hover .delete-icon {
+  content: url("/assets/icons/delete-blue.png");
+}
+
+.deleteIcon:hover .contact-link {
+  color: $color-primary-hover;
+  font-weight: 700;
+}
