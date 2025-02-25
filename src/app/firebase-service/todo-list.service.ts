@@ -29,6 +29,15 @@ export class TodoListService {
     this.unsubDone = this.subDoneList();
    }
 
+   async addTodo(item: Todo, colId: "todo" | "inprogress" | "awaitfeedback" | "done") {
+    try {
+      const docRef = await addDoc(collection(this.firestore, colId), item);
+      console.log(`Task wurde in "${colId}" gespeichert mit ID:`, docRef.id);
+    } catch (err) {
+      console.error(`Fehler beim Speichern in "${colId}":`, err);
+    }
+  }
+
    async deleteTodo(docId: string) {
     const collections = ["todo", "inprogress", "awaitfeedback", "done"];
   
@@ -63,14 +72,22 @@ export class TodoListService {
     );
   }
 
-    //  async updateTodo(todo: Todo) {
-    //    if(todo.id) {
-    //      let docRef = this.getSingleDocRef(this.getColIdFromTodo(todo), todo.id)
-    //      await updateDoc(docRef, this.getCleanJson(todo)).catch(
-    //        (error) => { console.error(error) }
-    //      );
-    //    }
-    //  }
+  async moveTodo(todo: Todo, newStatus: "todo" | "inprogress" | "awaitfeedback" | "done") {
+    if (!todo.id) return;
+  
+    // Zuerst den Task aus allen Sammlungen löschen
+    await this.deleteTodo(todo.id);
+  
+    // Neuen Task in der Ziel-Sammlung erstellen
+    const newDocRef = doc(this.firestore, `${newStatus}/${todo.id}`);
+  
+    try {
+      await setDoc(newDocRef, { ...todo, type: newStatus });
+      console.log("Task erfolgreich verschoben!");
+    } catch (error) {
+      console.error("Fehler beim Verschieben:", error);
+    }
+  }
    
      getCleanJson(todo: Todo):{} {
        return {
@@ -88,16 +105,7 @@ export class TodoListService {
    getColIdFromTodo(todo: Todo) {
     return todo.type; // Gibt "todo", "inprogress", "awaitfeedback" oder "done" zurück
   }
-
-  async addTodo(item: Todo, colId: "todo" | "inprogress" | "awaitfeedback" | "done") {
-    try {
-      const docRef = await addDoc(collection(this.firestore, colId), item);
-      console.log(`Task wurde in "${colId}" gespeichert mit ID:`, docRef.id);
-    } catch (err) {
-      console.error(`Fehler beim Speichern in "${colId}":`, err);
-    }
-  }
-   
+  
      setTodoObject(obj: any, id: string): Todo {
        return {
          id: id,
@@ -136,23 +144,6 @@ export class TodoListService {
         });
       });
     }
-
-    async moveTodo(todo: Todo, newStatus: "todo" | "inprogress" | "awaitfeedback" | "done") {
-      if (!todo.id) return;
-    
-      // Zuerst den Task aus allen Sammlungen löschen
-      await this.deleteTodo(todo.id);
-    
-      // Neuen Task in der Ziel-Sammlung erstellen
-      const newDocRef = doc(this.firestore, `${newStatus}/${todo.id}`);
-    
-      try {
-        await setDoc(newDocRef, { ...todo, type: newStatus });
-        console.log("Task erfolgreich verschoben!");
-      } catch (error) {
-        console.error("Fehler beim Verschieben:", error);
-      }
-    }
     
     subInprogressList() {
       return onSnapshot(this.getInprogressRef(), (list) => {
@@ -178,20 +169,6 @@ export class TodoListService {
         });
       });
     }
-
-    //  setNoteObject(obj: any, id: string): Todo {
-    //   return {
-    //     id: id,
-    //     type: obj.type || 'todo',
-    //     title: obj.title || "",
-    //     description: obj.description || "",
-    //     assignedTo: obj.assignedTo || "",
-    //     dueDate: obj.dueDate || "",
-    //     priority: obj.priority || "",
-    //     category: obj.category || "",
-    //     subtasks: obj.subtasks || "",
-    //   }
-    // }
    
      getTodosRef() {
        return collection(this.firestore, 'todo');
@@ -211,6 +188,5 @@ export class TodoListService {
    
      getSingleDocRef(colId: string, docId: string) {
       return doc(this.firestore, colId, docId);
-    }
-    
+    }  
 }
