@@ -20,14 +20,14 @@ export class TaskCardComponent {
   }
   getPriorityIcon(priority: string | null | undefined): string {
     switch (priority) {
-      case 'high':
+      case 'urgent':
         return '/assets/icons/prio_high.png';
       case 'medium':
         return '/assets/icons/prio_medium.png';
       case 'low':
         return '/assets/icons/prio_low.png';
       default:
-        return ''; //alternatif wenn estwas nicht gefunden wird
+        return ''; //alternativ wenn estwas nicht gefunden wird
     }
   }
 }
