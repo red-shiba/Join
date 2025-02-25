@@ -2,15 +2,14 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Todo } from '../../interfaces/todos';
-import { TodoListService } from '../../firebase-service/todo-list.service'; 
-
+import { TodoListService } from '../../firebase-service/todo-list.service';
 
 @Component({
   selector: 'app-add-task',
   standalone: true,
   templateUrl: './add-task.component.html',
   styleUrls: ['./add-task.component.scss'],
-  imports: [CommonModule, FormsModule] // FormsModule hinzufügen!
+  imports: [CommonModule, FormsModule], // FormsModule hinzufügen!
 })
 export class AddTaskComponent {
   title: string = '';
@@ -40,10 +39,10 @@ export class AddTaskComponent {
   }
 
   addTodo() {
-    console.log("🔵 addTodo() wurde aufgerufen!");
+    console.log('🔵 addTodo() wurde aufgerufen!');
 
     if (!this.title || !this.dueDate || !this.category) {
-      console.warn("Task-Erstellung fehlgeschlagen: Fehlende Pflichtfelder!");
+      console.warn('Task-Erstellung fehlgeschlagen: Fehlende Pflichtfelder!');
       return;
     }
 
@@ -59,11 +58,14 @@ export class AddTaskComponent {
       subtasks: this.subtasks || [],
     };
 
-    this.todoListService.addTodo(newTask, "todo").then(() => {
-      console.log("Task erfolgreich hinzugefügt:", newTask);
-    }).catch((error) => {
-      console.error("Fehler beim Speichern des Tasks:", error);
-    });
+    this.todoListService
+      .addTodo(newTask, 'todo')
+      .then(() => {
+        console.log('Task erfolgreich hinzugefügt:', newTask);
+      })
+      .catch((error) => {
+        console.error('Fehler beim Speichern des Tasks:', error);
+      });
 
     // Felder zurücksetzen
     this.title = '';
@@ -74,7 +76,6 @@ export class AddTaskComponent {
     this.category = '';
     this.subtasks = [];
   }
-  
 
   closeDialog() {
     console.log('Closing dialog');

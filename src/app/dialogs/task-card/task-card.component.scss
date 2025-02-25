@@ -1,3 +1,4 @@
+@import "../../../styles.scss";
 .shaddowBox {
   display: flex;
   position: absolute;
@@ -12,11 +13,92 @@
   display: flex;
   position: fixed;
   box-sizing: border-box;
-  width: 40%;
+  width: 450px;
   height: 90%;
   background-color: #ffffff;
   border-radius: 32px;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  padding: 30px;
+}
+.task-category {
+  display: flex;
+  padding: 8px 16px;
+  gap: 10px;
+  border-radius: 8px;
+  color: white;
+  width: 113px;
+  justify-content: center;
+  background-color: #0038ff;
+  font-family: $font-primary;
+  font-weight: 400;
+  font-size: 16px;
+}
+.task-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+.header-task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  // padding: 20px;
+}
+.close {
+  width: 20px;
+  cursor: pointer;
+  > :hover {
+    border-radius: 50%;
+    background-color: #f3f4f6;
+  }
+}
+.priority-date {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.priority {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.priority-icon {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  > img {
+    width: 17px;
+    height: 12px;
+  }
+}
+.assigned-container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 20px;
+}
+.circle-of-task {
+  height: 32px;
+  border-radius: 50px;
+  width: 32px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: -4px;
+  outline: solid 2px #fff;
+  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.1);
+  background-color: #1dab93;
+}
+.subtask-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  > img {
+    width: 20px;
+    height: 20px;
+  }
 }

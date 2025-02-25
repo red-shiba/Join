@@ -73,12 +73,12 @@
   background-color: #2a3647;
   flex-shrink: 0;
 
-  >img {
+  > img {
     width: 54px;
     height: 66px;
   }
 
-  >p:nth-child(2) {
+  > p:nth-child(2) {
     font-size: 61px;
     font-weight: 400px;
     color: #ffffff;
@@ -86,7 +86,7 @@
     margin-top: 10px;
   }
 
-  >p:nth-child(3) {
+  > p:nth-child(3) {
     font-size: 24px;
     font-weight: 400px;
     color: #ffffff;
@@ -305,7 +305,7 @@ p {
     flex-shrink: 0;
     padding-top: 20px;
 
-    >p:nth-child(2) {
+    > p:nth-child(2) {
       font-size: 48px;
       font-weight: 400px;
       color: #ffffff;
@@ -314,7 +314,7 @@ p {
     }
   }
 
-  >img {
+  img {
     width: 54px;
     height: 66px;
   }
@@ -414,8 +414,6 @@ p {
     font-size: 47px;
     font-weight: bold;
   }
-
-  .btn_wrapper {}
 }
 
 @media (max-height: 670px) {

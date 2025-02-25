@@ -35,6 +35,7 @@ export class BoardComponent {
   inProgressList: Todo[] = [];
   doneList: Todo[] = [];
   isOverlayOpen = false;
+  selectedTodo: Todo | null = null;
 
   constructor(private todoListService: TodoListService) {}
 
@@ -65,31 +66,35 @@ export class BoardComponent {
     newCategory: 'todo' | 'inprogress' | 'awaitfeedback' | 'done'
   ) {
     if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
     } else {
       const movedTodo = event.previousContainer.data[event.previousIndex];
-  
+
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex
       );
-  
+
       // Setze die neue Kategorie im lokalen Zustand
       movedTodo.type = newCategory;
-  
+
       // Firebase-Update durchführen
-      this.todoListService.moveTodo(movedTodo, newCategory)
+      this.todoListService
+        .moveTodo(movedTodo, newCategory)
         .then(() => console.log('Task erfolgreich in Firestore aktualisiert'))
         .catch((err) => console.error('Fehler beim Firebase-Update:', err));
     }
   }
-
-  openOverlay() {
+  openOverlay(todo: Todo) {
+    this.selectedTodo = todo; // speichert das ausgewählte Todo-Objekt
     this.isOverlayOpen = true;
   }
-
   closeOverlay() {
     this.isOverlayOpen = false;
   }

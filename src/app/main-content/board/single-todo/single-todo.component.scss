@@ -34,7 +34,8 @@
   justify-content: center;
   background-color: #0038ff;
   font-family: $font-primary;
-  font: var(--font-regular);
+  font-weight: 400;
+  font-size: 16px;
 }
 .progress-container {
   width: 100px;

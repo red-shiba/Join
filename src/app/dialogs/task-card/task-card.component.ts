@@ -1,17 +1,33 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Todo } from '../../interfaces/todos';
+import { TodoListService } from '../../firebase-service/todo-list.service';
 
 @Component({
   selector: 'app-task-card',
   standalone: true,
-  imports: [],
+  providers: [TodoListService],
   templateUrl: './task-card.component.html',
   styleUrl: './task-card.component.scss',
 })
 export class TaskCardComponent {
+  @Input() todo: Todo | null = null;
+
   @Output() closeOverlay = new EventEmitter<boolean>();
   isClosing = false;
 
   close() {
     this.closeOverlay.emit();
+  }
+  getPriorityIcon(priority: string | null | undefined): string {
+    switch (priority) {
+      case 'high':
+        return '/assets/icons/prio_high.png';
+      case 'medium':
+        return '/assets/icons/prio_medium.png';
+      case 'low':
+        return '/assets/icons/prio_low.png';
+      default:
+        return ''; //alternatif wenn estwas nicht gefunden wird
+    }
   }
 }

@@ -4,7 +4,40 @@
   (click)="closeOverlay.emit()"
 >
   <div class="task_card_wrapper" (click)="$event.stopPropagation()">
-    <p>Hallo ich mache hier Morgen weiter</p>
-    <p>P.s Dima</p>
+    <div class="task-container">
+      <div class="header-task">
+        <div class="task-category">{{ [todo?.category] }}</div>
+        <div class="close" (click)="closeOverlay.emit()">
+          <img src="/assets/icons/close.png" alt="Close" />
+        </div>
+      </div>
+      <p>{{ todo?.title }}</p>
+      <p>{{ todo?.description }}</p>
+      <div class="priority-date">
+        <p>Due Date:</p>
+        <span>{{ todo?.dueDate }}</span>
+      </div>
+      <div class="priority">
+        <p>Priority:</p>
+        <div class="priority-icon">
+          <span>{{ todo?.priority }}</span>
+          <img [src]="getPriorityIcon(todo?.priority)" alt="prio-icon" />
+        </div>
+      </div>
+      <div class="assigned">
+        <p>Assignet TO :</p>
+        <div class="assigned-container">
+          <div class="circle-of-task">GW</div>
+          <span> Name.Nachname{{ todo?.assignedTo }}</span>
+        </div>
+      </div>
+      <div class="subtasks">
+        <p>Subtasks</p>
+        <div class="subtask-container">
+          <img src="/assets/icons/check_box.png" alt="" />
+          <span> hier kommt en Task{{ todo?.subtasks }}</span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

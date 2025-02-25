@@ -2,7 +2,8 @@
   <div
     class="add_dialog_wrapper"
     [class.closing]="isClosing"
-    (click)="$event.stopPropagation()">
+    (click)="$event.stopPropagation()"
+  >
     <div class="close2">
       <img src="/assets/icons/close-white.png" (click)="closeDialog()" />
     </div>
@@ -22,7 +23,7 @@
 
       <div class="rightFrame">
         <div class="close">
-          <img src="/assets/icons/Close.png" (click)="closeDialog()" />
+          <img src="/assets/icons/close.png" (click)="closeDialog()" />
         </div>
         <div
           class="input_wrapper"
