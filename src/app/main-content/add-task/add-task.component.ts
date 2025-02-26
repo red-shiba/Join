@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Todo } from '../../interfaces/todos';
 import { TodoListService } from '../../firebase-service/todo-list.service';
+import { ContactListService } from '../../firebase-service/contact-list.service';
+import { Contact } from '../../interfaces/contact';
 
 @Component({
   selector: 'app-add-task',
@@ -20,11 +22,35 @@ export class AddTaskComponent {
   category: string = '';
   subtaskInput: string = '';
   subtasks: string[] = [];
+  contactList: Contact[] = [];
+  selectedContacts: Contact[] = [];
 
-  constructor(private todoListService: TodoListService) {}
+  constructor(
+    private todoListService: TodoListService,
+    private contactListService: ContactListService
+  ) {}
 
-  addAssign() {
-    console.log('Assign feature not implemented yet.');
+  ngOnInit() {
+  this.contactListService.getContacts().subscribe(contacts => {
+    this.contactList = contacts;
+  });
+}
+
+  loadContacts() {
+    this.contactList = this.contactListService.contacts; // Holt Kontakte aus dem Service
+  }
+
+  getList(): Contact[] {
+    return this.contactListService.contacts;
+  }
+
+  toggleContactSelection(contact: Contact, event: Event) {
+    const isChecked = (event.target as HTMLInputElement).checked;
+    if (isChecked) {
+      this.selectedContacts.push(contact);
+    } else {
+      this.selectedContacts = this.selectedContacts.filter(c => c !== contact);
+    }
   }
 
   setPriority(priority: string) {
@@ -39,8 +65,6 @@ export class AddTaskComponent {
   }
 
   addTodo() {
-    console.log('🔵 addTodo() wurde aufgerufen!');
-
     if (!this.title || !this.dueDate || !this.category) {
       console.warn('Task-Erstellung fehlgeschlagen: Fehlende Pflichtfelder!');
       return;
@@ -51,11 +75,11 @@ export class AddTaskComponent {
       type: 'todo',
       title: this.title,
       description: this.description,
-      assignedTo: this.assignedTo || '',
+      assignedTo: this.selectedContacts.map(c => c.name).join(', '), // Kontakte als String speichern
       dueDate: this.dueDate,
-      priority: this.priority || 'low',
+      priority: this.priority,
       category: this.category,
-      subtasks: this.subtasks || [],
+      subtasks: this.subtasks,
     };
 
     this.todoListService
@@ -70,10 +94,10 @@ export class AddTaskComponent {
     // Felder zurücksetzen
     this.title = '';
     this.description = '';
-    this.assignedTo = '';
     this.dueDate = '';
     this.priority = 'low';
     this.category = '';
+    this.selectedContacts = [];
     this.subtasks = [];
   }
 

@@ -29,29 +29,43 @@
             [(ngModel)]="description"
           ></textarea>
         </div>
+        
 
         <div class="form-container">
-          <label for="assignedTo">
-            <p>Assigned to</p>
-          </label>
-          <div class="assign-container">
+  <label>
+    <p>Assigned to</p>
+  </label>
+  <div class="assign-container">
+    <ul class="contact-list">
+      @for (contact of contactList; track contact) {
+        <li>
+          <label>
             <input
-              type="text"
-              id="assignInput"
-              name="assignedTo"
-              placeholder="Select contact to assign"
-              [(ngModel)]="assignedTo"
+              type="checkbox"
+              [value]="contact"
+              (change)="toggleContactSelection(contact, $event)"
             />
-            <button
-              type="button"
-              class="add-button-assign"
-              (click)="addAssign()"
-            >
-              &#9662;
-            </button>
-          </div>
-          <ul id="assignList"></ul>
-        </div>
+            {{ contact.name }}
+          </label>
+        </li>
+      }
+    </ul>
+  </div>
+</div>
+
+<!-- Anzeige der ausgewählten Kontakte -->
+<div *ngIf="selectedContacts.length > 0">
+  <p>Assigned to:</p>
+  <ul>
+    @for (contact of selectedContacts; track contact) {
+      <li>{{ contact.name }}</li>
+    }
+  </ul>
+</div>
+
+
+
+
       </div>
       <div class="divider"></div>
       <div class="form-right">

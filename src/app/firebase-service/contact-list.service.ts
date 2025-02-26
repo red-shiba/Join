@@ -50,6 +50,10 @@ export class ContactListService {
     }
   }
 
+  getContacts(): Observable<Contact[]> {
+    return collectionData(this.getContactRef(), { idField: 'id' }) as Observable<Contact[]>;
+  }
+
   async addContact(contact: {}) {
     await addDoc(this.getContactRef(), contact).catch(
       (error) => { console.error(error) }
