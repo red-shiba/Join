@@ -56,20 +56,26 @@ export class TodoListService {
     }
   }
 
-   async updateTodo(todo: Todo) {
+  async updateTodo(todo: Todo) {
     if (!todo.id) return;
   
-    const docRef = doc(this.firestore, `${todo.type}/${todo.id}`);
-    const docSnap = await getDoc(docRef);
+    const colId = this.getColIdFromTodo(todo); // Holt den richtigen Collection-Namen
   
-    if (!docSnap.exists()) {
-      console.warn("Dokument existiert nicht:", todo.type, todo.id);
-      return; // Keine Aktualisierung durchführen
+    try {
+      const docRef = doc(this.firestore, `${colId}/${todo.id}`); // Dynamischer Pfad
+      await updateDoc(docRef, { 
+        title: todo.title,
+        description: todo.description,
+        dueDate: todo.dueDate,
+        priority: todo.priority,
+        assignedTo: todo.assignedTo,
+        subtasks: todo.subtasks,
+        category: todo.category
+      });
+      console.log('Todo erfolgreich aktualisiert');
+    } catch (error) {
+      console.error('Fehler beim Aktualisieren des Todos:', error);
     }
-  
-    await updateDoc(docRef, { ...todo }).catch(error =>
-      console.error("Fehler beim Update:", error)
-    );
   }
 
   async moveTodo(todo: Todo, newStatus: "todo" | "inprogress" | "awaitfeedback" | "done") {
