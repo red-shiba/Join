@@ -18,16 +18,16 @@ export class TaskCardComponent {
 
   isClosing = false;
   isEditing = false;
-  editedTodo: Todo = { 
-    id: '', 
-    title: '', 
-    description: '', 
-    dueDate: '', 
-    priority: '', 
-    assignedTo: '', 
-    subtasks: [], 
+  editedTodo: Todo = {
+    id: '',
+    title: '',
+    description: '',
+    dueDate: '',
+    priority: '',
+    assignedTo: '',
+    subtasks: [],
     type: 'todo',
-    category: ''
+    category: '',
   };
 
   uncheckedImage = '/assets/icons/check_box.png';
@@ -68,12 +68,12 @@ export class TaskCardComponent {
   async saveTodo() {
     if (this.editedTodo && this.editedTodo.id) {
       console.log('Speichern von:', this.editedTodo);
-      
+
       await this.todoService.updateTodo(this.editedTodo);
-    
+
       this.todo = { ...this.editedTodo };
       this.isEditing = false;
-      
+
       this.closeOverlay.emit();
     } else {
       console.warn('Kein gültiges Todo zum Speichern gefunden');
