@@ -14,8 +14,14 @@
       <div class="contact-letter">{{ letter }}</div>
       @for (contact of getContactsByLetter(letter); track contact.email) {
       <a (click)="selectContact(contact)" class="contact-link">
-        <div class="single-contact" [ngClass]="{ selected: isSelected(contact) }">
-          <div class="avatar" [ngStyle]="{ 'background-color': getAvatarColor(contact) }">
+        <div
+          class="single-contact"
+          [ngClass]="{ selected: isSelected(contact) }"
+        >
+          <div
+            class="avatar"
+            [ngStyle]="{ 'background-color': getAvatarColor(contact) }"
+          >
             {{ getInitials(contact.name) }}
           </div>
           <div class="info">
@@ -27,7 +33,10 @@
       } }
     </div>
     <p *ngIf="isDialogOpen">Dialog Status: Geöffnet</p>
-    <app-add-contact-dialog *ngIf="isDialogOpen" (addDialogCloseed)="closeDialog($event)"></app-add-contact-dialog>
+    <app-add-contact-dialog
+      *ngIf="isDialogOpen"
+      (addDialogCloseed)="closeDialog($event)"
+    ></app-add-contact-dialog>
   </div>
 
   <div class="rightMainFrame">
@@ -45,7 +54,10 @@
       </div>
     </div>
     <div class="singleFrame">
-      <app-single-contact *ngIf="selectedContact" [contact]="selectedContact"></app-single-contact>
+      <app-single-contact
+        *ngIf="selectedContact"
+        [contact]="selectedContact"
+      ></app-single-contact>
     </div>
     <button class="option-btn-mobile" (click)="toggleDropdown()">
       <img src="/assets/icons/more_vert.png" alt="more options" />
@@ -56,7 +68,11 @@
       <a class="dropdown-item" (click)="deleteContact()">Delete</a>
     </div>
     }
-    <app-edit-contact-dialog *ngIf="DropdownDialogOpen" [contact]="selectedContact"
-      (editDialogClosed)="isDropdowncloseDialog()" (contactUpdated)="updateContact($event)"></app-edit-contact-dialog>
+    <app-edit-contact-dialog
+      *ngIf="DropdownDialogOpen"
+      [contact]="selectedContact"
+      (editDialogClosed)="isDropdowncloseDialog()"
+      (contactUpdated)="updateContact($event)"
+    ></app-edit-contact-dialog>
   </div>
 </section>

@@ -30,97 +30,105 @@
         <h2>To do</h2>
         <img class="plus-icon" src="/assets/icons/plus.png" alt="plus Icon" />
       </div>
-
-      <div
-        cdkDropList
-        #todoList="cdkDropList"
-        [cdkDropListData]="getList('todoList')"
-        [cdkDropListConnectedTo]="[inprogressList, awaitFeedbackList, doneList]"
-        (cdkDropListDropped)="drop($event, 'todo')"
-      >
-        @if (getList('todoList').length > 0) { @for (todo of
-        getList('todoList'); track todo.id) {
-        <div class="board-box" cdkDrag (click)="openOverlay(todo)">
-          <app-single-todo [todo]="todo"></app-single-todo>
+      <div class="dragdrop-area">
+        <div
+          cdkDropList
+          #todoList="cdkDropList"
+          [cdkDropListData]="getList('todoList')"
+          [cdkDropListConnectedTo]="[
+            inprogressList,
+            awaitFeedbackList,
+            doneList
+          ]"
+          (cdkDropListDropped)="drop($event, 'todo')"
+        >
+          @if (getList('todoList').length > 0) { @for (todo of
+          getList('todoList'); track todo.id) {
+          <div class="board-box" cdkDrag (click)="openOverlay(todo)">
+            <app-single-todo [todo]="todo"></app-single-todo>
+          </div>
+          } } @else {
+          <div class="empty-placeholder">No tasks To do</div>
+          }
         </div>
-        } } @else {
-        <div class="empty-placeholder">No tasks To do</div>
-        }
       </div>
     </div>
-
     <div class="dragndrop-container">
       <div class="info-dragdrop">
         <h2>Await feedback</h2>
         <img class="plus-icon" src="/assets/icons/plus.png" alt="plus Icon" />
       </div>
-
-      <div
-        cdkDropList
-        #awaitFeedbackList="cdkDropList"
-        [cdkDropListData]="getList('awaitFeedbackList')"
-        [cdkDropListConnectedTo]="[todoList, inprogressList, doneList]"
-        (cdkDropListDropped)="drop($event, 'awaitfeedback')"
-      >
-        @if (getList('awaitFeedbackList').length > 0) { @for (todo of
-        getList('awaitFeedbackList'); track todo.id) {
-        <div class="board-box" cdkDrag (click)="openOverlay(todo)">
-          <app-single-todo [todo]="todo"></app-single-todo>
+      <div class="dragdrop-area">
+        <div
+          cdkDropList
+          #awaitFeedbackList="cdkDropList"
+          [cdkDropListData]="getList('awaitFeedbackList')"
+          [cdkDropListConnectedTo]="[todoList, inprogressList, doneList]"
+          (cdkDropListDropped)="drop($event, 'awaitfeedback')"
+        >
+          @if (getList('awaitFeedbackList').length > 0) { @for (todo of
+          getList('awaitFeedbackList'); track todo.id) {
+          <div class="board-box" cdkDrag (click)="openOverlay(todo)">
+            <app-single-todo [todo]="todo"></app-single-todo>
+          </div>
+          } } @else {
+          <div class="empty-placeholder">No tasks To do</div>
+          }
         </div>
-        } } @else {
-        <div class="empty-placeholder">No tasks To do</div>
-        }
       </div>
     </div>
-
     <div class="dragndrop-container">
       <div class="info-dragdrop">
         <h2>Progress</h2>
         <img class="plus-icon" src="/assets/icons/plus.png" alt="plus Icon" />
       </div>
-
-      <div
-        cdkDropList
-        #inprogressList="cdkDropList"
-        [cdkDropListData]="getList('inProgressList')"
-        [cdkDropListConnectedTo]="[todoList, awaitFeedbackList, doneList]"
-        (cdkDropListDropped)="drop($event, 'inprogress')"
-      >
-        @if (getList('inProgressList').length > 0) { @for (todo of
-        getList('inProgressList'); track todo.id) {
-        <div class="board-box" cdkDrag (click)="openOverlay(todo)">
-          <app-single-todo [todo]="todo"></app-single-todo>
+      <div class="dragdrop-area">
+        <div
+          cdkDropList
+          #inprogressList="cdkDropList"
+          [cdkDropListData]="getList('inProgressList')"
+          [cdkDropListConnectedTo]="[todoList, awaitFeedbackList, doneList]"
+          (cdkDropListDropped)="drop($event, 'inprogress')"
+        >
+          @if (getList('inProgressList').length > 0) { @for (todo of
+          getList('inProgressList'); track todo.id) {
+          <div class="board-box" cdkDrag (click)="openOverlay(todo)">
+            <app-single-todo [todo]="todo"></app-single-todo>
+          </div>
+          } } @else {
+          <div class="empty-placeholder">No tasks To do</div>
+          }
         </div>
-        } } @else {
-        <div class="empty-placeholder">No tasks To do</div>
-        }
       </div>
     </div>
-
     <div class="dragndrop-container">
       <div class="info-dragdrop">
         <h2>Done</h2>
       </div>
-
-      <div
-        cdkDropList
-        #doneList="cdkDropList"
-        [cdkDropListData]="getList('doneList')"
-        [cdkDropListConnectedTo]="[todoList, inprogressList, awaitFeedbackList]"
-        (cdkDropListDropped)="drop($event, 'done')"
-      >
-        @if (getList('doneList').length > 0) { @for (todo of
-        getList('doneList'); track todo.id) {
-        <div class="board-box" cdkDrag (click)="openOverlay(todo)">
-          <app-single-todo [todo]="todo"></app-single-todo>
+      <div class="dragdrop-area">
+        <div
+          cdkDropList
+          #doneList="cdkDropList"
+          [cdkDropListData]="getList('doneList')"
+          [cdkDropListConnectedTo]="[
+            todoList,
+            inprogressList,
+            awaitFeedbackList
+          ]"
+          (cdkDropListDropped)="drop($event, 'done')"
+        >
+          @if (getList('doneList').length > 0) { @for (todo of
+          getList('doneList'); track todo.id) {
+          <div class="board-box" cdkDrag (click)="openOverlay(todo)">
+            <app-single-todo [todo]="todo"></app-single-todo>
+          </div>
+          } } @else {
+          <div class="empty-placeholder">No tasks To do</div>
+          }
         </div>
-        } } @else {
-        <div class="empty-placeholder">No tasks To do</div>
-        }
       </div>
     </div>
   </div>
-
   <div *ngIf="isOverlayOpen" class="overlay">
     <div class="overlay-content">
       <app-task-card
