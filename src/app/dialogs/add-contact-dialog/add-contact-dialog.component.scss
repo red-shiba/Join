@@ -73,12 +73,12 @@
   background-color: #2a3647;
   flex-shrink: 0;
 
-  > img {
+  >img {
     width: 54px;
     height: 66px;
   }
 
-  > p:nth-child(2) {
+  >p:nth-child(2) {
     font-size: 61px;
     font-weight: 400px;
     color: #ffffff;
@@ -86,7 +86,7 @@
     margin-top: 10px;
   }
 
-  > p:nth-child(3) {
+  >p:nth-child(3) {
     font-size: 24px;
     font-weight: 400px;
     color: #ffffff;
@@ -287,7 +287,8 @@ p {
     position: relative;
     max-width: 400px;
     width: 100%;
-    height: 820px;
+    max-height: 800px;
+    height: 100%;
     display: flex;
     flex-direction: column;
   }
@@ -305,18 +306,15 @@ p {
     flex-shrink: 0;
     padding-top: 20px;
 
-    > p:nth-child(2) {
+    >p {
       font-size: 48px;
-      font-weight: 400px;
       color: #ffffff;
-      margin: 0px 0;
-      margin-top: 10px;
+      margin: 16px 0;
     }
-  }
 
-  img {
-    width: 54px;
-    height: 66px;
+    >img {
+      display: none;
+    }
   }
 
   .close {
@@ -362,7 +360,6 @@ p {
   .btn_wrapper {
     box-sizing: content-box;
     max-width: 370px;
-    // width: 100%;
     display: flex;
     justify-content: center;
     // padding-bottom: 40px;
@@ -385,34 +382,5 @@ p {
 
   .cancelBtn {
     display: none;
-  }
-}
-
-@media (max-height: 1000px),
-(max-width: 970px) {
-  .leftFrame {
-    img {
-      display: none;
-    }
-  }
-
-  .avatar {
-    position: absolute;
-    top: 225px;
-    width: 120px;
-    height: 0px;
-    border-radius: 100%;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 47px;
-    font-weight: bold;
-  }
-}
-
-@media (max-height: 670px) {
-  .btn {
-    margin-top: -4px;
   }
 }
