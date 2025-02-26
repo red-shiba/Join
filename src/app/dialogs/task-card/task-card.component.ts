@@ -19,6 +19,8 @@ export class TaskCardComponent {
   checkedImage = '/assets/icons/check_ed.png';
 
   isChecked = false;
+  
+  constructor(private todoService: TodoListService) {}
 
   toggleCheckBox() {
     this.isChecked = !this.isChecked;
@@ -36,6 +38,14 @@ export class TaskCardComponent {
         return '/assets/icons/prio_low.png';
       default:
         return ''; //alternativ wenn estwas nicht gefunden wird
+    }
+  }
+
+  deleteTodo() {
+    if (this.todo && this.todo.id) {
+      this.todoService.deleteTodo(this.todo.id).then(() => {
+        window.location.reload();
+      });
     }
   }
 }
