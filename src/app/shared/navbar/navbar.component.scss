@@ -34,6 +34,11 @@ section {
 .nav-item {
   width: 100%;
 
+  &:target {
+    background-color: #091931;
+    color: white;
+  }
+
   a {
     display: flex;
     align-items: center;
@@ -47,9 +52,6 @@ section {
     width: 100%;
     box-sizing: border-box;
 
-    &:hover {
-      background-color: #2a3d59;
-    }
 
     img {
       width: 24px;
