@@ -5,6 +5,7 @@ import { Todo } from '../../interfaces/todos';
 import { TodoListService } from '../../firebase-service/todo-list.service';
 import { ContactListService } from '../../firebase-service/contact-list.service';
 import { Contact } from '../../interfaces/contact';
+import { AvatarColorService } from '../../services/avatar-color.service';
 
 @Component({
   selector: 'app-add-task',
@@ -24,10 +25,12 @@ export class AddTaskComponent {
   subtasks: string[] = [];
   contactList: Contact[] = [];
   selectedContacts: Contact[] = [];
+  dropdownOpen = false;
 
   constructor(
     private todoListService: TodoListService,
-    private contactListService: ContactListService
+    private contactListService: ContactListService,
+    private avatarColorService: AvatarColorService,
   ) {}
 
   ngOnInit() {
@@ -36,13 +39,13 @@ export class AddTaskComponent {
   });
 }
 
-  loadContacts() {
-    this.contactList = this.contactListService.contacts; // Holt Kontakte aus dem Service
-  }
+getList(): Contact[] {
+  return this.contactListService.contacts;
+}
 
-  getList(): Contact[] {
-    return this.contactListService.contacts;
-  }
+getAvatarColor(contact: Contact): string {
+  return this.avatarColorService.getAvatarColor(contact);
+}
 
   toggleContactSelection(contact: Contact, event: Event) {
     const isChecked = (event.target as HTMLInputElement).checked;
@@ -104,4 +107,32 @@ export class AddTaskComponent {
   closeDialog() {
     console.log('Closing dialog');
   }
+
+  getInitials(name: string): string {
+    if (!name) return '';
+    return name
+      .split(' ') // Name in Wörter splitten
+      .map((word) => word[0]) // Erstes Zeichen jedes Wortes nehmen
+      .join('') // Buchstaben zusammenfügen
+      .toUpperCase(); // Großbuchstaben
+  }
+  // Gibt eine Liste der alphabetischen Buchstaben zurück, für die Kontakte vorhanden sind
+  getAlphabeticalLetters(): string[] {
+    let letters: string[] = [];
+
+    // Durchlaufe alle Kontakte und sammle die Anfangsbuchstaben
+    for (let contact of this.getList()) {
+      if (!letters.includes(contact.name[0].toUpperCase())) {
+        let firstLetter = contact.name[0].toUpperCase();
+        letters.push(firstLetter);
+      }
+    }
+
+    // Konvertiere das Set in ein Array und sortiere es
+    return letters.sort();
+  }
+
+toggleDropdown() {
+  this.dropdownOpen = !this.dropdownOpen;
+}
 }

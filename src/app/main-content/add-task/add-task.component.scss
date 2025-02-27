@@ -126,10 +126,25 @@ textarea {
 
 // Assign
 
+// .assign-container {
+//   position: relative;
+//   width: 100%;
+//   align-items: center;
+// }
+
 .assign-container {
-  position: relative;
+  position: absolute;
   width: 100%;
-  align-items: center;
+  background: white;
+  border: 1px solid #ddd;
+  max-height: 200px;
+  overflow-y: auto;
+  display: none;
+  z-index: 1000;
+}
+
+.assign-container.open {
+  display: block;
 }
 
 #assignInput {
@@ -210,3 +225,62 @@ textarea {
   }
 }
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.dropdown-button {
+  width: 100%;
+  padding: 10px;
+  background-color: transparent;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  color: #000000;
+  cursor: pointer;
+  text-align: left;
+}
+
+.assignedStyle {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-bottom: 1px solid #ddd;
+}
+
+.assignedStyleSelected {
+  display: flex;
+  align-items: center;
+  background-color: #f2f2f2;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contactName {
+  flex-grow: 1;
+}
+
+.checkContact {
+  display: flex;
+  justify-content: center;
+}
