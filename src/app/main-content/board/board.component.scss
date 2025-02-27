@@ -37,7 +37,6 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding-right: 30px;
 }
 .search-container {
   position: relative;
@@ -82,7 +81,24 @@
   display: flex;
   justify-content: space-evenly;
 }
+/* Scrollbar Styling */
+.drag-and-drop-container::-webkit-scrollbar {
+  width: 8px;
+}
 
+.drag-and-drop-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.drag-and-drop-container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.drag-and-drop-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
 .empty-placeholder {
   display: flex;
   justify-content: center;
@@ -142,26 +158,6 @@
   content: url("/assets/icons/plus-blue.png");
 }
 
-.dragndrop-container {
-  width: 240px;
-  max-width: 100%;
-  margin: 0px 10px 0px 0px;
-  display: inline-block;
-  vertical-align: top;
-}
-
-.board-list {
-  width: 100%;
-  height: 100%;
-  padding: 0.5rem;
-  display: flex;
-  align-items: stretch;
-  flex-direction: column;
-  text-align: left;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
 .board-box {
   padding: 20px 10px;
   border-bottom: solid 1px #ccc;
@@ -198,27 +194,62 @@
 .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
-.dragdrop-area {
+.drop-area {
   padding: 1%;
 }
-.dragdrop-area {
-  max-height: 55vh;
-  overflow-y: scroll;
+/* Standardzustand: Scrollbar verstecken */
+.drop-area {
+  max-height: 65vh;
+  overflow-y: scroll; /* Statt scroll */
   overflow-x: hidden;
 }
-/* Hide scrollbar for Chrome, Safari and Opera */
-.dragdrop-area::-webkit-scrollbar {
-  display: none;
+
+/* Webkit-Browser: Scrollbar unsichtbar machen */
+.drop-area::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
-/* Hide scrollbar for IE, Edge and Firefox */
-.dragdrop-area {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
+/* Media Query für schmalere Bildschirme */
 @media (max-width: 1280px) {
   .drag-and-drop-container {
     flex-direction: column;
+    max-height: 65vh;
+    overflow-y: auto;
+  }
+
+  .drop-area {
+    display: flex;
+    width: 800px;
+    gap: 50px;
+    max-width: 85vh;
+    overflow-x: auto; /* Horizontale Scrollbar wieder aktivieren */
+    overflow-y: hidden;
+    white-space: nowrap;
+  }
+
+  .drop-area::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  .drop-area::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+
+  .drop-area::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+  }
+
+  .drop-area::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  .drop-area {
+    -ms-overflow-style: auto;
+    scrollbar-width: auto;
   }
 }
 @media (max-width: 990px) {
@@ -227,11 +258,6 @@
     margin-top: 0;
     margin-bottom: 60px;
     justify-content: flex-start;
-    align-items: flex-start;
-
-    > h3 {
-      margin: 0;
-    }
   }
 }
 
