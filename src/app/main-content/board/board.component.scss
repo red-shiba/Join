@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   padding: 20px;
+  // height: 80vh;
 }
 .headline-container {
   display: flex;
@@ -71,8 +72,8 @@
   height: 35px;
 }
 .dragndrop-container {
-  width: 240px;
-  max-width: 100%;
+  // width: 240px;
+  // max-width: 100%;
   margin: 0px 10px 0px 0px;
   display: inline-block;
   vertical-align: top;
@@ -80,6 +81,7 @@
 .drag-and-drop-container {
   display: flex;
   justify-content: space-evenly;
+  max-height: 65vh;
 }
 /* Scrollbar Styling */
 .drag-and-drop-container::-webkit-scrollbar {
@@ -169,7 +171,8 @@
   font-size: 14px;
   border-radius: 24px;
   box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.1);
-  margin-top: 30px;
+  // margin-top: 30px;
+  margin: 10px;
 }
 
 .cdk-drag-preview {
@@ -199,7 +202,7 @@
 }
 /* Standardzustand: Scrollbar verstecken */
 .drop-area {
-  max-height: 65vh;
+  max-height: 58vh;
   overflow-y: scroll; /* Statt scroll */
   overflow-x: hidden;
 }
@@ -214,18 +217,19 @@
 @media (max-width: 1280px) {
   .drag-and-drop-container {
     flex-direction: column;
-    max-height: 65vh;
+    max-height: 78vh;
     overflow-y: auto;
+    max-width: inherit;
   }
 
   .drop-area {
     display: flex;
-    width: 800px;
+    // width: 800px;
     gap: 50px;
-    max-width: 85vh;
+    // max-width: 85vh;
     overflow-x: auto; /* Horizontale Scrollbar wieder aktivieren */
-    overflow-y: hidden;
-    white-space: nowrap;
+    // overflow-y: hidden;
+    // white-space: nowrap;
   }
 
   .drop-area::-webkit-scrollbar {
@@ -258,6 +262,14 @@
     margin-top: 0;
     margin-bottom: 60px;
     justify-content: flex-start;
+  }
+  .drag-and-drop-container {
+    max-height: 70vh;
+  }
+}
+@media (max-width: 700px) {
+  .drag-and-drop-container {
+    max-height: 61vh;
   }
 }
 
