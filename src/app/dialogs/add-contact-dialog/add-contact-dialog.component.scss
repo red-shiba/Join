@@ -40,14 +40,13 @@
 }
 
 .add_dialog_wrapper {
+  display: flex;
   box-sizing: border-box;
   max-width: 1000px;
   width: 100%;
-  height: 450px;
-  background-color: #2a3647;
+  height: 650px;
+  background-color: white;
   border-radius: 32px;
-  display: flex;
-  gap: 0px;
   position: fixed;
   left: 50%;
   top: 50%;
@@ -283,13 +282,11 @@ p {
 
 @media (max-width: 970px) {
   .add_dialog_wrapper {
-    display: flex;
+    background-color: $color-primary;
     position: relative;
     max-width: 400px;
-    width: 100%;
-    max-height: 800px;
-    height: 100%;
-    display: flex;
+    max-height: 580px;
+    top: 290px;
     flex-direction: column;
   }
 
@@ -299,17 +296,17 @@ p {
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    padding-left: 46px;
+    padding-left: 25px;
     width: 350px;
-    height: 352px;
+    height: 150px;
     background-color: #2a3647;
     flex-shrink: 0;
-    padding-top: 20px;
 
-    >p {
+    >p:nth-child(2) {
       font-size: 48px;
+      font-weight: 400px;
       color: #ffffff;
-      margin: 16px 0;
+      margin: 0;
     }
 
     >img {
@@ -350,7 +347,7 @@ p {
     box-sizing: content-box;
     max-width: 400px;
     width: 100%;
-    height: 430px;
+    height: 320px;
     color: #000000;
     background-color: #ffffff;
     flex-shrink: 0;
@@ -366,9 +363,13 @@ p {
     gap: 23px;
   }
 
+  .btn {
+    margin-top: 10px;
+  }
+
   .avatar {
     position: absolute;
-    top: 340px;
+    top: 143px;
     width: 120px;
     height: 120px;
     border-radius: 100%;

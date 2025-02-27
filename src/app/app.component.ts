@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLink } from '@angular/router';
 import { HeaderComponent } from './shared/header/header.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { ContactsComponent } from './main-content/contacts/contacts.component';
@@ -16,6 +16,7 @@ import { SummaryComponent } from './main-content/summary/summary.component';
     NavbarComponent,
     ContactsComponent,
     SummaryComponent,
+    RouterLink
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
