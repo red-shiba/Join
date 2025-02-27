@@ -8,14 +8,19 @@
     </div>
     <span>1/2 Subtasks</span>
   </div>
+
   <div class="priority-container">
     <div class="assigned-of-task">
-      <div class="circle-of-task">GW</div>
-      <div class="circle-of-task">GW</div>
-      <div class="circle-of-task">GW</div>
+      @for (contact of selectedContacts; track contact) {
+        <div class="circle-of-task"
+             [ngStyle]="{ 'background-color': getAvatarColor(contact) }">
+          {{ getInitials(contact.name) }}
+        </div>
+      }
     </div>
     <div class="priority-task">
       <img [src]="getPriorityIcon(todo?.priority)" alt="{{ todo?.priority }}" />
     </div>
   </div>
+
 </div>

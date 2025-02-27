@@ -111,24 +111,20 @@ getAvatarColor(contact: Contact): string {
   getInitials(name: string): string {
     if (!name) return '';
     return name
-      .split(' ') // Name in Wörter splitten
-      .map((word) => word[0]) // Erstes Zeichen jedes Wortes nehmen
-      .join('') // Buchstaben zusammenfügen
-      .toUpperCase(); // Großbuchstaben
+      .split(' ')
+      .map((word) => word[0])
+      .join('')
+      .toUpperCase();
   }
-  // Gibt eine Liste der alphabetischen Buchstaben zurück, für die Kontakte vorhanden sind
+
   getAlphabeticalLetters(): string[] {
     let letters: string[] = [];
-
-    // Durchlaufe alle Kontakte und sammle die Anfangsbuchstaben
     for (let contact of this.getList()) {
       if (!letters.includes(contact.name[0].toUpperCase())) {
         let firstLetter = contact.name[0].toUpperCase();
         letters.push(firstLetter);
       }
     }
-
-    // Konvertiere das Set in ein Array und sortiere es
     return letters.sort();
   }
 
