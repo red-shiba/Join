@@ -25,6 +25,7 @@ p {
   margin-bottom: -30px;
 }
 
+// Forms styling
 .form-left,
 .form-right {
   width: 48%;
@@ -43,26 +44,70 @@ p {
   margin-bottom: 20px;
 }
 
+.form-container p {
+  color: #4e4e4e;
+}
+
+.category-dropdown {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("../../../assets/icons/arrow-dropdown-down.png");
+  background-position: right 10px center;
+  background-repeat: no-repeat;
+  padding-right: 30px;
+  color: #979393;
+  cursor: pointer;
+}
+
+// Form input border
+
+.custom-input {
+  border: 0.5px solid #e7e7e7;
+  transition: border-color 0.3s ease;
+  color: rgb(87, 87, 87);
+}
+
+.custom-input:focus {
+  outline: none;
+  border-color: #29abe2;
+}
+
+.custom-input.ng-invalid.ng-touched {
+  border-color: #ff3c00b6;
+}
+
+.custom-input:not(:focus):not(.ng-invalid.ng-touched) {
+  border-color: #e7e7e7;
+}
+
+// Devider
+
 .devider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 2px;
   background-color: rgb(223, 221, 221);
-  height: 500px;
+  height: 400px;
   margin: 0 1%;
+  margin-top: 100px;
 }
 
 input[type="text"],
 input[type="date"],
 textarea,
 select {
-  border: 2px solid rgb(233, 233, 233);
+  border: 1px solid rgb(233, 233, 233);
   width: 100%;
   height: 50px;
   border-radius: 10px;
   box-sizing: border-box;
   padding: 15px;
   font-family: inter;
+  font-weight: 400;
   font-size: 15px;
-  color: rgb(204, 204, 204);
+  color: rgb(70, 69, 69);
 }
 
 textarea {
@@ -76,10 +121,19 @@ textarea {
 }
 
 .priority-buttons button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
   font-family: inter;
   font-weight: 500;
   font-size: 17px;
   color: rgb(102, 102, 102);
+}
+
+.priority-buttons button:hover {
+  font-weight: 500;
+  box-shadow: 0px 0.5px 0.5px rgba(0, 0, 0, 0.1);
 }
 
 .priority-btn {
@@ -92,6 +146,28 @@ textarea {
   &:last-child {
     margin-right: 0;
   }
+}
+
+.priority-btn.active[data-priority="urgent"] {
+  background-color: #ff3d00;
+  color: white;
+  border-color: #ff3d00;
+}
+
+.priority-btn.active[data-priority="medium"] {
+  background-color: #ffa500;
+  color: white;
+  border-color: #ffa500;
+}
+
+.priority-btn.active[data-priority="low"] {
+  background-color: #7ae229;
+  color: white;
+  border-color: #7ae229;
+}
+
+.priority-btn.active img {
+  filter: brightness(0) invert(1);
 }
 
 // Subtask
@@ -112,10 +188,10 @@ textarea {
 
 .add-button {
   position: absolute;
-  right: 10px;
-  top: 53%;
+  right: 15px;
+  top: 42%;
   transform: translateY(-50%);
-  font-size: 20px;
+  font-size: 17px;
   cursor: pointer;
   background: none;
   border: none;
@@ -136,7 +212,7 @@ textarea {
   position: absolute;
   width: 100%;
   background: white;
-  border: 1px solid #ddd;
+  // border: 1px solid #757575;
   max-height: 200px;
   overflow-y: auto;
   display: none;
@@ -170,8 +246,91 @@ textarea {
   font-weight: 700;
 }
 
+.dropdown {
+  position: relative;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+  height: 45px;
+}
+
+.dropdown-button {
+  width: 100%;
+  height: 100%;
+  padding: 10px 15px;
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  color: #979393;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: border-color 0.3s ease;
+  font-family: inter;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.dropdown-button:hover {
+  border-color: #999;
+}
+
+.dropdown-button:focus {
+  outline: none;
+  border-color: #29abe2;
+}
+
+.dropdown-icon {
+  margin-left: 10px;
+}
+
+.assignedStyle {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-bottom: 1px solid #ddd;
+}
+
+.assignedStyleSelected {
+  display: flex;
+  align-items: center;
+  background-color: #f2f2f2;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contactName {
+  flex-grow: 1;
+}
+
+.checkContact {
+  display: flex;
+  justify-content: center;
+}
+
 #subtaskInput::placeholder {
-  color: #999;
+  color: #979393;
+  font-weight: 400;
 }
 
 .cancelBtn {
@@ -223,64 +382,4 @@ textarea {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     color: #2a3647;
   }
-}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-  width: 100%;
-}
-
-.dropdown-button {
-  width: 100%;
-  padding: 10px;
-  background-color: transparent;
-  border: none;
-  border-radius: 10px;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-  color: #000000;
-  cursor: pointer;
-  text-align: left;
-}
-
-.assignedStyle {
-  display: flex;
-  align-items: center;
-  padding: 5px;
-  border-bottom: 1px solid #ddd;
-}
-
-.assignedStyleSelected {
-  display: flex;
-  align-items: center;
-  background-color: #f2f2f2;
-}
-
-.avatar {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 12px;
-  font-weight: bold;
-  margin-right: 10px;
-  flex-shrink: 0;
-}
-
-.contact-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.contactName {
-  flex-grow: 1;
-}
-
-.checkContact {
-  display: flex;
-  justify-content: center;
 }
