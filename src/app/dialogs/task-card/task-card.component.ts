@@ -3,6 +3,7 @@ import { Todo } from '../../interfaces/todos';
 import { TodoListService } from '../../firebase-service/todo-list.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Contact } from '../../interfaces/contact';
 
 @Component({
   selector: 'app-task-card',
@@ -34,6 +35,10 @@ export class TaskCardComponent {
   checkedImage = '/assets/icons/check_ed.png';
 
   isChecked = false;
+  avatarColorService: any;
+  selectedContacts: Contact[] = [];
+  contactList: Contact[] = [];
+  contactService: any;
 
   constructor(private todoService: TodoListService) {}
 
@@ -98,5 +103,17 @@ export class TaskCardComponent {
     };
 
     return category ? categoryColors[category] || '#CCCCCC' : '#CCCCCC'; // falls die Kategorie nicht in der Liste ist, wird ein Grauton zurückgegeben
+  }
+
+  getAvatarColor(contact: Contact): string {
+    return this.avatarColorService.getAvatarColor(contact);
+  }
+
+  getInitials(name: string): string {
+    return name
+      .split(' ')
+      .map((word) => word[0])
+      .join('')
+      .toUpperCase();
   }
 }

@@ -32,7 +32,7 @@
       }
 
       <div class="priority-date">
-        <span>Due Date:</span>
+        <span>Due date:</span>
         @if (!isEditing) {
         <span>{{ todo?.dueDate }}</span>
         } @else {
@@ -47,7 +47,7 @@
           <span>{{ todo?.priority }}</span>
           } @else {
           <select [(ngModel)]="editedTodo.priority">
-            <option value="urgent">Urgent</option>
+            <option value="urgent">rgent</option>
             <option value="medium">Medium</option>
             <option value="low">Low</option>
           </select>
@@ -59,16 +59,20 @@
         </div>
       </div>
 
-      <div class="assigned">
-        <span>Assigned TO :</span>
-        <div class="assigned-container">
-          <div class="circle-of-task">GW</div>
-          @if (!isEditing) {
-          <span>{{ todo?.assignedTo }}</span>
-          } @else {
-          <input [(ngModel)]="editedTodo.assignedTo" />
-          }
+      <span>Assigned TO :</span>
+      <div class="assigned-container">
+        @for (contact of selectedContacts; track contact) {
+        <div
+          class="circle-of-task"
+          [ngStyle]="{ 'background-color': getAvatarColor(contact) }"
+        >
+          {{ getInitials(contact.name) }}
         </div>
+        } @if (!isEditing) {
+        <span>{{ todo?.assignedTo }}</span>
+        } @else {
+        <input [(ngModel)]="editedTodo.assignedTo" />
+        }
       </div>
 
       <div class="subtasks">

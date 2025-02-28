@@ -7,17 +7,33 @@
           <label for="title">
             <p>Title</p>
           </label>
-          <input type="text" id="title" name="title" required placeholder="Enter a Title" [(ngModel)]="title"
-            class="custom-input" [class.ng-invalid]="titleInput.invalid && (titleInput.dirty || titleInput.touched)"
-            #titleInput="ngModel" />
+          <input
+            type="text"
+            id="title"
+            name="title"
+            required
+            placeholder="Enter a Title"
+            [(ngModel)]="title"
+            class="custom-input"
+            [class.ng-invalid]="
+              titleInput.invalid && (titleInput.dirty || titleInput.touched)
+            "
+            #titleInput="ngModel"
+          />
         </div>
 
         <div class="form-container form-left-description">
           <label for="description">
             <p>Description</p>
           </label>
-          <textarea id="description" name="description" rows="4" placeholder="Enter a Description"
-            [(ngModel)]="description" class="custom-input"></textarea>
+          <textarea
+            id="description"
+            name="description"
+            rows="4"
+            placeholder="Enter a Description"
+            [(ngModel)]="description"
+            class="custom-input"
+          ></textarea>
         </div>
 
         <div class="form-container">
@@ -26,19 +42,27 @@
           </label>
           <div class="dropdown">
             <button (click)="toggleDropdown()" class="dropdown-button">
-              <span>Select contacts to assign</span> <img src="../../../assets/icons/arrow-dropdown-down.png" alt="">
+              <span>Select contacts to assign</span>
+              <img src="../../../assets/icons/arrow-dropdown-down.png" alt="" />
             </button>
             <div class="assign-container" [class.open]="dropdownOpen">
               <ul class="contact-list">
                 @for (contact of contactList; track contact) {
                 <label class="assignedStyle">
-                  <div class="avatar" [ngStyle]="{ 'background-color': getAvatarColor(contact) }">
+                  <div
+                    class="avatar"
+                    [ngStyle]="{ 'background-color': getAvatarColor(contact) }"
+                  >
                     {{ getInitials(contact.name) }}
                   </div>
                   <div class="contactName">{{ contact.name }}</div>
                   <div class="checkContact">
-                    <input type="checkbox" [value]="contact" (change)="toggleContactSelection(contact, $event)"
-                      class="custom-input" />
+                    <input
+                      type="checkbox"
+                      [value]="contact"
+                      (change)="toggleContactSelection(contact, $event)"
+                      class="custom-input"
+                    />
                   </div>
                 </label>
                 }
@@ -50,7 +74,10 @@
         <div class="assignedStyleSelected">
           @for (contact of selectedContacts; track contact) {
           <label>
-            <div class="avatar" [ngStyle]="{ 'background-color': getAvatarColor(contact) }">
+            <div
+              class="avatar"
+              [ngStyle]="{ 'background-color': getAvatarColor(contact) }"
+            >
               {{ getInitials(contact.name) }}
             </div>
           </label>
@@ -61,29 +88,68 @@
       <div class="devider"></div>
       <div class="form-right">
         <p>Due Date</p>
-        <input type="date" id="dueDate" name="dueDate" required [(ngModel)]="dueDate" placeholder="dd/mm/yyyy"
-          class="custom-input" />
+        <input
+          type="date"
+          id="dueDate"
+          name="dueDate"
+          required
+          [(ngModel)]="dueDate"
+          placeholder="dd/mm/yyyy"
+          class="custom-input"
+        />
 
         <p>Prio</p>
         <div class="priority-buttons">
-          <button type="button" class="priority-btn" data-priority="urgent" (click)="setPriority('urgent')">
+          <button
+            type="button"
+            class="priority-btn"
+            data-priority="urgent"
+            (click)="setPriority('urgent')"
+          >
             <span class="text">Urgent</span>
-            <span class="icon"><img src="../../../assets/icons/prio_high.png" alt=""></span>
+            <span class="icon"
+              ><img src="../../../assets/icons/prio_high.png" alt=""
+            /></span>
           </button>
-          <button type="button" class="priority-btn" data-priority="medium" (click)="setPriority('medium')">
+          <button
+            type="button"
+            class="priority-btn"
+            data-priority="medium"
+            (click)="setPriority('medium')"
+          >
             <span class="text">Medium</span>
-            <span class="icon"><img src="../../../assets/icons/prio_medium.png" alt=""></span>
+            <span class="icon"
+              ><img src="../../../assets/icons/prio_medium.png" alt=""
+            /></span>
           </button>
-          <button type="button" class="priority-btn" data-priority="low" (click)="setPriority('low')">
+          <button
+            type="button"
+            class="priority-btn"
+            data-priority="low"
+            (click)="setPriority('low')"
+          >
             <span class="text">Low</span>
-            <span class="icon"><img src="../../../assets/icons/prio_low.png" alt=""></span>
+            <span class="icon"
+              ><img src="../../../assets/icons/prio_low.png" alt=""
+            /></span>
           </button>
         </div>
 
-        <input type="hidden" id="selectedPriority" name="priority" [(ngModel)]="priority" />
+        <input
+          type="hidden"
+          id="selectedPriority"
+          name="priority"
+          [(ngModel)]="priority"
+        />
 
         <p>Category</p>
-        <select id="category" name="category" required [(ngModel)]="category" class="category-dropdown">
+        <select
+          id="category"
+          name="category"
+          required
+          [(ngModel)]="category"
+          class="category-dropdown"
+        >
           <option value="">Select task category</option>
           <option value="Technical Task">Technical Task</option>
           <option value="User Story">User Story</option>
@@ -91,48 +157,111 @@
 
         <p>Subtasks</p>
 
-        
         <div class="subtask-container">
           <div class="input-wrapper">
-            <input type="text" id="subtaskInput" name="subtaskInput" [(ngModel)]="subtaskInput"
-              placeholder="Add new subtask" (focus)="activateInput()" (blur)="hideControls()" />
-        
+            <input
+              type="text"
+              id="subtaskInput"
+              name="subtaskInput"
+              [(ngModel)]="subtaskInput"
+              placeholder="Add new subtask"
+              (focus)="activateInput()"
+              (blur)="hideControls()"
+            />
+
             <div class="input-icons">
-              <button *ngIf="!showControls" type="button" class="plus-button" (click)="activateInput()"><img src="assets/icons/addBlack.png" alt="Edit" class="icon"></button>
-              <button *ngIf="showControls" type="button" class="cancel-button" (click)="cancelSubtask()"><img src="assets/icons/iconoir_cancel.png" alt="Edit" class="icon"></button>
-              <button *ngIf="showControls" type="button" class="confirm-button" (click)="confirmSubtask()">✔</button>
+              <button
+                *ngIf="!showControls"
+                type="button"
+                class="plus-button"
+                (click)="activateInput()"
+              >
+                <img src="assets/icons/addBlack.png" alt="Edit" class="icon" />
+              </button>
+              <button
+                *ngIf="showControls"
+                type="button"
+                class="cancel-button"
+                (click)="cancelSubtask()"
+              >
+                <img
+                  src="assets/icons/iconoir_cancel.png"
+                  alt="Edit"
+                  class="icon"
+                />
+              </button>
+              <button
+                *ngIf="showControls"
+                type="button"
+                class="confirm-button"
+                (click)="confirmSubtask()"
+              >
+                ✔
+              </button>
             </div>
-            </div>
-          
-            <ul id="subtaskList input-wrapper">
+          </div>
+
+          <ul id="subtaskList input-wrapper">
             @for (subtask of subtasks; track subtask) {
-              <li>
-              <span *ngIf="editedSubtaskIndex !== subtasks.indexOf(subtask)">{{ subtask }}</span>
-              <input *ngIf="editedSubtaskIndex === subtasks.indexOf(subtask)" type="text" [(ngModel)]="editedSubtaskValue" />
-            
+            <li>
+              <span *ngIf="editedSubtaskIndex !== subtasks.indexOf(subtask)">{{
+                subtask
+              }}</span>
+              <input
+                *ngIf="editedSubtaskIndex === subtasks.indexOf(subtask)"
+                type="text"
+                [(ngModel)]="editedSubtaskValue"
+              />
+
               <div class="subtask-buttons input-icons">
-                  <button *ngIf="editedSubtaskIndex !== subtasks.indexOf(subtask)" type="button" class="edit-button" (click)="editSubtask(subtasks.indexOf(subtask))"><img src="assets/icons/edit.png" alt="Edit" class="icon"></button>
-                  <button *ngIf="editedSubtaskIndex !== subtasks.indexOf(subtask)" type="button" class="delete-button" (click)="deleteSubtask(subtasks.indexOf(subtask))"><img src="assets/icons/delete.png" alt="Edit" class="icon"></button>
-          
-                  <button *ngIf="editedSubtaskIndex === subtasks.indexOf(subtask)" type="button" class="cancel-button" (click)="cancelEdit()"><img src="assets/icons/delete.png" alt="Edit" class="icon"></button>
-                  <button *ngIf="editedSubtaskIndex === subtasks.indexOf(subtask)" type="button" class="confirm-button" (click)="saveSubtask(subtasks.indexOf(subtask))">✔</button>
-                  
-                </div>
-              </li>
+                <button
+                  *ngIf="editedSubtaskIndex !== subtasks.indexOf(subtask)"
+                  type="button"
+                  class="edit-button"
+                  (click)="editSubtask(subtasks.indexOf(subtask))"
+                >
+                  <img src="assets/icons/edit.png" alt="Edit" class="icon" />
+                </button>
+                <button
+                  *ngIf="editedSubtaskIndex !== subtasks.indexOf(subtask)"
+                  type="button"
+                  class="delete-button"
+                  (click)="deleteSubtask(subtasks.indexOf(subtask))"
+                >
+                  <img src="assets/icons/delete.png" alt="Edit" class="icon" />
+                </button>
+
+                <button
+                  *ngIf="editedSubtaskIndex === subtasks.indexOf(subtask)"
+                  type="button"
+                  class="cancel-button"
+                  (click)="cancelEdit()"
+                >
+                  <img src="assets/icons/delete.png" alt="Edit" class="icon" />
+                </button>
+                <button
+                  *ngIf="editedSubtaskIndex === subtasks.indexOf(subtask)"
+                  type="button"
+                  class="confirm-button"
+                  (click)="saveSubtask(subtasks.indexOf(subtask))"
+                >
+                  ✔
+                </button>
+              </div>
+            </li>
             }
           </ul>
-          
         </div>
-        
-
-
       </div>
     </div>
 
-
     <div class="add-task-btn">
       <button class="cbtn cancelBtn" (click)="closeDialog()">Cancel</button>
-      <button class="btn createBtn" [disabled]="!title || !dueDate || !category" (click)="addTodo()">
+      <button
+        class="btn createBtn"
+        [disabled]="!title || !dueDate || !category"
+        (click)="addTodo()"
+      >
         Create Task
       </button>
     </div>

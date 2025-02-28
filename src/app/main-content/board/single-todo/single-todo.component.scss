@@ -15,14 +15,12 @@
     color: $color-primary;
     font-family: $font-primary;
     font-weight: 700;
-    margin: 0;
   }
 
   > span:nth-child(3) {
     font-size: 16px;
     font-weight: 400px;
     color: #a8a8a8;
-    margin: 0;
   }
 }
 .task-category {
@@ -43,7 +41,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 220px;
   gap: 8px;
 }
 .priority-container {
@@ -73,7 +71,6 @@
   margin: -4px;
   outline: solid 2px #fff;
   box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.1);
-  background-color: #1dab93;
 }
 
 // .avatar {
