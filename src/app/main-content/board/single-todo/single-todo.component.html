@@ -1,5 +1,10 @@
 <div class="single-container">
-  <div class="task-category">{{ [todo?.category] }}</div>
+  <div
+    class="task-category"
+    [ngStyle]="{ 'background-color': getCategoryColor(todo?.category) }"
+  >
+    {{ [todo?.category] }}
+  </div>
   <p>{{ todo?.title }}</p>
   <p>{{ todo?.description }}</p>
   <div class="subtasks">
@@ -12,15 +17,16 @@
   <div class="priority-container">
     <div class="assigned-of-task">
       @for (contact of selectedContacts; track contact) {
-        <div class="circle-of-task"
-             [ngStyle]="{ 'background-color': getAvatarColor(contact) }">
-          {{ getInitials(contact.name) }}
-        </div>
+      <div
+        class="circle-of-task"
+        [ngStyle]="{ 'background-color': getAvatarColor(contact) }"
+      >
+        {{ getInitials(contact.name) }}
+      </div>
       }
     </div>
     <div class="priority-task">
       <img [src]="getPriorityIcon(todo?.priority)" alt="{{ todo?.priority }}" />
     </div>
   </div>
-
 </div>

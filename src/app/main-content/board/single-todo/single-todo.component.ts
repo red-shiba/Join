@@ -30,8 +30,12 @@ export class SingleTodoComponent implements OnInit {
       this.contactList = contacts;
 
       if (this.todo?.assignedTo) {
-        const assignedNames = this.todo.assignedTo.split(', ').map(name => name.trim());
-        this.selectedContacts = this.contactList.filter(contact => assignedNames.includes(contact.name));
+        const assignedNames = this.todo.assignedTo
+          .split(', ')
+          .map((name) => name.trim());
+        this.selectedContacts = this.contactList.filter((contact) =>
+          assignedNames.includes(contact.name)
+        );
       }
     });
   }
@@ -43,7 +47,7 @@ export class SingleTodoComponent implements OnInit {
   getInitials(name: string): string {
     return name
       .split(' ')
-      .map(word => word[0])
+      .map((word) => word[0])
       .join('')
       .toUpperCase();
   }
@@ -59,5 +63,13 @@ export class SingleTodoComponent implements OnInit {
       default:
         return ''; // Fallback für ungültige Werte
     }
+  }
+  getCategoryColor(category: string | null | undefined): string {
+    let categoryColors: { [key: string]: string } = {
+      'Technical Task': '#1FD7C1',
+      'User Story': '#0038FF',
+    };
+
+    return category ? categoryColors[category] || '#CCCCCC' : '#CCCCCC'; // falls die Kategorie nicht in der Liste ist, wird ein Grauton zurückgegeben
   }
 }

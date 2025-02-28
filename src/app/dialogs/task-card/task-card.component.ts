@@ -91,4 +91,12 @@ export class TaskCardComponent {
       });
     }
   }
+  getCategoryColor(category: string | null | undefined): string {
+    let categoryColors: { [key: string]: string } = {
+      'Technical Task': '#1FD7C1',
+      'User Story': '#0038FF',
+    };
+
+    return category ? categoryColors[category] || '#CCCCCC' : '#CCCCCC'; // falls die Kategorie nicht in der Liste ist, wird ein Grauton zurückgegeben
+  }
 }
