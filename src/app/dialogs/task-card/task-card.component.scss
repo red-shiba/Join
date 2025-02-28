@@ -13,7 +13,7 @@
   display: flex;
   position: fixed;
   box-sizing: border-box;
-  width: 450px;
+  width: 396px;
   max-height: calc(100% - 20px);
   max-width: calc(100% - 20px);
   background-color: #ffffff;
@@ -40,8 +40,9 @@
   flex-direction: column;
   gap: 20px;
   width: 100%;
-  padding: 30px 30px 10px 30px;
+  padding: 30px;
 }
+
 .header-task {
   display: flex;
   justify-content: space-between;

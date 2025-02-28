@@ -22,17 +22,17 @@
       </div>
 
       @if (!isEditing) {
-      <p>{{ todo?.title }}</p>
+      <span>{{ todo?.title }}</span>
       } @else {
       <input [(ngModel)]="editedTodo.title" />
       } @if (!isEditing) {
-      <p>{{ todo?.description }}</p>
+      <span>{{ todo?.description }}</span>
       } @else {
       <input [(ngModel)]="editedTodo.description" />
       }
 
       <div class="priority-date">
-        <p>Due Date:</p>
+        <span>Due Date:</span>
         @if (!isEditing) {
         <span>{{ todo?.dueDate }}</span>
         } @else {
@@ -41,7 +41,7 @@
       </div>
 
       <div class="priority">
-        <p>Priority:</p>
+        <span>Priority:</span>
         <div class="priority-icon">
           @if (!isEditing) {
           <span>{{ todo?.priority }}</span>
@@ -60,7 +60,7 @@
       </div>
 
       <div class="assigned">
-        <p>Assigned TO :</p>
+        <span>Assigned TO :</span>
         <div class="assigned-container">
           <div class="circle-of-task">GW</div>
           @if (!isEditing) {
@@ -72,7 +72,7 @@
       </div>
 
       <div class="subtasks">
-        <p>Subtasks</p>
+        <span>Subtasks</span>
         <div class="subtask-container">
           <img
             [src]="isChecked ? checkedImage : uncheckedImage"
@@ -94,7 +94,7 @@
             src="/assets/icons/delete.png"
             alt="delete-icon"
           />
-          <p class="contact-link" (click)="deleteTodo()">Delete</p>
+          <span class="contact-link" (click)="deleteTodo()">Delete</span>
         </div>
         <hr *ngIf="!isEditing" />
         <div class="editIcon">
@@ -105,7 +105,7 @@
             alt="edit-icon"
             (click)="editTodo()"
           />
-          <p class="contact-link" (click)="editTodo()">Edit</p>
+          <span class="contact-link" (click)="editTodo()">Edit</span>
           } @else {
           <div>
             <button class="check-task-btn" (click)="saveTodo()">

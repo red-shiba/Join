@@ -5,12 +5,10 @@
   >
     {{ [todo?.category] }}
   </div>
-  <p>{{ todo?.title }}</p>
-  <p>{{ todo?.description }}</p>
+  <span>{{ todo?.title }}</span>
+  <span>{{ todo?.description }}</span>
   <div class="subtasks">
-    <div class="progress-container">
-      <div class="progress-bar" style="width: 50%"></div>
-    </div>
+    <progress class="progress-bar" value="1" max="2"></progress>
     <span>1/2 Subtasks</span>
   </div>
 
