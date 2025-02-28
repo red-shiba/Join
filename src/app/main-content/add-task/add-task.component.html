@@ -102,15 +102,15 @@
               <button *ngIf="showControls" type="button" class="cancel-button" (click)="cancelSubtask()"><img src="assets/icons/iconoir_cancel.png" alt="Edit" class="icon"></button>
               <button *ngIf="showControls" type="button" class="confirm-button" (click)="confirmSubtask()">✔</button>
             </div>
-          </div>
-        
+            </div>
+          
             <ul id="subtaskList input-wrapper">
             @for (subtask of subtasks; track subtask) {
               <li>
-                <span *ngIf="editedSubtaskIndex !== subtasks.indexOf(subtask)">{{ subtask }}</span>
-                <input *ngIf="editedSubtaskIndex === subtasks.indexOf(subtask)" type="text" [(ngModel)]="editedSubtaskValue" />
-          
-                <div class="subtask-buttons input-icons">
+              <span *ngIf="editedSubtaskIndex !== subtasks.indexOf(subtask)">{{ subtask }}</span>
+              <input *ngIf="editedSubtaskIndex === subtasks.indexOf(subtask)" type="text" [(ngModel)]="editedSubtaskValue" />
+            
+              <div class="subtask-buttons input-icons">
                   <button *ngIf="editedSubtaskIndex !== subtasks.indexOf(subtask)" type="button" class="edit-button" (click)="editSubtask(subtasks.indexOf(subtask))"><img src="assets/icons/edit.png" alt="Edit" class="icon"></button>
                   <button *ngIf="editedSubtaskIndex !== subtasks.indexOf(subtask)" type="button" class="delete-button" (click)="deleteSubtask(subtasks.indexOf(subtask))"><img src="assets/icons/delete.png" alt="Edit" class="icon"></button>
           
