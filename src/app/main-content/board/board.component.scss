@@ -85,7 +85,7 @@
 }
 /* Scrollbar Styling */
 .drag-and-drop-container::-webkit-scrollbar {
-  width: 8px;
+  width: 5px;
 }
 
 .drag-and-drop-container::-webkit-scrollbar-track {
@@ -161,6 +161,7 @@
 }
 
 .board-box {
+  width: 250px;
   padding: 20px 10px;
   border-bottom: solid 1px #ccc;
   color: rgba(0, 0, 0, 0.87);
@@ -263,14 +264,14 @@
     margin-bottom: 60px;
     justify-content: flex-start;
   }
-  .drag-and-drop-container {
-    max-height: 70vh;
-  }
+  // .drag-and-drop-container {
+  //   max-height: 70vh;
+  // }
 }
 @media (max-width: 700px) {
-  .drag-and-drop-container {
-    max-height: 61vh;
-  }
+  // .drag-and-drop-container {
+  //   max-height: 61vh;
+  // }
 }
 
 @media (max-width: 615px) {
