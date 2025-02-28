@@ -201,20 +201,18 @@
 .drop-area {
   padding: 1%;
 }
-/* Standardzustand: Scrollbar verstecken */
+
 .drop-area {
   max-height: 58vh;
-  overflow-y: scroll; /* Statt scroll */
+  overflow-y: scroll;
   overflow-x: hidden;
 }
 
-/* Webkit-Browser: Scrollbar unsichtbar machen */
 .drop-area::-webkit-scrollbar {
   width: 0;
   height: 0;
 }
 
-/* Media Query für schmalere Bildschirme */
 @media (max-width: 1280px) {
   .drag-and-drop-container {
     flex-direction: column;
@@ -225,12 +223,8 @@
 
   .drop-area {
     display: flex;
-    // width: 800px;
     gap: 50px;
-    // max-width: 85vh;
-    overflow-x: auto; /* Horizontale Scrollbar wieder aktivieren */
-    // overflow-y: hidden;
-    // white-space: nowrap;
+    overflow-x: auto;
   }
 
   .drop-area::-webkit-scrollbar {
@@ -257,6 +251,7 @@
     scrollbar-width: auto;
   }
 }
+
 @media (max-width: 990px) {
   .headline-container {
     flex-direction: column;
@@ -264,16 +259,7 @@
     margin-bottom: 60px;
     justify-content: flex-start;
   }
-  // .drag-and-drop-container {
-  //   max-height: 70vh;
-  // }
 }
-@media (max-width: 700px) {
-  // .drag-and-drop-container {
-  //   max-height: 61vh;
-  // }
-}
-
 @media (max-width: 615px) {
   .add-task-btn {
     display: none;
