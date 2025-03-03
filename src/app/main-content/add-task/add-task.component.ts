@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Todo } from '../../interfaces/todos';
+import { Subtask, Todo } from '../../interfaces/todos';
 import { TodoListService } from '../../firebase-service/todo-list.service';
 import { ContactListService } from '../../firebase-service/contact-list.service';
 import { Contact } from '../../interfaces/contact';
@@ -23,7 +23,7 @@ export class AddTaskComponent {
   activePriority: string = '';
   category: string = '';
   subtaskInput: string = '';
-  subtasks: string[] = [];
+  subtasks: Subtask[] = [];
   showControls: boolean = false;
   contactList: Contact[] = [];
   selectedContacts: Contact[] = [];
@@ -88,7 +88,7 @@ activateInput() {
 
 confirmSubtask() {
   if (this.subtaskInput.trim() !== "") {
-    this.subtasks.push(this.subtaskInput.trim());
+    this.subtasks.push({ title: this.subtaskInput.trim(), done: false });
     this.subtaskInput = "";
     this.showControls = false;
   }
@@ -113,12 +113,12 @@ deleteSubtask(index: number) {
 
 editSubtask(index: number) {
   this.editedSubtaskIndex = index;
-  this.editedSubtaskValue = this.subtasks[index];
+  this.editedSubtaskValue = this.subtasks[index].title;
 }
 
 saveSubtask(index: number) {
   if (this.editedSubtaskValue.trim() !== "") {
-    this.subtasks[index] = this.editedSubtaskValue;
+    this.subtasks[index].title = this.editedSubtaskValue.trim();
     this.cancelEdit();
   }
 }
@@ -133,6 +133,7 @@ addTodo() {
     console.warn('Task-Erstellung fehlgeschlagen: Fehlende Pflichtfelder!');
     return;
   }
+
   const newTask: Todo = {
     id: '',
     type: 'todo',
@@ -142,8 +143,9 @@ addTodo() {
     dueDate: this.dueDate,
     priority: this.priority,
     category: this.category,
-    subtasks: this.subtasks,
+    subtasks: this.subtasks
   };
+
   this.todoListService
     .addTodo(newTask, 'todo')
     .then(() => {
@@ -152,6 +154,7 @@ addTodo() {
     .catch((error) => {
       console.error('Fehler beim Speichern des Tasks:', error);
     });
+
   // Felder zurücksetzen
   this.title = '';
   this.description = '';

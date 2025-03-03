@@ -27,9 +27,9 @@ export class TodoListService {
     this.unsubAwaitfeedbacks = this.subAwaitfeedbackList();
     this.unsubInprogress = this.subInprogressList();
     this.unsubDone = this.subDoneList();
-   }
+  }
 
-   async addTodo(item: Todo, colId: "todo" | "inprogress" | "awaitfeedback" | "done") {
+  async addTodo(item: Todo, colId: "todo" | "inprogress" | "awaitfeedback" | "done") {
     try {
       const docRef = await addDoc(collection(this.firestore, colId), item);
       console.log(`Task wurde in "${colId}" gespeichert mit ID:`, docRef.id);
@@ -38,7 +38,7 @@ export class TodoListService {
     }
   }
 
-   async deleteTodo(docId: string) {
+  async deleteTodo(docId: string) {
     const collections = ["todo", "inprogress", "awaitfeedback", "done"];
   
     for (const colId of collections) {
@@ -94,44 +94,44 @@ export class TodoListService {
       console.error("Fehler beim Verschieben:", error);
     }
   }
-   
-     getCleanJson(todo: Todo):{} {
-       return {
-         type: todo.type,
-         title: todo.title,
-         description: todo.description,
-         assignedTo: todo.assignedTo,
-         dueDate: todo.dueDate,
-         priority: todo.priority,
-         category: todo.category,
-         subtasks: todo.subtasks,
-     }
-   }
-   
-   getColIdFromTodo(todo: Todo) {
-    return todo.type; // Gibt "todo", "inprogress", "awaitfeedback" oder "done" zurück
+  
+    getCleanJson(todo: Todo):{} {
+      return {
+        type: todo.type,
+        title: todo.title,
+        description: todo.description,
+        assignedTo: todo.assignedTo,
+        dueDate: todo.dueDate,
+        priority: todo.priority,
+        category: todo.category,
+        subtasks: todo.subtasks,
+    }
   }
   
-     setTodoObject(obj: any, id: string): Todo {
-       return {
-         id: id,
-         type: obj.type || 'todo',
-         title: obj.title || '',
-         description: obj.description || '',
-         assignedTo: obj.assignedTo || '',
-         dueDate: obj.dueDate || '',
-         priority: obj.priority || '',
-         category: obj.category || '',
-         subtasks: obj.subtasks || '',
-       };
-     }
-   
-     ngonDestroy() {
-       this.unsubTodos();
-       this.unsubAwaitfeedbacks();
-       this.unsubInprogress();
-       this.unsubDone();
-     }
+  getColIdFromTodo(todo: Todo) {
+    return todo.type; // Gibt "todo", "inprogress", "awaitfeedback" oder "done" zurück
+  }
+
+    setTodoObject(obj: any, id: string): Todo {
+      return {
+        id: id,
+        type: obj.type || 'todo',
+        title: obj.title || '',
+        description: obj.description || '',
+        assignedTo: obj.assignedTo || '',
+        dueDate: obj.dueDate || '',
+        priority: obj.priority || '',
+        category: obj.category || '',
+        subtasks: obj.subtasks || '',
+      };
+    }
+  
+    ngonDestroy() {
+      this.unsubTodos();
+      this.unsubAwaitfeedbacks();
+      this.unsubInprogress();
+      this.unsubDone();
+    }
     
     subTodosList() {
       return onSnapshot(this.getTodosRef(), (list) => {
@@ -141,7 +141,7 @@ export class TodoListService {
         });
       });
     }
-     
+
     subAwaitfeedbackList() {
       return onSnapshot(this.getAwaitfeedbackRef(), (list) => {
         this.awaitfeedbacks = [];
@@ -175,24 +175,24 @@ export class TodoListService {
         });
       });
     }
-   
-     getTodosRef() {
-       return collection(this.firestore, 'todo');
-     }
+  
+    getTodosRef() {
+      return collection(this.firestore, 'todo');
+    }
 
-     getAwaitfeedbackRef() {
-      return collection(this.firestore, 'awaitfeedback')
-     }
+    getAwaitfeedbackRef() {
+    return collection(this.firestore, 'awaitfeedback')
+    }
 
-     getInprogressRef() {
-      return collection(this.firestore, 'inprogress')
-     }
+    getInprogressRef() {
+    return collection(this.firestore, 'inprogress')
+    }
 
-     getDoneRef() {
-      return collection(this.firestore, 'done')
-     }
-   
-     getSingleDocRef(colId: string, docId: string) {
+    getDoneRef() {
+    return collection(this.firestore, 'done')
+    }
+  
+    getSingleDocRef(colId: string, docId: string) {
       return doc(this.firestore, colId, docId);
     }  
 }

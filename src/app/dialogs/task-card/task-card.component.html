@@ -1,125 +1,122 @@
-<div
-  class="shaddowBox"
-  [class.closing]="isClosing"
-  (click)="closeOverlay.emit()"
->
+<div class="shaddowBox" [class.closing]="isClosing" (click)="closeOverlay.emit()">
   <div class="task_card_wrapper" (click)="$event.stopPropagation()">
     <div class="task-container">
+
       <div class="header-task">
-        <div
-          class="task-category"
-          [ngStyle]="{ 'background-color': getCategoryColor(todo?.category) }"
-        >
-          @if (!isEditing) {
-          <span>{{ todo?.category }}</span>
-          } @else {
-          <input [(ngModel)]="editedTodo.category" />
-          }
+        <div class="task-category" [ngStyle]="{ 'background-color': getCategoryColor(todo?.category) }">
+          <ng-container *ngIf="!isEditing; else editCategory">
+            <span>{{ todo?.category }}</span>
+          </ng-container>
+          <ng-template #editCategory>
+            <input [(ngModel)]="editedTodo.category" />
+          </ng-template>
         </div>
         <div class="close" (click)="closeOverlay.emit()">
           <img src="/assets/icons/close.png" alt="close" />
         </div>
       </div>
 
-      @if (!isEditing) {
-      <span>{{ todo?.title }}</span>
-      } @else {
-      <input [(ngModel)]="editedTodo.title" />
-      } @if (!isEditing) {
-      <span>{{ todo?.description }}</span>
-      } @else {
-      <input [(ngModel)]="editedTodo.description" />
-      }
+      <ng-container *ngIf="!isEditing; else editTitle">
+        <span>{{ todo?.title }}</span>
+      </ng-container>
+      <ng-template #editTitle>
+        <input [(ngModel)]="editedTodo.title" />
+      </ng-template>
+
+      <ng-container *ngIf="!isEditing; else editDescription">
+        <span>{{ todo?.description }}</span>
+      </ng-container>
+      <ng-template #editDescription>
+        <input [(ngModel)]="editedTodo.description" />
+      </ng-template>
 
       <div class="priority-date">
         <span>Due date:</span>
-        @if (!isEditing) {
-        <span>{{ todo?.dueDate }}</span>
-        } @else {
-        <input type="date" [(ngModel)]="editedTodo.dueDate" />
-        }
+        <ng-container *ngIf="!isEditing; else editDueDate">
+          <span>{{ todo?.dueDate }}</span>
+        </ng-container>
+        <ng-template #editDueDate>
+          <input type="date" [(ngModel)]="editedTodo.dueDate" />
+        </ng-template>
       </div>
 
       <div class="priority">
         <span>Priority:</span>
         <div class="priority-icon">
-          @if (!isEditing) {
-          <span>{{ todo?.priority }}</span>
-          } @else {
-          <select [(ngModel)]="editedTodo.priority">
-            <option value="urgent">rgent</option>
-            <option value="medium">Medium</option>
-            <option value="low">Low</option>
-          </select>
-          }
-          <img
-            [src]="getPriorityIcon(todo?.priority)"
-            alt="{{ todo?.priority }}"
-          />
+          <ng-container *ngIf="!isEditing; else editPriority">
+            <span>{{ todo?.priority }}</span>
+          </ng-container>
+          <ng-template #editPriority>
+            <select [(ngModel)]="editedTodo.priority">
+              <option value="urgent">Urgent</option>
+              <option value="medium">Medium</option>
+              <option value="low">Low</option>
+            </select>
+          </ng-template>
+          <img [src]="getPriorityIcon(todo?.priority)" alt="{{ todo?.priority }}" />
         </div>
       </div>
 
       <span>Assigned TO :</span>
       <div class="assigned-container">
-        @for (contact of selectedContacts; track contact) {
-        <div
-          class="circle-of-task"
-          [ngStyle]="{ 'background-color': getAvatarColor(contact) }"
-        >
+        <div class="circle-of-task" *ngFor="let contact of selectedContacts"
+          [ngStyle]="{ 'background-color': getAvatarColor(contact) }">
           {{ getInitials(contact.name) }}
         </div>
-        } @if (!isEditing) {
-        <span>{{ todo?.assignedTo }}</span>
-        } @else {
-        <input [(ngModel)]="editedTodo.assignedTo" />
-        }
+        <ng-container *ngIf="!isEditing; else editAssigned">
+          <span>{{ todo?.assignedTo }}</span>
+        </ng-container>
+        <ng-template #editAssigned>
+          <input [(ngModel)]="editedTodo.assignedTo" />
+        </ng-template>
       </div>
 
+      <!-- Subtask-Bereich -->
       <div class="subtasks">
         <span>Subtasks</span>
         <div class="subtask-container">
-          <img
-            [src]="isChecked ? checkedImage : uncheckedImage"
-            alt="check_box"
-            (click)="toggleCheckBox()"
-          />
-          @if (!isEditing) {
-          <span>{{ todo?.subtasks }}</span>
-          } @else {
-          <input [(ngModel)]="editedTodo.subtasks" />
-          }
+          <!-- Für jeden Subtask eine eigene Checkbox + Titel -->
+          <ng-container *ngIf="!isEditing; else editSubtasks">
+            <div *ngFor="let st of todo?.subtasks">
+              <!-- Checkbox: bindet sich an st.done -->
+              <input type="checkbox" [(ngModel)]="st.done" />
+              <span>{{ st.title }}</span>
+            </div>
+          </ng-container>
+
+          <!-- Wenn Task gerade bearbeitet wird -->
+          <ng-template #editSubtasks>
+            <div *ngFor="let st of editedTodo.subtasks">
+              <input type="checkbox" [(ngModel)]="st.done" />
+              <!-- Eingabefeld für den Titel -->
+              <input [(ngModel)]="st.title" />
+            </div>
+          </ng-template>
         </div>
       </div>
 
       <div class="delete-edit-container">
         <div class="deleteIcon" *ngIf="!isEditing">
-          <img
-            class="delete-icon"
-            src="/assets/icons/delete.png"
-            alt="delete-icon"
-          />
+          <img class="delete-icon" src="/assets/icons/delete.png" alt="delete-icon" />
           <span class="contact-link" (click)="deleteTodo()">Delete</span>
         </div>
         <hr *ngIf="!isEditing" />
         <div class="editIcon">
-          @if (!isEditing) {
-          <img
-            class="edit-icon"
-            src="/assets/icons/edit.png"
-            alt="edit-icon"
-            (click)="editTodo()"
-          />
-          <span class="contact-link" (click)="editTodo()">Edit</span>
-          } @else {
-          <div>
-            <button class="check-task-btn" (click)="saveTodo()">
-              Ok
-              <img src="/assets/icons/check.png" alt="check-contact-button" />
-            </button>
-          </div>
-          }
+          <ng-container *ngIf="!isEditing; else saveButton">
+            <img class="edit-icon" src="/assets/icons/edit.png" alt="edit-icon" (click)="editTodo()" />
+            <span class="contact-link" (click)="editTodo()">Edit</span>
+          </ng-container>
+          <ng-template #saveButton>
+            <div>
+              <button class="check-task-btn" (click)="saveTodo()">
+                Ok
+                <img src="/assets/icons/check.png" alt="check-contact-button" />
+              </button>
+            </div>
+          </ng-template>
         </div>
       </div>
+
     </div>
   </div>
 </div>

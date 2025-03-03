@@ -1,3 +1,8 @@
+export interface Subtask {
+  title: string;
+  done: boolean;
+}
+
 export interface Todo {
   id?: string;
   type: 'todo' | 'inprogress' | 'awaitfeedback' | 'done';
@@ -7,5 +12,5 @@ export interface Todo {
   dueDate: string;
   priority: string;
   category: string;
-  subtasks: string[];
+  subtasks: Subtask[];
 }

@@ -72,4 +72,17 @@ export class SingleTodoComponent implements OnInit {
 
     return category ? categoryColors[category] || '#CCCCCC' : '#CCCCCC'; // falls die Kategorie nicht in der Liste ist, wird ein Grauton zurückgegeben
   }
+
+  get totalSubtasks(): number {
+    return this.todo?.subtasks?.length || 0;
+  }
+
+  get completedSubtasks(): number {
+    if (!this.todo?.subtasks) return 0;
+    return this.todo.subtasks.filter((sub) => sub.done).length;
+  }
+
+  get allSubtasksDone(): boolean {
+    return this.totalSubtasks > 0 && this.completedSubtasks === this.totalSubtasks;
+  }
 }
