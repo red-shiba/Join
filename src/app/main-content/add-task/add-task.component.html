@@ -24,6 +24,35 @@
             [(ngModel)]="description" class="custom-input"></textarea>
         </div>
 
+        <p>Due Date</p>
+        <input type="date" id="dueDate" name="dueDate" required [(ngModel)]="dueDate" placeholder="dd/mm/yyyy"
+          class="custom-input" #dueDateInput="ngModel" />
+        @if (dueDateInput.invalid && (dueDateInput.dirty || dueDateInput.touched)) {
+        <div class="error-message">This field is required</div>
+        }
+
+      </div>
+      <div class="devider"></div>
+      <div class="form-right">
+        <p>Prio</p>
+        <div class="priority-buttons">
+          <button type="button" class="priority-btn" data-priority="urgent" (click)="setPriority('urgent')">
+            <span class="text">Urgent</span>
+            <span class="icon"><img src="../../../assets/icons/prio_high.png" alt="" /></span>
+          </button>
+          <button type="button" class="priority-btn" data-priority="medium" (click)="setPriority('medium')">
+            <span class="text">Medium</span>
+            <span class="icon"><img src="../../../assets/icons/prio_medium.png" alt="" /></span>
+          </button>
+          <button type="button" class="priority-btn" data-priority="low" (click)="setPriority('low')">
+            <span class="text">Low</span>
+            <span class="icon"><img src="../../../assets/icons/prio_low.png" alt="" /></span>
+          </button>
+        </div>
+
+        <input type="hidden" id="selectedPriority" name="priority" [(ngModel)]="priority" />
+
+
         <div class="form-container">
           <label>
             <p>Assigned to</p>
@@ -62,33 +91,8 @@
           }
         </div>
         }
-      </div>
-      <div class="devider"></div>
-      <div class="form-right">
-        <p>Due Date</p>
-        <input type="date" id="dueDate" name="dueDate" required [(ngModel)]="dueDate" placeholder="dd/mm/yyyy"
-          class="custom-input" #dueDateInput="ngModel" />
-        @if (dueDateInput.invalid && (dueDateInput.dirty || dueDateInput.touched)) {
-        <div class="error-message">This field is required</div>
-        }
 
-        <p>Prio</p>
-        <div class="priority-buttons">
-          <button type="button" class="priority-btn" data-priority="urgent" (click)="setPriority('urgent')">
-            <span class="text">Urgent</span>
-            <span class="icon"><img src="../../../assets/icons/prio_high.png" alt="" /></span>
-          </button>
-          <button type="button" class="priority-btn" data-priority="medium" (click)="setPriority('medium')">
-            <span class="text">Medium</span>
-            <span class="icon"><img src="../../../assets/icons/prio_medium.png" alt="" /></span>
-          </button>
-          <button type="button" class="priority-btn" data-priority="low" (click)="setPriority('low')">
-            <span class="text">Low</span>
-            <span class="icon"><img src="../../../assets/icons/prio_low.png" alt="" /></span>
-          </button>
-        </div>
 
-        <input type="hidden" id="selectedPriority" name="priority" [(ngModel)]="priority" />
 
         <p>Category</p>
         <select id="category" name="category" required [(ngModel)]="category" class="category-dropdown"
