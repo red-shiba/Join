@@ -206,7 +206,7 @@
 
 .drop-area {
   max-height: 58vh;
-  overflow-y: scroll;
+  // overflow-y: scroll;
   overflow-x: hidden;
 }
 
@@ -230,7 +230,7 @@
   z-index: 999;
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1370px) {
   .drag-and-drop-container {
     flex-direction: column;
     max-height: 78vh;

@@ -12,7 +12,11 @@ body {
   margin-top: 0px;
   // padding: 0;
   background-color: #f5f5f5;
-  // overflow-y: hidden;
+  overflow-y: hidden;
+}
+
+html {
+  overflow-y: hidden;
 }
 
 // html, body { height: 100%; }
