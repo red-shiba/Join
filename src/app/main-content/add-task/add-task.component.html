@@ -11,6 +11,9 @@
             class="custom-input" [class.ng-invalid]="
               titleInput.invalid && (titleInput.dirty || titleInput.touched)
             " #titleInput="ngModel" />
+          @if (titleInput.invalid && (titleInput.dirty || titleInput.touched)) {
+          <div class="error-message">This field is required</div>
+          }
         </div>
 
         <div class="form-container form-left-description">
@@ -64,7 +67,10 @@
       <div class="form-right">
         <p>Due Date</p>
         <input type="date" id="dueDate" name="dueDate" required [(ngModel)]="dueDate" placeholder="dd/mm/yyyy"
-          class="custom-input" />
+          class="custom-input" #dueDateInput="ngModel" />
+        @if (dueDateInput.invalid && (dueDateInput.dirty || dueDateInput.touched)) {
+        <div class="error-message">This field is required</div>
+        }
 
         <p>Prio</p>
         <div class="priority-buttons">
@@ -85,11 +91,15 @@
         <input type="hidden" id="selectedPriority" name="priority" [(ngModel)]="priority" />
 
         <p>Category</p>
-        <select id="category" name="category" required [(ngModel)]="category" class="category-dropdown">
+        <select id="category" name="category" required [(ngModel)]="category" class="category-dropdown"
+          #categoryInput="ngModel">
           <option value="">Select task category</option>
           <option value="Technical Task">Technical Task</option>
           <option value="User Story">User Story</option>
         </select>
+        @if (categoryInput.invalid && (categoryInput.dirty || categoryInput.touched)) {
+        <div class="error-message">This field is required</div>
+        }
 
         <p>Subtasks</p>
 
@@ -141,11 +151,16 @@
       </div>
     </div>
 
-    <div class="add-task-btn">
-      <button class="cbtn cancelBtn" (click)="closeDialog()">Cancel</button>
-      <button class="btn createBtn" [disabled]="!title || !dueDate || !category" (click)="addTodo()">
-        Create Task
-      </button>
+    <div class="add-task-container-end">
+      <div class="add-task-text">
+        <p><span>*</span>This field is required</p>
+      </div>
+      <div class="add-task-btn">
+        <button class="cbtn cancelBtn" (click)="closeDialog()">Cancel</button>
+        <button class="btn createBtn" [disabled]="!title || !dueDate || !category" (click)="addTodo()">
+          Create Task
+        </button>
+      </div>
     </div>
   </div>
 </section>

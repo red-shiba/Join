@@ -83,6 +83,20 @@ export class BoardComponent {
     });
   }
 
+  noResultsFound(): boolean {
+    if (!this.searchTerm) {
+      return false;
+    }
+
+    let totalMatches = 0;
+    totalMatches += this.getFilteredList('todoList').length;
+    totalMatches += this.getFilteredList('awaitFeedbackList').length;
+    totalMatches += this.getFilteredList('inProgressList').length;
+    totalMatches += this.getFilteredList('doneList').length;
+
+    return totalMatches === 0;
+  }
+
   drop(
     event: CdkDragDrop<Todo[]>,
     newCategory: 'todo' | 'inprogress' | 'awaitfeedback' | 'done'

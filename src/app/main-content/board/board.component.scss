@@ -10,13 +10,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: -30px;
+  margin-top: 20px;
   padding: 0px 40px;
   > h3 {
     font-size: 61px;
     font-weight: 700;
     color: $color-input-text;
     font-family: "inter", sans-serif;
+    margin: 0;
   }
 }
 .headline {
@@ -29,6 +30,7 @@
     font-weight: 700;
     color: $color-input-text;
     font-family: "inter", sans-serif;
+    margin: 0;
   }
 }
 .add-task-btn-mobile {
@@ -65,15 +67,17 @@
   align-items: center;
   border-left: 1px solid #ccc;
   padding-left: 5px;
+  > :hover {
+    border-radius: 50%;
+    background-color: #f3f4f6;
+  }
 }
 
 .search-icon {
   width: 35px;
-  height: 35px;
+  cursor: pointer;
 }
 .dragndrop-container {
-  // width: 240px;
-  // max-width: 100%;
   margin: 0px 10px 0px 0px;
   display: inline-block;
   vertical-align: top;
@@ -165,23 +169,20 @@
   padding: 20px 10px;
   border-bottom: solid 1px #ccc;
   color: rgba(0, 0, 0, 0.87);
-  display: flex;
-  justify-content: center;
   box-sizing: border-box;
   cursor: move;
   background: white;
   font-size: 14px;
   border-radius: 24px;
   box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.1);
-  // margin-top: 30px;
   margin: 10px;
 }
 
 .cdk-drag-preview {
   box-sizing: border-box;
-  border-radius: 4px;
-  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
-    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  border-radius: 24px;
+  width: 250px;
+  height: 244px;
 }
 
 .cdk-drag-placeholder {
@@ -199,13 +200,13 @@
 .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
-.drop-area {
-  padding: 1%;
-}
+// .drop-area {
+//    padding: 1%;
+// }
 
 .drop-area {
   max-height: 58vh;
-  overflow-y: scroll;
+  // overflow-y: scroll;
   overflow-x: hidden;
 }
 
@@ -214,7 +215,22 @@
   height: 0;
 }
 
-@media (max-width: 1280px) {
+.search-wrapper {
+  position: relative;
+}
+
+.alert-message {
+  position: absolute;
+  margin-top: 0.5em;
+  color: red;
+  background-color: #fff;
+  padding: 0.3em 0.5em;
+  border: 1px solid red;
+  border-radius: 4px;
+  z-index: 999;
+}
+
+@media (max-width: 1370px) {
   .drag-and-drop-container {
     flex-direction: column;
     max-height: 78vh;
@@ -256,9 +272,20 @@
 @media (max-width: 990px) {
   .headline-container {
     flex-direction: column;
-    margin-top: 0;
-    margin-bottom: 60px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     justify-content: flex-start;
+  }
+  .info-dragdrop {
+    > img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .drag-and-drop-container {
+    max-height: 58vh;
   }
 }
 @media (max-width: 615px) {
