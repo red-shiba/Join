@@ -67,15 +67,15 @@
   align-items: center;
   border-left: 1px solid #ccc;
   padding-left: 5px;
+  > :hover {
+    border-radius: 50%;
+    background-color: #f3f4f6;
+  }
 }
 
 .search-icon {
   width: 35px;
   cursor: pointer;
-  > :hover {
-    border-radius: 50%;
-    background-color: black;
-  }
 }
 .dragndrop-container {
   margin: 0px 10px 0px 0px;
