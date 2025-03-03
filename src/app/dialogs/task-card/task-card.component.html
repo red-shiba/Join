@@ -71,24 +71,19 @@
         </ng-template>
       </div>
 
-      <!-- Subtask-Bereich -->
       <div class="subtasks">
         <span>Subtasks</span>
         <div class="subtask-container">
-          <!-- Für jeden Subtask eine eigene Checkbox + Titel -->
           <ng-container *ngIf="!isEditing; else editSubtasks">
             <div *ngFor="let st of todo?.subtasks">
-              <!-- Checkbox: bindet sich an st.done -->
               <input type="checkbox" [(ngModel)]="st.done" />
               <span>{{ st.title }}</span>
             </div>
           </ng-container>
 
-          <!-- Wenn Task gerade bearbeitet wird -->
           <ng-template #editSubtasks>
             <div *ngFor="let st of editedTodo.subtasks">
               <input type="checkbox" [(ngModel)]="st.done" />
-              <!-- Eingabefeld für den Titel -->
               <input [(ngModel)]="st.title" />
             </div>
           </ng-template>

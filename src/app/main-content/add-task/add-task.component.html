@@ -111,34 +111,26 @@
             </div>
           </div>
 
-          <!-- WICHTIG: subtask.title statt subtask -->
           <ul id="subtaskList input-wrapper">
-            <!-- Wir nutzen *ngFor und i als Index -->
             <li *ngFor="let subtask of subtasks; let i = index">
-              <!-- Checkbox für "done"? (Optional) -->
               <input type="checkbox" [(ngModel)]="subtask.done" [disabled]="editedSubtaskIndex === i" />
 
-              <!-- Anzeige bzw. Eingabefeld je nach Bearbeitungszustand -->
               <span *ngIf="editedSubtaskIndex !== i">{{ subtask.title }}</span>
               <input *ngIf="editedSubtaskIndex === i" type="text" [(ngModel)]="editedSubtaskValue" />
 
               <div class="subtask-buttons input-icons">
-                <!-- Bearbeiten -->
                 <button *ngIf="editedSubtaskIndex !== i" type="button" class="edit-button" (click)="editSubtask(i)">
                   <img src="assets/icons/edit.png" alt="Edit" class="icon" />
                 </button>
 
-                <!-- Löschen -->
                 <button *ngIf="editedSubtaskIndex !== i" type="button" class="delete-button" (click)="deleteSubtask(i)">
                   <img src="assets/icons/delete.png" alt="Delete" class="icon" />
                 </button>
 
-                <!-- Bearbeitung abbrechen -->
                 <button *ngIf="editedSubtaskIndex === i" type="button" class="cancel-button" (click)="cancelEdit()">
                   <img src="assets/icons/delete.png" alt="Edit" class="icon" />
                 </button>
 
-                <!-- Bearbeitung bestätigen -->
                 <button *ngIf="editedSubtaskIndex === i" type="button" class="confirm-button" (click)="saveSubtask(i)">
                   ✔
                 </button>
