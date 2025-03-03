@@ -26,6 +26,7 @@ p {
   font-family: inter;
   // padding-top: 100px;
   margin-bottom: -30px;
+  margin-block-start: 0;
 }
 
 // Forms styling
@@ -35,7 +36,7 @@ p {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  padding: 100px 0 50px 0;
+  padding: 50px 0 50px 0;
   font-family: inter;
   font-size: 16px;
   font-weight: 400;
@@ -60,6 +61,18 @@ p {
   margin-bottom: 20px;
 }
 
+.form-left-title span {
+  color: #ff3c00b6;
+}
+
+.form-left span {
+  color: #ff3c00b6;
+}
+
+p .category-required {
+  color: #ff3c00b6;
+}
+
 .form-container p {
   color: #4e4e4e;
 }
@@ -69,12 +82,17 @@ p {
   -webkit-appearance: none;
   -moz-appearance: none;
   background-image: url("../../../assets/icons/arrow-dropdown-down.png");
+  transition: transform 0.3s ease;
   background-position: right 10px center;
   background-repeat: no-repeat;
   padding-right: 30px;
   color: #979393;
   cursor: pointer;
 }
+
+// .category-dropdown:focus {
+//   transform: rotate(180deg);
+// }
 
 // Form input border
 
@@ -452,6 +470,7 @@ textarea {
 .add-task-container-end {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   max-width: 1920px;
   width: 100%;
   box-sizing: border-box;
@@ -471,7 +490,9 @@ textarea {
 .add-task-btn {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   gap: 10px;
+  margin-bottom: 15px;
 }
 
 .error-message {

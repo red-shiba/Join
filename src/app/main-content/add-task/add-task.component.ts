@@ -30,7 +30,7 @@ export class AddTaskComponent {
   dropdownOpen = false;
 
   editedSubtaskIndex: number | null = null; // Index des bearbeiteten Subtasks
-  editedSubtaskValue: string = ""; // Temporärer Wert für Bearbeitung
+  editedSubtaskValue: string = ''; // Temporärer Wert für Bearbeitung
 
   constructor(
     private todoListService: TodoListService,
@@ -82,112 +82,112 @@ export class AddTaskComponent {
     });
   }
 
-activateInput() {
-  this.showControls = true;
-}
-
-confirmSubtask() {
-  if (this.subtaskInput.trim() !== "") {
-    this.subtasks.push({ title: this.subtaskInput.trim(), done: false });
-    this.subtaskInput = "";
-    this.showControls = false;
+  activateInput() {
+    this.showControls = true;
   }
-}
 
-cancelSubtask() {
-  this.subtaskInput = "";
-  this.showControls = false;
-}
-
-hideControls() {
-  if (this.subtaskInput.trim() === "") {
-    setTimeout(() => {
+  confirmSubtask() {
+    if (this.subtaskInput.trim() !== '') {
+      this.subtasks.push({ title: this.subtaskInput.trim(), done: false });
+      this.subtaskInput = '';
       this.showControls = false;
-    }, 200);
-  }
-}
-
-deleteSubtask(index: number) {
-  this.subtasks.splice(index, 1);
-}
-
-editSubtask(index: number) {
-  this.editedSubtaskIndex = index;
-  this.editedSubtaskValue = this.subtasks[index].title;
-}
-
-saveSubtask(index: number) {
-  if (this.editedSubtaskValue.trim() !== "") {
-    this.subtasks[index].title = this.editedSubtaskValue.trim();
-    this.cancelEdit();
-  }
-}
-
-cancelEdit() {
-  this.editedSubtaskIndex = null;
-  this.editedSubtaskValue = "";
-}
-
-addTodo() {
-  if (!this.title || !this.dueDate || !this.category) {
-    console.warn('Task-Erstellung fehlgeschlagen: Fehlende Pflichtfelder!');
-    return;
-  }
-
-  const newTask: Todo = {
-    id: '',
-    type: 'todo',
-    title: this.title,
-    description: this.description,
-    assignedTo: this.selectedContacts.map((c) => c.name).join(', '),
-    dueDate: this.dueDate,
-    priority: this.priority,
-    category: this.category,
-    subtasks: this.subtasks
-  };
-
-  this.todoListService
-    .addTodo(newTask, 'todo')
-    .then(() => {
-      console.log('Task erfolgreich hinzugefügt:', newTask);
-    })
-    .catch((error) => {
-      console.error('Fehler beim Speichern des Tasks:', error);
-    });
-
-  // Felder zurücksetzen
-  this.title = '';
-  this.description = '';
-  this.dueDate = '';
-  this.priority = 'low';
-  this.category = '';
-  this.selectedContacts = [];
-  this.subtasks = [];
-}
-
-closeDialog() {
-  console.log('Closing dialog');
-}
-
-getInitials(name: string): string {
-  if (!name) return '';
-  return name
-    .split(' ')
-    .map((word) => word[0])
-    .join('')
-    .toUpperCase();
-}
-
-getAlphabeticalLetters(): string[] {
-  let letters: string[] = [];
-  for (let contact of this.getList()) {
-    if (!letters.includes(contact.name[0].toUpperCase())) {
-      let firstLetter = contact.name[0].toUpperCase();
-      letters.push(firstLetter);
     }
   }
-  return letters.sort();
-}
+
+  cancelSubtask() {
+    this.subtaskInput = '';
+    this.showControls = false;
+  }
+
+  hideControls() {
+    if (this.subtaskInput.trim() === '') {
+      setTimeout(() => {
+        this.showControls = false;
+      }, 200);
+    }
+  }
+
+  deleteSubtask(index: number) {
+    this.subtasks.splice(index, 1);
+  }
+
+  editSubtask(index: number) {
+    this.editedSubtaskIndex = index;
+    this.editedSubtaskValue = this.subtasks[index].title;
+  }
+
+  saveSubtask(index: number) {
+    if (this.editedSubtaskValue.trim() !== '') {
+      this.subtasks[index].title = this.editedSubtaskValue.trim();
+      this.cancelEdit();
+    }
+  }
+
+  cancelEdit() {
+    this.editedSubtaskIndex = null;
+    this.editedSubtaskValue = '';
+  }
+
+  addTodo() {
+    if (!this.title || !this.dueDate || !this.category) {
+      console.warn('Task-Erstellung fehlgeschlagen: Fehlende Pflichtfelder!');
+      return;
+    }
+
+    const newTask: Todo = {
+      id: '',
+      type: 'todo',
+      title: this.title,
+      description: this.description,
+      assignedTo: this.selectedContacts.map((c) => c.name).join(', '),
+      dueDate: this.dueDate,
+      priority: this.priority,
+      category: this.category,
+      subtasks: this.subtasks,
+    };
+
+    this.todoListService
+      .addTodo(newTask, 'todo')
+      .then(() => {
+        console.log('Task erfolgreich hinzugefügt:', newTask);
+      })
+      .catch((error) => {
+        console.error('Fehler beim Speichern des Tasks:', error);
+      });
+
+    // Felder zurücksetzen
+    this.title = '';
+    this.description = '';
+    this.dueDate = '';
+    this.priority = 'low';
+    this.category = '';
+    this.selectedContacts = [];
+    this.subtasks = [];
+  }
+
+  closeDialog() {
+    console.log('Closing dialog');
+  }
+
+  getInitials(name: string): string {
+    if (!name) return '';
+    return name
+      .split(' ')
+      .map((word) => word[0])
+      .join('')
+      .toUpperCase();
+  }
+
+  getAlphabeticalLetters(): string[] {
+    let letters: string[] = [];
+    for (let contact of this.getList()) {
+      if (!letters.includes(contact.name[0].toUpperCase())) {
+        let firstLetter = contact.name[0].toUpperCase();
+        letters.push(firstLetter);
+      }
+    }
+    return letters.sort();
+  }
 
   toggleDropdown() {
     this.dropdownOpen = !this.dropdownOpen;

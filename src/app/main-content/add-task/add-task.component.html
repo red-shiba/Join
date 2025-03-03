@@ -5,7 +5,7 @@
       <div class="form-left">
         <div class="form-container form-left-title">
           <label for="title">
-            <p>Title</p>
+            <p>Title<span>*</span></p>
           </label>
           <input type="text" id="title" name="title" required placeholder="Enter a Title" [(ngModel)]="title"
             class="custom-input" [class.ng-invalid]="
@@ -24,7 +24,7 @@
             [(ngModel)]="description" class="custom-input"></textarea>
         </div>
 
-        <p>Due Date</p>
+        <p>Due Date<span>*</span></p>
         <input type="date" id="dueDate" name="dueDate" required [(ngModel)]="dueDate" placeholder="dd/mm/yyyy"
           class="custom-input" #dueDateInput="ngModel" />
         @if (dueDateInput.invalid && (dueDateInput.dirty || dueDateInput.touched)) {
@@ -94,7 +94,7 @@
 
 
 
-        <p>Category</p>
+        <p>Category<span class="category-required">*</span></p>
         <select id="category" name="category" required [(ngModel)]="category" class="category-dropdown"
           #categoryInput="ngModel">
           <option value="">Select task category</option>
