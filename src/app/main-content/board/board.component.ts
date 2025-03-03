@@ -33,34 +33,22 @@ export class BoardComponent {
   awaitFeedbackList: Todo[] = [];
   inProgressList: Todo[] = [];
   doneList: Todo[] = [];
-
-  /** Overlay-Logik */
   isOverlayOpen = false;
   selectedTodo: Todo | null = null;
-
-  /** Suchbegriff */
   searchTerm: string = '';
 
   constructor(private todoListService: TodoListService) {}
 
   ngOnInit() {
-    // Hier wird das Observable abonniert und deine lokalen Arrays gefüllt
     this.todoListService.todos$.subscribe((todos) => {
       this.todoList = todos;
     });
   }
 
-  /**
-   * Wird aufgerufen, wenn der Benutzer im Suchfeld tippt.
-   * @param value Der aktuelle Suchbegriff
-   */
   onSearchChange(value: string) {
     this.searchTerm = value;
   }
 
-  /**
-   * Originale Methode, um das entsprechende Todo-Array zu erhalten.
-   */
   getList(listId: string): Todo[] {
     switch (listId) {
       case 'todoList':
@@ -76,14 +64,9 @@ export class BoardComponent {
     }
   }
 
-  /**
-   * Gefilterte Liste basierend auf dem Suchbegriff (searchTerm).
-   * Durchsucht title und description.
-   */
   getFilteredList(listId: string): Todo[] {
     const allTodos = this.getList(listId);
 
-    // Wenn kein Suchbegriff vorhanden ist, geben wir alle Todos zurück
     if (!this.searchTerm) {
       return allTodos;
     }
@@ -132,7 +115,7 @@ export class BoardComponent {
   }
 
   openOverlay(todo: Todo) {
-    this.selectedTodo = todo;
+    this.selectedTodo = todo; // speichert das ausgewählte Todo-Objekt
     this.isOverlayOpen = true;
   }
 
