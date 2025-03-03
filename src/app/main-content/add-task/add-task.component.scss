@@ -329,7 +329,10 @@ textarea {
   display: flex;
   align-items: center;
   padding: 10px;
+  margin: 10px;
   // border-bottom: 1px solid #ddd;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
 .assignedStyle:hover {
