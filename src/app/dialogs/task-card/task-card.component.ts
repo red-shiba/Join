@@ -42,8 +42,8 @@ export class TaskCardComponent {
 
   constructor(private todoService: TodoListService) {}
 
-  toggleCheckBox() {
-    this.isChecked = !this.isChecked;
+  toggleCheckBox(subtask: any) {
+    subtask.done = !subtask.done;
   }
 
   close() {

@@ -22,11 +22,14 @@
             class="search-icon"
           />
         </div>
+        <button class="add-task-btn">
+          Add task
+          <img src="/assets/icons/add.png" alt="add-contact-button" />
+        </button>
       </div>
-      <button class="add-task-btn">
-        Add task
-        <img src="/assets/icons/add.png" alt="add-contact-button" />
-      </button>
+      <div *ngIf="noResultsFound()" class="alert-message">
+        <span>Suche hat keine Treffer ergeben</span>
+      </div>
     </div>
   </div>
   <div class="drag-and-drop-container">
