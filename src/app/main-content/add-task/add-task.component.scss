@@ -152,6 +152,8 @@ textarea {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 .priority-buttons button {
@@ -177,7 +179,7 @@ textarea {
   padding: 15px 20px;
   flex: 1;
   cursor: pointer;
-  margin-right: 10px;
+  // margin-right: 10px;
   &:last-child {
     margin-right: 0;
   }
@@ -518,6 +520,40 @@ textarea {
 
 // Media
 
-// @media (max-width: 1480px) {
+@media (max-width: 1100px) {
+  .add-task-form {
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
 
-// }
+  .devider {
+    display: none;
+  }
+
+  .form-left,
+  .form-right {
+    width: 80%;
+    padding: 0;
+    margin-top: 15px;
+  }
+
+  .form-left {
+    padding: 0;
+  }
+
+  .form-right {
+    padding: 0;
+  }
+
+  .add-task-inner-container h2 {
+    padding-left: calc(9% + 10px);
+    margin-bottom: 0;
+  }
+
+  .add-task-container-end {
+    padding-right: calc(9% + 10px);
+    padding-left: calc(9% + 10px);
+  }
+}
