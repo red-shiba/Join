@@ -321,21 +321,29 @@ textarea {
   margin-right: -5px;
 }
 
-.dropdown-icon {
-  margin-left: 10px;
-}
+// .dropdown-icon {
+//   margin-left: 10px;
+// }
 
 .assignedStyle {
   display: flex;
   align-items: center;
-  padding: 5px;
-  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  // border-bottom: 1px solid #ddd;
+}
+
+.assignedStyle:hover {
+  background-color: #f8f8f8;
+}
+
+.assignedStyle.selected {
+  background-color: #2a3d59;
+  color: white;
 }
 
 .assignedStyleSelected {
   display: flex;
   align-items: center;
-  background-color: #f2f2f2;
 }
 
 .avatar {

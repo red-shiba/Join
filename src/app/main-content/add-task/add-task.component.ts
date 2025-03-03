@@ -28,6 +28,9 @@ export class AddTaskComponent {
   contactList: Contact[] = [];
   selectedContacts: Contact[] = [];
   dropdownOpen = false;
+  isSelected(contact: Contact): boolean {
+    return this.selectedContacts.includes(contact);
+  }
 
   editedSubtaskIndex: number | null = null; // Index des bearbeiteten Subtasks
   editedSubtaskValue: string = ''; // Temporärer Wert für Bearbeitung

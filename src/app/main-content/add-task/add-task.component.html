@@ -66,7 +66,7 @@
             <div class="assign-container" [class.open]="dropdownOpen">
               <ul class="contact-list">
                 @for (contact of contactList; track contact) {
-                <label class="assignedStyle">
+                <label class="assignedStyle" [class.selected]="isSelected(contact)">
                   <div class="avatar" [ngStyle]="{ 'background-color': getAvatarColor(contact) }">
                     {{ getInitials(contact.name) }}
                   </div>
