@@ -214,6 +214,21 @@
   height: 0;
 }
 
+.search-wrapper {
+  position: relative;
+}
+
+.alert-message {
+  position: absolute;
+  margin-top: 0.5em;
+  color: red;
+  background-color: #fff;
+  padding: 0.3em 0.5em;
+  border: 1px solid red;
+  border-radius: 4px;
+  z-index: 999;
+}
+
 @media (max-width: 1280px) {
   .drag-and-drop-container {
     flex-direction: column;

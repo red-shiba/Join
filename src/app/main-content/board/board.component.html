@@ -6,21 +6,26 @@
         <img src="/assets/icons/add.png" alt="add-contact-button" />
       </button>
     </div>
-    <div class="search-box">
-      <div class="search-container">
-        <input type="text" class="search-input" placeholder="Find Task" #searchInput (input)="onSearchChange(searchInput.value)"/>
-        <div class="search-icon-container">
-          <img
-            src="/assets/icons/search.png"
-            alt="search-button"
-            class="search-icon"
-          />
+    <div class="search-wrapper">
+      <div class="search-box">
+        <div class="search-container">
+          <input type="text" class="search-input" placeholder="Find Task" #searchInput (input)="onSearchChange(searchInput.value)"/>
+          <div class="search-icon-container">
+            <img
+              src="/assets/icons/search.png"
+              alt="search-button"
+              class="search-icon"
+            />
+          </div>
         </div>
+        <button class="add-task-btn">
+          Add task
+          <img src="/assets/icons/add.png" alt="add-contact-button" />
+        </button>
       </div>
-      <button class="add-task-btn">
-        Add task
-        <img src="/assets/icons/add.png" alt="add-contact-button" />
-      </button>
+      <div *ngIf="noResultsFound()" class="alert-message">
+        <span>Suche hat keine Treffer ergeben</span>
+      </div>
     </div>
   </div>
   <div class="drag-and-drop-container">
