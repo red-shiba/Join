@@ -8,7 +8,7 @@
     </div>
     <div class="search-box">
       <div class="search-container">
-        <input type="text" class="search-input" placeholder="Find Task" />
+        <input type="text" class="search-input" placeholder="Find Task" #searchInput (input)="onSearchChange(searchInput.value)"/>
         <div class="search-icon-container">
           <img
             src="/assets/icons/search.png"
@@ -34,12 +34,12 @@
         class="drop-area"
         cdkDropList
         #todoList="cdkDropList"
-        [cdkDropListData]="getList('todoList')"
+        [cdkDropListData]="getFilteredList('todoList')"
         [cdkDropListConnectedTo]="[inprogressList, awaitFeedbackList, doneList]"
         (cdkDropListDropped)="drop($event, 'todo')"
       >
-        @if (getList('todoList').length > 0) { @for (todo of
-        getList('todoList'); track todo.id) {
+        @if (getFilteredList('todoList').length > 0) { @for (todo of
+        getFilteredList('todoList'); track todo.id) {
         <div class="board-box" cdkDrag (click)="openOverlay(todo)">
           <app-single-todo [todo]="todo"></app-single-todo>
         </div>
@@ -59,12 +59,12 @@
         class="drop-area"
         cdkDropList
         #awaitFeedbackList="cdkDropList"
-        [cdkDropListData]="getList('awaitFeedbackList')"
+        [cdkDropListData]="getFilteredList('awaitFeedbackList')"
         [cdkDropListConnectedTo]="[todoList, inprogressList, doneList]"
         (cdkDropListDropped)="drop($event, 'awaitfeedback')"
       >
-        @if (getList('awaitFeedbackList').length > 0) { @for (todo of
-        getList('awaitFeedbackList'); track todo.id) {
+        @if (getFilteredList('awaitFeedbackList').length > 0) { @for (todo of
+        getFilteredList('awaitFeedbackList'); track todo.id) {
         <div class="board-box" cdkDrag (click)="openOverlay(todo)">
           <app-single-todo [todo]="todo"></app-single-todo>
         </div>
@@ -84,12 +84,12 @@
         class="drop-area"
         cdkDropList
         #inprogressList="cdkDropList"
-        [cdkDropListData]="getList('inProgressList')"
+        [cdkDropListData]="getFilteredList('inProgressList')"
         [cdkDropListConnectedTo]="[todoList, awaitFeedbackList, doneList]"
         (cdkDropListDropped)="drop($event, 'inprogress')"
       >
-        @if (getList('inProgressList').length > 0) { @for (todo of
-        getList('inProgressList'); track todo.id) {
+        @if (getFilteredList('inProgressList').length > 0) { @for (todo of
+        getFilteredList('inProgressList'); track todo.id) {
         <div class="board-box" cdkDrag (click)="openOverlay(todo)">
           <app-single-todo [todo]="todo"></app-single-todo>
         </div>
@@ -108,12 +108,12 @@
         class="drop-area"
         cdkDropList
         #doneList="cdkDropList"
-        [cdkDropListData]="getList('doneList')"
+        [cdkDropListData]="getFilteredList('doneList')"
         [cdkDropListConnectedTo]="[todoList, inprogressList, awaitFeedbackList]"
         (cdkDropListDropped)="drop($event, 'done')"
       >
-        @if (getList('doneList').length > 0) { @for (todo of
-        getList('doneList'); track todo.id) {
+        @if (getFilteredList('doneList').length > 0) { @for (todo of
+        getFilteredList('doneList'); track todo.id) {
         <div class="board-box" cdkDrag (click)="openOverlay(todo)">
           <app-single-todo [todo]="todo"></app-single-todo>
         </div>

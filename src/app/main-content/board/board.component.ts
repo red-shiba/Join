@@ -7,7 +7,6 @@ import {
   CdkDragDrop,
   CdkDrag,
   CdkDropList,
-  CdkDropListGroup,
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
@@ -34,17 +33,34 @@ export class BoardComponent {
   awaitFeedbackList: Todo[] = [];
   inProgressList: Todo[] = [];
   doneList: Todo[] = [];
+
+  /** Overlay-Logik */
   isOverlayOpen = false;
   selectedTodo: Todo | null = null;
+
+  /** Suchbegriff */
+  searchTerm: string = '';
 
   constructor(private todoListService: TodoListService) {}
 
   ngOnInit() {
+    // Hier wird das Observable abonniert und deine lokalen Arrays gefüllt
     this.todoListService.todos$.subscribe((todos) => {
       this.todoList = todos;
     });
   }
 
+  /**
+   * Wird aufgerufen, wenn der Benutzer im Suchfeld tippt.
+   * @param value Der aktuelle Suchbegriff
+   */
+  onSearchChange(value: string) {
+    this.searchTerm = value;
+  }
+
+  /**
+   * Originale Methode, um das entsprechende Todo-Array zu erhalten.
+   */
   getList(listId: string): Todo[] {
     switch (listId) {
       case 'todoList':
@@ -58,6 +74,30 @@ export class BoardComponent {
       default:
         return [];
     }
+  }
+
+  /**
+   * Gefilterte Liste basierend auf dem Suchbegriff (searchTerm).
+   * Durchsucht title und description.
+   */
+  getFilteredList(listId: string): Todo[] {
+    const allTodos = this.getList(listId);
+
+    // Wenn kein Suchbegriff vorhanden ist, geben wir alle Todos zurück
+    if (!this.searchTerm) {
+      return allTodos;
+    }
+
+    const lowerSearchTerm = this.searchTerm.toLowerCase();
+
+    return allTodos.filter((todo) => {
+      const title = todo.title?.toLowerCase() || '';
+      const description = todo.description?.toLowerCase() || '';
+      return (
+        title.includes(lowerSearchTerm) ||
+        description.includes(lowerSearchTerm)
+      );
+    });
   }
 
   drop(
@@ -83,17 +123,19 @@ export class BoardComponent {
       // Setze die neue Kategorie im lokalen Zustand
       movedTodo.type = newCategory;
 
-      // Firebase-Update durchführen
+      // Firebase-Update
       this.todoListService
         .moveTodo(movedTodo, newCategory)
         .then(() => console.log('Task erfolgreich in Firestore aktualisiert'))
         .catch((err) => console.error('Fehler beim Firebase-Update:', err));
     }
   }
+
   openOverlay(todo: Todo) {
-    this.selectedTodo = todo; // speichert das ausgewählte Todo-Objekt
+    this.selectedTodo = todo;
     this.isOverlayOpen = true;
   }
+
   closeOverlay() {
     this.isOverlayOpen = false;
   }
