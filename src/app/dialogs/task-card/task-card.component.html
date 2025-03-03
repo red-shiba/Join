@@ -8,7 +8,7 @@
             <span>{{ todo?.category }}</span>
           </ng-container>
           <ng-template #editCategory>
-            <input [(ngModel)]="editedTodo.category" />
+            <span>{{ todo?.category }}</span>
           </ng-template>
         </div>
         <div class="close" (click)="closeOverlay.emit()">
