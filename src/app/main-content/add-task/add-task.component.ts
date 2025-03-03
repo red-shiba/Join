@@ -159,7 +159,7 @@ export class AddTaskComponent {
     this.title = '';
     this.description = '';
     this.dueDate = '';
-    this.priority = 'low';
+    this.priority = 'low ';
     this.category = '';
     this.selectedContacts = [];
     this.subtasks = [];
