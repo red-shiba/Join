@@ -1,9 +1,15 @@
-<div class="shaddowBox" [class.closing]="isClosing" (click)="closeOverlay.emit()">
+<div
+  class="shaddowBox"
+  [class.closing]="isClosing"
+  (click)="closeOverlay.emit()"
+>
   <div class="task_card_wrapper" (click)="$event.stopPropagation()">
     <div class="task-container">
-
       <div class="header-task">
-        <div class="task-category" [ngStyle]="{ 'background-color': getCategoryColor(todo?.category) }">
+        <div
+          class="task-category"
+          [ngStyle]="{ 'background-color': getCategoryColor(todo?.category) }"
+        >
           <ng-container *ngIf="!isEditing; else editCategory">
             <span>{{ todo?.category }}</span>
           </ng-container>
@@ -54,29 +60,28 @@
               <option value="low">Low</option>
             </select>
           </ng-template>
-          <img [src]="getPriorityIcon(todo?.priority)" alt="{{ todo?.priority }}" />
+          <img
+            [src]="getPriorityIcon(todo?.priority)"
+            alt="{{ todo?.priority }}"
+          />
         </div>
       </div>
 
       <ng-container *ngIf="!isEditing; else editPriority">
-      <div class="assigned">
-        <p>Assigned TO :</p>
-        <div class="assigned-container">
-          <div class="circle-of-task">GW</div>
-          @if (!isEditing) {
-          <span>{{ todo?.assignedTo }}</span>
-          } @else {
-          <input [(ngModel)]="editedTodo.assignedTo" />
-          }
-        </div>
-      </div></ng-container>
+        <div class="assigned">
+          <p>Assigned TO :</p>
+          <div class="assigned-container">
+            <div class="circle-of-task">GW</div>
+            @if (!isEditing) {
+            <span>{{ todo?.assignedTo }}</span>
+            } @else {
+            <input [(ngModel)]="editedTodo.assignedTo" />
+            }
+          </div>
+        </div></ng-container
+      >
 
-      
       <div class="form-container" *ngIf="isEditing">
-
-
-
-        
         <label><p>Assigned to</p></label>
         <div class="dropdown">
           <button (click)="toggleDropdown()" class="dropdown-button">
@@ -86,36 +91,44 @@
           <div class="assign-container" [class.open]="dropdownOpen">
             <ul class="contact-list">
               @for (contact of contactList; track contact) {
-                <label class="assignedStyle">
-                  <div class="avatar" [ngStyle]="{ 'background-color': getAvatarColor(contact) }">
-                    {{ getInitials(contact.name) }}
-                  </div>
-                  <div class="contactName">{{ contact.name }}</div>
-                  <div class="checkContact">
-                    <input type="checkbox" [checked]="selectedContacts.includes(contact)" 
-                      (change)="toggleContactSelection(contact, $event)" class="custom-input" />
-                  </div>
-                </label>
+              <label class="assignedStyle">
+                <div
+                  class="avatar"
+                  [ngStyle]="{ 'background-color': getAvatarColor(contact) }"
+                >
+                  {{ getInitials(contact.name) }}
+                </div>
+                <div class="contactName">{{ contact.name }}</div>
+                <div class="checkContact">
+                  <input
+                    type="checkbox"
+                    [checked]="selectedContacts.includes(contact)"
+                    (change)="toggleContactSelection(contact, $event)"
+                    class="custom-input"
+                  />
+                </div>
+              </label>
               }
             </ul>
           </div>
         </div>
-      
+
         @if (selectedContacts.length > 0) {
-          <div class="assignedStyleSelected">
-            @for (contact of selectedContacts; track contact) {
-              <label>
-                <div class="avatar" [ngStyle]="{ 'background-color': getAvatarColor(contact) }">
-                  {{ getInitials(contact.name) }}
-                </div> {{(contact.name) }}
-              </label>
-            }
-          </div>
+        <div class="assignedStyleSelected">
+          @for (contact of selectedContacts; track contact) {
+          <label>
+            <div
+              class="avatar"
+              [ngStyle]="{ 'background-color': getAvatarColor(contact) }"
+            >
+              {{ getInitials(contact.name) }}
+            </div>
+            {{ contact.name }}
+          </label>
+          }
+        </div>
         }
       </div>
-      
-
-
 
       <div class="subtasks">
         <span>Subtasks</span>
@@ -138,13 +151,22 @@
 
       <div class="delete-edit-container">
         <div class="deleteIcon" *ngIf="!isEditing">
-          <img class="delete-icon" src="/assets/icons/delete.png" alt="delete-icon" />
+          <img
+            class="delete-icon"
+            src="/assets/icons/delete.png"
+            alt="delete-icon"
+          />
           <span class="contact-link" (click)="deleteTodo()">Delete</span>
         </div>
         <hr *ngIf="!isEditing" />
         <div class="editIcon">
           <ng-container *ngIf="!isEditing; else saveButton">
-            <img class="edit-icon" src="/assets/icons/edit.png" alt="edit-icon" (click)="editTodo()" />
+            <img
+              class="edit-icon"
+              src="/assets/icons/edit.png"
+              alt="edit-icon"
+              (click)="editTodo()"
+            />
             <span class="contact-link" (click)="editTodo()">Edit</span>
           </ng-container>
           <ng-template #saveButton>
@@ -157,7 +179,6 @@
           </ng-template>
         </div>
       </div>
-
     </div>
   </div>
 </div>
