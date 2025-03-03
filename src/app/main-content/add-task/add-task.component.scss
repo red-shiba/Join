@@ -21,7 +21,7 @@ p {
   font-weight: 600;
   padding-left: 100px;
   font-family: inter;
-  padding-top: 100px;
+  // padding-top: 100px;
   margin-bottom: -30px;
 }
 
@@ -32,8 +32,11 @@ p {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  padding: 100px;
+  padding: 100px 100px 50px 100px;
   font-family: inter;
+  font-size: 16px;
+  font-weight: 400;
+  color: #4e4e4e;
 }
 
 .form-container {
@@ -142,6 +145,7 @@ textarea {
   background-color: white;
   padding: 15px 20px;
   flex: 1;
+  cursor: pointer;
   margin-right: 10px;
   &:last-child {
     margin-right: 0;
@@ -394,7 +398,21 @@ textarea {
   position: absolute;
   right: 10px;
   display: flex;
-  gap: 5px;
+  align-items: center;
+  gap: 3px;
+}
+
+.plus-button img {
+  width: 10px;
+}
+
+.cancel-button img {
+  width: 15px;
+  margin-top: 6px;
+}
+
+.confirm-button img {
+  width: 15px;
 }
 
 .plus-button,
@@ -403,7 +421,6 @@ textarea {
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 16px;
 }
 
 .subtask-buttons {
@@ -419,12 +436,33 @@ textarea {
   font-size: 16px;
 }
 
-.add-task-btn {
+.add-task-container-end {
   display: flex;
+  justify-content: space-between;
   max-width: 1920px;
   width: 100%;
+  box-sizing: border-box;
+  padding-right: 100px;
+  padding-left: 100px;
+}
+
+.add-task-container-end p {
+  font-size: 13px;
+}
+
+.add-task-container-end span {
+  color: red;
+  font-size: 12px;
+}
+
+.add-task-btn {
+  display: flex;
   justify-content: flex-end;
   gap: 10px;
-  padding-right: 100px;
-  box-sizing: border-box;
+}
+
+.error-message {
+  color: #ff3c00b6;
+  font-size: 11px;
+  margin-top: 5px;
 }
