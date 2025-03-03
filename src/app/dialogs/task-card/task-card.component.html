@@ -58,19 +58,64 @@
         </div>
       </div>
 
-      <span>Assigned TO :</span>
-      <div class="assigned-container">
-        <div class="circle-of-task" *ngFor="let contact of selectedContacts"
-          [ngStyle]="{ 'background-color': getAvatarColor(contact) }">
-          {{ getInitials(contact.name) }}
-        </div>
-        <ng-container *ngIf="!isEditing; else editAssigned">
+      <ng-container *ngIf="!isEditing; else editPriority">
+      <div class="assigned">
+        <p>Assigned TO :</p>
+        <div class="assigned-container">
+          <div class="circle-of-task">GW</div>
+          @if (!isEditing) {
           <span>{{ todo?.assignedTo }}</span>
-        </ng-container>
-        <ng-template #editAssigned>
+          } @else {
           <input [(ngModel)]="editedTodo.assignedTo" />
-        </ng-template>
+          }
+        </div>
+      </div></ng-container>
+
+      
+      <div class="form-container" *ngIf="isEditing">
+
+
+
+        
+        <label><p>Assigned to</p></label>
+        <div class="dropdown">
+          <button (click)="toggleDropdown()" class="dropdown-button">
+            <span>Select contacts to assign</span>
+            <img src="../../../assets/icons/arrow-dropdown-down.png" alt="" />
+          </button>
+          <div class="assign-container" [class.open]="dropdownOpen">
+            <ul class="contact-list">
+              @for (contact of contactList; track contact) {
+                <label class="assignedStyle">
+                  <div class="avatar" [ngStyle]="{ 'background-color': getAvatarColor(contact) }">
+                    {{ getInitials(contact.name) }}
+                  </div>
+                  <div class="contactName">{{ contact.name }}</div>
+                  <div class="checkContact">
+                    <input type="checkbox" [checked]="selectedContacts.includes(contact)" 
+                      (change)="toggleContactSelection(contact, $event)" class="custom-input" />
+                  </div>
+                </label>
+              }
+            </ul>
+          </div>
+        </div>
+      
+        @if (selectedContacts.length > 0) {
+          <div class="assignedStyleSelected">
+            @for (contact of selectedContacts; track contact) {
+              <label>
+                <div class="avatar" [ngStyle]="{ 'background-color': getAvatarColor(contact) }">
+                  {{ getInitials(contact.name) }}
+                </div> {{(contact.name) }}
+              </label>
+            }
+          </div>
+        }
       </div>
+      
+
+
 
       <div class="subtasks">
         <span>Subtasks</span>

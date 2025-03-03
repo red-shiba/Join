@@ -4,6 +4,8 @@ import { TodoListService } from '../../firebase-service/todo-list.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Contact } from '../../interfaces/contact';
+import { ContactListService } from '../../firebase-service/contact-list.service';
+import { AvatarColorService } from '../../services/avatar-color.service';
 
 @Component({
   selector: 'app-task-card',
@@ -11,7 +13,7 @@ import { Contact } from '../../interfaces/contact';
   imports: [CommonModule, FormsModule],
   providers: [TodoListService],
   templateUrl: './task-card.component.html',
-  styleUrl: './task-card.component.scss',
+  styleUrls: ['./task-card.component.scss'],
 })
 export class TaskCardComponent {
   @Input() todo: Todo | null = null;
@@ -19,6 +21,8 @@ export class TaskCardComponent {
 
   isClosing = false;
   isEditing = false;
+  dropdownOpen = false;
+
   editedTodo: Todo = {
     id: '',
     title: '',
@@ -33,21 +37,76 @@ export class TaskCardComponent {
 
   uncheckedImage = '/assets/icons/check_box.png';
   checkedImage = '/assets/icons/check_ed.png';
-
   isChecked = false;
-  avatarColorService: any;
   selectedContacts: Contact[] = [];
   contactList: Contact[] = [];
-  contactService: any;
 
-  constructor(private todoService: TodoListService) {}
+  constructor(
+    private todoService: TodoListService,
+    private contactListService: ContactListService,
+    private avatarColorService: AvatarColorService
+  ) {}
 
-  toggleCheckBox() {
-    this.isChecked = !this.isChecked;
+  ngOnInit() {
+    this.contactListService.getContacts().subscribe((contacts) => {
+      this.contactList = contacts;
+    });
   }
 
-  close() {
-    this.closeOverlay.emit();
+  editTodo() {
+    if (this.todo) {
+      this.isEditing = true;
+      this.editedTodo = { ...this.todo };
+
+      this.selectedContacts = this.todo.assignedTo
+        ? this.todo.assignedTo
+            .split(', ')
+            .map((name) => this.contactList.find((contact) => contact.name === name)!)
+            .filter((contact) => contact !== undefined) as Contact[]
+        : [];
+    }
+  }
+
+  async saveTodo() {
+    if (this.editedTodo && this.editedTodo.id) {
+      this.editedTodo.assignedTo = this.selectedContacts.map((contact) => contact.name).join(', ');
+      await this.todoService.updateTodo(this.editedTodo);
+
+      this.todo = { ...this.editedTodo };
+      this.isEditing = false;
+      this.dropdownOpen = false;
+      this.closeOverlay.emit();
+    }
+  }
+
+  cancelEdit() {
+    this.isEditing = false;
+    this.dropdownOpen = false;
+  }
+
+  deleteTodo() {
+    if (this.todo && this.todo.id) {
+      this.todoService.deleteTodo(this.todo.id).then(() => {
+        this.closeOverlay.emit();
+      });
+    }
+  }
+
+  toggleDropdown() {
+    this.dropdownOpen = !this.dropdownOpen;
+  }
+
+  toggleContactSelection(contact: Contact, event: Event) {
+    const isChecked = (event.target as HTMLInputElement).checked;
+    if (isChecked) {
+      this.selectedContacts.push(contact);
+    } else {
+      this.selectedContacts = this.selectedContacts.filter((c) => c !== contact);
+    }
+  }
+
+  deleteContact(contact: Contact) {
+    this.selectedContacts = this.selectedContacts.filter((c) => c !== contact);
   }
 
   getPriorityIcon(priority: string | null | undefined): string {
@@ -63,46 +122,13 @@ export class TaskCardComponent {
     }
   }
 
-  editTodo() {
-    if (this.todo) {
-      this.isEditing = true;
-      this.editedTodo = { ...this.todo };
-    }
-  }
-
-  async saveTodo() {
-    if (this.editedTodo && this.editedTodo.id) {
-      console.log('Speichern von:', this.editedTodo);
-
-      await this.todoService.updateTodo(this.editedTodo);
-
-      this.todo = { ...this.editedTodo };
-      this.isEditing = false;
-
-      this.closeOverlay.emit();
-    } else {
-      console.warn('Kein gültiges Todo zum Speichern gefunden');
-    }
-  }
-
-  cancelEdit() {
-    this.isEditing = false;
-  }
-
-  deleteTodo() {
-    if (this.todo && this.todo.id) {
-      this.todoService.deleteTodo(this.todo.id).then(() => {
-        this.closeOverlay.emit();
-      });
-    }
-  }
   getCategoryColor(category: string | null | undefined): string {
     let categoryColors: { [key: string]: string } = {
       'Technical Task': '#1FD7C1',
       'User Story': '#0038FF',
     };
 
-    return category ? categoryColors[category] || '#CCCCCC' : '#CCCCCC'; // falls die Kategorie nicht in der Liste ist, wird ein Grauton zurückgegeben
+    return category ? categoryColors[category] || '#CCCCCC' : '#CCCCCC';
   }
 
   getAvatarColor(contact: Contact): string {
@@ -116,4 +142,11 @@ export class TaskCardComponent {
       .join('')
       .toUpperCase();
   }
+
+  trackByContact(index: number, contact: Contact): string {
+    return contact.id ?? '';
+  }
 }
+
+
+
