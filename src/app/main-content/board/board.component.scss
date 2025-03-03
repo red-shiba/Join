@@ -272,9 +272,20 @@
 @media (max-width: 990px) {
   .headline-container {
     flex-direction: column;
-    margin-top: 0;
-    margin-bottom: 60px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     justify-content: flex-start;
+  }
+  .info-dragdrop {
+    > img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .drag-and-drop-container {
+    max-height: 58vh;
   }
 }
 @media (max-width: 615px) {
