@@ -518,6 +518,23 @@ textarea {
   margin-top: 5px;
 }
 
+.edit-button img {
+  width: 16px;
+}
+
+.delete-button img {
+  width: 16px;
+}
+
+.edit-input-icons {
+  position: absolute;
+  top: 12px;
+  right: 2px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
 // Media
 
 @media (max-width: 1100px) {
