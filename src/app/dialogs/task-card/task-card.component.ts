@@ -41,27 +41,16 @@ export class TaskCardComponent {
   selectedContacts: Contact[] = [];
   contactList: Contact[] = [];
 
-  constructor(private todoService: TodoListService) {}
+  constructor(
+    private todoService: TodoListService,
+    private contactListService: ContactListService,
+    private avatarColorService: AvatarColorService
+  ) {}
 
-  toggleCheckBox() {
-    this.isChecked = !this.isChecked;
-  }
-
-  close() {
-    this.closeOverlay.emit();
-  }
-
-  getPriorityIcon(priority: string | null | undefined): string {
-    switch (priority) {
-      case 'urgent':
-        return '/assets/icons/prio_high.png';
-      case 'medium':
-        return '/assets/icons/prio_medium.png';
-      case 'low':
-        return '/assets/icons/prio_low.png';
-      default:
-        return '';
-    }
+  ngOnInit() {
+    this.contactListService.getContacts().subscribe((contacts) => {
+      this.contactList = contacts;
+    });
   }
 
   editTodo() {

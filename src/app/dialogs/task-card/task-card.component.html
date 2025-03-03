@@ -121,15 +121,15 @@
         <span>Subtasks</span>
         <div class="subtask-container">
           <ng-container *ngIf="!isEditing; else editSubtasks">
-            <div class="subtask-entry" *ngFor="let st of todo?.subtasks">
-              <img [src]="st.done ? checkedImage : uncheckedImage" alt="check_box" (click)="toggleCheckBox(st)" />
+            <div *ngFor="let st of todo?.subtasks">
+              <input type="checkbox" [(ngModel)]="st.done" />
               <span>{{ st.title }}</span>
             </div>
           </ng-container>
 
           <ng-template #editSubtasks>
             <div *ngFor="let st of editedTodo.subtasks">
-              <img [src]="st.done ? checkedImage : uncheckedImage" alt="check_box" (click)="toggleCheckBox(st)" />
+              <input type="checkbox" [(ngModel)]="st.done" />
               <input [(ngModel)]="st.title" />
             </div>
           </ng-template>
