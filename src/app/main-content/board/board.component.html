@@ -2,7 +2,7 @@
   <div class="headline-container">
     <div class="headline">
       <h3>Board</h3>
-      <button class="add-task-btn-mobile">
+      <button class="add-task-btn-mobile" (click)="openDialog()">
         <img src="/assets/icons/add.png" alt="add-contact-button" />
       </button>
     </div>
@@ -15,7 +15,7 @@
             <img src="/assets/icons/search.png" alt="search-button" class="search-icon" />
           </div>
         </div>
-        <button class="add-task-btn">
+        <button class="add-task-btn" (click)="openDialog()">
           Add task
           <img src="/assets/icons/add.png" alt="add-contact-button" />
         </button>
@@ -23,6 +23,10 @@
       <div *ngIf="noResultsFound()" class="alert-message">
         <span>Suche hat keine Treffer ergeben</span>
       </div>
+      <app-add-task
+      *ngIf="isDialogOpen"
+      (addDialogCloseed)="closeDialog()"
+    ></app-add-task>
     </div>
   </div>
   <div class="drag-and-drop-container">

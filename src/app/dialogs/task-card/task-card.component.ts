@@ -59,6 +59,10 @@ export class TaskCardComponent {
     });
   }
 
+  toggleCheckBox(subtask: any) {
+    subtask.done = !subtask.done;
+  }
+
   editTodo() {
     if (this.todo) {
       this.isEditing = true;

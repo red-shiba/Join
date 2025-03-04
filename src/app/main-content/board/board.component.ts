@@ -12,6 +12,7 @@ import {
 } from '@angular/cdk/drag-drop';
 import { SingleTodoComponent } from './single-todo/single-todo.component';
 import { TaskCardComponent } from '../../dialogs/task-card/task-card.component';
+import { AddTaskComponent } from '../add-task/add-task.component';
 
 @Component({
   selector: 'app-board',
@@ -23,6 +24,7 @@ import { TaskCardComponent } from '../../dialogs/task-card/task-card.component';
     CommonModule,
     SingleTodoComponent,
     TaskCardComponent,
+    AddTaskComponent
   ],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss',
@@ -36,6 +38,7 @@ export class BoardComponent {
   isOverlayOpen = false;
   selectedTodo: Todo | null = null;
   searchTerm: string = '';
+  isDialogOpen = false;
 
   constructor(private todoListService: TodoListService) {}
 
@@ -135,5 +138,13 @@ export class BoardComponent {
 
   closeOverlay() {
     this.isOverlayOpen = false;
+  }
+
+  openDialog() {
+    this.isDialogOpen = true;
+  }
+
+  closeDialog() {
+    this.isDialogOpen = false;
   }
 }
