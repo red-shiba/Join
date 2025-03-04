@@ -71,6 +71,7 @@ export class TaskCardComponent {
     if (this.todo) {
       this.isEditing = true;
       this.editedTodo = { ...this.todo };
+      this.activePriority = this.todo.priority;
 
       this.selectedContacts = this.todo.assignedTo
         ? (this.todo.assignedTo
@@ -81,6 +82,8 @@ export class TaskCardComponent {
             )
             .filter((contact) => contact !== undefined) as Contact[])
         : [];
+
+      setTimeout(() => this.updateButtonStyles(), 0); // Styles nach Initialisierung anwenden
     }
   }
 
@@ -168,6 +171,7 @@ export class TaskCardComponent {
   setPriority(priority: string) {
     this.priority = priority;
     this.activePriority = priority;
+    this.editedTodo.priority = priority;
     this.updateButtonStyles();
   }
   private updateButtonStyles() {
