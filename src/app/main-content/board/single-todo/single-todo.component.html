@@ -1,5 +1,8 @@
 <div class="single-container">
-  <div class="task-category" [ngStyle]="{ 'background-color': getCategoryColor(todo?.category) }">
+  <div
+    class="task-category"
+    [ngStyle]="{ 'background-color': getCategoryColor(todo?.category) }"
+  >
     {{ todo?.category }}
   </div>
 
@@ -7,20 +10,25 @@
   <span>{{ todo?.description }}</span>
 
   <div class="subtasks" *ngIf="totalSubtasks > 0">
-    <progress [value]="completedSubtasks" [max]="totalSubtasks" [ngStyle]="{
-        'width': '100px',
-        'height': '15px',
+    <progress
+      [value]="completedSubtasks"
+      [max]="totalSubtasks"
+      [ngStyle]="{
+        width: '100px',
+        height: '15px',
         'accent-color': allSubtasksDone ? 'green' : '#3b82f6'
-      }"></progress>
-    <span>
-      {{ completedSubtasks }}/{{ totalSubtasks }} Subtasks
-    </span>
+      }"
+    ></progress>
+    <span> {{ completedSubtasks }}/{{ totalSubtasks }} Subtasks </span>
   </div>
 
   <div class="priority-container">
     <div class="assigned-of-task">
       @for (contact of selectedContacts; track contact) {
-      <div class="circle-of-task" [ngStyle]="{ 'background-color': getAvatarColor(contact) }">
+      <div
+        class="circle-of-task"
+        [ngStyle]="{ 'background-color': getAvatarColor(contact) }"
+      >
         {{ getInitials(contact.name) }}
       </div>
       }

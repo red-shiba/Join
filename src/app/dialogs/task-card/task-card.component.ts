@@ -40,6 +40,8 @@ export class TaskCardComponent {
   isChecked = false;
   selectedContacts: Contact[] = [];
   contactList: Contact[] = [];
+  priority: string | undefined;
+  activePriority: string | undefined;
 
   constructor(
     private todoService: TodoListService,
@@ -53,7 +55,9 @@ export class TaskCardComponent {
       if (this.todo && this.todo.assignedTo) {
         this.selectedContacts = this.todo.assignedTo
           .split(', ')
-          .map((name) => this.contactList.find((contact) => contact.name === name)!)
+          .map(
+            (name) => this.contactList.find((contact) => contact.name === name)!
+          )
           .filter((contact) => contact !== undefined) as Contact[];
       }
     });
@@ -69,17 +73,22 @@ export class TaskCardComponent {
       this.editedTodo = { ...this.todo };
 
       this.selectedContacts = this.todo.assignedTo
-        ? this.todo.assignedTo
+        ? (this.todo.assignedTo
             .split(', ')
-            .map((name) => this.contactList.find((contact) => contact.name === name)!)
-            .filter((contact) => contact !== undefined) as Contact[]
+            .map(
+              (name) =>
+                this.contactList.find((contact) => contact.name === name)!
+            )
+            .filter((contact) => contact !== undefined) as Contact[])
         : [];
     }
   }
 
   async saveTodo() {
     if (this.editedTodo && this.editedTodo.id) {
-      this.editedTodo.assignedTo = this.selectedContacts.map((contact) => contact.name).join(', ');
+      this.editedTodo.assignedTo = this.selectedContacts
+        .map((contact) => contact.name)
+        .join(', ');
       await this.todoService.updateTodo(this.editedTodo);
 
       this.todo = { ...this.editedTodo };
@@ -112,7 +121,9 @@ export class TaskCardComponent {
     if (isChecked) {
       this.selectedContacts.push(contact);
     } else {
-      this.selectedContacts = this.selectedContacts.filter((c) => c !== contact);
+      this.selectedContacts = this.selectedContacts.filter(
+        (c) => c !== contact
+      );
     }
   }
 
@@ -154,10 +165,21 @@ export class TaskCardComponent {
       .toUpperCase();
   }
 
-  trackByContact(index: number, contact: Contact): string {
-    return contact.id ?? '';
+  setPriority(priority: string) {
+    this.priority = priority;
+    this.activePriority = priority;
+    this.updateButtonStyles();
+  }
+  private updateButtonStyles() {
+    const buttons = document.querySelectorAll('.priority-btn');
+    buttons.forEach((button) => {
+      if (button instanceof HTMLElement) {
+        if (button.getAttribute('data-priority') === this.activePriority) {
+          button.classList.add('active');
+        } else {
+          button.classList.remove('active');
+        }
+      }
+    });
   }
 }
-
-
-
