@@ -4,7 +4,7 @@
   (click)="closeOverlay.emit()"
 >
   <div class="task_card_wrapper" (click)="$event.stopPropagation()">
-    <div class="task-container">
+    <div class="task-container" [ngClass]="{ editing: isEditing }">
       <div class="header-task" [ngClass]="{ 'edit-mode': isEditing }">
         <div
           class="task-category"
@@ -21,9 +21,8 @@
         </div>
       </div>
 
-      <div class="form-left">
-        <div class="form-container form-left-title">
-          <label for="title"> </label>
+      <div>
+        <div>
           @if (isEditing) {
           <span>Title</span>
           <input
@@ -42,7 +41,7 @@
           @if (titleInput.invalid && (titleInput.dirty || titleInput.touched)) {
           <div class="error-message">This field is required</div>
           } } @else {
-          <span>{{ todo?.title }}</span>
+          <span class="todo-title">{{ todo?.title }}</span>
           }
         </div>
 
@@ -68,7 +67,7 @@
           descriptionInput.touched)) {
           <div class="error-message">This field is required</div>
           } } @else {
-          <span>{{ todo?.description }}</span>
+          <span class="todo-description">{{ todo?.description }}</span>
           }
         </div>
       </div>
@@ -91,47 +90,23 @@
         } }
       </div>
 
-      <!-- <div class="priority">
-        <span>Priority:</span>
-        <div class="priority-icon">
-          <ng-template #editPriority>
-            <div class="priority-buttons">
-              <button type="button" class="priority-btn" data-priority="urgent">
-                <span class="text">Urgent</span>
-                <span class="icon"
-                  ><img src="../../../assets/icons/prio_high.png" alt=""
-                /></span>
-              </button>
-              <button type="button" class="priority-btn" data-priority="medium">
-                <span class="text">Medium</span>
-                <span class="icon"
-                  ><img src="../../../assets/icons/prio_medium.png" alt=""
-                /></span>
-              </button>
-              <button type="button" class="priority-btn" data-priority="low">
-                <span class="text">Low</span>
-                <span class="icon"
-                  ><img src="../../../assets/icons/prio_low.png" alt=""
-                /></span>
-              </button>
-            </div>
-          </ng-template>
-        </div>
-      </div> -->
-
       <div class="priority">
         <span>Priority:</span>
         <span>
-          <span class="priority-display">{{ todo?.priority }}</span>
+          <span class="priority-display" [ngClass]="{ editing: isEditing }">{{
+            todo?.priority
+          }}</span>
         </span>
         <img
+          id="priority-icon"
+          [ngClass]="{ editing: isEditing }"
           [src]="getPriorityIcon(todo?.priority)"
           alt="{{ todo?.priority }}"
         />
         <div class="priority-icon">
           <ng-template #editPriority>
-            <div class="devider"></div>
-            <div class="form-right">
+            <div></div>
+            <div>
               <div class="priority">
                 @if (isEditing) {
                 <div class="priority-buttons">
@@ -189,7 +164,7 @@
 
       @if (!isEditing) {
       <div class="assigned">
-        <p>Assigned TO :</p>
+        <span>Assigned TO :</span>
         <div class="assigned-container">
           <ng-container *ngIf="selectedContacts.length > 0; else noContacts">
             <div
@@ -216,7 +191,7 @@
       }
 
       <div class="form-container" *ngIf="isEditing">
-        <label><p>Assigned to</p></label>
+        <span>Assigned TO :</span>
         <div class="dropdown">
           <button (click)="toggleDropdown()" class="dropdown-button">
             <span>Select contacts to assign</span>
@@ -257,7 +232,6 @@
             >
               {{ getInitials(contact.name) }}
             </div>
-            {{ contact.name }}
           </label>
           }
         </div>
@@ -280,7 +254,6 @@
               <span>{{ st.title }}</span>
             </div>
           </ng-container>
-
           <ng-template #editSubtasks>
             <div
               class="subtask-entry"
@@ -295,6 +268,105 @@
             </div>
           </ng-template>
         </div>
+      </div>
+
+      <div class="subtask-container">
+        <div class="input-wrapper">
+          <input
+            type="text"
+            id="subtaskInput"
+            name="subtaskInput"
+            [(ngModel)]="subtaskInput"
+            placeholder="Add new subtask"
+            (focus)="activateInput()"
+            (blur)="hideControls()"
+          />
+
+          <div class="input-icons">
+            @if (!showControls) {
+            <button type="button" class="plus-button" (click)="activateInput()">
+              <img src="assets/icons/addBlack.png" alt="Edit" class="icon" />
+            </button>
+            } @else {
+            <button
+              type="button"
+              class="cancel-button"
+              (click)="cancelSubtask()"
+            >
+              <img
+                src="assets/icons/iconoir_cancel.png"
+                alt="Edit"
+                class="icon"
+              />
+            </button>
+            <button
+              type="button"
+              class="confirm-button"
+              (click)="confirmSubtask()"
+            >
+              <img
+                src="../../../assets/icons/check-dark.png"
+                alt="check-dark-icon"
+              />
+            </button>
+            }
+          </div>
+        </div>
+
+        <ul id="subtaskList input-wrapper">
+          <li *ngFor="let subtask of subtasks; let i = index">
+            *ngIf="false" type="checkbox" [(ngModel)]="subtask.done"
+            [disabled]="editedSubtaskIndex === i" />
+
+            <span *ngIf="editedSubtaskIndex !== i">{{ subtask.title }}</span>
+
+            <input
+              *ngIf="editedSubtaskIndex === i"
+              type="text"
+              [(ngModel)]="editedSubtaskValue"
+            />
+
+            <div
+              class="subtask-buttons input-icons"
+              *ngIf="editedSubtaskIndex !== i"
+            >
+              <button
+                type="button"
+                class="edit-button"
+                (click)="editSubtask(i)"
+              >
+                <img src="assets/icons/edit.png" alt="Edit" class="icon" />
+              </button>
+              <button
+                type="button"
+                class="delete-button"
+                (click)="deleteSubtask(i)"
+              >
+                <img src="assets/icons/delete.png" alt="Delete" class="icon" />
+              </button>
+            </div>
+
+            <div class="edit-input-icons" *ngIf="editedSubtaskIndex === i">
+              <button
+                type="button"
+                class="cancel-button"
+                (click)="cancelEdit()"
+              >
+                <img src="assets/icons/delete.png" alt="Edit" class="icon" />
+              </button>
+              <button
+                type="button"
+                class="confirm-button"
+                (click)="saveSubtask(i)"
+              >
+                <img
+                  src="../../../assets/icons/check-dark.png"
+                  alt="check-dark-icon"
+                />
+              </button>
+            </div>
+          </li>
+        </ul>
       </div>
 
       <div class="delete-edit-container">

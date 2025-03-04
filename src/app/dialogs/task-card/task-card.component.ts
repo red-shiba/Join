@@ -16,6 +16,32 @@ import { AvatarColorService } from '../../services/avatar-color.service';
   styleUrls: ['./task-card.component.scss'],
 })
 export class TaskCardComponent {
+  saveSubtask(_t151: number) {
+    throw new Error('Method not implemented.');
+  }
+  deleteSubtask(_t151: number) {
+    throw new Error('Method not implemented.');
+  }
+  editSubtask(_t151: number) {
+    throw new Error('Method not implemented.');
+  }
+  showControls: any;
+  subtaskInput: any;
+  subtasks: any;
+  editedSubtaskIndex: any;
+  editedSubtaskValue: any;
+  confirmSubtask() {
+    throw new Error('Method not implemented.');
+  }
+  cancelSubtask() {
+    throw new Error('Method not implemented.');
+  }
+  hideControls() {
+    throw new Error('Method not implemented.');
+  }
+  activateInput() {
+    throw new Error('Method not implemented.');
+  }
   @Input() todo: Todo | null = null;
   @Output() closeOverlay = new EventEmitter<boolean>();
 
