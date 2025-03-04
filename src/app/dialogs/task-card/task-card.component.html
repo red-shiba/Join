@@ -91,7 +91,7 @@
       @if (!isEditing) {
         <div class="assigned">
           <p>Assigned TO :</p>
-          <div class="assigned-container assignedTodo">
+          <div class="assigned-container">
             <ng-container *ngIf="selectedContacts.length > 0; else noContacts">
               <div *ngFor="let contact of selectedContacts" class="assigned-contact assignedNameAvatar">
                 <div
