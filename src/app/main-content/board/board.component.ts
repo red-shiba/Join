@@ -12,7 +12,7 @@ import {
 } from '@angular/cdk/drag-drop';
 import { SingleTodoComponent } from './single-todo/single-todo.component';
 import { TaskCardComponent } from '../../dialogs/task-card/task-card.component';
-import { AddTaskComponent } from '../add-task/add-task.component';
+import { AddTaskDialogComponent } from '../../dialogs/add-task-dialog/add-task-dialog.component';
 
 @Component({
   selector: 'app-board',
@@ -24,7 +24,7 @@ import { AddTaskComponent } from '../add-task/add-task.component';
     CommonModule,
     SingleTodoComponent,
     TaskCardComponent,
-    AddTaskComponent
+    AddTaskDialogComponent
   ],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss',

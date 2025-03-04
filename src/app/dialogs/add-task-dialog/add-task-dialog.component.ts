@@ -1,40 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Subtask, Todo } from '../../interfaces/todos';
+import { Todo } from '../../interfaces/todos';
 import { TodoListService } from '../../firebase-service/todo-list.service';
-import { ContactListService } from '../../firebase-service/contact-list.service';
 import { Contact } from '../../interfaces/contact';
+import { ContactListService } from '../../firebase-service/contact-list.service';
 import { AvatarColorService } from '../../services/avatar-color.service';
 
 @Component({
-  selector: 'app-add-task',
+  selector: 'app-add-task-dialog',
   standalone: true,
-  templateUrl: './add-task.component.html',
-  styleUrls: ['./add-task.component.scss'],
   imports: [CommonModule, FormsModule],
+  templateUrl: './add-task-dialog.component.html',
+  styleUrl: './add-task-dialog.component.scss'
 })
-export class AddTaskComponent {
-  title: string = '';
-  description: string = '';
-  assignedTo: string = '';
-  dueDate: string = '';
-  priority: string = '';
-  activePriority: string = '';
-  category: string = '';
-  subtaskInput: string = '';
-  subtasks: Subtask[] = [];
-  showControls: boolean = false;
+
+export class AddTaskDialogComponent {
+  @Output() addDialogClosed = new EventEmitter<boolean>();
+
+  title = '';
+  description = '';
+  assignedTo = '';
+  dueDate = '';
+  priority = '';
+  activePriority = '';
+  category = '';
+  subtaskInput = '';
+  subtasks: any[] = [];
+  showControls = false;
   contactList: Contact[] = [];
   selectedContacts: Contact[] = [];
   dropdownOpen = false;
+  isClosing = false;
 
-  isSelected(contact: Contact): boolean {
-    return this.selectedContacts.includes(contact);
-  }
-
-  editedSubtaskIndex: number | null = null; // Index des bearbeiteten Subtasks
-  editedSubtaskValue: string = ''; // Temporärer Wert für Bearbeitung
+  editedSubtaskIndex: number | null = null;
+  editedSubtaskValue: string = '';
 
   constructor(
     private todoListService: TodoListService,
@@ -48,8 +48,11 @@ export class AddTaskComponent {
     });
   }
 
-  getList(): Contact[] {
-    return this.contactListService.contacts;
+  closeDialog() {
+    this.isClosing = true;
+    setTimeout(() => {
+      this.addDialogClosed.emit(false);
+    }, 200);
   }
 
   getAvatarColor(contact: Contact): string {
@@ -70,20 +73,6 @@ export class AddTaskComponent {
   setPriority(priority: string) {
     this.priority = priority;
     this.activePriority = priority;
-    this.updateButtonStyles();
-  }
-
-  private updateButtonStyles() {
-    const buttons = document.querySelectorAll('.priority-btn');
-    buttons.forEach((button) => {
-      if (button instanceof HTMLElement) {
-        if (button.getAttribute('data-priority') === this.activePriority) {
-          button.classList.add('active');
-        } else {
-          button.classList.remove('active');
-        }
-      }
-    });
   }
 
   activateInput() {
@@ -101,6 +90,7 @@ export class AddTaskComponent {
   cancelSubtask() {
     this.subtaskInput = '';
     this.showControls = false;
+    this.closeDialog();
   }
 
   hideControls() {
@@ -154,23 +144,19 @@ export class AddTaskComponent {
       .addTodo(newTask, 'todo')
       .then(() => {
         console.log('Task erfolgreich hinzugefügt:', newTask);
+        this.closeDialog();
       })
       .catch((error) => {
         console.error('Fehler beim Speichern des Tasks:', error);
       });
 
-    // Felder zurücksetzen
     this.title = '';
     this.description = '';
     this.dueDate = '';
-    this.priority = 'low ';
+    this.priority = '';
     this.category = '';
     this.selectedContacts = [];
     this.subtasks = [];
-  }
-
-  closeDialog() {
-    console.log('Closing dialog');
   }
 
   getInitials(name: string): string {
@@ -182,18 +168,11 @@ export class AddTaskComponent {
       .toUpperCase();
   }
 
-  getAlphabeticalLetters(): string[] {
-    let letters: string[] = [];
-    for (let contact of this.getList()) {
-      if (!letters.includes(contact.name[0].toUpperCase())) {
-        let firstLetter = contact.name[0].toUpperCase();
-        letters.push(firstLetter);
-      }
-    }
-    return letters.sort();
-  }
-
   toggleDropdown() {
     this.dropdownOpen = !this.dropdownOpen;
+  }
+
+  isSelected(contact: Contact): boolean {
+    return this.selectedContacts.includes(contact);
   }
 }
