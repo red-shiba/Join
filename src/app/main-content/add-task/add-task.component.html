@@ -112,15 +112,18 @@
               placeholder="Add new subtask" (focus)="activateInput()" (blur)="hideControls()" />
 
             <div class="input-icons">
-              <button *ngIf="!showControls" type="button" class="plus-button" (click)="activateInput()">
+              @if (!showControls) {
+              <button type="button" class="plus-button" (click)="activateInput()">
                 <img src="assets/icons/addBlack.png" alt="Edit" class="icon" />
               </button>
-              <button *ngIf="showControls" type="button" class="cancel-button" (click)="cancelSubtask()">
+              } @else {
+              <button type="button" class="cancel-button" (click)="cancelSubtask()">
                 <img src="assets/icons/iconoir_cancel.png" alt="Edit" class="icon" />
               </button>
-              <button *ngIf="showControls" type="button" class="confirm-button" (click)="confirmSubtask()">
-                ✔
+              <button type="button" class="confirm-button" (click)="confirmSubtask()">
+                <img src="../../../assets/icons/check-dark.png" alt="check-dark-icon">
               </button>
+              }
             </div>
           </div>
 
@@ -147,7 +150,7 @@
                   </button>
                   <button *ngIf="editedSubtaskIndex === i" type="button" class="confirm-button"
                     (click)="saveSubtask(i)">
-                    ✔
+                    <img src="../../../assets/icons/check-dark.png" alt="check-dark-icon">
                   </button>
                 </div>
               </div>

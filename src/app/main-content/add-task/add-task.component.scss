@@ -468,7 +468,15 @@ textarea {
 }
 
 .confirm-button img {
-  width: 15px;
+  width: 16px;
+  margin-top: 5px;
+  border-left: 1px solid #4e4e4e;
+  padding-left: 12px;
+}
+
+.delete-button img {
+  border-left: 1px solid #4e4e4e;
+  padding-left: 15px;
 }
 
 .plus-button,
