@@ -49,11 +49,6 @@
       <div class="priority">
         <span>Priority:</span>
         <div class="priority-icon">
-          <!-- @if (!isEditing) {
-            <span>{{ todo?.priority }}</span>
-          } @else {
-            <ng-container *ngTemplateOutlet="editPriority"></ng-container>
-          } -->
           <ng-template #editPriority>
             <div class="priority-buttons">
               <button type="button" class="priority-btn" data-priority="urgent">
@@ -75,16 +70,7 @@
                 /></span>
               </button>
             </div>
-            <!-- <select [(ngModel)]="editedTodo.priority">
-              <option value="urgent">Urgent</option>
-              <option value="medium">Medium</option>
-              <option value="low">Low</option>
-            </select> -->
           </ng-template>
-          <!-- <img
-            [src]="getPriorityIcon(todo?.priority)"
-            alt="{{ todo?.priority }}"
-          /> -->
         </div>
       </div>
 
@@ -111,10 +97,6 @@
       } @else {
         <ng-container *ngTemplateOutlet="editPriority"></ng-container>
         <div class="assigned">
-          <!-- <p>Assigned TO :</p>
-          <div class="assigned-container">
-        <input [(ngModel)]="editedTodo.assignedTo" />
-          </div> -->
         </div>
       }
 
