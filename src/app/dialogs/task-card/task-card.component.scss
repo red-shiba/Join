@@ -66,15 +66,6 @@ label {
   align-items: center;
   margin-top: 10px;
 }
-
-
-
-
-
-
-
-
-
 .avatar {
   width: 30px;
   height: 30px;
@@ -150,7 +141,10 @@ label {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  // padding: 20px;
+}
+
+.header-task.edit-mode {
+  justify-content: flex-end;
 }
 .close {
   width: 20px;
@@ -160,6 +154,7 @@ label {
     background-color: #f3f4f6;
   }
 }
+
 .priority-date {
   display: flex;
   gap: 20px;
@@ -319,6 +314,83 @@ hr {
   &:hover {
     background: #f3f4f6;
   }
+}
+//Inputfelder zum Validieren//
+.custom-input {
+  border: 0.5px solid #e7e7e7;
+  transition: border-color 0.3s ease;
+  color: rgb(87, 87, 87);
+}
+
+.custom-input:focus {
+  outline: none;
+  border-color: #29abe2;
+}
+
+.custom-input.ng-invalid.ng-touched {
+  border-color: #ff3c00b6;
+}
+
+.custom-input:not(:focus):not(.ng-invalid.ng-touched) {
+  border-color: #e7e7e7;
+}
+.priority-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.priority-buttons button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  font-family: inter;
+  font-weight: 500;
+  font-size: 17px;
+  color: rgb(102, 102, 102);
+}
+
+.priority-buttons button:hover {
+  font-weight: 500;
+  box-shadow: 0px 0.5px 0.5px rgba(0, 0, 0, 0.1);
+}
+
+.priority-btn {
+  border-radius: 10px;
+  border: 2px solid rgb(233, 233, 233);
+  background-color: white;
+  padding: 15px 20px;
+  flex: 1;
+  cursor: pointer;
+  // margin-right: 10px;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.priority-btn.active[data-priority="urgent"] {
+  background-color: #ff3d00;
+  color: white;
+  border-color: #ff3d00;
+}
+
+.priority-btn.active[data-priority="medium"] {
+  background-color: #ffa500;
+  color: white;
+  border-color: #ffa500;
+}
+
+.priority-btn.active[data-priority="low"] {
+  background-color: #7ae229;
+  color: white;
+  border-color: #7ae229;
+}
+
+.priority-btn.active img {
+  filter: brightness(0) invert(1);
 }
 
 @media (max-width: 770px) {

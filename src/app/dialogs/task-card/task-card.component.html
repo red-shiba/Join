@@ -5,19 +5,17 @@
 >
   <div class="task_card_wrapper" (click)="$event.stopPropagation()">
     <div class="task-container">
-      <div class="header-task">
+      <div class="header-task" [ngClass]="{ 'edit-mode': isEditing }">
         <div
           class="task-category"
+          *ngIf="!isEditing"
           [ngStyle]="{ 'background-color': getCategoryColor(todo?.category) }"
         >
-          <ng-container *ngIf="!isEditing; else editCategory">
+          <ng-container>
             <span>{{ todo?.category }}</span>
           </ng-container>
-          <ng-template #editCategory>
-            <!-- <input [(ngModel)]="editedTodo.category" /> -->
-            <span>{{ todo?.category }}</span>
-          </ng-template>
         </div>
+
         <div class="close" (click)="closeOverlay.emit()">
           <img src="/assets/icons/close.png" alt="close" />
         </div>
@@ -27,14 +25,14 @@
         <span>{{ todo?.title }}</span>
       </ng-container>
       <ng-template #editTitle>
-        <input [(ngModel)]="editedTodo.title" />
+        <input class="custom-input" [(ngModel)]="editedTodo.title" />
       </ng-template>
 
       <ng-container *ngIf="!isEditing; else editDescription">
         <span>{{ todo?.description }}</span>
       </ng-container>
       <ng-template #editDescription>
-        <input [(ngModel)]="editedTodo.description" />
+        <input class="custom-input" [(ngModel)]="editedTodo.description" />
       </ng-template>
 
       <div class="priority-date">
@@ -43,27 +41,51 @@
           <span>{{ todo?.dueDate }}</span>
         </ng-container>
         <ng-template #editDueDate>
-          <input type="date" [(ngModel)]="editedTodo.dueDate" />
+          <input
+            class="custom-input"
+            type="date"
+            [(ngModel)]="editedTodo.dueDate"
+          />
         </ng-template>
       </div>
 
       <div class="priority">
         <span>Priority:</span>
         <div class="priority-icon">
-          <ng-container *ngIf="!isEditing; else editPriority">
+          <!-- <ng-container *ngIf="!isEditing; else editPriority">
             <span>{{ todo?.priority }}</span>
-          </ng-container>
+          </ng-container> -->
           <ng-template #editPriority>
-            <select [(ngModel)]="editedTodo.priority">
+            <div class="priority-buttons">
+              <button type="button" class="priority-btn" data-priority="urgent">
+                <span class="text">Urgent</span>
+                <span class="icon"
+                  ><img src="../../../assets/icons/prio_high.png" alt=""
+                /></span>
+              </button>
+              <button type="button" class="priority-btn" data-priority="medium">
+                <span class="text">Medium</span>
+                <span class="icon"
+                  ><img src="../../../assets/icons/prio_medium.png" alt=""
+                /></span>
+              </button>
+              <button type="button" class="priority-btn" data-priority="low">
+                <span class="text">Low</span>
+                <span class="icon"
+                  ><img src="../../../assets/icons/prio_low.png" alt=""
+                /></span>
+              </button>
+            </div>
+            <!-- <select [(ngModel)]="editedTodo.priority">
               <option value="urgent">Urgent</option>
               <option value="medium">Medium</option>
               <option value="low">Low</option>
-            </select>
+            </select> -->
           </ng-template>
-          <img
+          <!-- <img
             [src]="getPriorityIcon(todo?.priority)"
             alt="{{ todo?.priority }}"
-          />
+          /> -->
         </div>
       </div>
 
