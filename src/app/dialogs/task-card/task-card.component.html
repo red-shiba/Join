@@ -21,40 +21,39 @@
         </div>
       </div>
 
-      <ng-container *ngIf="!isEditing; else editTitle">
+      @if (!isEditing) {
         <span>{{ todo?.title }}</span>
-      </ng-container>
-      <ng-template #editTitle>
+      } @else {
         <input class="custom-input" [(ngModel)]="editedTodo.title" />
-      </ng-template>
+      }
 
-      <ng-container *ngIf="!isEditing; else editDescription">
+      @if (!isEditing) {
         <span>{{ todo?.description }}</span>
-      </ng-container>
-      <ng-template #editDescription>
+      } @else {
         <input class="custom-input" [(ngModel)]="editedTodo.description" />
-      </ng-template>
+      }
 
       <div class="priority-date">
         <span>Due date:</span>
-        <ng-container *ngIf="!isEditing; else editDueDate">
+        @if (!isEditing) {
           <span>{{ todo?.dueDate }}</span>
-        </ng-container>
-        <ng-template #editDueDate>
+        } @else {
           <input
-            class="custom-input"
-            type="date"
-            [(ngModel)]="editedTodo.dueDate"
+        class="custom-input"
+        type="date"
+        [(ngModel)]="editedTodo.dueDate"
           />
-        </ng-template>
+        }
       </div>
 
       <div class="priority">
         <span>Priority:</span>
         <div class="priority-icon">
-          <!-- <ng-container *ngIf="!isEditing; else editPriority">
+          <!-- @if (!isEditing) {
             <span>{{ todo?.priority }}</span>
-          </ng-container> -->
+          } @else {
+            <ng-container *ngTemplateOutlet="editPriority"></ng-container>
+          } -->
           <ng-template #editPriority>
             <div class="priority-buttons">
               <button type="button" class="priority-btn" data-priority="urgent">
@@ -89,19 +88,35 @@
         </div>
       </div>
 
-      <ng-container *ngIf="!isEditing; else editPriority">
+      @if (!isEditing) {
         <div class="assigned">
           <p>Assigned TO :</p>
           <div class="assigned-container">
-            <div class="circle-of-task">GW</div>
-            @if (!isEditing) {
-            <span>{{ todo?.assignedTo }}</span>
-            } @else {
-            <input [(ngModel)]="editedTodo.assignedTo" />
-            }
+            <ng-container *ngIf="selectedContacts.length > 0; else noContacts">
+              <div *ngFor="let contact of selectedContacts" class="assigned-contact">
+                <div
+                  class="avatar"
+                  [ngStyle]="{ 'background-color': getAvatarColor(contact) }"
+                >
+                  {{ getInitials(contact.name) }}
+                </div>
+                <span>{{ contact.name }}</span>
+              </div>
+            </ng-container>
+            <ng-template #noContacts>
+              <span>No contacts assigned</span>
+            </ng-template>
           </div>
-        </div></ng-container
-      >
+        </div>
+      } @else {
+        <ng-container *ngTemplateOutlet="editPriority"></ng-container>
+        <div class="assigned">
+          <!-- <p>Assigned TO :</p>
+          <div class="assigned-container">
+        <input [(ngModel)]="editedTodo.assignedTo" />
+          </div> -->
+        </div>
+      }
 
       <div class="form-container" *ngIf="isEditing">
         <label><p>Assigned to</p></label>
@@ -182,7 +197,7 @@
         </div>
         <hr *ngIf="!isEditing" />
         <div class="editIcon">
-          <ng-container *ngIf="!isEditing; else saveButton">
+            @if (!isEditing) {
             <img
               class="edit-icon"
               src="/assets/icons/edit.png"
@@ -190,7 +205,9 @@
               (click)="editTodo()"
             />
             <span class="contact-link" (click)="editTodo()">Edit</span>
-          </ng-container>
+            } @else {
+            <ng-container *ngTemplateOutlet="saveButton"></ng-container>
+            }
           <ng-template #saveButton>
             <div>
               <button class="check-task-btn" (click)="saveTodo()">

@@ -50,6 +50,12 @@ export class TaskCardComponent {
   ngOnInit() {
     this.contactListService.getContacts().subscribe((contacts) => {
       this.contactList = contacts;
+      if (this.todo && this.todo.assignedTo) {
+        this.selectedContacts = this.todo.assignedTo
+          .split(', ')
+          .map((name) => this.contactList.find((contact) => contact.name === name)!)
+          .filter((contact) => contact !== undefined) as Contact[];
+      }
     });
   }
 
@@ -76,6 +82,7 @@ export class TaskCardComponent {
       this.isEditing = false;
       this.dropdownOpen = false;
       this.closeOverlay.emit();
+      window.location.reload();
     }
   }
 
