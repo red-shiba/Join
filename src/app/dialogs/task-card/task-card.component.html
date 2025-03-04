@@ -91,9 +91,9 @@
       @if (!isEditing) {
         <div class="assigned">
           <p>Assigned TO :</p>
-          <div class="assigned-container">
+          <div class="assigned-container assignedTodo">
             <ng-container *ngIf="selectedContacts.length > 0; else noContacts">
-              <div *ngFor="let contact of selectedContacts" class="assigned-contact">
+              <div *ngFor="let contact of selectedContacts" class="assigned-contact assignedNameAvatar">
                 <div
                   class="avatar"
                   [ngStyle]="{ 'background-color': getAvatarColor(contact) }"

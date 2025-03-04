@@ -187,11 +187,17 @@ label {
   }
 }
 
+.assignedNameAvatar {
+  display: flex;
+  align-items: center;
+}
+
 .assigned-container {
   display: flex;
-  gap: 20px;
-  align-items: center;
-  padding: 20px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
 }
 
 .circle-of-task {
