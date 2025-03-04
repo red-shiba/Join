@@ -385,11 +385,19 @@ textarea {
   font-weight: 400;
 }
 
+// #subtaskList .input-wrapper {
+//   list-style-type: none !important;
+// }
+
 .cancelBtn {
   background-image: url("/assets/icons/iconoir_cancel.png");
   background-repeat: no-repeat;
   background-position: right;
   background-position: calc(100% - 10px) center;
+}
+
+.cancelBtn img {
+  width: 10px;
 }
 
 .createBtn {
@@ -512,6 +520,11 @@ textarea {
   margin-bottom: 15px;
 }
 
+.add-task-btn button {
+  font-size: 16px;
+  font-weight: 500;
+}
+
 .error-message {
   color: #ff3c00b6;
   font-size: 11px;
@@ -564,6 +577,10 @@ textarea {
     padding: 0;
   }
 
+  .add-task-inner-container {
+    margin-bottom: 100px;
+  }
+
   .add-task-inner-container h2 {
     padding-left: calc(9% + 10px);
     margin-bottom: 0;
@@ -572,5 +589,17 @@ textarea {
   .add-task-container-end {
     padding-right: calc(9% + 10px);
     padding-left: calc(9% + 10px);
+  }
+}
+
+@media (max-width: 600px) {
+  .add-task-text {
+    display: none;
+  }
+
+  .add-task-btn {
+    width: 100%;
+    justify-content: flex-end;
+    margin-right: 0;
   }
 }

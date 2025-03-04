@@ -46,6 +46,8 @@ export class AddTaskComponent {
     this.contactListService.getContacts().subscribe((contacts) => {
       this.contactList = contacts;
     });
+
+    this.setPriority('medium'); // setzt die priorität auf medium
   }
 
   getList(): Contact[] {
