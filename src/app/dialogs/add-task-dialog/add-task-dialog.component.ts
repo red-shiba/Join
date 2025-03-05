@@ -48,6 +48,7 @@ export class AddTaskDialogComponent {
     this.contactListService.getContacts().subscribe((contacts) => {
       this.contactList = contacts;
     });
+    this.setPriority('medium');
     if (this.defaultType) {
       this.type = this.defaultType;
     }
@@ -78,6 +79,20 @@ export class AddTaskDialogComponent {
   setPriority(priority: string) {
     this.priority = priority;
     this.activePriority = priority;
+    this.updateButtonStyles();
+  }
+
+  private updateButtonStyles() {
+    const buttons = document.querySelectorAll('.priority-btn');
+    buttons.forEach((button) => {
+      if (button instanceof HTMLElement) {
+        if (button.getAttribute('data-priority') === this.activePriority) {
+          button.classList.add('active');
+        } else {
+          button.classList.remove('active');
+        }
+      }
+    });
   }
 
   activateInput() {
