@@ -13,6 +13,7 @@ import {
 import { SingleTodoComponent } from './single-todo/single-todo.component';
 import { TaskCardComponent } from '../../dialogs/task-card/task-card.component';
 import { AddTaskDialogComponent } from '../../dialogs/add-task-dialog/add-task-dialog.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-board',
@@ -24,7 +25,8 @@ import { AddTaskDialogComponent } from '../../dialogs/add-task-dialog/add-task-d
     CommonModule,
     SingleTodoComponent,
     TaskCardComponent,
-    AddTaskDialogComponent
+    AddTaskDialogComponent,
+    RouterLink
   ],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss',
