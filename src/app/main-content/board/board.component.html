@@ -15,7 +15,7 @@
             <img src="/assets/icons/search.png" alt="search-button" class="search-icon" />
           </div>
         </div>
-        <button class="add-task-btn" (click)="openDialog()">
+        <button class="add-task-btn" (click)="openDialog('todo')">
           Add task
           <img src="/assets/icons/add.png" alt="add-contact-button" />
         </button>
@@ -23,14 +23,14 @@
       <div *ngIf="noResultsFound()" class="alert-message">
         <span>Suche hat keine Treffer ergeben</span>
       </div>
-      <app-add-task-dialog *ngIf="isDialogOpen" (addDialogClosed)="closeDialog($event)"></app-add-task-dialog>
+      <app-add-task-dialog *ngIf="isDialogOpen" [defaultType]="preselectedType" (addDialogClosed)="closeDialog($event)"></app-add-task-dialog>
     </div>
   </div>
   <div class="drag-and-drop-container">
     <div class="dragndrop-container">
       <div class="info-dragdrop">
         <h2>To do</h2>
-        <img class="plus-icon" src="/assets/icons/plus.png" alt="plus Icon" />
+        <img class="plus-icon" src="/assets/icons/plus.png" alt="plus Icon" (click)="openDialog('todo')"/>
       </div>
 
       <div class="drop-area" cdkDropList #todoList="cdkDropList" [cdkDropListData]="getFilteredList('todoList')"
@@ -50,7 +50,7 @@
     <div class="dragndrop-container">
       <div class="info-dragdrop">
         <h2>Await feedback</h2>
-        <img class="plus-icon" src="/assets/icons/plus.png" alt="plus Icon" />
+        <img class="plus-icon" src="/assets/icons/plus.png" alt="plus Icon" (click)="openDialog('awaitfeedback')" />
       </div>
 
       <div class="drop-area" cdkDropList #awaitFeedbackList="cdkDropList"
@@ -71,7 +71,7 @@
     <div class="dragndrop-container">
       <div class="info-dragdrop">
         <h2>Progress</h2>
-        <img class="plus-icon" src="/assets/icons/plus.png" alt="plus Icon" />
+        <img class="plus-icon" src="/assets/icons/plus.png" alt="plus Icon" (click)="openDialog('inprogress')"/>
       </div>
 
       <div class="drop-area" cdkDropList #inprogressList="cdkDropList"

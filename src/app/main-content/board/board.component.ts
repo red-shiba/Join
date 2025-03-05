@@ -39,6 +39,7 @@ export class BoardComponent {
   selectedTodo: Todo | null = null;
   searchTerm: string = '';
   isDialogOpen = false;
+  preselectedType: string | null = null;
 
   constructor(private todoListService: TodoListService) {}
 
@@ -140,11 +141,13 @@ export class BoardComponent {
     this.isOverlayOpen = false;
   }
 
-  openDialog() {
+  openDialog(type: string) {
+    this.preselectedType = type;
     this.isDialogOpen = true;
   }
 
   closeDialog(event: boolean) {
     this.isDialogOpen = false;
+    this.preselectedType = null;
   }
 }

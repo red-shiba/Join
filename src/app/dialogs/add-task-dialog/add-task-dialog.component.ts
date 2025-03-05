@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Todo } from '../../interfaces/todos';
@@ -16,6 +16,7 @@ import { AvatarColorService } from '../../services/avatar-color.service';
 })
 
 export class AddTaskDialogComponent {
+  @Input() defaultType: string | null = null;
   @Output() addDialogClosed = new EventEmitter<boolean>();
 
   title = '';
@@ -32,6 +33,7 @@ export class AddTaskDialogComponent {
   selectedContacts: Contact[] = [];
   dropdownOpen = false;
   isClosing = false;
+  type: any = '';
 
   editedSubtaskIndex: number | null = null;
   editedSubtaskValue: string = '';
@@ -46,6 +48,9 @@ export class AddTaskDialogComponent {
     this.contactListService.getContacts().subscribe((contacts) => {
       this.contactList = contacts;
     });
+    if (this.defaultType) {
+      this.type = this.defaultType;
+    }
   }
 
   closeDialog() {
@@ -130,7 +135,7 @@ export class AddTaskDialogComponent {
 
     const newTask: Todo = {
       id: '',
-      type: 'todo',
+      type: this.type,
       title: this.title,
       description: this.description,
       assignedTo: this.selectedContacts.map((c) => c.name).join(', '),
@@ -141,7 +146,7 @@ export class AddTaskDialogComponent {
     };
 
     this.todoListService
-      .addTodo(newTask, 'todo')
+      .addTodo(newTask, this.type)
       .then(() => {
         console.log('Task erfolgreich hinzugefügt:', newTask);
         this.closeDialog();
