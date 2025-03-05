@@ -16,38 +16,26 @@ import { AvatarColorService } from '../../services/avatar-color.service';
   styleUrls: ['./task-card.component.scss'],
 })
 export class TaskCardComponent {
-  saveSubtask(_t151: number) {
-    throw new Error('Method not implemented.');
-  }
-  deleteSubtask(_t151: number) {
-    throw new Error('Method not implemented.');
-  }
-  editSubtask(_t151: number) {
-    throw new Error('Method not implemented.');
-  }
-  showControls: any;
-  subtaskInput: any;
-  subtasks: any;
-  editedSubtaskIndex: any;
-  editedSubtaskValue: any;
-  confirmSubtask() {
-    throw new Error('Method not implemented.');
-  }
-  cancelSubtask() {
-    throw new Error('Method not implemented.');
-  }
-  hideControls() {
-    throw new Error('Method not implemented.');
-  }
-  activateInput() {
-    throw new Error('Method not implemented.');
-  }
   @Input() todo: Todo | null = null;
   @Output() closeOverlay = new EventEmitter<boolean>();
 
   isClosing = false;
   isEditing = false;
   dropdownOpen = false;
+  showControls = false;
+  editedSubtaskIndex: number | null = null;
+  editedSubtaskValue: string = '';
+  subtasks: { title: string; done: boolean }[] = [];
+  editableSubtasks: { title: string; done: boolean }[] = [];
+  subtaskInput = '';
+  contactList: Contact[] = [];
+  selectedContacts: Contact[] = [];
+  type: any = '';
+  uncheckedImage = '/assets/icons/check_box.png';
+  checkedImage = '/assets/icons/check_ed.png';
+  isChecked = false;
+  priority: string | undefined;
+  activePriority: string | undefined;
 
   editedTodo: Todo = {
     id: '',
@@ -60,15 +48,6 @@ export class TaskCardComponent {
     type: 'todo',
     category: '',
   };
-
-  uncheckedImage = '/assets/icons/check_box.png';
-  checkedImage = '/assets/icons/check_ed.png';
-  isChecked = false;
-  selectedContacts: Contact[] = [];
-  contactList: Contact[] = [];
-  priority: string | undefined;
-  activePriority: string | undefined;
-
   constructor(
     private todoService: TodoListService,
     private contactListService: ContactListService,
@@ -98,6 +77,9 @@ export class TaskCardComponent {
       this.isEditing = true;
       this.editedTodo = { ...this.todo };
       this.activePriority = this.todo.priority;
+      this.editableSubtasks = this.todo.subtasks
+        ? this.todo.subtasks.map((subtask) => ({ ...subtask }))
+        : [];
 
       this.selectedContacts = this.todo.assignedTo
         ? (this.todo.assignedTo
@@ -109,17 +91,17 @@ export class TaskCardComponent {
             .filter((contact) => contact !== undefined) as Contact[])
         : [];
 
-      setTimeout(() => this.updateButtonStyles(), 0); // Styles nach Initialisierung anwenden
+      setTimeout(() => this.updateButtonStyles(), 0);
     }
   }
 
   async saveTodo() {
     if (this.editedTodo && this.editedTodo.id) {
+      this.editedTodo.subtasks = this.editableSubtasks;
       this.editedTodo.assignedTo = this.selectedContacts
         .map((contact) => contact.name)
         .join(', ');
       await this.todoService.updateTodo(this.editedTodo);
-
       this.todo = { ...this.editedTodo };
       this.isEditing = false;
       this.dropdownOpen = false;
@@ -128,21 +110,12 @@ export class TaskCardComponent {
     }
   }
 
-  cancelEdit() {
-    this.isEditing = false;
-    this.dropdownOpen = false;
-  }
-
   deleteTodo() {
     if (this.todo && this.todo.id) {
       this.todoService.deleteTodo(this.todo.id).then(() => {
         this.closeOverlay.emit();
       });
     }
-  }
-
-  toggleDropdown() {
-    this.dropdownOpen = !this.dropdownOpen;
   }
 
   toggleContactSelection(contact: Contact, event: Event) {
@@ -200,6 +173,7 @@ export class TaskCardComponent {
     this.editedTodo.priority = priority;
     this.updateButtonStyles();
   }
+
   private updateButtonStyles() {
     const buttons = document.querySelectorAll('.priority-btn');
     buttons.forEach((button) => {
@@ -211,5 +185,70 @@ export class TaskCardComponent {
         }
       }
     });
+  }
+
+  toggleDropdown() {
+    this.dropdownOpen = !this.dropdownOpen;
+  }
+
+  isSelected(contact: Contact): boolean {
+    return this.selectedContacts.includes(contact);
+  }
+
+  onFocus() {
+    document.querySelector('.arrow-icon')?.classList.add('rotate');
+  }
+
+  onBlur() {
+    document.querySelector('.arrow-icon')?.classList.remove('rotate');
+  }
+
+  activateInput() {
+    this.showControls = true;
+  }
+
+  confirmSubtask() {
+    if (this.subtaskInput.trim() !== '') {
+      this.editableSubtasks.push({
+        title: this.subtaskInput.trim(),
+        done: false,
+      });
+      this.subtaskInput = '';
+      this.showControls = false;
+    }
+  }
+
+  cancelSubtask() {
+    this.subtaskInput = '';
+    this.showControls = false;
+  }
+
+  hideControls() {
+    if (this.subtaskInput.trim() === '') {
+      setTimeout(() => {
+        this.showControls = false;
+      }, 200);
+    }
+  }
+
+  deleteSubtask(index: number) {
+    this.editableSubtasks.splice(index, 1);
+  }
+
+  editSubtask(index: number) {
+    this.editedSubtaskIndex = index;
+    this.editedSubtaskValue = this.editableSubtasks[index].title;
+  }
+
+  saveSubtask(index: number) {
+    if (this.editedSubtaskValue.trim() !== '') {
+      this.editableSubtasks[index].title = this.editedSubtaskValue.trim();
+      this.cancelEdit();
+    }
+  }
+
+  cancelEdit() {
+    this.editedSubtaskIndex = null;
+    this.editedSubtaskValue = '';
   }
 }

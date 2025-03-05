@@ -232,17 +232,6 @@ label {
   font-weight: bold;
 }
 
-.subtask-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 20px;
-  cursor: pointer;
-  > img {
-    width: 20px;
-    height: 20px;
-  }
-}
 .delete-edit-container {
   display: flex;
   align-items: center;
@@ -441,121 +430,6 @@ textarea {
   font-size: 11px;
   margin-top: 5px;
 }
-.assignedStyleSelected {
-  display: flex;
-}
-// Subtask
-.subtask-container {
-  position: relative;
-  width: 100%;
-  // align-items: center;
-}
-
-#subtaskInput {
-  width: 100%;
-  padding-right: 30px;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.add-button {
-  position: absolute;
-  right: 15px;
-  top: 42%;
-  transform: translateY(-50%);
-  font-size: 17px;
-  cursor: pointer;
-  background: none;
-  border: none;
-  color: #2a3d59;
-  pointer-events: auto;
-  font-weight: 700;
-}
-
-.assign-container {
-  position: absolute;
-  width: 100%;
-  background: white;
-  // border: 1px solid #757575;
-  max-height: 200px;
-  overflow-y: auto;
-  display: none;
-  z-index: 1000;
-}
-
-.assign-container.open {
-  display: block;
-}
-
-#assignInput {
-  width: 100%;
-  padding-right: 30px;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.add-button-assign {
-  position: absolute;
-  right: 10px;
-  top: 53%;
-  transform: translateY(-50%);
-  font-size: 25px;
-  cursor: pointer;
-  background: none;
-  border: none;
-  color: #2a3d59;
-  pointer-events: auto;
-  font-weight: 700;
-}
-
-.dropdown {
-  position: relative;
-  width: 100%;
-  background-color: white;
-  border-radius: 10px;
-  height: 45px;
-}
-
-.dropdown-button {
-  width: 100%;
-  height: 100%;
-  padding: 10px 15px;
-  background-color: white;
-  border: 1px solid #e0e0e0;
-  border-radius: 10px;
-  color: #979393;
-  cursor: pointer;
-  text-align: left;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: border-color 0.3s ease;
-  font-family: inter;
-  font-size: 15px;
-  font-weight: 400;
-}
-
-.dropdown-button:hover {
-  border-color: #999;
-}
-
-.dropdown-button:focus {
-  outline: none;
-  border-color: #29abe2;
-}
-
-.dropdown-button img {
-  margin-right: -5px;
-}
-
-// .dropdown-icon {
-//   margin-left: 10px;
-// }
-
 .assignedStyle {
   display: flex;
   align-items: center;
@@ -612,6 +486,116 @@ textarea {
 #subtaskInput::placeholder {
   color: #979393;
   font-weight: 400;
+}
+/* Subtask Container */
+.subtask-container {
+  position: relative;
+  width: 100%;
+  align-items: center;
+}
+.subtask-container-edit {
+  position: relative;
+  width: 100%;
+  align-items: center;
+}
+
+/* Subtask Input */
+#subtaskInput {
+  width: 100%;
+  padding-right: 30px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#subtaskInput::placeholder {
+  color: #979393;
+  font-weight: 400;
+}
+
+/* Input Wrapper */
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Input Icons */
+.input-icons {
+  position: absolute;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* Plus Button */
+.plus-button img {
+  width: 10px;
+}
+
+/* Cancel Button */
+.cancel-button img {
+  width: 15px;
+  margin-top: 6px;
+}
+
+/* Confirm Button */
+.confirm-button img {
+  width: 16px;
+  margin-top: 5px;
+  border-left: 1px solid #4e4e4e;
+  padding-left: 12px;
+}
+
+/* Delete Button */
+.delete-button img {
+  border-left: 1px solid #4e4e4e;
+  padding-left: 15px;
+}
+
+/* Buttons (Plus, Cancel, Confirm) */
+.plus-button,
+.cancel-button,
+.confirm-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Subtask Buttons */
+.subtask-buttons {
+  display: inline-flex;
+  gap: 5px;
+  margin-left: 10px;
+}
+
+.subtask-buttons button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Edit Button */
+.edit-button img {
+  width: 16px;
+}
+
+/* Delete Button */
+.delete-button img {
+  width: 16px;
+}
+
+/* Edit Input Icons */
+.edit-input-icons {
+  position: absolute;
+  top: 12px;
+  right: 2px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
 }
 @media (max-width: 770px) {
   .task_card_wrapper {

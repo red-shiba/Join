@@ -473,12 +473,36 @@ textarea {
   }
 }
 
+/* Subtask Container */
+.subtask-container {
+  position: relative;
+  width: 100%;
+  align-items: center;
+}
+
+/* Subtask Input */
+#subtaskInput {
+  width: 100%;
+  padding-right: 30px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#subtaskInput::placeholder {
+  color: #979393;
+  font-weight: 400;
+}
+
+/* Input Wrapper */
 .input-wrapper {
   position: relative;
   display: flex;
   align-items: center;
 }
 
+/* Input Icons */
 .input-icons {
   position: absolute;
   right: 10px;
@@ -487,15 +511,18 @@ textarea {
   gap: 3px;
 }
 
+/* Plus Button */
 .plus-button img {
   width: 10px;
 }
 
+/* Cancel Button */
 .cancel-button img {
   width: 15px;
   margin-top: 6px;
 }
 
+/* Confirm Button */
 .confirm-button img {
   width: 16px;
   margin-top: 5px;
@@ -503,11 +530,13 @@ textarea {
   padding-left: 12px;
 }
 
+/* Delete Button */
 .delete-button img {
   border-left: 1px solid #4e4e4e;
   padding-left: 15px;
 }
 
+/* Buttons (Plus, Cancel, Confirm) */
 .plus-button,
 .cancel-button,
 .confirm-button {
@@ -516,6 +545,7 @@ textarea {
   cursor: pointer;
 }
 
+/* Subtask Buttons */
 .subtask-buttons {
   display: inline-flex;
   gap: 5px;
@@ -529,53 +559,17 @@ textarea {
   font-size: 16px;
 }
 
-.add-task-container-end {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1920px;
-  width: 100%;
-  box-sizing: border-box;
-  padding-right: 100px;
-  padding-left: 100px;
-}
-
-.add-task-container-end p {
-  font-size: 13px;
-}
-
-.add-task-container-end span {
-  color: red;
-  font-size: 12px;
-}
-
-.add-task-btn {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 15px;
-}
-
-.add-task-btn button {
-  font-size: 16px;
-  font-weight: 500;
-}
-
-.error-message {
-  color: #ff3c00b6;
-  font-size: 11px;
-  margin-top: 5px;
-}
-
+/* Edit Button */
 .edit-button img {
   width: 16px;
 }
 
+/* Delete Button */
 .delete-button img {
   width: 16px;
 }
 
+/* Edit Input Icons */
 .edit-input-icons {
   position: absolute;
   top: 12px;
