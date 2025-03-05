@@ -6,6 +6,7 @@ import { TodoListService } from '../../firebase-service/todo-list.service';
 import { ContactListService } from '../../firebase-service/contact-list.service';
 import { Contact } from '../../interfaces/contact';
 import { AvatarColorService } from '../../services/avatar-color.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-task',
@@ -29,6 +30,12 @@ export class AddTaskComponent {
   selectedContacts: Contact[] = [];
   dropdownOpen = false;
 
+  errors = {
+    title: false,
+    dueDate: false,
+    category: false
+  };
+
   isSelected(contact: Contact): boolean {
     return this.selectedContacts.includes(contact);
   }
@@ -39,7 +46,8 @@ export class AddTaskComponent {
   constructor(
     private todoListService: TodoListService,
     private contactListService: ContactListService,
-    private avatarColorService: AvatarColorService
+    private avatarColorService: AvatarColorService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -134,9 +142,16 @@ export class AddTaskComponent {
     this.editedSubtaskValue = '';
   }
 
+  validateFields(): boolean {
+    this.errors.title = !this.title.trim();
+    this.errors.dueDate = !this.dueDate.trim();
+    this.errors.category = !this.category.trim();
+
+    return !this.errors.title && !this.errors.dueDate && !this.errors.category;
+  }
+
   addTodo() {
-    if (!this.title || !this.dueDate || !this.category) {
-      console.warn('Task-Erstellung fehlgeschlagen: Fehlende Pflichtfelder!');
+    if (!this.validateFields()) {
       return;
     }
 
@@ -152,23 +167,11 @@ export class AddTaskComponent {
       subtasks: this.subtasks,
     };
 
-    this.todoListService
-      .addTodo(newTask, 'todo')
-      .then(() => {
-        console.log('Task erfolgreich hinzugefügt:', newTask);
-      })
-      .catch((error) => {
-        console.error('Fehler beim Speichern des Tasks:', error);
-      });
-
-    // Felder zurücksetzen
-    this.title = '';
-    this.description = '';
-    this.dueDate = '';
-    this.priority = 'low ';
-    this.category = '';
-    this.selectedContacts = [];
-    this.subtasks = [];
+    this.todoListService.addTodo(newTask, 'todo').then(() => {
+      this.router.navigate(['board']);
+    }).catch((error) => {
+      console.error('Fehler beim Speichern des Tasks:', error);
+    });
   }
 
   closeDialog() {

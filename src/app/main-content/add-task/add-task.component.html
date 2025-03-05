@@ -1,19 +1,18 @@
 <section class="add-task-container">
   <div class="add-task-inner-container">
     <h2>Add Task</h2>
+
+    <form #taskForm="ngForm" (ngSubmit)="addTodo()" class="add-task-form">
+
     <div class="add-task-form">
       <div class="form-left">
         <div class="form-container form-left-title">
           <label for="title">
             <p>Title<span>*</span></p>
           </label>
-          <input type="text" id="title" name="title" required placeholder="Enter a Title" [(ngModel)]="title"
-            class="custom-input" [class.ng-invalid]="
-              titleInput.invalid && (titleInput.dirty || titleInput.touched)
-            " #titleInput="ngModel" />
-          @if (titleInput.invalid && (titleInput.dirty || titleInput.touched)) {
-          <div class="error-message">This field is required</div>
-          }
+
+          <input type="text" id="title" name="title" required placeholder="Enter a Title" [(ngModel)]="title" class="custom-input" #titleInput="ngModel" />
+          <div *ngIf="titleInput.invalid && titleInput.touched" class="error-message">This field is required</div>
         </div>
 
         <div class="form-container form-left-description">
@@ -24,13 +23,13 @@
             [(ngModel)]="description" class="custom-input"></textarea>
         </div>
 
-        <p>Due Date<span>*</span></p>
-        <input type="date" id="dueDate" name="dueDate" required [(ngModel)]="dueDate" placeholder="dd/mm/yyyy"
-          class="custom-input" #dueDateInput="ngModel" />
-        @if (dueDateInput.invalid && (dueDateInput.dirty ||
-        dueDateInput.touched)) {
-        <div class="error-message">This field is required</div>
-        }
+        <div class="form-container">
+          <label for="dueDate">
+            <p>Due Date<span>*</span></p>
+          </label>
+          <input type="date" id="dueDate" name="dueDate" required [(ngModel)]="dueDate" class="custom-input" #dueDateInput="ngModel" />
+          <div *ngIf="dueDateInput.invalid && dueDateInput.touched" class="error-message">This field is required</div>
+        </div>
       </div>
       <div class="devider"></div>
       <div class="form-right">
@@ -102,8 +101,7 @@
           </select>
           <img src="../../../assets/icons/arrow-dropdown-down.png" alt="arrow" class="arrow-icon" />
         </div>
-        @if (categoryInput.invalid && (categoryInput.dirty ||
-        categoryInput.touched)) {
+        @if (!categoryInput.valid && categoryInput.touched) {
         <div class="error-message">This field is required</div>
         }
 
@@ -169,10 +167,14 @@
       </div>
       <div class="add-task-btn">
         <button class="cbtn cancelBtn" (click)="closeDialog()">Clear</button>
-        <button class="btn createBtn" [disabled]="!title || !dueDate || !category" (click)="addTodo()">
+        <button class="btn createBtn" (click)="addTodo()">
           Create Task
         </button>
+        
       </div>
     </div>
+
+    </form>
+    
   </div>
 </section>
