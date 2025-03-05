@@ -17,7 +17,6 @@
               <div class="error-message">This field is required</div>
               }
             </div>
-
             <div class="form-container form-left-description">
               <label for="description">
                 <p>Description</p>
@@ -25,7 +24,6 @@
               <textarea id="description" name="description" rows="4" placeholder="Enter a Description"
                 [(ngModel)]="description" class="custom-input"></textarea>
             </div>
-
             <p>Due Date<span>*</span></p>
             <input type="date" id="dueDate" name="dueDate" required [(ngModel)]="dueDate" placeholder="dd/mm/yyyy"
               class="custom-input" #dueDateInput="ngModel" />
@@ -51,15 +49,13 @@
                 <span class="icon"><img src="../../../assets/icons/prio_low.png" alt="" /></span>
               </button>
             </div>
-
             <input type="hidden" id="selectedPriority" name="priority" [(ngModel)]="priority" />
-
             <div class="form-container">
               <label>
                 <p>Assigned to</p>
               </label>
               <div class="dropdown">
-                <button (click)="toggleDropdown()" class="dropdown-button">
+                <button (click)="toggleDropdown()" class="dropdown-button" [class.active]="dropdownOpen">
                   <span>Select contacts to assign</span>
                   <img src="../../../assets/icons/arrow-dropdown-down.png" alt="" />
                   <img src="../../../assets/icons/arrow-dropdown-up.png" style="display: none" alt="" />
@@ -93,58 +89,54 @@
               }
             </div>
             }
-
             <p>Category<span class="category-required">*</span></p>
-            <select id="category" name="category" required [(ngModel)]="category" class="category-dropdown"
-              #categoryInput="ngModel">
-              <option value="" style="display: none;">Select task category</option>
-              <option value="Technical Task">Technical Task</option>
-              <option value="User Story">User Story</option>
-            </select>
+            <div class="select-wrapper">
+              <select id="category" name="category" required [(ngModel)]="category" class="category-dropdown"
+                #categoryInput="ngModel" (focus)="onFocus()" (blur)="onBlur()">
+                <option value="" style="display: none;">Select task category</option>
+                <option value="Technical Task">Technical Task</option>
+                <option value="User Story">User Story</option>
+              </select>
+              <img src="../../../assets/icons/arrow-dropdown-down.png" alt="arrow" class="arrow-icon" />
+            </div>
             @if (categoryInput.invalid && (categoryInput.dirty ||
             categoryInput.touched)) {
             <div class="error-message">This field is required</div>
             }
-
             <p>Subtasks</p>
-
             <div class="subtask-container">
               <div class="input-wrapper">
                 <input type="text" id="subtaskInput" name="subtaskInput" [(ngModel)]="subtaskInput"
                   placeholder="Add new subtask" (focus)="activateInput()" (blur)="hideControls()" />
-
                 <div class="input-icons">
-                  <button *ngIf="!showControls" type="button" class="plus-button" (click)="activateInput()">
+                  @if (!showControls) {
+                  <button type="button" class="plus-button" (click)="activateInput()">
                     <img src="assets/icons/addBlack.png" alt="Edit" class="icon" />
                   </button>
-                  <button *ngIf="showControls" type="button" class="cancel-button" (click)="cancelSubtask()">
+                  } @else {
+                  <button type="button" class="cancel-button" (click)="cancelSubtask()">
                     <img src="assets/icons/iconoir_cancel.png" alt="Edit" class="icon" />
                   </button>
-                  <button *ngIf="showControls" type="button" class="confirm-button" (click)="confirmSubtask()">
-                    ✔
+                  <button type="button" class="confirm-button" (click)="confirmSubtask()">
+                    <img src="../../../assets/icons/check-dark.png" alt="check-dark-icon">
                   </button>
+                  }
                 </div>
               </div>
-
               <ul id="subtaskList input-wrapper">
                 <li *ngFor="let subtask of subtasks; let i = index">
                   <input *ngIf="false" type="checkbox" [(ngModel)]="subtask.done"
                     [disabled]="editedSubtaskIndex === i" />
-
                   <span *ngIf="editedSubtaskIndex !== i">{{ subtask.title }}</span>
                   <input *ngIf="editedSubtaskIndex === i" type="text" [(ngModel)]="editedSubtaskValue" />
-
                   <div class="subtask-buttons input-icons">
                     <button *ngIf="editedSubtaskIndex !== i" type="button" class="edit-button" (click)="editSubtask(i)">
                       <img src="assets/icons/edit.png" alt="Edit" class="icon" />
                     </button>
-
                     <button *ngIf="editedSubtaskIndex !== i" type="button" class="delete-button"
                       (click)="deleteSubtask(i)">
                       <img src="assets/icons/delete.png" alt="Delete" class="icon" />
                     </button>
-
-
                     <div class="edit-input-icons">
                       <button *ngIf="editedSubtaskIndex === i" type="button" class="cancel-button"
                         (click)="cancelEdit()">
@@ -152,7 +144,7 @@
                       </button>
                       <button *ngIf="editedSubtaskIndex === i" type="button" class="confirm-button"
                         (click)="saveSubtask(i)">
-                        ✔
+                        <img src="../../../assets/icons/check-dark.png" alt="check-dark-icon">
                       </button>
                     </div>
                   </div>
@@ -161,13 +153,12 @@
             </div>
           </div>
         </div>
-
         <div class="add-task-container-end">
           <div class="add-task-text">
             <p><span>*</span>This field is required</p>
           </div>
           <div class="add-task-btn">
-            <button class="cbtn cancelBtn" (click)="closeDialog()">Cancel</button>
+            <button class="cbtn cancelBtn" (click)="closeDialog()">Clear</button>
             <button class="btn createBtn" [disabled]="!title || !dueDate || !category" (click)="addTodo()">
               Create Task
             </button>
