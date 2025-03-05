@@ -49,7 +49,7 @@
           <label for="description"> </label>
           @if (isEditing) {
           <span>Description</span>
-          <input
+          <textarea
             type="text"
             id="description"
             name="description"
@@ -62,7 +62,7 @@
               (descriptionInput.dirty || descriptionInput.touched)
             "
             #descriptionInput="ngModel"
-          />
+          ></textarea>
           @if (descriptionInput.invalid && (descriptionInput.dirty ||
           descriptionInput.touched)) {
           <div class="error-message">This field is required</div>
