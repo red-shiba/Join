@@ -429,6 +429,15 @@ textarea {
 //   list-style-type: none !important;
 // }
 
+.add-task-text {
+  font-size: 13px;
+}
+
+.add-task-text span {
+  color: red;
+  font-size: 10px;
+}
+
 .cancelBtn {
   background-image: url("/assets/icons/iconoir_cancel.png");
   background-repeat: no-repeat;
@@ -561,6 +570,19 @@ textarea {
   display: inline-flex;
   gap: 5px;
   margin-left: 10px;
+}
+
+.add-task-btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.add-task-btn button {
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .subtask-buttons button {
