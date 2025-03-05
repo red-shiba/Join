@@ -57,7 +57,7 @@
             <p>Assigned to</p>
           </label>
           <div class="dropdown">
-            <button (click)="toggleDropdown()" class="dropdown-button">
+            <button (click)="toggleDropdown()" class="dropdown-button" [class.active]="dropdownOpen">
               <span>Select contacts to assign</span>
               <img src="../../../assets/icons/arrow-dropdown-down.png" alt="" />
               <img src="../../../assets/icons/arrow-dropdown-up.png" style="display: none" alt="" />
@@ -93,12 +93,15 @@
         }
 
         <p>Category<span class="category-required">*</span></p>
-        <select id="category" name="category" required [(ngModel)]="category" class="category-dropdown"
-          #categoryInput="ngModel">
-          <option value="" style="display: none;">Select task category</option>
-          <option value="Technical Task">Technical Task</option>
-          <option value="User Story">User Story</option>
-        </select>
+        <div class="select-wrapper">
+          <select id="category" name="category" required [(ngModel)]="category" class="category-dropdown"
+            #categoryInput="ngModel" (focus)="onFocus()" (blur)="onBlur()">
+            <option value="" style="display: none;">Select task category</option>
+            <option value="Technical Task">Technical Task</option>
+            <option value="User Story">User Story</option>
+          </select>
+          <img src="../../../assets/icons/arrow-dropdown-down.png" alt="arrow" class="arrow-icon" />
+        </div>
         @if (categoryInput.invalid && (categoryInput.dirty ||
         categoryInput.touched)) {
         <div class="error-message">This field is required</div>

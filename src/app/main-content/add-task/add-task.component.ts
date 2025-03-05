@@ -198,4 +198,12 @@ export class AddTaskComponent {
   toggleDropdown() {
     this.dropdownOpen = !this.dropdownOpen;
   }
+
+  onFocus() {
+    document.querySelector('.arrow-icon')?.classList.add('rotate');
+  }
+
+  onBlur() {
+    document.querySelector('.arrow-icon')?.classList.remove('rotate');
+  }
 }
