@@ -200,7 +200,10 @@
           <div class="assign-container" [class.open]="dropdownOpen">
             <ul class="contact-list">
               @for (contact of contactList; track contact) {
-              <label class="assignedStyle">
+              <label
+                class="assignedStyle"
+                [class.selected]="isSelected(contact)"
+                >>
                 <div
                   class="avatar"
                   [ngStyle]="{ 'background-color': getAvatarColor(contact) }"
@@ -238,39 +241,25 @@
         }
       </div>
 
-      <div class="subtasks">
+      <div class="subtasks" *ngIf="!isEditing">
         <span>Subtasks</span>
         <div class="subtask-container">
-          <ng-container *ngIf="!isEditing; else editSubtasks">
-            <div
-              class="subtask-entry"
-              *ngFor="let st of todo?.subtasks"
-              (click)="toggleCheckBox(st)"
-            >
-              <img
-                [src]="st.done ? checkedImage : uncheckedImage"
-                alt="check_box"
-              />
-              <span>{{ st.title }}</span>
-            </div>
-          </ng-container>
-          <ng-template #editSubtasks>
-            <div
-              class="subtask-entry"
-              *ngFor="let st of todo?.subtasks"
-              (click)="toggleCheckBox(st)"
-            >
-              <img
-                [src]="st.done ? checkedImage : uncheckedImage"
-                alt="check_box"
-              />
-              <input [(ngModel)]="st.title" />
-            </div>
-          </ng-template>
+          <div
+            class="subtask-entry"
+            *ngFor="let st of todo?.subtasks"
+            (click)="toggleCheckBox(st)"
+          >
+            <img
+              [src]="st.done ? checkedImage : uncheckedImage"
+              alt="check_box"
+            />
+            <span>{{ st.title }}</span>
+          </div>
         </div>
       </div>
 
-      <div class="subtask-container">
+      <div class="subtask-container-edit" *ngIf="isEditing">
+        <p>Subtasks</p>
         <div class="input-wrapper">
           <input
             type="text"
@@ -281,7 +270,6 @@
             (focus)="activateInput()"
             (blur)="hideControls()"
           />
-
           <div class="input-icons">
             @if (!showControls) {
             <button type="button" class="plus-button" (click)="activateInput()">
@@ -312,25 +300,23 @@
             }
           </div>
         </div>
-
         <ul id="subtaskList input-wrapper">
-          <li *ngFor="let subtask of subtasks; let i = index">
-            *ngIf="false" type="checkbox" [(ngModel)]="subtask.done"
-            [disabled]="editedSubtaskIndex === i" />
-
+          <li *ngFor="let subtask of editableSubtasks; let i = index">
+            <input
+              *ngIf="false"
+              type="checkbox"
+              [(ngModel)]="subtask.done"
+              [disabled]="editedSubtaskIndex === i"
+            />
             <span *ngIf="editedSubtaskIndex !== i">{{ subtask.title }}</span>
-
             <input
               *ngIf="editedSubtaskIndex === i"
               type="text"
               [(ngModel)]="editedSubtaskValue"
             />
-
-            <div
-              class="subtask-buttons input-icons"
-              *ngIf="editedSubtaskIndex !== i"
-            >
+            <div class="subtask-buttons input-icons">
               <button
+                *ngIf="editedSubtaskIndex !== i"
                 type="button"
                 class="edit-button"
                 (click)="editSubtask(i)"
@@ -338,37 +324,38 @@
                 <img src="assets/icons/edit.png" alt="Edit" class="icon" />
               </button>
               <button
+                *ngIf="editedSubtaskIndex !== i"
                 type="button"
                 class="delete-button"
                 (click)="deleteSubtask(i)"
               >
                 <img src="assets/icons/delete.png" alt="Delete" class="icon" />
               </button>
-            </div>
-
-            <div class="edit-input-icons" *ngIf="editedSubtaskIndex === i">
-              <button
-                type="button"
-                class="cancel-button"
-                (click)="cancelEdit()"
-              >
-                <img src="assets/icons/delete.png" alt="Edit" class="icon" />
-              </button>
-              <button
-                type="button"
-                class="confirm-button"
-                (click)="saveSubtask(i)"
-              >
-                <img
-                  src="../../../assets/icons/check-dark.png"
-                  alt="check-dark-icon"
-                />
-              </button>
+              <div class="edit-input-icons">
+                <button
+                  *ngIf="editedSubtaskIndex === i"
+                  type="button"
+                  class="cancel-button"
+                  (click)="cancelEdit()"
+                >
+                  <img src="assets/icons/delete.png" alt="Edit" class="icon" />
+                </button>
+                <button
+                  *ngIf="editedSubtaskIndex === i"
+                  type="button"
+                  class="confirm-button"
+                  (click)="saveSubtask(i)"
+                >
+                  <img
+                    src="../../../assets/icons/check-dark.png"
+                    alt="check-dark-icon"
+                  />
+                </button>
+              </div>
             </div>
           </li>
         </ul>
       </div>
-
       <div class="delete-edit-container">
         <div class="deleteIcon" *ngIf="!isEditing">
           <img
