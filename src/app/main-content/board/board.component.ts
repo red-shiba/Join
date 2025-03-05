@@ -144,7 +144,7 @@ export class BoardComponent {
     this.isDialogOpen = true;
   }
 
-  closeDialog() {
+  closeDialog(event: boolean) {
     this.isDialogOpen = false;
   }
 }
