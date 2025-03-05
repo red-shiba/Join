@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, HostListener } from '@angular/core';
 import { Todo } from '../../interfaces/todos';
 import { TodoListService } from '../../firebase-service/todo-list.service';
 import { FormsModule } from '@angular/forms';
@@ -13,7 +13,7 @@ import {
 import { SingleTodoComponent } from './single-todo/single-todo.component';
 import { TaskCardComponent } from '../../dialogs/task-card/task-card.component';
 import { AddTaskDialogComponent } from '../../dialogs/add-task-dialog/add-task-dialog.component';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 
 @Component({
   selector: 'app-board',
@@ -42,13 +42,24 @@ export class BoardComponent {
   searchTerm: string = '';
   isDialogOpen = false;
   preselectedType: string | null = null;
+  isMobile = false;
 
-  constructor(private todoListService: TodoListService) {}
+  constructor(private todoListService: TodoListService, private router: Router) { }
 
   ngOnInit() {
     this.todoListService.todos$.subscribe((todos) => {
       this.todoList = todos;
     });
+    this.checkViewportWidth();
+  }
+
+  @HostListener('window:resize')
+  onResize() {
+    this.checkViewportWidth();
+  }
+
+  private checkViewportWidth() {
+    this.isMobile = window.innerWidth < 769;
   }
 
   onSearchChange(value: string) {
@@ -134,8 +145,16 @@ export class BoardComponent {
     }
   }
 
+  onPlusClick(type: string) {
+    if (this.isMobile) {
+      this.router.navigate(['/add-task']);
+    } else {
+      this.openDialog(type);
+    }
+  }
+
   openOverlay(todo: Todo) {
-    this.selectedTodo = todo; // speichert das ausgewählte Todo-Objekt
+    this.selectedTodo = todo;
     this.isOverlayOpen = true;
   }
 

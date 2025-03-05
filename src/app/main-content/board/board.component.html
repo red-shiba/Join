@@ -30,7 +30,7 @@
     <div class="dragndrop-container">
       <div class="info-dragdrop">
         <h2>To do</h2>
-        <img class="plus-icon" src="/assets/icons/plus.png" alt="plus Icon" (click)="openDialog('todo')"/>
+        <img class="plus-icon" src="/assets/icons/plus.png" alt="plus Icon" (click)="onPlusClick('todo')"/>
       </div>
 
       <div class="drop-area" cdkDropList #todoList="cdkDropList" [cdkDropListData]="getFilteredList('todoList')"
@@ -50,7 +50,7 @@
     <div class="dragndrop-container">
       <div class="info-dragdrop">
         <h2>Await feedback</h2>
-        <img class="plus-icon" src="/assets/icons/plus.png" alt="plus Icon" (click)="openDialog('awaitfeedback')" />
+        <img class="plus-icon" src="/assets/icons/plus.png" alt="plus Icon" (click)="onPlusClick('awaitfeedback')" />
       </div>
 
       <div class="drop-area" cdkDropList #awaitFeedbackList="cdkDropList"
@@ -71,7 +71,7 @@
     <div class="dragndrop-container">
       <div class="info-dragdrop">
         <h2>Progress</h2>
-        <img class="plus-icon" src="/assets/icons/plus.png" alt="plus Icon" (click)="openDialog('inprogress')"/>
+        <img class="plus-icon" src="/assets/icons/plus.png" alt="plus Icon" (click)="onPlusClick('inprogress')"/>
       </div>
 
       <div class="drop-area" cdkDropList #inprogressList="cdkDropList"
