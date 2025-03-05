@@ -54,9 +54,27 @@
   align-items: center;
   width: 100%;
   padding: 10px;
+  border-radius: 10px;
   border: 1px solid #ddd;
   background: white;
   cursor: pointer;
+}
+.dropdown-button:hover {
+  border-color: #999;
+}
+
+.dropdown-button:focus {
+  outline: none;
+  border-color: #29abe2;
+}
+
+.dropdown-button img {
+  transition: transform 0.2s ease;
+  margin-right: -5px;
+}
+
+.dropdown-button.active img {
+  transform: rotate(180deg);
 }
 
 label {
@@ -132,22 +150,13 @@ label {
   width: 100%;
   padding: 30px;
   overflow: scroll;
-}
-.task-container {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  width: 100%;
-  padding: 30px;
-  overflow: scroll; /* Scrollen bleibt möglich */
 
-  /* Scrollbar ausblenden */
-  -ms-overflow-style: none; /* Edge/IE */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .task-container::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Edge (neue Versionen) */
+  display: none;
 }
 .task-container.editing {
   gap: 10px;
@@ -348,7 +357,6 @@ hr {
     background: #f3f4f6;
   }
 }
-// Inputfelder zum Validieren//
 .custom-input {
   border: 0.5px solid #e7e7e7;
   transition: border-color 0.3s ease;
@@ -389,6 +397,7 @@ textarea {
 .priority-buttons {
   display: flex;
   gap: 5px;
+  flex-wrap: wrap;
 }
 
 .priority-buttons button {
@@ -399,7 +408,6 @@ textarea {
   font-family: inter;
   font-weight: 500;
   font-size: 16px;
-  width: 104px;
   color: rgb(102, 102, 102);
 }
 
@@ -503,7 +511,11 @@ textarea {
   color: #979393;
   font-weight: 400;
 }
-/* Subtask Container */
+#subtaskInput:focus {
+  outline: none;
+  border-color: #29abe2;
+}
+
 .subtask-container {
   position: relative;
   width: 100%;
@@ -515,7 +527,6 @@ textarea {
   align-items: center;
 }
 
-/* Subtask Input */
 #subtaskInput {
   width: 100%;
   padding-right: 30px;
@@ -530,14 +541,12 @@ textarea {
   font-weight: 400;
 }
 
-/* Input Wrapper */
 .input-wrapper {
   position: relative;
   display: flex;
   align-items: center;
 }
 
-/* Input Icons */
 .input-icons {
   position: absolute;
   right: 10px;
@@ -546,18 +555,15 @@ textarea {
   gap: 3px;
 }
 
-/* Plus Button */
 .plus-button img {
   width: 10px;
 }
 
-/* Cancel Button */
 .cancel-button img {
   width: 15px;
   margin-top: 6px;
 }
 
-/* Confirm Button */
 .confirm-button img {
   width: 16px;
   margin-top: 5px;
@@ -565,13 +571,11 @@ textarea {
   padding-left: 12px;
 }
 
-/* Delete Button */
 .delete-button img {
   border-left: 1px solid #4e4e4e;
   padding-left: 15px;
 }
 
-/* Buttons (Plus, Cancel, Confirm) */
 .plus-button,
 .cancel-button,
 .confirm-button {
@@ -580,7 +584,6 @@ textarea {
   cursor: pointer;
 }
 
-/* Subtask Buttons */
 .subtask-buttons {
   display: inline-flex;
   gap: 5px;
@@ -594,17 +597,14 @@ textarea {
   font-size: 16px;
 }
 
-/* Edit Button */
 .edit-button img {
   width: 16px;
 }
 
-/* Delete Button */
 .delete-button img {
   width: 16px;
 }
 
-/* Edit Input Icons */
 .edit-input-icons {
   position: absolute;
   top: 12px;

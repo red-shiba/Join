@@ -303,6 +303,7 @@
         <ul id="subtaskList input-wrapper">
           <li *ngFor="let subtask of editableSubtasks; let i = index">
             <input
+              class="custom-input"
               *ngIf="false"
               type="checkbox"
               [(ngModel)]="subtask.done"
