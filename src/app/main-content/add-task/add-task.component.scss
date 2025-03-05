@@ -12,6 +12,17 @@ p {
   gap: 20px;
 }
 
+.add-task-container-end {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1920px;
+  width: 100%;
+  box-sizing: border-box;
+  padding-right: 100px;
+  padding-left: 100px;
+}
+
 .add-task-form {
   display: flex;
 }
