@@ -133,6 +133,22 @@ label {
   padding: 30px;
   overflow: scroll;
 }
+.task-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  padding: 30px;
+  overflow: scroll; /* Scrollen bleibt möglich */
+
+  /* Scrollbar ausblenden */
+  -ms-overflow-style: none; /* Edge/IE */
+  scrollbar-width: none; /* Firefox */
+}
+
+.task-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge (neue Versionen) */
+}
 .task-container.editing {
   gap: 10px;
 }
