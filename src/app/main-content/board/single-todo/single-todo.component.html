@@ -24,7 +24,7 @@
 
   <div class="priority-container">
     <div class="assigned-of-task">
-      @for (contact of selectedContacts; track contact) {
+      @for (contact of selectedContacts | slice:0:3; track contact) {
       <div
         class="circle-of-task"
         [ngStyle]="{ 'background-color': getAvatarColor(contact) }"
@@ -32,6 +32,11 @@
         {{ getInitials(contact.name) }}
       </div>
       }
+      @if (selectedContacts.length > 3) {
+        <div class="circle-of-task" [ngStyle]="{ 'background-color': '#D1D1D1'}">
+          <span>+{{ selectedContacts.length - 3 }}</span>
+        </div>
+        }
     </div>
     <div class="priority-task">
       <img [src]="getPriorityIcon(todo?.priority)" alt="{{ todo?.priority }}" />
