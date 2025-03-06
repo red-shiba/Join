@@ -1,6 +1,6 @@
 .loginFrame {
   width: 652px;
-  height: 449px;
+  height: 400px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -37,7 +37,7 @@
     font-size: 61px;
     font-weight: 700;
     color: #000000;
-    margin-bottom: 24px;
+    margin: 0px;
   }
 
   .button {
