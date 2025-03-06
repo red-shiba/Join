@@ -135,7 +135,7 @@
               </div>
             </div>
 
-            <ul id="subtaskList input-wrapper">
+            <ul id="subtaskList input-wrapper" class="subtask-input-wrapper">
               <li *ngFor="let subtask of subtasks; let i = index">
                 <input *ngIf="false" type="checkbox" [(ngModel)]="subtask.done" [disabled]="editedSubtaskIndex === i" />
 

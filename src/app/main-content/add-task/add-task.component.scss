@@ -1,7 +1,15 @@
+/* ------------------------------------ */
+/* Globale Stile */
+/* ------------------------------------ */
+
 p {
   margin-block-start: 1em;
   margin-block-end: 0.5em;
 }
+
+/* ------------------------------------ */
+/* Layout und Container */
+/* ------------------------------------ */
 
 .add-task-container {
   width: 100%;
@@ -23,28 +31,30 @@ p {
   padding-left: 100px;
 }
 
-.add-task-form {
-  display: flex;
-}
-
 .add-task-inner-container h2 {
   font-size: 61px;
   font-weight: 600;
   padding-left: 100px;
   font-family: inter;
-  // padding-top: 100px;
   margin-bottom: -30px;
   margin-block-start: 0;
 }
 
-// Forms styling
+.add-task-form {
+  display: flex;
+}
+
+/* ------------------------------------ */
+/* Formular Layout */
+/* ------------------------------------ */
+
 .form-left,
 .form-right {
   width: 48%;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  padding: 50px 0 10px 0;
+  padding: 50px 0 10px;
   font-family: inter;
   font-size: 16px;
   font-weight: 400;
@@ -69,22 +79,56 @@ p {
   margin-bottom: 20px;
 }
 
-.form-left-title span {
-  color: #ff3c00b6;
-}
-
-.form-left span {
-  color: #ff3c00b6;
-}
-
-p .category-required {
-  color: #ff3c00b6;
-}
-
 .form-container p {
   color: #4e4e4e;
 }
 
+/* ------------------------------------ */
+/* Formular Elemente */
+/* ------------------------------------ */
+
+/* Textfelder, Textbereiche und Auswahlelemente */
+input[type="text"],
+input[type="date"],
+textarea,
+select {
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 15px;
+  font-family: inter;
+  font-weight: 400;
+  font-size: 15px;
+  color: rgb(70, 69, 69);
+  border: 1px solid rgb(233, 233, 233); /* Vereinheitlichte Border-Deklaration */
+}
+
+textarea {
+  height: 100%;
+}
+
+/* Benutzerdefinierte Eingabefelder */
+.custom-input {
+  border: 0.5px solid #e7e7e7;
+  transition: border-color 0.3s ease;
+  color: rgb(87, 87, 87);
+}
+
+.custom-input:focus {
+  outline: none;
+  border-color: #29abe2;
+}
+
+.custom-input.ng-invalid.ng-touched {
+  border-color: #ff3c00b6;
+}
+
+.custom-input:not(:focus):not(.ng-invalid.ng-touched) {
+  border-color: #e7e7e7;
+}
+
+/* Dropdown-Elemente */
 .select-wrapper {
   position: relative;
   display: inline-block;
@@ -112,76 +156,9 @@ p .category-required {
   transform: translateY(-50%) rotate(180deg);
 }
 
-// .category-dropdown {
-//   appearance: none;
-//   -webkit-appearance: none;
-//   -moz-appearance: none;
-//   background-image: url("../../../assets/icons/arrow-dropdown-down.png");
-//   transition: transform 0.3s ease;
-//   background-position: right 10px center;
-//   background-repeat: no-repeat;
-//   padding-right: 30px;
-//   color: #979393;
-//   cursor: pointer;
-// }
-
-// .category-dropdown:focus {
-//   transform: rotate(180deg);
-// }
-
-// Form input border
-
-.custom-input {
-  border: 0.5px solid #e7e7e7;
-  transition: border-color 0.3s ease;
-  color: rgb(87, 87, 87);
-}
-
-.custom-input:focus {
-  outline: none;
-  border-color: #29abe2;
-}
-
-.custom-input.ng-invalid.ng-touched {
-  border-color: #ff3c00b6;
-}
-
-.custom-input:not(:focus):not(.ng-invalid.ng-touched) {
-  border-color: #e7e7e7;
-}
-
-// Devider
-
-.devider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2px;
-  background-color: rgb(223, 221, 221);
-  height: 400px;
-  margin: 0 1%;
-  margin-top: 100px;
-}
-
-input[type="text"],
-input[type="date"],
-textarea,
-select {
-  border: 1px solid rgb(233, 233, 233);
-  width: 100%;
-  height: 50px;
-  border-radius: 10px;
-  box-sizing: border-box;
-  padding: 15px;
-  font-family: inter;
-  font-weight: 400;
-  font-size: 15px;
-  color: rgb(70, 69, 69);
-}
-
-textarea {
-  height: 100%;
-}
+/* ------------------------------------ */
+/* Prioritätsbuttons */
+/* ------------------------------------ */
 
 .priority-buttons {
   display: flex;
@@ -214,10 +191,6 @@ textarea {
   padding: 15px 20px;
   flex: 1;
   cursor: pointer;
-  // margin-right: 10px;
-  &:last-child {
-    margin-right: 0;
-  }
 }
 
 .priority-btn.active[data-priority="urgent"] {
@@ -242,13 +215,20 @@ textarea {
   filter: brightness(0) invert(1);
 }
 
-// Subtask
+/* ------------------------------------ */
+/* Subtasks */
+/* ------------------------------------ */
+
+/* Subtask Container */
 .subtask-container {
   position: relative;
   width: 100%;
   align-items: center;
+  max-height: 150px;
+  overflow-y: auto;
 }
 
+/* Subtask Input */
 #subtaskInput {
   width: 100%;
   padding-right: 30px;
@@ -258,33 +238,108 @@ textarea {
   align-items: center;
 }
 
-.add-button {
-  position: absolute;
-  right: 15px;
-  top: 42%;
-  transform: translateY(-50%);
-  font-size: 17px;
-  cursor: pointer;
-  background: none;
-  border: none;
-  color: #2a3d59;
-  pointer-events: auto;
-  font-weight: 700;
+.subtask-input-wrapper {
+  padding: 10px;
+  // background-color: #7ae229;
 }
 
-// Assign
+#subtaskInput::placeholder {
+  color: #979393;
+  font-weight: 400;
+}
 
-// .assign-container {
-//   position: relative;
-//   width: 100%;
-//   align-items: center;
-// }
+/* Input Wrapper */
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Input Icons */
+.input-icons {
+  position: absolute;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* Buttons (Plus, Cancel, Confirm) */
+.plus-button,
+.cancel-button,
+.confirm-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Plus Button */
+.plus-button img {
+  width: 10px;
+}
+
+/* Cancel Button */
+.cancel-button img {
+  width: 15px;
+  margin-top: 6px;
+}
+
+/* Confirm Button */
+.confirm-button img {
+  width: 16px;
+  margin-top: 5px;
+  border-left: 1px solid #4e4e4e;
+  padding-left: 12px;
+}
+
+/* Delete Button */
+.delete-button img {
+  border-left: 1px solid #4e4e4e;
+  padding-left: 15px;
+}
+
+/* Subtask Buttons */
+.subtask-buttons {
+  display: inline-flex;
+  gap: 5px;
+  margin-left: 10px;
+}
+
+.subtask-buttons button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Edit Button */
+.edit-button img {
+  width: 16px;
+}
+
+/* Delete Button */
+.delete-button img {
+  width: 16px;
+}
+
+/* Edit Input Icons */
+.edit-input-icons {
+  position: absolute;
+  top: 12px;
+  right: 2px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* ------------------------------------ */
+/* Assign Bereich */
+/* ------------------------------------ */
 
 .assign-container {
   position: absolute;
   width: 100%;
   background: white;
-  // border: 1px solid #757575;
   max-height: 200px;
   overflow-y: auto;
   display: none;
@@ -363,16 +418,11 @@ textarea {
   transform: rotate(180deg);
 }
 
-// .dropdown-icon {
-//   margin-left: 10px;
-// }
-
 .assignedStyle {
   display: flex;
   align-items: center;
   padding: 10px;
   margin: 10px;
-  // border-bottom: 1px solid #ddd;
   border-radius: 10px;
   cursor: pointer;
 }
@@ -386,9 +436,20 @@ textarea {
   color: white;
 }
 
+/* ------------------------------------ */
+/* Andere Elemente */
+/* ------------------------------------ */
+
 .assignedStyleSelected {
   display: flex;
   align-items: center;
+}
+
+.error-message {
+  color: #ff3d00;
+  padding-top: 5px;
+  padding-left: 5px;
+  font-size: 10px;
 }
 
 .avatar {
@@ -420,15 +481,6 @@ textarea {
   justify-content: center;
 }
 
-#subtaskInput::placeholder {
-  color: #979393;
-  font-weight: 400;
-}
-
-// #subtaskList .input-wrapper {
-//   list-style-type: none !important;
-// }
-
 .add-task-text {
   font-size: 13px;
 }
@@ -438,23 +490,9 @@ textarea {
   font-size: 10px;
 }
 
-.cancelBtn {
-  background-image: url("/assets/icons/iconoir_cancel.png");
-  background-repeat: no-repeat;
-  background-position: right;
-  background-position: calc(100% - 10px) center;
-}
-
-.cancelBtn img {
-  width: 10px;
-}
-
-.createBtn {
-  background-image: url("/assets/icons/checkBtn.png");
-  background-repeat: no-repeat;
-  background-position: right;
-  background-position: calc(100% - 10px) center;
-}
+/* ------------------------------------ */
+/* Buttons */
+/* ------------------------------------ */
 
 .btn {
   width: 200px;
@@ -466,12 +504,12 @@ textarea {
   padding: 16px;
   cursor: pointer;
   margin-top: 20px;
+}
 
-  &:hover {
-    background-color: #29abe2;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    color: #ffffff;
-  }
+.btn:hover {
+  background-color: #29abe2;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  color: #ffffff;
 }
 
 .cbtn {
@@ -479,97 +517,31 @@ textarea {
   background-color: #ffffff;
   color: #2a3647;
   border-radius: 10px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 36px;
+  padding: 8px 16px 8px 36px;
   cursor: pointer;
   margin-top: 20px;
-
-  &:hover {
-    border: 1px solid #29abe2;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    color: #2a3647;
-  }
 }
 
-/* Subtask Container */
-.subtask-container {
-  position: relative;
-  width: 100%;
-  align-items: center;
+.cbtn:hover {
+  border: 1px solid #29abe2;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  color: #2a3647;
 }
 
-/* Subtask Input */
-#subtaskInput {
-  width: 100%;
-  padding-right: 30px;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.cancelBtn {
+  background-image: url("/assets/icons/iconoir_cancel.png");
+  background-repeat: no-repeat;
+  background-position: right calc(100% - 10px) center;
 }
 
-#subtaskInput::placeholder {
-  color: #979393;
-  font-weight: 400;
-}
-
-/* Input Wrapper */
-.input-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-/* Input Icons */
-.input-icons {
-  position: absolute;
-  right: 10px;
-  display: flex;
-  align-items: center;
-  gap: 3px;
-}
-
-/* Plus Button */
-.plus-button img {
+.cancelBtn img {
   width: 10px;
 }
 
-/* Cancel Button */
-.cancel-button img {
-  width: 15px;
-  margin-top: 6px;
-}
-
-/* Confirm Button */
-.confirm-button img {
-  width: 16px;
-  margin-top: 5px;
-  border-left: 1px solid #4e4e4e;
-  padding-left: 12px;
-}
-
-/* Delete Button */
-.delete-button img {
-  border-left: 1px solid #4e4e4e;
-  padding-left: 15px;
-}
-
-/* Buttons (Plus, Cancel, Confirm) */
-.plus-button,
-.cancel-button,
-.confirm-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-/* Subtask Buttons */
-.subtask-buttons {
-  display: inline-flex;
-  gap: 5px;
-  margin-left: 10px;
+.createBtn {
+  background-image: url("/assets/icons/checkBtn.png");
+  background-repeat: no-repeat;
+  background-position: right calc(100% - 10px) center;
 }
 
 .add-task-btn {
@@ -585,34 +557,9 @@ textarea {
   font-weight: 500;
 }
 
-.subtask-buttons button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-/* Edit Button */
-.edit-button img {
-  width: 16px;
-}
-
-/* Delete Button */
-.delete-button img {
-  width: 16px;
-}
-
-/* Edit Input Icons */
-.edit-input-icons {
-  position: absolute;
-  top: 12px;
-  right: 2px;
-  display: flex;
-  align-items: center;
-  gap: 3px;
-}
-
-// Media
+/* ------------------------------------ */
+/* Responsive Styles */
+/* ------------------------------------ */
 
 @media (max-width: 1100px) {
   .add-task-form {
@@ -633,10 +580,7 @@ textarea {
     margin-top: 15px;
   }
 
-  .form-left {
-    padding: 0;
-  }
-
+  .form-left,
   .form-right {
     padding: 0;
   }
@@ -665,5 +609,16 @@ textarea {
     width: 100%;
     justify-content: flex-end;
     margin-right: 0;
+  }
+
+  .add-task-form {
+    flex-direction: column;
+    width: 95%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .add-task-inner-container h2 {
+    font-size: 35px;
   }
 }
