@@ -234,16 +234,26 @@
   .drop-area {
     display: flex;
     gap: 50px;
+    max-height: 60vh;
     overflow-x: auto;
   }
 
   .drop-area::-webkit-scrollbar {
-    display: none;
+    height: 8px;
   }
 
-  .drop-area {
-    -ms-overflow-style: auto;
-    scrollbar-width: auto;
+  .drop-area::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+
+  .drop-area::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
+
+  .drop-area::-webkit-scrollbar-thumb:hover {
+    background: #555;
   }
 }
 
@@ -258,6 +268,9 @@
 @media (max-width: 768px) {
   .drag-and-drop-container {
     max-height: 58vh;
+  }
+  .drop-area::-webkit-scrollbar {
+    height: 0px;
   }
 }
 @media (max-width: 615px) {
