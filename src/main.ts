@@ -17,7 +17,7 @@ bootstrapApplication(AppComponent, {
       projectId: "join-68f95",
       storageBucket: "join-68f95.firebasestorage.app",
       messagingSenderId: "378653092670",
-      appId: "1:378653092670:web:7877bf9d17c833d9abda6f"
+      appId: "1:378653092670:web:dcff05e4c6a7828aabda6f"
     })),
     provideAuth(() => getAuth())
   ]
