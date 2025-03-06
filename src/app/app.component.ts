@@ -16,7 +16,7 @@ import { SummaryComponent } from './main-content/summary/summary.component';
     NavbarComponent,
     ContactsComponent,
     SummaryComponent,
-    RouterLink
+    RouterLink,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
