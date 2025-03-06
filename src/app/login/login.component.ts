@@ -8,6 +8,7 @@ import { firstValueFrom } from 'rxjs';
   selector: 'app-login',
   standalone: true,
   templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
   imports: [FormsModule]
 })
 export class LoginComponent {
