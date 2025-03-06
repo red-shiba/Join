@@ -6,7 +6,7 @@ import { TodoListService } from '../../firebase-service/todo-list.service';
 import { ContactListService } from '../../firebase-service/contact-list.service';
 import { Contact } from '../../interfaces/contact';
 import { AvatarColorService } from '../../services/avatar-color.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add-task',
@@ -29,6 +29,7 @@ export class AddTaskComponent {
   contactList: Contact[] = [];
   selectedContacts: Contact[] = [];
   dropdownOpen = false;
+  type: any = 'todo';
 
   errors = {
     title: false,
@@ -47,7 +48,8 @@ export class AddTaskComponent {
     private todoListService: TodoListService,
     private contactListService: ContactListService,
     private avatarColorService: AvatarColorService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -56,6 +58,13 @@ export class AddTaskComponent {
     });
 
     this.setPriority('medium'); // setzt die priorität auf medium
+
+    this.route.queryParamMap.subscribe((params) => {
+      const paramVal = params.get('type'); // z. B. "todo"
+      if (paramVal) {
+        this.type = paramVal;
+      }
+    });
   }
 
   getList(): Contact[] {
@@ -167,7 +176,7 @@ export class AddTaskComponent {
       subtasks: this.subtasks,
     };
 
-    this.todoListService.addTodo(newTask, 'todo').then(() => {
+    this.todoListService.addTodo(newTask, this.type).then(() => {
       this.router.navigate(['board']);
     }).catch((error) => {
       console.error('Fehler beim Speichern des Tasks:', error);

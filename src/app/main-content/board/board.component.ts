@@ -14,6 +14,7 @@ import { SingleTodoComponent } from './single-todo/single-todo.component';
 import { TaskCardComponent } from '../../dialogs/task-card/task-card.component';
 import { AddTaskDialogComponent } from '../../dialogs/add-task-dialog/add-task-dialog.component';
 import { RouterLink, Router } from '@angular/router';
+import { TaskNavigationService } from '../../services/task-navigation.service';
 
 @Component({
   selector: 'app-board',
@@ -44,23 +45,23 @@ export class BoardComponent {
   preselectedType: string | null = null;
   isMobile = false;
 
-  constructor(private todoListService: TodoListService, private router: Router) { }
+  constructor(private todoListService: TodoListService, private router: Router, private taskNavService: TaskNavigationService) { }
 
   ngOnInit() {
     this.todoListService.todos$.subscribe((todos) => {
       this.todoList = todos;
     });
-    this.checkViewportWidth();
+    // this.checkViewportWidth();
   }
 
-  @HostListener('window:resize')
-  onResize() {
-    this.checkViewportWidth();
-  }
+  // @HostListener('window:resize')
+  // onResize() {
+  //   this.checkViewportWidth();
+  // }
 
-  private checkViewportWidth() {
-    this.isMobile = window.innerWidth < 769;
-  }
+  // private checkViewportWidth() {
+  //   this.isMobile = window.innerWidth < 769;
+  // }
 
   onSearchChange(value: string) {
     this.searchTerm = value;
@@ -146,11 +147,7 @@ export class BoardComponent {
   }
 
   onPlusClick(type: string) {
-    if (this.isMobile) {
-      this.router.navigate(['/add-task']);
-    } else {
-      this.openDialog(type);
-    }
+    this.taskNavService.navigateOrOpenDialog(type, this.openDialog.bind(this));
   }
 
   openOverlay(todo: Todo) {
