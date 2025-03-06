@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Subtask, Todo } from '../../interfaces/todos';
@@ -7,6 +7,7 @@ import { ContactListService } from '../../firebase-service/contact-list.service'
 import { Contact } from '../../interfaces/contact';
 import { AvatarColorService } from '../../services/avatar-color.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-add-task',
@@ -16,6 +17,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   imports: [CommonModule, FormsModule],
 })
 export class AddTaskComponent {
+  @ViewChild('taskForm') taskForm!: NgForm;
   title: string = '';
   description: string = '';
   assignedTo: string = '';
@@ -217,5 +219,25 @@ export class AddTaskComponent {
 
   onBlur() {
     document.querySelector('.arrow-icon')?.classList.remove('rotate');
+  }
+
+  clearContent() {
+    this.title = '';
+    this.description = '';
+    this.assignedTo = '';
+    this.dueDate = '';
+    this.priority = '';
+    this.category = '';
+    this.subtaskInput = '';
+    this.subtasks = [];
+    this.showControls = false;
+    this.selectedContacts = [];
+    this.errors = {
+      title: false,
+      dueDate: false,
+      category: false
+    }
+
+    this.taskForm.resetForm();
   }
 }

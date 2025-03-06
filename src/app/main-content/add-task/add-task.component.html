@@ -91,10 +91,10 @@
             </label>
             }
             @if (selectedContacts.length > 3) {
-              <div class="avatar" [ngStyle]="{ 'background-color': '#D1D1D1'}">
-                <span>+{{ selectedContacts.length - 3 }}</span>
-              </div>
-              }
+            <div class="avatar" [ngStyle]="{ 'background-color': '#D1D1D1'}">
+              <span>+{{ selectedContacts.length - 3 }}</span>
+            </div>
+            }
           </div>
           }
 
@@ -174,7 +174,7 @@
           <p><span>*</span>This field is required</p>
         </div>
         <div class="add-task-btn">
-          <button class="cbtn cancelBtn" (click)="closeDialog()">Clear</button>
+          <button class="cbtn cancelBtn" (click)="clearContent()">Clear</button>
           <button class="btn createBtn" (click)="addTodo()">
             Create Task
           </button>
