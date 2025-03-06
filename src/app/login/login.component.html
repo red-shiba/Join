@@ -1,0 +1,18 @@
+<h2>Login</h2>
+<form (submit)="login(); $event.preventDefault()">
+  <input type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" placeholder="E-Mail" required />
+  <input type="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" placeholder="Passwort" required />
+  <button type="submit">Login</button>
+</form>
+
+<h2>Oder registrieren</h2>
+<form (submit)="register(); $event.preventDefault()">
+  <input type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" placeholder="E-Mail" required />
+  <input type="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" placeholder="Passwort" required />
+  <button type="submit">Registrieren</button>
+</form>
+
+<h2>Gast Login</h2>
+<form (submit)="guestLogin(); $event.preventDefault()">
+  <button type="submit">Gast Login</button>
+</form>
