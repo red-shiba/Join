@@ -80,13 +80,18 @@
             </div>
             @if (selectedContacts.length > 0) {
             <div class="assignedStyleSelected">
-              @for (contact of selectedContacts; track contact) {
+              @for (contact of selectedContacts | slice:0:3; track contact) {
               <label>
                 <div class="avatar" [ngStyle]="{ 'background-color': getAvatarColor(contact) }">
                   {{ getInitials(contact.name) }}
                 </div>
               </label>
               }
+              @if (selectedContacts.length > 3) {
+                <div class="avatar" [ngStyle]="{ 'background-color': '#D1D1D1'}">
+                  <span>+{{ selectedContacts.length - 3 }}</span>
+                </div>
+                }
             </div>
             }
             <p>Category<span class="category-required">*</span></p>
@@ -158,7 +163,7 @@
             <p><span>*</span>This field is required</p>
           </div>
           <div class="add-task-btn">
-            <button class="cbtn cancelBtn" (click)="closeDialog()">Clear</button>
+            <button class="cbtn cancelBtn" (click)="closeDialog()">Cancel</button>
             <button class="btn createBtn" [disabled]="!title || !dueDate || !category" (click)="addTodo()">
               Create Task
             </button>
