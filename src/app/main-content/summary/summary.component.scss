@@ -1,0 +1,32 @@
+.summory-section {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 100%;
+  height: calc(90vh - 100px);
+}
+.headline {
+  width: auto;
+  height: 100px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  padding-left: 36px;
+
+  > h2 {
+    font-size: 61px;
+    margin: 0px;
+  }
+
+  > p {
+    font-size: 27px;
+    margin: 0px;
+  }
+}
+.seperator {
+  width: 0px;
+  height: 45px;
+  border: 2px solid rgb(41, 171, 226);
+  background-color: rgb(41, 171, 226);
+}

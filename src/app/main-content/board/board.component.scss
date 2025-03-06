@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   padding: 20px;
-  // height: 80vh;
+  width: 100%;
   height: calc(90vh - 100px);
 }
 .headline-container {
@@ -140,9 +140,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  // padding: 10px;
-  width: 100%;
-
+  width: 95%;
   > img {
     width: 20px;
     height: 20px;
@@ -307,6 +305,7 @@
   }
   .headline {
     gap: 20px;
+    width: 90%;
   }
   .search-input {
     width: 250px;
