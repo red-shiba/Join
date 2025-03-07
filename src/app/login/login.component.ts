@@ -33,15 +33,6 @@ export class LoginComponent {
     }
   }
 
-  async register() {
-    try {
-      await this.authService.register(this.email, this.password);
-      alert('Registrierung erfolgreich!');
-    } catch (error: any) {
-      alert(error.message);
-    }
-  }
-
   guestLogin() {
     this.email = 'gast@gast.de';
     this.password = 'gast789';

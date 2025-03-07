@@ -2,7 +2,7 @@
     <div class="logoFrame" [@moveLogo]="logoState">
       <img src="/assets/logo/logo_start.png" alt="search-button" class="logo">
     </div>
-    <div class="signUpBtn"><p>Not a Join user?</p><button class="btn" >Sign up</button></div>
+    <div class="signUpBtn"><p>Not a Join user?</p><button class="btn" routerLink="signup">Sign up</button></div>
     <div [@fadeIn] *ngIf="logoState === 'moved'">
       <router-outlet></router-outlet>
       <div class="policyRow">

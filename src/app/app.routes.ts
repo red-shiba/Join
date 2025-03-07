@@ -10,12 +10,16 @@ import { BoardComponent } from './main-content/board/board.component';
 import { AddTaskComponent } from './main-content/add-task/add-task.component';
 import { SummaryComponent } from './main-content/summary/summary.component';
 import { MainFrameComponent } from './main-frame/main-frame.component';
+import { SignupComponent } from './signup/signup.component';
 
 export const routes: Routes = [
   {
     path: 'login',
     component: LoginLayoutComponent,
-    children: [{ path: '', component: LoginComponent }],
+    children: [
+      { path: '', component: LoginComponent },
+      { path: 'signup', component: SignupComponent },
+    ],
   },
 
   {

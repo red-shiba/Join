@@ -1,0 +1,16 @@
+<div class="loginFrame">
+    <h2>Sign up</h2>
+    <img src="/assets/icons/blueLine.png" alt="blueline" class="blueline">
+    
+    <form (submit)="register(); $event.preventDefault()">
+    <div class="emailRaw"><input class="custom-input" type="name" [(ngModel)]="name" [ngModelOptions]="{standalone: true}" placeholder="Name" required /></div>
+    <div class="emailRaw"><input class="custom-input" type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" placeholder="E-Mail" required /></div>
+    <div class="emailRaw"><input class="custom-input" type="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" placeholder="Passwort" required /></div>
+    <div class="emailRaw"><input class="custom-input" type="password" [(ngModel)]="confirm" [ngModelOptions]="{standalone: true}" placeholder="Passwort bestätigen" required /></div>
+      
+    
+    <div class="button">
+      <button class="btn" type="submit">Sign up</button>
+    </div>
+    </form>
+    </div>

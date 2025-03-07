@@ -100,7 +100,7 @@
 
           <p>Category<span class="category-required">*</span></p>
           <div class="select-wrapper">
-            <select id="category" name="category" required [(ngModel)]="category" class="category-dropdown"
+            <select id="category" name="category" required [(ngModel)]="category" class="category-dropdown custom-input"
               #categoryInput="ngModel" (focus)="onFocus()" (blur)="onBlur()">
               <option value="" style="display: none;">Select task category</option>
               <option value="Technical Task">Technical Task</option>
