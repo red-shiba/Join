@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../firebase-service/auth.service';
 
+import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-summary',
   standalone: true,
-  imports: [],
+  imports: [RouterLink, CommonModule],
   templateUrl: './summary.component.html',
-  styleUrl: './summary.component.scss'
+  styleUrl: './summary.component.scss',
 })
 export class SummaryComponent implements OnInit {
   displayName: string | null = '';
@@ -24,7 +27,7 @@ export class SummaryComponent implements OnInit {
 
   getGreeting(): string {
     const hour = new Date().getHours();
-  
+
     if (hour >= 5 && hour < 12) {
       return 'Good Morning';
     } else if (hour >= 12 && hour < 18) {

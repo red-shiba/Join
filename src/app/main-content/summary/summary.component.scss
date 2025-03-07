@@ -2,9 +2,8 @@
 .summary-section {
   display: flex;
   flex-direction: column;
-  padding: 20px;
-  // width: 100%;
-  // height: calc(90vh - 100px);
+  // padding: 20px;
+  margin: 20px;
 }
 .headline {
   width: auto;
@@ -16,13 +15,13 @@
   padding-left: 36px;
 
   > h2 {
-    font-size: 61px;
+    font-size: clamp(47px, 5vw, 61px);
     margin: 0px;
     font-weight: 700;
   }
 
   > span {
-    font-size: 27px;
+    font-size: clamp(20px, 3vw, 27px);
     margin: 0px;
     font-weight: 400;
   }
@@ -36,6 +35,8 @@
 }
 .summary-contant {
   display: flex;
+  padding: 20px;
+  gap: 10px;
 }
 .summary-cards {
   display: flex;
@@ -48,12 +49,32 @@
   gap: 20px;
   width: 100%;
   justify-content: space-between;
+  transition: all 1.5s ease-in-out;
+  > :hover {
+    transform: scale(1.06);
+    background-color: $color-primary;
+    color: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s ease-in-out, background-color 0.4s ease-in-out,
+      box-shadow 0.4s ease-in-out;
+    > .img-border {
+      background-color: #fff;
+      transition: background-color 0.2s ease-in-out;
+      > img {
+        width: clamp(18px, 15vw, 28px);
+        filter: brightness(0);
+        transition: width 0.2s ease-in-out, filter 0.2s ease-in-out;
+      }
+    }
+  }
 }
 .top-card {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  gap: 32px;
+  text-decoration: none;
+  color: black;
+  // gap: 32px;
   width: 264px;
   height: 168px;
   border-radius: 30px;
@@ -61,16 +82,17 @@
   background-color: #ffffff;
   box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.1);
 }
+
 .img-border {
-  width: 69px;
-  height: 69px;
+  width: clamp(30px, 20vw, 69px);
+  height: clamp(30px, 20vw, 69px);
   border-radius: 100%;
   background-color: #2a3647;
   display: flex;
   align-items: center;
   justify-content: center;
   > img {
-    width: 32px;
+    width: clamp(16px, 20vw, 32px);
     filter: brightness(0) invert(1);
   }
 }
@@ -79,7 +101,16 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 12px;
+
+  > span {
+    font-size: clamp(30px, 15vw, 64px);
+    font-weight: 600;
+  }
+  > p {
+    font-size: clamp(12px, 10vw, 20px);
+    font-weight: 400;
+    margin: 0;
+  }
 }
 .middle-section {
   display: flex;
@@ -90,17 +121,29 @@
   background-color: #ffffff;
   box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.1);
 }
+.middle-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
 .seperator-middle {
   width: 0px;
   height: 100px;
   border: 2px solid #d1d1d1;
   background-color: #d1d1d1;
 }
-.middle-card {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
+.deadline {
+  text-align: center;
+  > span {
+    font-size: clamp(12px, 10vw, 21px);
+    font-weight: 600;
+  }
+  > p {
+    font-size: clamp(8px, 10vw, 16px);
+    font-weight: 400;
+    margin: 0;
+  }
 }
 .bottom-section {
   display: flex;
@@ -132,12 +175,20 @@
   align-items: center;
   justify-content: center;
   > span:nth-child(1) {
-    font-size: 47px;
+    // font-size: 47px;
+
+    font-size: clamp(30px, 20vw, 61px);
     font-weight: 500;
   }
   > span:nth-child(2) {
-    font-size: 64px;
+    // font-size: 64px;
+    font-size: clamp(30px, 20vw, 64px);
     font-weight: 700;
     color: $color-primary-hover;
+  }
+}
+@media (max-width: 768px) {
+  .summary-welcome {
+    display: none;
   }
 }
