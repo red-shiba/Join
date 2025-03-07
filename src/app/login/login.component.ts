@@ -34,8 +34,8 @@ export class LoginComponent {
   }
 
   guestLogin() {
-    this.email = 'gast@gast.de';
-    this.password = 'gast789';
+    this.email = 'michaelspari@gmx.de';
+    this.password = 'gast123';
   }
 }
 
