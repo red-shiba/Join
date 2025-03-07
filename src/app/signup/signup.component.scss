@@ -39,6 +39,20 @@
   margin-top: 20px;
   margin-bottom: 100px;
 }
+
+a {
+  font-size: 16px;
+  color: #29abe2;
+  text-decoration: none;
+}
+
+.acceptRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
   
 .emailRaw {
   margin-bottom: 28px;

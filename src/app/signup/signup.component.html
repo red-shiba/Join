@@ -11,7 +11,10 @@
     <div class="emailRaw"><input class="custom-input" type="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" placeholder="Passwort" required /></div>
     <div class="emailRaw"><input class="custom-input" type="password" [(ngModel)]="confirm" [ngModelOptions]="{standalone: true}" placeholder="Passwort bestätigen" required /></div>
       
-    
+    <div class="acceptRow">
+      <input type="checkbox" [(ngModel)]="accept" [ngModelOptions]="{standalone: true}" required />
+      <p>I accept the <a routerLink="privacypolicy">Privacy policy</a></p>
+    </div>
     <div class="button">
       <button class="btn" type="submit">Sign up</button>
     </div>
