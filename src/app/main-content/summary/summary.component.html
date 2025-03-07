@@ -9,7 +9,7 @@
       <div class="top-section">
         <div class="top-card">
           <div class="img-border">
-            <img src="/assets/icons/edit-white.png" alt="edit-white" />
+            <img src="/assets/icons/edit.svg" alt="edit-white" />
           </div>
           <div class="counter">
             <span>1</span>
@@ -18,19 +18,55 @@
         </div>
         <div class="top-card">
           <div class="img-border">
-            <img src="/assets/icons/edit-white.png" alt="edit-white" />
+            <img src="/assets/icons/check.svg" alt="check-icon" />
           </div>
           <div class="counter">
             <span>1</span>
-            <span>To-Do</span>
+            <span>Done</span>
           </div>
         </div>
       </div>
-      <div class="middle-section"></div>
+      <div class="middle-section">
+        <div class="middle-card">
+          <div class="urgent-img">
+            <img src="/assets/icons/urgent-summary.png" alt="urgent-icon" />
+          </div>
+          <div class="counter">
+            <span>1</span>
+            <span>Urgent</span>
+          </div>
+
+          <div class="seperator-middle"></div>
+          <div class="deadline">
+            <span>October 16,2022</span>
+            <span>Upcaming Deadline</span>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-section">
+        <div class="bottom-card">
+          <div class="counter">
+            <span>1</span>
+            <span>Task in Board</span>
+          </div>
+        </div>
+        <div class="bottom-card">
+          <div class="counter">
+            <span>1</span>
+            <span>Task in Progress</span>
+          </div>
+        </div>
+        <div class="bottom-card">
+          <div class="counter">
+            <span>1</span>
+            <span>Awaiting Feedback</span>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="summary-welcome">
       <span>{{ greeting }},</span>
-      <span>{{ displayName ? displayName : 'Gast' }}</span>
+      <span>{{ displayName ? displayName : "Gast" }}</span>
     </div>
   </div>
 </div>
