@@ -1,6 +1,9 @@
 <div class="loginFrame">
+  <div class="arrowBack">
+    <a routerLink="login"><img src="/assets/icons/arrow-left-line.png" alt="arrowBack"></a>
+  </div>
     <h2>Sign up</h2>
-    <img src="/assets/icons/blueLine.png" alt="blueline" class="blueline">
+    <img class="blueline" src="/assets/icons/blueLine.png" alt="blueline" class="blueline">
     
     <form (submit)="register(); $event.preventDefault()">
     <div class="emailRaw"><input class="custom-input" type="name" [(ngModel)]="name" [ngModelOptions]="{standalone: true}" placeholder="Name" required /></div>

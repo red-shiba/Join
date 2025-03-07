@@ -2,11 +2,12 @@ import { Component, inject } from '@angular/core';
 import { AuthService } from './../firebase-service/auth.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
 })

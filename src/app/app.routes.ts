@@ -19,6 +19,8 @@ export const routes: Routes = [
     children: [
       { path: '', component: LoginComponent },
       { path: 'signup', component: SignupComponent },
+      { path: 'privacypolicy', component: PrivacyPolicyComponent },
+      { path: 'legalnotice', component: LegalNoticeComponent },
     ],
   },
 
@@ -30,8 +32,6 @@ export const routes: Routes = [
       { path: 'board', component: BoardComponent },
       { path: 'contacts', component: ContactsComponent },
       { path: 'summary', component: SummaryComponent },
-      { path: 'privacypolicy', component: PrivacyPolicyComponent },
-      { path: 'legalnotice', component: LegalNoticeComponent },
       { path: 'helpsection', component: HelpSectionComponent },
       { path: 'add-task', component: AddTaskComponent },
       { path: '', redirectTo: 'board', pathMatch: 'full' }, // Standardseite
