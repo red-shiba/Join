@@ -8,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './help-section.component.scss'
 })
 export class HelpSectionComponent {
-
+  goBack() {
+    window.history.back();
+  }
 }
