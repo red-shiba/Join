@@ -36,7 +36,7 @@ export class AddTaskComponent {
   errors = {
     title: false,
     dueDate: false,
-    category: false
+    category: false,
   };
 
   isSelected(contact: Contact): boolean {
@@ -59,10 +59,10 @@ export class AddTaskComponent {
       this.contactList = contacts;
     });
 
-    this.setPriority('medium'); // setzt die priorität auf medium
+    this.setPriority('medium');
 
     this.route.queryParamMap.subscribe((params) => {
-      const paramVal = params.get('type'); // z. B. "todo"
+      const paramVal = params.get('type');
       if (paramVal) {
         this.type = paramVal;
       }
@@ -161,8 +161,13 @@ export class AddTaskComponent {
     return !this.errors.title && !this.errors.dueDate && !this.errors.category;
   }
 
+  showSuccessAnimation: boolean = false;
+
   addTodo() {
-    if (!this.validateFields()) {
+    if (this.taskForm.invalid) {
+      Object.keys(this.taskForm.controls).forEach((key) => {
+        this.taskForm.controls[key].markAsTouched();
+      });
       return;
     }
 
@@ -178,11 +183,18 @@ export class AddTaskComponent {
       subtasks: this.subtasks,
     };
 
-    this.todoListService.addTodo(newTask, this.type).then(() => {
-      this.router.navigate(['board']);
-    }).catch((error) => {
-      console.error('Fehler beim Speichern des Tasks:', error);
-    });
+    this.todoListService
+      .addTodo(newTask, this.type)
+      .then(() => {
+        this.showSuccessAnimation = true;
+        setTimeout(() => {
+          this.showSuccessAnimation = false;
+          this.router.navigate(['board']);
+        }, 2000);
+      })
+      .catch((error) => {
+        console.error('Fehler beim Speichern des Tasks:', error);
+      });
   }
 
   closeDialog() {
@@ -235,8 +247,8 @@ export class AddTaskComponent {
     this.errors = {
       title: false,
       dueDate: false,
-      category: false
-    }
+      category: false,
+    };
 
     this.taskForm.resetForm();
   }

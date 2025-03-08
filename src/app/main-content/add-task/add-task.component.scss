@@ -558,6 +558,42 @@ textarea {
 }
 
 /* ------------------------------------ */
+/*  Animation */
+/* ------------------------------------ */
+
+.success-animation {
+  position: fixed;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  animation: slideUp 2s ease-in-out;
+}
+
+.success-animation img {
+  width: 250px;
+}
+
+@keyframes slideUp {
+  0% {
+    bottom: -100px;
+    opacity: 0;
+  }
+  20% {
+    bottom: 20px;
+    opacity: 1;
+  }
+  80% {
+    bottom: 20px;
+    opacity: 1;
+  }
+  100% {
+    bottom: -100px;
+    opacity: 0;
+  }
+}
+
+/* ------------------------------------ */
 /* Responsive Styles */
 /* ------------------------------------ */
 
