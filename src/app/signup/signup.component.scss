@@ -142,3 +142,11 @@ h2 {
 .error-border {
   border-color: #ff3d00;
 }
+
+.signin {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  z-index: 6;
+}

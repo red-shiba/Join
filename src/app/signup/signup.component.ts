@@ -4,13 +4,32 @@ import { AuthService } from './../firebase-service/auth.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
   imports: [FormsModule, RouterLink, CommonModule],
   templateUrl: './signup.component.html',
-  styleUrl: './signup.component.scss'
+  styleUrl: './signup.component.scss',
+  animations: [
+    trigger('fadeInUp', [
+      state('hidden', style({
+        opacity: 0,
+        transform: 'translateY(100vh)',
+      })),
+      state('visible', style({
+        opacity: 1,
+        transform: 'translate(-50%, -50%)',
+        top: '50%',
+        left: '50%',
+        position: 'fixed'
+      })),
+      transition('hidden => visible', [
+        animate('1s ease-out')
+      ])
+    ])
+  ]
 })
 export class SignupComponent {
 accept: boolean = false;
@@ -31,6 +50,7 @@ accept: boolean = false;
   emailTouched = false;
   passwordTouched = false;
   confirmError = '';
+  isSuccess = false;
 
   async register() {
     this.emailError = '';
@@ -67,18 +87,21 @@ accept: boolean = false;
   
     try {
       const userCredential = await this.authService.register(this.name, this.email, this.password);
-      
-      // Firebase-Profil aktualisieren
       if (userCredential.user) {
         await this.authService.updateProfile(userCredential.user, this.name);
       }
-  
-      alert('Registrierung erfolgreich!');
-      this.router.navigate(['/dashboard']);
+
+      this.isSuccess = true; // Animation starten
+
+      setTimeout(() => {
+        this.router.navigate(['/dashboard']);
+      }, 2000);
+
     } catch (error: any) {
       alert(error.message);
     }
   }
+
 
   validateEmail() {
     this.emailError = '';

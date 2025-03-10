@@ -1,4 +1,7 @@
 <div class="loginFrame">
+  <div class="signin" [@fadeInUp]="isSuccess ? 'visible' : 'hidden'">
+    <img class="blueline" src="/assets/img/signin_success.png" alt="success" />
+  </div>
   <div class="arrowBack">
     <a routerLink="login"><img src="/assets/icons/arrow-left-line.png" alt="arrowBack"></a>
   </div>
