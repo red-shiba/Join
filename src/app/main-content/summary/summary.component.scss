@@ -2,8 +2,8 @@
 .summary-section {
   display: flex;
   flex-direction: column;
-  margin: 20px;
-  height: calc(80vh - 5vh);
+  margin: 45px;
+  height: calc(80vh - 10vh);
 }
 .headline {
   width: auto;
@@ -38,7 +38,7 @@
 }
 .summary-contant {
   display: flex;
-  padding: 20px;
+  padding: 30px;
   gap: 10px;
 }
 .summary-cards {
@@ -46,7 +46,7 @@
   flex-direction: column;
   gap: 20px;
   width: 50%;
-  height: 70vh;
+  height: 60vh;
 }
 .top-section {
   display: flex;
@@ -230,6 +230,7 @@
 @media (max-width: 768px) {
   .summary-section {
     height: calc(61vh - 5vh);
+    margin: 10px;
   }
   .summary-contant {
     display: flex;
