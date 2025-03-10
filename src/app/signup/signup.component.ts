@@ -22,9 +22,35 @@ accept: boolean = false;
   email = '';
   password = '';
   confirm = '';
+  nameError = '';
+  emailError = '';
+  passwordError = '';
+  generalError = '';
+  emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';
+  emailPatternError = 'Please enter a valid email address.';
+  emailTouched = false;
+  passwordTouched = false;
+  confirmError = '';
 
   async register() {
+    this.emailError = '';
+    this.passwordError = '';
+    this.generalError = '';
+
+    if (!this.name) {
+      this.nameError = 'Name is required.';
+    }
+
+    if (!this.email) {
+      this.emailError = 'Email is required.';
+    }
+
+    if (!this.password) {
+      this.passwordError = 'Password is required.';
+    }
+
     if (this.password !== this.confirm) {
+      this.confirmError = 'Passwords do not match.';
       alert('Passwörter stimmen nicht überein!');
       return;
     }
@@ -51,6 +77,37 @@ accept: boolean = false;
       this.router.navigate(['/dashboard']);
     } catch (error: any) {
       alert(error.message);
+    }
+  }
+
+  validateEmail() {
+    this.emailError = '';
+    if (!this.email) {
+      this.emailError = 'Email is required.';
+    }
+    if (this.email && !this.email.match(this.emailPattern)) {
+      this.emailError = this.emailPatternError;
+    }
+  }
+
+  validatePassword() {
+    this.passwordError = '';
+    if (!this.password) {
+      this.passwordError = 'Password is required.';
+    }
+  }
+
+  validateConfirm() {
+    this.confirmError = '';
+    if (this.password !== this.confirm) {
+      this.confirmError = 'Passwords do not match.';
+    }
+  }
+
+  validateName() {
+    this.nameError = '';
+    if (!this.name) {
+      this.nameError = 'Name is required.';
     }
   }
 
