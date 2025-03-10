@@ -7,7 +7,7 @@
   <div class="summary-contant">
     <div class="summary-cards">
       <div class="top-section">
-        <a routerLink="/board" class="top-card">
+        <a routerLink="Zboard" class="top-card">
           <div class="img-border">
             <img src="/assets/icons/edit.svg" alt="edit-white" />
           </div>
@@ -26,7 +26,7 @@
           </div>
         </a>
       </div>
-      <div class="middle-section">
+      <a routerLink="/board" class="middle-section">
         <div class="middle-card">
           <div class="urgent-img">
             <img src="/assets/icons/urgent-summary.png" alt="urgent-icon" />
@@ -42,8 +42,8 @@
             <p>Upcaming Deadline</p>
           </div>
         </div>
-      </div>
-      <div class="bottom-section">
+      </a>
+      <a routerLink="/board" class="bottom-section">
         <div class="bottom-card">
           <div class="counter">
             <span>1</span>
@@ -62,7 +62,7 @@
             <p>Awaiting Feedback</p>
           </div>
         </div>
-      </div>
+      </a>
     </div>
     <div class="summary-welcome">
       <span>{{ greeting }},</span>
