@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { RouterLink } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
@@ -20,8 +21,8 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
         height: '240px'
       })),
       state('moved', style({
-        top: '60px',
-        left: '77px',
+        top: '35px',
+        left: '35px',
         transform: 'translate(0, 0)',
         width: '90px',
         height: '108px'
@@ -37,7 +38,16 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
   ]
 })
 export class LoginLayoutComponent {
+  isSignupRoute = false;
   logoState: 'center' | 'moved' = 'center';
+
+  constructor(private router: Router) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.isSignupRoute = event.url.includes('signup');
+      }
+    });
+  }
 
   ngOnInit() {
     setTimeout(() => {

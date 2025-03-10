@@ -32,12 +32,16 @@ section {
     display: flex;
     width: 320px;
     height: 50px;
-    top: 60px;
-    right: 77px;
+    top: 35px;
+    right: 35px;
     justify-content: center;
     align-items: center;
     gap: 35px;
     font-family: 16px;
+  }
+
+  .signUpBtnMobile {
+    display: none;
   }
 
   p {
@@ -93,3 +97,37 @@ a {
   }
 }
   
+@media (max-width: 640px) {
+    .signUpBtn {
+      display: none;
+      top: 40px;
+      right: 40px;
+    }
+    .signUpBtnMobile {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+      gap: 40px;
+    }
+  
+    .policyRow {
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      gap: 60px;
+      width: 100%;
+    }
+
+    .logo {
+      width: 64px;
+      height: 78px;
+    }
+
+    .inputFrame {
+      margin-top: 100px;
+    }
+  }

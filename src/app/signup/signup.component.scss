@@ -150,3 +150,69 @@ h2 {
   transform: translateX(-50%);
   z-index: 6;
 }
+
+@media (max-width: 860px) {
+  .button {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 24px;
+  }
+
+  .btn {
+    font-size: 21px;
+    font-weight: 700;
+    height: 48px;
+    width: 180px;
+    background-color: #2a3647;
+    color: #ffffff;
+    border-radius: 10px;
+    border: none;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 16px;
+    padding-right: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .cbtn {
+    font-size: 21px;
+    font-weight: 700;
+    height: 48px;
+    width: 180px;
+    background-color: #ffffff;
+    color: #2a3647;
+    border-radius: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 16px;
+    padding-right: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+
+  .loginFrame {
+    box-sizing: border-box;
+    width: 100%;
+    padding-right: 15px;
+    padding-bottom: 36px;
+    padding-top: 36px;
+    padding-left: 15px;
+  }
+
+  h2 {
+    font-family: inter;
+    font-size: 47px;
+    font-weight: 700;
+    color: #000000;
+    margin: 0px;
+  }
+}
+
+@media (max-width: 420px) {
+  .button {
+    width: 280px;
+  }
+}
