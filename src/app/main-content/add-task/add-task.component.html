@@ -140,7 +140,8 @@
                 <input *ngIf="false" type="checkbox" [(ngModel)]="subtask.done" [disabled]="editedSubtaskIndex === i" />
 
                 <span *ngIf="editedSubtaskIndex !== i">{{ subtask.title }}</span>
-                <input *ngIf="editedSubtaskIndex === i" type="text" [(ngModel)]="editedSubtaskValue" />
+                <input *ngIf="editedSubtaskIndex === i" type="text" [(ngModel)]="editedSubtaskValue"
+                  name="editSubtask" />
 
                 <div class="subtask-buttons input-icons">
                   <button *ngIf="editedSubtaskIndex !== i" type="button" class="edit-button" (click)="editSubtask(i)">

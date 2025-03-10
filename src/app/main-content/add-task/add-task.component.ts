@@ -139,6 +139,7 @@ export class AddTaskComponent {
   editSubtask(index: number) {
     this.editedSubtaskIndex = index;
     this.editedSubtaskValue = this.subtasks[index].title;
+    console.log(this.subtasks[index].title);
   }
 
   saveSubtask(index: number) {
