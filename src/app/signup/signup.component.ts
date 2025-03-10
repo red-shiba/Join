@@ -44,6 +44,7 @@ accept: boolean = false;
   nameError = '';
   emailError = '';
   passwordError = '';
+  acceptError = '';
   generalError = '';
   emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';
   emailPatternError = 'Please enter a valid email address.';
@@ -71,17 +72,17 @@ accept: boolean = false;
 
     if (this.password !== this.confirm) {
       this.confirmError = 'Passwords do not match.';
-      alert('Passwörter stimmen nicht überein!');
+      // alert('Passwörter stimmen nicht überein!');
       return;
     }
 
     if (!this.name || !this.email || !this.password) {
-      alert('Bitte füllen Sie alle Felder aus!');
+      // alert('Bitte füllen Sie alle Felder aus!');
       return;
     }
 
     if (this.accept === false) {
-      alert ('Bitte akzeptieren Sie die Nutzungsbedingungen!');
+      this.acceptError = 'Please accept the terms and conditions.';
       return;
     }
   
