@@ -2,8 +2,12 @@
 <h2>Log in</h2>
 <img src="/assets/icons/blueLine.png" alt="blueline" class="blueline">
 <form (submit)="login(); $event.preventDefault()">
-  <div class="emailRaw"><input class="custom-input" type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" placeholder="E-Mail" required /></div>
-  <div><input class="custom-input" type="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" placeholder="Passwort" required /></div>
+  <div class="emailRaw"><input class="custom-input" type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" placeholder="E-Mail" required />
+    <img src="/assets/icons/mail.png" alt="mailIcon" class="mailIcon">
+  </div>
+  <div class="lockRaw"><input class="custom-input" type="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" placeholder="Passwort" required />
+    <img src="/assets/icons/lock.png" alt="lock" class="lock">
+  </div>
 
 <div class="button">
   <button class="btn" (click)="login()">Log in</button>

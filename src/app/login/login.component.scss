@@ -1,6 +1,6 @@
 .loginFrame {
-  width: 652px;
-  height: 400px;
+  box-sizing: border-box;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -15,21 +15,46 @@
 }
 
 .custom-input {
-    border: 0.5px solid #e7e7e7;
-    transition: border-color 0.3s ease;
-    color: rgb(87, 87, 87);
-    width: 422px;
-    height: 48px;
-    gap: 10px;
-    border-radius: 10px;
-    padding-top: 12px;
-    padding-left: 21px;
-    padding-bottom: 12px;
-    padding-left: 21px;
+  box-sizing: border-box;
+  border: 0.5px solid #e7e7e7;
+  transition: border-color 0.3s ease;
+  color: rgb(87, 87, 87);
+  width: 100%;
+  border-radius: 10px;
+  padding-top: 12px;
+  padding-left: 21px;
+  padding-bottom: 12px;
+  padding-left: 21px;
+  }
+
+  .blueline {
+    margin-top: 12px;
+    margin-bottom: 48px;
   }
 
   .emailRaw {
-    margin-bottom: 48px;
+    position: relative;
+    margin-bottom: 24px;
+  }
+
+  .lockRaw {
+    position: relative;
+  }
+
+  .mailIcon {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 10px;
+    right: 16px;
+  }
+
+  .lock {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 10px;
+    right: 16px;
   }
 
   h2 {
@@ -43,7 +68,8 @@
   .button {
     display: flex;
     justify-content: space-around;
-    width: 422px;
+    padding-top: 24px;
+    width: 380px;
   }
 
   .btn {
@@ -87,6 +113,6 @@
     &:hover {
       border: 1px solid #29abe2;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-      color: #2a3647;
+      color: #29abe2;
     }
   }

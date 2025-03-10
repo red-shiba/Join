@@ -1,6 +1,7 @@
 section {
     position: relative;
     height: 100vh;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,12 +20,19 @@ section {
     height: auto;
   }
 
+  .inputFrame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
   .signUpBtn {
     position: absolute;
     display: flex;
     width: 320px;
     height: 50px;
-    top: 67px;
+    top: 60px;
     right: 77px;
     justify-content: center;
     align-items: center;

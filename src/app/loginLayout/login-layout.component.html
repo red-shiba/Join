@@ -4,7 +4,7 @@
     </div>
     <div class="signUpBtn"><p>Not a Join user?</p><button class="btn" routerLink="signup">Sign up</button></div>
     <div [@fadeIn] *ngIf="logoState === 'moved'">
-      <router-outlet></router-outlet>
+      <div class="inputFrame"><router-outlet></router-outlet></div>
       <div class="policyRow">
         <a routerLink="privacypolicy"><span>Privacy Policy</span></a>
         <a routerLink="legalnotice"><span>Legal notice</span></a>

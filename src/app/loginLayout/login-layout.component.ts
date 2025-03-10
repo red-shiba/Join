@@ -20,11 +20,11 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
         height: '240px'
       })),
       state('moved', style({
-        top: '80px',
+        top: '60px',
         left: '77px',
         transform: 'translate(0, 0)',
-        width: '100px',
-        height: '120px'
+        width: '90px',
+        height: '108px'
       })),
       transition('center => moved', animate('0.5s ease-in-out'))
     ]),

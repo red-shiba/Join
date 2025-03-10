@@ -1,31 +1,31 @@
 .loginFrame {
   position:relative;
-    width: 552px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #ffffff;
-    border-radius: 30px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-    padding-top: 48px;
-    padding-right: 115px;
-    padding-bottom: 48px;
-    padding-left: 115px;
+  box-sizing: border-box;
+  width: 552px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 30px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  padding-top: 48px;
+  padding-right: 115px;
+  padding-bottom: 48px;
+  padding-left: 115px;
   }
   
 .custom-input {
-    border: 0.5px solid #e7e7e7;
-    transition: border-color 0.3s ease;
-    color: rgb(87, 87, 87);
-    width: 422px;
-    height: 48px;
-    gap: 10px;
-    border-radius: 10px;
-    padding-top: 6px;
-    padding-left: 21px;
-    padding-bottom: 6px;
-    padding-left: 21px;
+  box-sizing: border-box;
+  border: 0.5px solid #e7e7e7;
+  transition: border-color 0.3s ease;
+  color: rgb(87, 87, 87);
+  width: 100%;
+  border-radius: 10px;
+  padding-top: 12px;
+  padding-left: 21px;
+  padding-bottom: 12px;
+  padding-left: 21px;
   }
 
 .arrowBack {
@@ -36,8 +36,8 @@
 }
 
 .blueline {
-  margin-top: 20px;
-  margin-bottom: 100px;
+  margin-top: 12px;
+  margin-bottom: 48px;
 }
 
 a {
@@ -55,7 +55,24 @@ a {
 }
   
 .emailRaw {
+  position: relative;
   margin-bottom: 28px;
+}
+
+.mailIcon {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 10px;
+  right: 16px;
+}
+
+.lock {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 10px;
+  right: 16px;
 }
 
 h2 {
@@ -68,7 +85,7 @@ h2 {
 .button {
   display: flex;
   justify-content: space-around;
-  width: 422px;
+  width: 380px;
 }
 .btn {
   font-size: 21px;
