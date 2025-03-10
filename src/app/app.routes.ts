@@ -34,7 +34,17 @@ export const routes: Routes = [
       { path: 'summary', component: SummaryComponent },
       { path: 'helpsection', component: HelpSectionComponent },
       { path: 'add-task', component: AddTaskComponent },
+      { path: 'privacypolicy', component: PrivacyPolicyComponent },
+      { path: 'legalnotice', component: LegalNoticeComponent },
       { path: '', redirectTo: 'board', pathMatch: 'full' }, // Standardseite
+    ],
+  },
+
+  { path: 'summary', 
+    component: SummaryComponent,
+    canActivate: [authGuard],
+    children: [
+      { path: 'board', component: BoardComponent },
     ],
   },
 
