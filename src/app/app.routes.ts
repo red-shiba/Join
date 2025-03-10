@@ -40,13 +40,5 @@ export const routes: Routes = [
     ],
   },
 
-  { path: 'summary', 
-    component: SummaryComponent,
-    canActivate: [authGuard],
-    children: [
-      { path: 'board', component: BoardComponent },
-    ],
-  },
-
   { path: '**', redirectTo: 'login' },
 ];
