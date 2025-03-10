@@ -7,7 +7,7 @@
   <div class="summary-contant">
     <div class="summary-cards">
       <div class="top-section">
-        <a routerLink="Zboard" class="top-card">
+        <a routerLink="/board" class="top-card">
           <div class="img-border">
             <img src="/assets/icons/edit.svg" alt="edit-white" />
           </div>
@@ -64,7 +64,7 @@
         </div>
       </a>
     </div>
-    <div class="summary-welcome">
+    <div class="summary-welcome" [@moveText]="textState" [@fadeIn]>
       <span>{{ greeting }},</span>
       <span>{{ displayName ? displayName : "Gast" }}</span>
     </div>

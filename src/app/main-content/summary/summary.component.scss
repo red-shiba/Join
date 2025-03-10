@@ -210,6 +210,12 @@
     color: $color-primary-hover;
   }
 }
+.summary-welcome {
+  // position: absolute;
+  // text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
 @media (max-width: 768px) {
   .summary-welcome {
     display: none;
