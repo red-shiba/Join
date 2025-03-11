@@ -3,42 +3,51 @@
 <img src="/assets/icons/blueLine.png" alt="blueline" class="blueline">
 <form (submit)="login(); $event.preventDefault()">
   <div class="emailRaw">
-    <input class="custom-input" type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" placeholder="E-Mail" required (blur)="validateEmail()" [ngClass]="{'error-border': emailError && emailTouched}" (focus)="emailTouched = true" />
+    <input 
+      class="custom-input" 
+      type="email" 
+      [(ngModel)]="email" 
+      [ngModelOptions]="{standalone: true}" placeholder="E-Mail" 
+      required 
+      (blur)="validateEmail()" 
+      [ngClass]="{'error-border': emailError && emailTouched}" 
+      (focus)="emailTouched = true" 
+    />
     <img src="/assets/icons/mail.png" alt="mailIcon" class="mailIcon">
     <div *ngIf="emailError" class="error-message">{{ emailError }}</div>
   </div>
   <div class="lockRaw">
     <input 
-    class="custom-input" 
-    [type]="showPassword ? 'text' : 'password'" 
-    [(ngModel)]="password" 
-    [ngModelOptions]="{standalone: true}" 
-    placeholder="Passwort" 
-    required 
-    (blur)="validatePassword()" 
-    [ngClass]="{'error-border': emailError && emailTouched}" 
-    (focus)="passwordTouched = true"
+      class="custom-input" 
+      [type]="showPassword ? 'text' : 'password'" 
+      [(ngModel)]="password" 
+      [ngModelOptions]="{standalone: true}" 
+      placeholder="Passwort" 
+      required 
+      (blur)="validatePassword()" 
+      [ngClass]="{'error-border': emailError && emailTouched}" 
+      (focus)="passwordTouched = true"
     />
     <img
-        src="/assets/icons/lock.png"
-        alt="lock"
-        class="lock"
-        *ngIf="!passwordTouched"
-      />
-      <img
-        src="/assets/icons/visibility_off.png"
-        alt="visibility_off"
-        class="lock"
-        *ngIf="passwordTouched && !showPassword"
-        (click)="togglePasswordVisibility()"
-      />
-      <img
-        src="/assets/icons/visibility.png"
-        alt="visibility"
-        class="lock"
-        *ngIf="passwordTouched && showPassword"
-        (click)="togglePasswordVisibility()"
-      />
+      src="/assets/icons/lock.png"
+      alt="lock"
+      class="lock"
+      *ngIf="!passwordTouched"
+    />
+    <img
+      src="/assets/icons/visibility_off.png"
+      alt="visibility_off"
+      class="lock"
+      *ngIf="passwordTouched && !showPassword"
+      (click)="togglePasswordVisibility()"
+    />
+    <img
+      src="/assets/icons/visibility.png"
+      alt="visibility"
+      class="lock"
+      *ngIf="passwordTouched && showPassword"
+      (click)="togglePasswordVisibility()"
+    />
     <div *ngIf="passwordError" class="error-message">{{ passwordError }}</div>
   </div>
   <div *ngIf="generalError" class="error-message">{{ generalError }}</div>

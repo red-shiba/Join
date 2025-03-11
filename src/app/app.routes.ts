@@ -11,6 +11,7 @@ import { AddTaskComponent } from './main-content/add-task/add-task.component';
 import { SummaryComponent } from './main-content/summary/summary.component';
 import { MainFrameComponent } from './main-frame/main-frame.component';
 import { SignupComponent } from './signup/signup.component';
+import { LoginNaviFrameComponent } from './login-navi-frame/login-navi-frame.component';
 
 export const routes: Routes = [
   {
@@ -19,6 +20,13 @@ export const routes: Routes = [
     children: [
       { path: '', component: LoginComponent },
       { path: 'signup', component: SignupComponent },
+    ],
+  },
+
+  {
+    path: 'legal',
+    component: LoginNaviFrameComponent,
+    children: [
       { path: 'privacypolicy', component: PrivacyPolicyComponent },
       { path: 'legalnotice', component: LegalNoticeComponent },
     ],
