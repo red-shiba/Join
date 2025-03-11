@@ -52,6 +52,7 @@ accept: boolean = false;
   passwordTouched = false;
   confirmError = '';
   isSuccess = false;
+  showPassword = false;
 
   async register() {
     this.emailError = '';
@@ -72,7 +73,6 @@ accept: boolean = false;
 
     if (this.password !== this.confirm) {
       this.confirmError = 'Passwords do not match.';
-      // alert('Passwörter stimmen nicht überein!');
       return;
     }
 
@@ -92,7 +92,7 @@ accept: boolean = false;
         await this.authService.updateProfile(userCredential.user, this.name);
       }
 
-      this.isSuccess = true; // Animation starten
+      this.isSuccess = true;
 
       setTimeout(() => {
         this.router.navigate(['/dashboard']);
@@ -102,7 +102,6 @@ accept: boolean = false;
       alert(error.message);
     }
   }
-
 
   validateEmail() {
     this.emailError = '';
@@ -133,6 +132,10 @@ accept: boolean = false;
     if (!this.name) {
       this.nameError = 'Name is required.';
     }
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 
 }

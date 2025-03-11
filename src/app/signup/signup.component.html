@@ -20,13 +20,71 @@
       <div *ngIf="emailError" class="error-message">{{ emailError }}</div>
     </div>
     <div class="emailRaw">
-      <input class="custom-input" type="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" placeholder="Passwort" required (blur)="validatePassword()" [ngClass]="{'error-border': emailError && emailTouched}" (focus)="emailTouched = true"/>
-      <img src="/assets/icons/lock.png" alt="lock" class="lock">
+      <input
+        class="custom-input"
+        [type]="showPassword ? 'text' : 'password'"
+        [(ngModel)]="password"
+        [ngModelOptions]="{standalone: true}"
+        placeholder="Passwort"
+        required
+        (blur)="validatePassword()"
+        (focus)="passwordTouched = true"
+        [ngClass]="{'error-border': emailError && emailTouched}"
+      />
+      <img
+        src="/assets/icons/lock.png"
+        alt="lock"
+        class="lock"
+        *ngIf="!passwordTouched"
+      />
+      <img
+        src="/assets/icons/visibility_off.png"
+        alt="visibility_off"
+        class="lock"
+        *ngIf="passwordTouched && !showPassword"
+        (click)="togglePasswordVisibility()"
+      />
+      <img
+        src="/assets/icons/visibility.png"
+        alt="visibility"
+        class="lock"
+        *ngIf="passwordTouched && showPassword"
+        (click)="togglePasswordVisibility()"
+      />
       <div *ngIf="passwordError" class="error-message">{{ passwordError }}</div>
     </div>
     <div class="emailRaw">
-      <input class="custom-input" type="password" [(ngModel)]="confirm" [ngModelOptions]="{standalone: true}" placeholder="Passwort bestätigen" required (blur)="validateConfirm()" [ngClass]="{'error-border': emailError && emailTouched}" (focus)="emailTouched = true"/>
-      <img src="/assets/icons/lock.png" alt="lock" class="lock">
+      <input 
+      class="custom-input" 
+      [type]="showPassword ? 'text' : 'password'" 
+      [(ngModel)]="confirm" 
+      [ngModelOptions]="{standalone: true}" 
+      placeholder="Passwort bestätigen" 
+      required 
+      (blur)="validateConfirm()" 
+      [ngClass]="{'error-border': emailError && emailTouched}" 
+      (focus)="passwordTouched = true"
+      />
+      <img
+        src="/assets/icons/lock.png"
+        alt="lock"
+        class="lock"
+        *ngIf="!passwordTouched"
+      />
+      <img
+        src="/assets/icons/visibility_off.png"
+        alt="visibility_off"
+        class="lock"
+        *ngIf="passwordTouched && !showPassword"
+        (click)="togglePasswordVisibility()"
+      />
+      <img
+        src="/assets/icons/visibility.png"
+        alt="visibility"
+        class="lock"
+        *ngIf="passwordTouched && showPassword"
+        (click)="togglePasswordVisibility()"
+      />
       <div *ngIf="confirmError" class="error-message">{{ confirmError }}</div>
     </div>
       

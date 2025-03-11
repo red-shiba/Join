@@ -26,6 +26,7 @@ export class LoginComponent {
   emailPatternError = 'Please enter a valid email address.';
   emailTouched = false;
   passwordTouched = false;
+  showPassword = false;
 
   async login() {
     this.emailError = '';
@@ -74,6 +75,10 @@ export class LoginComponent {
     if (!this.password) {
       this.passwordError = 'Password is required.';
     }
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 }
 
