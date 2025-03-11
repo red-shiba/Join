@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { AuthService } from '../../firebase-service/auth.service';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -24,6 +24,7 @@ import {
           left: '50%',
           transform: 'translate(-50%, -50%)',
           opacity: 1,
+          backgroundColor: 'gray',
         })
       ),
       state(
@@ -33,6 +34,7 @@ import {
           left: '77px',
           transform: 'translate(0, 0)',
           opacity: 1,
+          backgroundColor: 'transparent',
         })
       ),
       transition('center => moved', animate('0.5s ease-in-out')),
@@ -49,6 +51,8 @@ export class SummaryComponent implements OnInit {
   displayName: string | null = '';
   greeting: string = '';
   textState: 'center' | 'moved' = 'center';
+  isMobileView: boolean = false;
+
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
@@ -58,10 +62,27 @@ export class SummaryComponent implements OnInit {
     }
     this.greeting = this.getGreeting();
 
-    // Automatisches Verschieben nach kurzer Verzögerung
-    setTimeout(() => {
-      this.textState = 'moved';
-    }, 1000);
+    // Initiale Überprüfung der Bildschirmgröße
+    this.checkScreenWidth();
+
+    // Automatisches Verschieben nach kurzer Verzögerung (nur im mobilen Bereich)
+    if (this.isMobileView) {
+      setTimeout(() => {
+        this.textState = 'moved';
+      }, 1000);
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.checkScreenWidth();
+  }
+
+  checkScreenWidth() {
+    this.isMobileView = window.innerWidth >= 320 && window.innerWidth <= 768;
+    if (!this.isMobileView) {
+      this.textState = 'moved'; // Direkt in den Endzustand versetzen, wenn nicht im mobilen Bereich
+    }
   }
 
   getGreeting(): string {
