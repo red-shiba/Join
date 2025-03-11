@@ -567,7 +567,7 @@ textarea {
   bottom: -100px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 1000;
+  z-index: 1001;
   animation: slideUp 2s ease-in-out;
 }
 
@@ -657,5 +657,9 @@ textarea {
 
   .add-task-inner-container h2 {
     font-size: 35px;
+  }
+
+  .success-animation {
+    margin-bottom: 70px;
   }
 }
