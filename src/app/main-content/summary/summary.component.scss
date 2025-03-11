@@ -38,15 +38,16 @@
 }
 .summary-contant {
   display: flex;
-  padding: 30px;
+  // padding: 30px;
+  margin-top: 30px;
   gap: 10px;
 }
 .summary-cards {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 50%;
-  height: 60vh;
+  width: 60%;
+  height: 65vh;
 }
 .top-section {
   display: flex;
@@ -142,8 +143,10 @@
 .middle-card {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 20px;
+  justify-content: space-evenly;
+
+  width: 100%;
+  margin: 10px 20px 10px 20px;
 }
 .urgent-img {
   > img {
@@ -211,11 +214,11 @@
   text-align: center;
   opacity: 1;
   > span:nth-child(1) {
-    font-size: clamp(30px, 4vw, 61px);
+    font-size: clamp(30px, 3vw, 61px);
     font-weight: 500;
   }
   > span:nth-child(2) {
-    font-size: clamp(30px, 5vw, 64px);
+    font-size: clamp(30px, 4vw, 64px);
     font-weight: 700;
     color: $color-primary-hover; /* Farbe anpassen */
   }
