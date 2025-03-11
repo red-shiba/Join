@@ -10,12 +10,31 @@
     
     <form (submit)="register(); $event.preventDefault()">
     <div class="emailRaw">
-      <input class="custom-input" type="name" [(ngModel)]="name" [ngModelOptions]="{standalone: true}" placeholder="Name" required (blur)="validateName()" [ngClass]="{'error-border': emailError && emailTouched}" (focus)="emailTouched = true" />
+      <input 
+        class="custom-input" 
+        type="name" 
+        [(ngModel)]="name" 
+        [ngModelOptions]="{standalone: true}" placeholder="Name" 
+        required 
+        (blur)="validateName()" 
+        [ngClass]="{'error-border': emailError && emailTouched}" 
+        (focus)="emailTouched = true" 
+      />
       <img src="/assets/icons/person.png" alt="lock" class="lock">
       <div *ngIf="nameError" class="error-message">{{ nameError }}</div>
     </div>
     <div class="emailRaw">
-      <input class="custom-input" type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" placeholder="E-Mail" required (blur)="validateEmail()" [ngClass]="{'error-border': emailError && emailTouched}" (focus)="emailTouched = true"/>
+      <input 
+        class="custom-input" 
+        type="email" 
+        [(ngModel)]="email" 
+        [ngModelOptions]="{standalone: true}" 
+        placeholder="E-Mail" 
+        required 
+        (blur)="validateEmail()" 
+        [ngClass]="{'error-border': emailError && emailTouched}" 
+        (focus)="emailTouched = true"
+      />
       <img src="/assets/icons/mail.png" alt="mailIcon" class="mailIcon">
       <div *ngIf="emailError" class="error-message">{{ emailError }}</div>
     </div>
@@ -55,15 +74,15 @@
     </div>
     <div class="emailRaw">
       <input 
-      class="custom-input" 
-      [type]="showPassword ? 'text' : 'password'" 
-      [(ngModel)]="confirm" 
-      [ngModelOptions]="{standalone: true}" 
-      placeholder="Passwort bestätigen" 
-      required 
-      (blur)="validateConfirm()" 
-      [ngClass]="{'error-border': emailError && emailTouched}" 
-      (focus)="passwordTouched = true"
+        class="custom-input" 
+        [type]="showPassword ? 'text' : 'password'" 
+        [(ngModel)]="confirm" 
+        [ngModelOptions]="{standalone: true}" 
+        placeholder="Passwort bestätigen" 
+        required 
+        (blur)="validateConfirm()" 
+        [ngClass]="{'error-border': emailError && emailTouched}" 
+        (focus)="passwordTouched = true"
       />
       <img
         src="/assets/icons/lock.png"
@@ -89,7 +108,12 @@
     </div>
       
     <div class="acceptRow">
-      <input type="checkbox" [(ngModel)]="accept" [ngModelOptions]="{standalone: true}" required />
+      <input 
+        type="checkbox" 
+        [(ngModel)]="accept" 
+        [ngModelOptions]="{standalone: true}" 
+        required 
+      />
       <p>I accept the <a routerLink="privacypolicy">Privacy policy</a></p>
     </div>
     <div *ngIf="acceptError" class="error-message">{{ acceptError }}</div>
