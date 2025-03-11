@@ -192,4 +192,35 @@
       .button {
         width: 280px;
       }
+
+      .loginFrame {
+        box-sizing: border-box;
+        width: 100%;
+        padding-right: 15px;
+        padding-bottom: 36px;
+        padding-top: 16px;
+        padding-left: 15px;
+      }
+
+      .blueline {
+        margin-top: 12px;
+        margin-bottom: 18px;
+        width: 120px;
+      }
+
+      .btn {
+        font-size: 18px;
+        height: 36px;
+        width: 150px;
+      }
+      
+      .cbtn {
+        font-size: 18px;
+        height: 36px;
+        width: 150px;
+      }
+
+      h2 {
+        font-size: 36px;
+      }
   }

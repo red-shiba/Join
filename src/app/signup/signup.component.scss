@@ -211,8 +211,64 @@ h2 {
   }
 }
 
+@media (max-width: 640px) {
+  h2 {
+    font-size: 47px;
+  }
+
+  .button {
+    padding-top: 0px;
+  }
+
+}
+
 @media (max-width: 420px) {
   .button {
     width: 280px;
   }
+
+  p {
+    font-size: 14px;
+  }
+
+  .loginFrame {
+    box-sizing: border-box;
+    width: 100%;
+    padding-right: 15px;
+    padding-bottom: 36px;
+    padding-top: 16px;
+    padding-left: 15px;
+  }
+
+  .blueline {
+    margin-top: 12px;
+    margin-bottom: 18px;
+    width: 120px;
+  }
+
+  .btn {
+    font-size: 18px;
+    height: 36px;
+    width: 150px;
+  }
+  
+  .cbtn {
+    font-size: 18px;
+    height: 36px;
+    width: 150px;
+  }
+
+  .emailRaw {
+    margin-bottom: 14px;
+  }
+
+  h2 {
+    font-size: 36px;
+  }
+  .arrowBack {
+    top: 58px;
+    left: 30px;
+    cursor: pointer;
+  }
+  
 }

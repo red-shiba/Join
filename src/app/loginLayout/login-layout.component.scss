@@ -131,3 +131,19 @@ a {
       margin-top: 100px;
     }
   }
+
+  @media (max-width: 420px) {
+    .btn {
+      font-size: 14px;
+      height: 36px;
+      width: 80px;
+    }
+
+    p {
+      font-size: 14px;
+    }
+
+    span {
+      font-size: 14px;
+    }
+}
