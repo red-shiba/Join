@@ -604,14 +604,24 @@ textarea {
 .delete-button img {
   width: 16px;
 }
-
+#edit-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  height: 32px;
+  border-radius: 1px;
+  border-bottom: 1px solid $color-primary-hover;
+  background: #fff;
+  padding: 3px;
+}
 .edit-input-icons {
   position: absolute;
-  top: 12px;
-  right: 2px;
+  top: 2px;
+  right: 10px;
   display: flex;
   align-items: center;
   gap: 3px;
+  background-color: white;
 }
 @media (max-width: 770px) {
   .task_card_wrapper {

@@ -161,29 +161,10 @@ p .category-required {
   transform: translateY(-50%) rotate(180deg);
 }
 
-// .category-dropdown {
-//   appearance: none;
-//   -webkit-appearance: none;
-//   -moz-appearance: none;
-//   background-image: url("../../../assets/icons/arrow-dropdown-down.png");
-//   transition: transform 0.3s ease;
-//   background-position: right 10px center;
-//   background-repeat: no-repeat;
-//   padding-right: 30px;
-//   color: #979393;
-//   cursor: pointer;
-// }
-
-// .category-dropdown:focus {
-//   transform: rotate(180deg);
-// }
-
-// Form input border
-
 .custom-input {
   border: 0.5px solid #e7e7e7;
   transition: border-color 0.3s ease;
-  color: rgb(87, 87, 87);
+  color: #29abe2;
 }
 
 .custom-input:focus {
@@ -635,12 +616,23 @@ textarea {
 .delete-button img {
   width: 16px;
 }
+#edit-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  height: 32px;
+  border-radius: 1px;
+  border-bottom: 1px solid $color-primary-hover;
+  background: #fff;
+  padding: 3px;
+}
 
 .edit-input-icons {
   position: absolute;
-  top: 12px;
-  right: 2px;
+  top: 4px;
+  right: -10px;
   display: flex;
   align-items: center;
   gap: 3px;
+  background-color: white;
 }

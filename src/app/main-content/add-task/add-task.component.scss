@@ -1,3 +1,5 @@
+@import "./../../../styles.scss";
+
 /* ------------------------------------ */
 /* Globale Stile */
 /* ------------------------------------ */
@@ -127,6 +129,16 @@ textarea {
 .custom-input:not(:focus):not(.ng-invalid.ng-touched) {
   border-color: #e7e7e7;
 }
+#edit-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  height: 32px;
+  border-radius: 1px;
+  border-bottom: 1px solid $color-primary-hover;
+  background: #fff;
+  padding: 3px;
+}
 
 /* Dropdown-Elemente */
 .select-wrapper {
@@ -238,11 +250,11 @@ textarea {
   align-items: center;
 }
 
-.subtask-input-wrapper {
-  padding: 10px;
-  width: 65%;
-  // background-color: #7ae229;
-}
+// .subtask-input-wrapper {
+//   // padding: 10px;
+//   // width: 85%;
+//   // background-color: #7ae229;
+// }
 
 #subtaskInput::placeholder {
   color: #979393;
@@ -326,11 +338,12 @@ textarea {
 /* Edit Input Icons */
 .edit-input-icons {
   position: absolute;
-  top: 12px;
+  top: 3px;
   right: 2px;
   display: flex;
   align-items: center;
   gap: 3px;
+  background-color: white;
 }
 
 /* ------------------------------------ */

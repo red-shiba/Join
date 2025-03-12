@@ -108,6 +108,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+  margin: 0px 14px;
 
   > span {
     font-size: clamp(40px, 5vw, 64px);
@@ -144,9 +145,8 @@
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-
+  padding: 20px 0;
   width: 100%;
-  margin: 10px 20px 10px 20px;
 }
 .urgent-img {
   > img {
