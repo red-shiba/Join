@@ -82,4 +82,14 @@
   .leftFrame {
     display: none;
   }
+  @media (max-width: 420px) {
+    .mobile-nav {
+      a {
+        &::before {
+          width: 75px;
+          height: 70px;
+        }
+      }
+    }
+  }
 }
