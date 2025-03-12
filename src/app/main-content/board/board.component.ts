@@ -51,17 +51,7 @@ export class BoardComponent {
     this.todoListService.todos$.subscribe((todos) => {
       this.todoList = todos;
     });
-    // this.checkViewportWidth();
   }
-
-  // @HostListener('window:resize')
-  // onResize() {
-  //   this.checkViewportWidth();
-  // }
-
-  // private checkViewportWidth() {
-  //   this.isMobile = window.innerWidth < 769;
-  // }
 
   onSearchChange(value: string) {
     this.searchTerm = value;
