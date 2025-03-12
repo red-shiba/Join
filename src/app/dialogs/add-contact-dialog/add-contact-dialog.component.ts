@@ -43,7 +43,7 @@ export class AddContactDialogComponent {
     };
 
     this.contactService.addContact(contact).then(() => {
-      this.addDialogCloseed.emit(true); // Sende true, um Neuladen zu triggern
+      this.addDialogCloseed.emit(true);
     });
   }
 

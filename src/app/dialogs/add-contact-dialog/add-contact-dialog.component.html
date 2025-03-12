@@ -26,14 +26,12 @@
 
     <div class="rightFrame">
       <div class="close" (click)="closeDialog()">
-        <!-- <img src="/assets/icons/Close.png" (click)="closeDialog()" /> -->
       </div>
       <div
         class="input_wrapper"
         [class.error]="nameInput.invalid && nameInput.touched"
       >
         <div class="input_container">
-          <!-- <label *ngIf="isNameFocused || name" class="floating_label">Name</label> -->
           <input
             [(ngModel)]="name"
             #nameInput="ngModel"
@@ -58,7 +56,6 @@
         [class.error]="emailInput.invalid && emailInput.touched"
       >
         <div class="input_container">
-          <!-- <label *ngIf="isEmailFocused || email" class="floating_label">Email</label> -->
           <input
             [(ngModel)]="email"
             #emailInput="ngModel"
@@ -83,7 +80,6 @@
         [class.error]="phoneInput.invalid && phoneInput.touched"
       >
         <div class="input_container">
-          <!-- <label *ngIf="isPhoneFocused || phone" class="floating_label">Telefon</label> -->
           <input
             [(ngModel)]="phone"
             #phoneInput="ngModel"

@@ -81,12 +81,10 @@ p {
   font-weight: 600;
   padding-left: 100px;
   font-family: inter;
-  // padding-top: 100px;
   margin-bottom: -30px;
   margin-block-start: 0;
 }
 
-// Forms styling
 .form-left,
 .form-right {
   width: 48%;
@@ -180,8 +178,6 @@ p .category-required {
   border-color: #e7e7e7;
 }
 
-// Devider
-
 .devider {
   display: flex;
   align-items: center;
@@ -244,7 +240,6 @@ textarea {
   padding: 15px 20px;
   flex: 1;
   cursor: pointer;
-  // margin-right: 10px;
   &:last-child {
     margin-right: 0;
   }
@@ -272,7 +267,6 @@ textarea {
   filter: brightness(0) invert(1);
 }
 
-// Subtask
 .subtask-container {
   position: relative;
   width: 100%;
@@ -302,19 +296,10 @@ textarea {
   font-weight: 700;
 }
 
-// Assign
-
-// .assign-container {
-//   position: relative;
-//   width: 100%;
-//   align-items: center;
-// }
-
 .assign-container {
   position: absolute;
   width: 100%;
   background: white;
-  // border: 1px solid #757575;
   max-height: 200px;
   overflow-y: auto;
   display: none;
@@ -393,16 +378,11 @@ textarea {
   transform: rotate(180deg);
 }
 
-// .dropdown-icon {
-//   margin-left: 10px;
-// }
-
 .assignedStyle {
   display: flex;
   align-items: center;
   padding: 10px;
   margin: 10px;
-  // border-bottom: 1px solid #ddd;
   border-radius: 10px;
   cursor: pointer;
 }
@@ -454,10 +434,6 @@ textarea {
   color: #979393;
   font-weight: 400;
 }
-
-// #subtaskList .input-wrapper {
-//   list-style-type: none !important;
-// }
 
 .cancelBtn {
   background-image: url("/assets/icons/iconoir_cancel.png");

@@ -45,11 +45,9 @@ export class LoginComponent {
 
     try {
       await this.authService.login(this.email, this.password);
-      
-      // Warte, bis Firebase bestätigt, dass der User eingeloggt ist
       await firstValueFrom(this.authService.isLoggedIn$());
     
-      this.router.navigate(['/summary']); // Weiterleitung zur Haupt-App
+      this.router.navigate(['/summary']);
     } catch (error: any) {
       this.generalError = error.message;
     }
