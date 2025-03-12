@@ -13,7 +13,7 @@
             <img src="/assets/icons/edit.svg" alt="edit-white" />
           </div>
           <div class="counter">
-            <span>1</span>
+            <span>{{ getList('todoList').length }}</span>
             <p>To-Do</p>
           </div>
         </a>
@@ -22,7 +22,7 @@
             <img src="/assets/icons/check.svg" alt="check-icon" />
           </div>
           <div class="counter">
-            <span>1</span>
+            <span>{{ getList('doneList').length }}</span>
             <p>Done</p>
           </div>
         </a>
@@ -33,33 +33,33 @@
             <img src="/assets/icons/urgent-summary.png" alt="urgent-icon" />
           </div>
           <div class="counter">
-            <span>1</span>
+            <span>{{ totalUrgent() }}</span>
             <p>Urgent</p>
           </div>
 
           <div class="seperator-middle"></div>
           <div class="deadline">
-            <span>October 16,2022</span>
-            <p>Upcuming Deadline</p>
+            <span>{{ urgentNearestDueDate }}</span>
+            <p>Upcoming Deadline</p>
           </div>
         </div>
       </a>
       <a routerLink="/board" class="bottom-section">
         <div class="bottom-card">
           <div class="counter">
-            <span>1</span>
+            <span>{{ totalMatches() }}</span>
             <p>Task in Board</p>
           </div>
         </div>
         <div class="bottom-card">
           <div class="counter">
-            <span>1</span>
+            <span>{{ getList('inProgressList').length }}</span>
             <p>Task in Progress</p>
           </div>
         </div>
         <div class="bottom-card">
           <div class="counter">
-            <span>1</span>
+            <span>{{ getList('awaitFeedbackList').length }}</span>
             <p>Awaiting Feedback</p>
           </div>
         </div>
