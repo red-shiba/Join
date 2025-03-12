@@ -12,8 +12,8 @@ import { Router, NavigationEnd } from '@angular/router';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
-  isLegalRoute = false;
-  isMainFrame = false;
+  isLoginNaviFrame = false;
+  isMainContent = false;
 
   constructor(
     private location: Location,
@@ -21,12 +21,21 @@ export class NavbarComponent {
   ) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.isLegalRoute = event.url.includes('legal');
-        this.isMainFrame = event.url.includes('/board') || event.url.includes('/summary') || event.url.includes('/contacts') || event.url.includes('/add-task');
+        const url = event.urlAfterRedirects;
+        this.isLoginNaviFrame = 
+        url.startsWith('/legal');
+
+        this.isMainContent = 
+        url.startsWith('/board') ||
+        url.startsWith('/summary') ||
+        url.startsWith('/contacts') ||
+        url.startsWith('/add-task') ||
+        url.startsWith('/helpsection') ||
+        url.startsWith('/privacypolicy')|| 
+        url.startsWith('/legalnotice');
       }
     });
   }
-
   isActive(route: string): boolean {
     return this.location.path() === route;
   }

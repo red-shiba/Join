@@ -2,29 +2,29 @@
   <div class="navContainer">
     <img class="logo-img" src="assets/logo/logo.png" alt="Join logo" />
     <nav class="navi">
-      <div class="nav-item" *ngIf="!isMainFrame" [class.active-nav]="isActive('/login')">
+      <div class="nav-item" *ngIf="isLoginNaviFrame && !isMainContent" [class.active-nav]="isActive('/login')">
         <a routerLink="login">
           <img src="assets/icons/login.png" alt="login Icon" />
           Log In
         </a>
       </div>
-      <div class="nav-item" *ngIf="!isLegalRoute" [class.active-nav]="isActive('/summary')">
+      <div class="nav-item" *ngIf="isMainContent" [class.active-nav]="isActive('/summary')">
         <a routerLink="summary">
           <img src="assets/icons/summary.png" alt="Summary Icon" />
           Summary
         </a>
       </div>
-      <div class="nav-item" *ngIf="!isLegalRoute" [class.active-nav]="isActive('/add-task')">
+      <div class="nav-item" *ngIf="isMainContent" [class.active-nav]="isActive('/add-task')">
         <a routerLink="add-task">
           <img src="assets/icons/addtask.png" alt="add-task Icon" /> Add Task
         </a>
       </div>
-      <div class="nav-item" *ngIf="!isLegalRoute" [class.active-nav]="isActive('/board')">
+      <div class="nav-item" *ngIf="isMainContent" [class.active-nav]="isActive('/board')">
         <a routerLink="board">
           <img src="assets/icons/board.png" alt="board Icon" /> Board
         </a>
       </div>
-      <div class="nav-item" *ngIf="!isLegalRoute" [class.active-nav]="isActive('/contacts')">
+      <div class="nav-item" *ngIf="isMainContent" [class.active-nav]="isActive('/contacts')">
         <a routerLink="contacts">
           <img src="assets/icons/contacts.png" alt="board Icon" />
           Contacts
@@ -33,10 +33,10 @@
     </nav>
     <div class="legal-notice-links">
       <div class="legal-item">
-        <a routerLink="/legal/privacypolicy">Privacy Policy</a>
+        <a routerLink="privacypolicy">Privacy Policy</a>
       </div>
       <div class="legal-item">
-        <a routerLink="/legal/legalnotice">Legal Notice</a>
+        <a routerLink="legalnotice">Legal Notice</a>
       </div>
     </div>
   </div>
