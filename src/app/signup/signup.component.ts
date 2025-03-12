@@ -48,6 +48,7 @@ accept: boolean = false;
   generalError = '';
   emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';
   emailPatternError = 'Please enter a valid email address.';
+  nameTouched = false;
   emailTouched = false;
   passwordTouched = false;
   confirmError = '';
@@ -77,7 +78,6 @@ accept: boolean = false;
     }
 
     if (!this.name || !this.email || !this.password) {
-      // alert('Bitte füllen Sie alle Felder aus!');
       return;
     }
 

@@ -25,7 +25,7 @@
       placeholder="Passwort" 
       required 
       (blur)="validatePassword()" 
-      [ngClass]="{'error-border': emailError && emailTouched}" 
+      [ngClass]="{'error-border': passwordError && passwordTouched}" 
       (focus)="passwordTouched = true"
     />
     <img

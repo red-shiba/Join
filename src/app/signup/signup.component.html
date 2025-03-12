@@ -17,8 +17,8 @@
         [ngModelOptions]="{standalone: true}" placeholder="Name" 
         required 
         (blur)="validateName()" 
-        [ngClass]="{'error-border': emailError && emailTouched}" 
-        (focus)="emailTouched = true" 
+        [ngClass]="{'error-border': nameError && nameTouched}" 
+        (focus)="nameTouched = true" 
       />
       <img src="/assets/icons/person.png" alt="lock" class="lock">
       <div *ngIf="nameError" class="error-message">{{ nameError }}</div>
@@ -48,7 +48,7 @@
         required
         (blur)="validatePassword()"
         (focus)="passwordTouched = true"
-        [ngClass]="{'error-border': emailError && emailTouched}"
+        [ngClass]="{'error-border': passwordError && passwordTouched}"
       />
       <img
         src="/assets/icons/lock.png"
@@ -81,7 +81,7 @@
         placeholder="Passwort bestätigen" 
         required 
         (blur)="validateConfirm()" 
-        [ngClass]="{'error-border': emailError && emailTouched}" 
+        [ngClass]="{'error-border': passwordError && passwordTouched}" 
         (focus)="passwordTouched = true"
       />
       <img
