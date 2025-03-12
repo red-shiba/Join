@@ -49,7 +49,7 @@ export class LoginComponent {
       // Warte, bis Firebase bestätigt, dass der User eingeloggt ist
       await firstValueFrom(this.authService.isLoggedIn$());
     
-      this.router.navigate(['/board']); // Weiterleitung zur Haupt-App
+      this.router.navigate(['/summary']); // Weiterleitung zur Haupt-App
     } catch (error: any) {
       this.generalError = error.message;
     }

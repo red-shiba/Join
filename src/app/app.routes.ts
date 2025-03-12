@@ -44,7 +44,7 @@ export const routes: Routes = [
       { path: 'add-task', component: AddTaskComponent },
       { path: 'privacypolicy', component: PrivacyPolicyComponent },
       { path: 'legalnotice', component: LegalNoticeComponent },
-      { path: '', redirectTo: 'board', pathMatch: 'full' }, // Standardseite
+      { path: '', redirectTo: 'summary', pathMatch: 'full' }, // Standardseite
     ],
   },
 
