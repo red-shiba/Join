@@ -52,7 +52,6 @@ section {
     width: 100%;
     box-sizing: border-box;
 
-
     img {
       width: 24px;
       height: 24px;
@@ -86,32 +85,6 @@ section {
     &:hover {
       color: $color-primary-hover;
       font-weight: 400;
-    }
-  }
-}
-
-.mobile-nav {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: #2a3647;
-  padding: 10px 0;
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-
-  a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    color: #ffffff;
-    font-size: 12px;
-
-    img {
-      width: 24px;
-      height: 24px;
-      margin-bottom: 5px;
     }
   }
 }
