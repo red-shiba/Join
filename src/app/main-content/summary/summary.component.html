@@ -13,7 +13,7 @@
             <img src="/assets/icons/edit.svg" alt="edit-white" />
           </div>
           <div class="counter">
-            <span>{{ getList('todoList').length }}</span>
+            <span>{{ getList("todoList").length }}</span>
             <p>To-Do</p>
           </div>
         </a>
@@ -22,7 +22,7 @@
             <img src="/assets/icons/check.svg" alt="check-icon" />
           </div>
           <div class="counter">
-            <span>{{ getList('doneList').length }}</span>
+            <span>{{ getList("doneList").length }}</span>
             <p>Done</p>
           </div>
         </a>
@@ -53,21 +53,30 @@
         </div>
         <div class="bottom-card">
           <div class="counter">
-            <span>{{ getList('inProgressList').length }}</span>
+            <span>{{ getList("inProgressList").length }}</span>
             <p>Task in Progress</p>
           </div>
         </div>
         <div class="bottom-card">
           <div class="counter">
-            <span>{{ getList('awaitFeedbackList').length }}</span>
+            <span>{{ getList("awaitFeedbackList").length }}</span>
             <p>Awaiting Feedback</p>
           </div>
         </div>
       </a>
     </div>
-    <div class="summary-welcome" [@moveText]="textState" [@fadeIn]>
+    <div class="summary-welcome" [@fadeIn]>
       <span>{{ greeting }},</span>
       <span>{{ displayName ? displayName : "Gast" }}</span>
     </div>
+  </div>
+  <div
+    *ngIf="showText"
+    class="summary-welcome-mobile"
+    [@moveText]="textState"
+    [@fadeIn]
+  >
+    <span>{{ greeting }},</span>
+    <span>{{ displayName ? displayName : "Gast" }}</span>
   </div>
 </div>

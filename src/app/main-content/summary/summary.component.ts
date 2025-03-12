@@ -27,27 +27,22 @@ import { TodoListService } from '../../firebase-service/todo-list.service';
           left: '50%',
           transform: 'translate(-50%, -50%)',
           opacity: 1,
-          backgroundColor: 'gray',
+          backgroundColor: '#f6f7f8',
         })
       ),
       state(
         'moved',
         style({
-          top: '60px',
-          left: '77px',
-          transform: 'translate(0, 0)',
-          opacity: 1,
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          opacity: 0,
           backgroundColor: 'transparent',
         })
       ),
-      transition('center => moved', animate('0.5s ease-in-out')),
+      transition('center => moved', animate('1s ease-in-out')),
     ]),
-    trigger('fadeIn', [
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('1s ease-in-out', style({ opacity: 1 })),
-      ]),
-    ]),
+    trigger('fadeIn', [transition(':enter', [style({ opacity: 1 })])]),
   ],
 })
 export class SummaryComponent implements OnInit {
@@ -61,9 +56,12 @@ export class SummaryComponent implements OnInit {
   inProgressList: Todo[] = [];
   doneList: Todo[] = [];
   urgentNearestDueDate: string | null = null;
+  showText: boolean = true;
 
-
-  constructor(private authService: AuthService, private todoListService: TodoListService) {}
+  constructor(
+    private authService: AuthService,
+    private todoListService: TodoListService
+  ) {}
 
   ngOnInit() {
     const user = this.authService.getCurrentUser();
@@ -72,29 +70,14 @@ export class SummaryComponent implements OnInit {
     }
     this.greeting = this.getGreeting();
 
-    // Initiale Überprüfung der Bildschirmgröße
-    this.checkScreenWidth();
+    setTimeout(() => {
+      this.textState = 'moved';
+    }, 2000);
 
-    // Automatisches Verschieben nach kurzer Verzögerung (nur im mobilen Bereich)
-    if (this.isMobileView) {
-      setTimeout(() => {
-        this.textState = 'moved';
-      }, 1000);
-    }
+    setTimeout(() => {
+      this.showText = false;
+    }, 3000);
   }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event: Event) {
-    this.checkScreenWidth();
-  }
-
-  checkScreenWidth() {
-    this.isMobileView = window.innerWidth >= 320 && window.innerWidth <= 768;
-    if (!this.isMobileView) {
-      this.textState = 'moved'; // Direkt in den Endzustand versetzen, wenn nicht im mobilen Bereich
-    }
-  }
-
   getGreeting(): string {
     const hour = new Date().getHours();
 
@@ -132,29 +115,40 @@ export class SummaryComponent implements OnInit {
   }
 
   totalUrgent() {
-    let allTodos = [this.getList('todoList'), this.getList('awaitFeedbackList'), this.getList('inProgressList'), this.getList('doneList')].flat();
+    let allTodos = [
+      this.getList('todoList'),
+      this.getList('awaitFeedbackList'),
+      this.getList('inProgressList'),
+      this.getList('doneList'),
+    ].flat();
     const urgentTodos = allTodos.filter((todo) => todo.priority === 'urgent');
     this.getNearestDueDate(allTodos);
     return urgentTodos.length;
   }
 
-  getNearestDueDate(allTodos: { priority: string; dueDate: string }[]): string | null {
+  getNearestDueDate(
+    allTodos: { priority: string; dueDate: string }[]
+  ): string | null {
     const urgentTodos = allTodos.filter((todo) => todo.priority === 'urgent');
-    
+
     if (urgentTodos.length === 0) return null;
-    
+
     const today = new Date();
-    
+
     urgentTodos.sort((a, b) => {
-        const dateA = new Date(a.dueDate).getTime();
-        const dateB = new Date(b.dueDate).getTime();
-        return dateA - dateB;
+      const dateA = new Date(a.dueDate).getTime();
+      const dateB = new Date(b.dueDate).getTime();
+      return dateA - dateB;
     });
-    
-    
+
     const nearestDate = new Date(urgentTodos[0].dueDate);
-    const formattedDate = `${nearestDate.getDate().toString().padStart(2, '0')}.${(nearestDate.getMonth() + 1).toString().padStart(2, '0')}.${nearestDate.getFullYear()}`;
+    const formattedDate = `${nearestDate
+      .getDate()
+      .toString()
+      .padStart(2, '0')}.${(nearestDate.getMonth() + 1)
+      .toString()
+      .padStart(2, '0')}.${nearestDate.getFullYear()}`;
     this.urgentNearestDueDate = formattedDate;
     return formattedDate;
-}
+  }
 }
