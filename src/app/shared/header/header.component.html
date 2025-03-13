@@ -11,6 +11,13 @@
       <div class="header-profilpic">
         <div class="user-badge" (click)="toggleDropdown()">
           <span class="initials">{{ displayName ? displayName : 'GA' }}</span>
+          @if (isDropdownOpen) {
+            <div class="dropdown-menu">
+              <a href="legalnotice" class="dropdown-item">Legal Notice</a>
+              <a href="privacypolicy" class="dropdown-item">Privacy Policy</a>
+              <a href="#" class="dropdown-item" (click)="logout()">Log out</a>
+            </div>
+            }
         </div>
       </div>
     </div>

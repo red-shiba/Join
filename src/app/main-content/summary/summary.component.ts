@@ -133,8 +133,6 @@ export class SummaryComponent implements OnInit {
 
     if (urgentTodos.length === 0) return null;
 
-    const today = new Date();
-
     urgentTodos.sort((a, b) => {
       const dateA = new Date(a.dueDate).getTime();
       const dateB = new Date(b.dueDate).getTime();
