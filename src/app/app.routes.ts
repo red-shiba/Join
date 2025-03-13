@@ -1,3 +1,9 @@
+/**
+ * Defines the application's routing configuration.
+ * This file specifies the available routes, their components, 
+ * and authentication guards where necessary.
+ */
+
 import { Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { LoginLayoutComponent } from './loginLayout/login-layout.component';
@@ -13,6 +19,14 @@ import { MainFrameComponent } from './main-frame/main-frame.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginNaviFrameComponent } from './login-navi-frame/login-navi-frame.component';
 
+/**
+ * Application routes configuration.
+ * 
+ * - `login` route: Displays the login screen with optional signup.
+ * - `legal` route: Shows legal information pages like Privacy Policy and Legal Notice.
+ * - Protected routes (require authentication via `authGuard`): Includes the dashboard, contacts, board, etc.
+ * - `**` (wildcard route): Redirects unknown paths to the login page.
+ */
 export const routes: Routes = [
   {
     path: 'login',
@@ -35,7 +49,7 @@ export const routes: Routes = [
   {
     path: '',
     component: MainFrameComponent,
-    canActivate: [authGuard], // Schutz für die internen Seiten
+    canActivate: [authGuard], // Protects internal pages
     children: [
       { path: 'board', component: BoardComponent },
       { path: 'contacts', component: ContactsComponent },
@@ -44,9 +58,9 @@ export const routes: Routes = [
       { path: 'add-task', component: AddTaskComponent },
       { path: 'privacypolicy', component: PrivacyPolicyComponent },
       { path: 'legalnotice', component: LegalNoticeComponent },
-      { path: '', redirectTo: 'summary', pathMatch: 'full' }, // Standardseite
+      { path: '', redirectTo: 'summary', pathMatch: 'full' }, // Default page
     ],
   },
 
-  { path: '**', redirectTo: 'login' },
+  { path: '**', redirectTo: 'login' }, // Redirect unknown routes to login
 ];
