@@ -6,20 +6,21 @@
     </div>
     <div class="header-account">
       <div class="header-info">
-        <a href="helpsection"><img class="info-help" src="/assets/icons/help.png" alt="information" /></a>
+        <a routerLink="/helpsection"><img class="info-help" src="/assets/icons/help.png" alt="information" /></a>
       </div>
       <div class="header-profilpic">
         <div class="user-badge" (click)="toggleDropdown()">
           <span class="initials">{{ displayName ? displayName : 'GA' }}</span>
+          @if (isDropdownOpen) {
+            <div class="dropdown-menu">
+              <a routerLink="/legalnotice" class="dropdown-item">Legal Notice</a>
+              <a routerLink="/privacypolicy" class="dropdown-item">Privacy Policy</a>
+              <a routerLink="/helpsection" class="dropdown-item" *ngIf="isMobileView">Help</a>
+              <a class="dropdown-item" (click)="logout()">Log out</a>
+            </div>
+            }
         </div>
       </div>
     </div>
-    @if (isDropdownOpen) {
-      <div class="dropdown-menu">
-        <a routerLink="legalnotice" class="dropdown-item">Legal Notice</a>
-        <a routerLink="privacypolicy" class="dropdown-item">Privacy Policy</a>
-        <a href="#" class="dropdown-item" (click)="logout()">Log out</a>
-      </div>
-      }
   </div>
 </section>

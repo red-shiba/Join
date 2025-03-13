@@ -1,3 +1,13 @@
+/**
+ * BoardComponent - Manages the task board for organizing tasks into different categories.
+ * 
+ * This component provides:
+ * - Drag-and-drop functionality to move tasks between lists.
+ * - A search function to filter tasks.
+ * - Task dialogs for viewing and adding tasks.
+ * - Integration with Firebase for task management.
+ */
+
 import { Component, Input, HostListener } from '@angular/core';
 import { Todo } from '../../interfaces/todos';
 import { TodoListService } from '../../firebase-service/todo-list.service';
@@ -16,6 +26,14 @@ import { AddTaskDialogComponent } from '../../dialogs/add-task-dialog/add-task-d
 import { RouterLink, Router } from '@angular/router';
 import { TaskNavigationService } from '../../services/task-navigation.service';
 
+/**
+ * Board component.
+ * 
+ * - **Displays task lists** and allows users to manage tasks.
+ * - **Provides drag-and-drop functionality** for reordering tasks.
+ * - **Allows task searching** and filtering.
+ * - **Integrates with Firebase** to update task statuses.
+ */
 @Component({
   selector: 'app-board',
   standalone: true,
@@ -33,30 +51,82 @@ import { TaskNavigationService } from '../../services/task-navigation.service';
   styleUrl: './board.component.scss',
 })
 export class BoardComponent {
+  /**
+   * Task input property.
+   */
   @Input() todo!: Todo;
+
+  /**
+   * Arrays storing tasks based on their statuses.
+   */
   todoList: Todo[] = [];
   awaitFeedbackList: Todo[] = [];
   inProgressList: Todo[] = [];
   doneList: Todo[] = [];
+
+  /**
+   * Indicates if the task overlay is open.
+   */
   isOverlayOpen = false;
+
+  /**
+   * Stores the currently selected task.
+   */
   selectedTodo: Todo | null = null;
+
+  /**
+   * The search term used to filter tasks.
+   */
   searchTerm: string = '';
+
+  /**
+   * Indicates if the add-task dialog is open.
+   */
   isDialogOpen = false;
+
+  /**
+   * Stores the preselected task type for the dialog.
+   */
   preselectedType: string | null = null;
+
+  /**
+   * Indicates if the view is in mobile mode.
+   */
   isMobile = false;
 
+  /**
+   * Initializes services for task management and navigation.
+   * 
+   * @param todoListService - Service for managing tasks.
+   * @param router - Router instance for navigation.
+   * @param taskNavService - Service for handling task-related navigation.
+   */
   constructor(private todoListService: TodoListService, private router: Router, private taskNavService: TaskNavigationService) { }
 
+  /**
+   * Lifecycle hook that subscribes to the task list on initialization.
+   */
   ngOnInit() {
     this.todoListService.todos$.subscribe((todos) => {
       this.todoList = todos;
     });
   }
 
+  /**
+   * Updates the search term for filtering tasks.
+   * 
+   * @param value - The new search term.
+   */
   onSearchChange(value: string) {
     this.searchTerm = value;
   }
 
+  /**
+   * Retrieves the list of tasks based on the given list ID.
+   * 
+   * @param listId - The ID of the task list.
+   * @returns An array of tasks in the corresponding list.
+   */
   getList(listId: string): Todo[] {
     switch (listId) {
       case 'todoList':
@@ -72,6 +142,12 @@ export class BoardComponent {
     }
   }
 
+  /**
+   * Retrieves a filtered list of tasks based on the search term.
+   * 
+   * @param listId - The ID of the task list.
+   * @returns A filtered array of tasks.
+   */
   getFilteredList(listId: string): Todo[] {
     const allTodos = this.getList(listId);
 
@@ -84,13 +160,15 @@ export class BoardComponent {
     return allTodos.filter((todo) => {
       const title = todo.title?.toLowerCase() || '';
       const description = todo.description?.toLowerCase() || '';
-      return (
-        title.includes(lowerSearchTerm) ||
-        description.includes(lowerSearchTerm)
-      );
+      return title.includes(lowerSearchTerm) || description.includes(lowerSearchTerm);
     });
   }
 
+  /**
+   * Determines if no tasks match the search query.
+   * 
+   * @returns `true` if no tasks match the search query, otherwise `false`.
+   */
   noResultsFound(): boolean {
     if (!this.searchTerm) {
       return false;
@@ -105,55 +183,70 @@ export class BoardComponent {
     return totalMatches === 0;
   }
 
-  drop(
-    event: CdkDragDrop<Todo[]>,
-    newCategory: 'todo' | 'inprogress' | 'awaitfeedback' | 'done'
-  ) {
+  /**
+   * Handles the drag-and-drop event to reorder or move tasks.
+   * 
+   * @param event - The drag-and-drop event.
+   * @param newCategory - The new category of the moved task.
+   */
+  drop(event: CdkDragDrop<Todo[]>, newCategory: 'todo' | 'inprogress' | 'awaitfeedback' | 'done') {
     if (event.previousContainer === event.container) {
-      moveItemInArray(
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
       const movedTodo = event.previousContainer.data[event.previousIndex];
 
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
+      transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
 
-      // Setze die neue Kategorie im lokalen Zustand
       movedTodo.type = newCategory;
 
-      // Firebase-Update
       this.todoListService
         .moveTodo(movedTodo, newCategory)
-        .then(() => console.log('Task erfolgreich in Firestore aktualisiert'))
-        .catch((err) => console.error('Fehler beim Firebase-Update:', err));
+        .then(() => console.log('Task successfully updated in Firestore'))
+        .catch((err) => console.error('Error updating task in Firestore:', err));
     }
   }
 
+  /**
+   * Handles the "+" button click to add a new task.
+   * 
+   * @param type - The task type to be added.
+   */
   onPlusClick(type: string) {
     this.taskNavService.navigateOrOpenDialog(type, this.openDialog.bind(this));
   }
 
+  /**
+   * Opens the task overlay with the selected task.
+   * 
+   * @param todo - The selected task.
+   */
   openOverlay(todo: Todo) {
     this.selectedTodo = todo;
     this.isOverlayOpen = true;
   }
 
+  /**
+   * Closes the task overlay.
+   */
   closeOverlay() {
     this.isOverlayOpen = false;
   }
 
+  /**
+   * Opens the add-task dialog with a preselected type.
+   * 
+   * @param type - The task type.
+   */
   openDialog(type: string) {
     this.preselectedType = type;
     this.isDialogOpen = true;
   }
 
+  /**
+   * Closes the add-task dialog.
+   * 
+   * @param event - Boolean indicating whether to close the dialog.
+   */
   closeDialog(event: boolean) {
     this.isDialogOpen = false;
     this.preselectedType = null;

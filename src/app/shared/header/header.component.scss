@@ -26,16 +26,6 @@ h1 {
   display: none;
 }
 
-@media (max-width: 768px) {
-  .header-logo-mobil {
-    display: block;
-  }
-
-  .header-heading {
-    display: none;
-  }
-}
-
 .header-account {
   display: flex;
   align-items: center;
@@ -53,6 +43,7 @@ h1 {
   }
 
   .header-profilpic {
+    position: relative;
     margin-left: 10px;
     padding: 8px 0;
 
@@ -83,9 +74,8 @@ h1 {
 
 .dropdown-menu {
   position: absolute;
-  margin-top: 3px;
-  top: 45px;
-  right: 40px;
+  bottom: -125px;
+  right: 20px;
   display: flex;
   flex-direction: column;
   z-index: 1001;
@@ -106,5 +96,23 @@ h1 {
     &:hover {
       background-color: #2a3d59;
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .header-logo-mobil {
+    display: block;
+  }
+
+  .header-heading {
+    display: none;
+  }
+
+  .header-info {
+    display: none;
+  }
+
+  .dropdown-menu {
+    bottom: -162px;
   }
 }

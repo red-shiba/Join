@@ -1,3 +1,12 @@
+/**
+ * SummaryComponent - Displays an overview of the user's tasks and a greeting message.
+ * 
+ * This component provides:
+ * - A personalized greeting based on the time of day.
+ * - Animated text effects on page load.
+ * - An overview of task categories, including urgent tasks and their nearest due dates.
+ */
+
 import { Component, HostListener, OnInit, Input } from '@angular/core';
 import { AuthService } from '../../firebase-service/auth.service';
 import { RouterLink } from '@angular/router';
@@ -12,6 +21,13 @@ import {
 import { Todo } from '../../interfaces/todos';
 import { TodoListService } from '../../firebase-service/todo-list.service';
 
+/**
+ * Summary component.
+ * 
+ * - **Displays the user's name and greeting message**.
+ * - **Shows an overview of tasks in different categories**.
+ * - **Animates an introduction text upon page load**.
+ */
 @Component({
   selector: 'app-summary',
   standalone: true,
@@ -46,23 +62,66 @@ import { TodoListService } from '../../firebase-service/todo-list.service';
   ],
 })
 export class SummaryComponent implements OnInit {
+  /**
+   * Task object received as an input property.
+   */
   @Input() todo!: Todo;
+
+  /**
+   * The display name of the logged-in user.
+   */
   displayName: string | null = '';
+
+  /**
+   * Greeting message based on the time of day.
+   */
   greeting: string = '';
+
+  /**
+   * State of the animated introduction text.
+   */
   textState: 'center' | 'moved' = 'center';
+
+  /**
+   * Determines whether the application is in mobile view.
+   */
   isMobileView: boolean = false;
+
+  /**
+   * Arrays storing tasks based on their statuses.
+   */
   todoList: Todo[] = [];
   awaitFeedbackList: Todo[] = [];
   inProgressList: Todo[] = [];
   doneList: Todo[] = [];
+
+  /**
+   * Stores the nearest due date of urgent tasks.
+   */
   urgentNearestDueDate: string | null = null;
+
+  /**
+   * Controls whether the introduction text is visible.
+   */
   showText: boolean = true;
 
+  /**
+   * Initializes authentication and task services.
+   * 
+   * @param authService - Authentication service instance.
+   * @param todoListService - Service that handles task data.
+   */
   constructor(
     private authService: AuthService,
     private todoListService: TodoListService
   ) {}
 
+  /**
+   * Lifecycle hook that runs when the component initializes.
+   * - Retrieves the user's display name.
+   * - Sets the greeting message.
+   * - Animates the introduction text.
+   */
   ngOnInit() {
     const user = this.authService.getCurrentUser();
     if (user) {
@@ -78,6 +137,12 @@ export class SummaryComponent implements OnInit {
       this.showText = false;
     }, 3000);
   }
+
+  /**
+   * Generates a greeting message based on the time of day.
+   * 
+   * @returns A greeting string (e.g., "Good Morning", "Good Afternoon", "Good Evening").
+   */
   getGreeting(): string {
     const hour = new Date().getHours();
 
@@ -90,6 +155,12 @@ export class SummaryComponent implements OnInit {
     }
   }
 
+  /**
+   * Retrieves a list of tasks based on the list ID.
+   * 
+   * @param listId - The ID of the task list.
+   * @returns An array of tasks from the corresponding list.
+   */
   getList(listId: string): Todo[] {
     switch (listId) {
       case 'todoList':
@@ -105,6 +176,11 @@ export class SummaryComponent implements OnInit {
     }
   }
 
+  /**
+   * Calculates the total number of tasks across all lists.
+   * 
+   * @returns The total number of tasks.
+   */
   totalMatches(): number {
     let totalMatches = 0;
     totalMatches += this.getList('todoList').length;
@@ -114,6 +190,11 @@ export class SummaryComponent implements OnInit {
     return totalMatches;
   }
 
+  /**
+   * Counts the number of urgent tasks.
+   * 
+   * @returns The number of tasks marked as urgent.
+   */
   totalUrgent() {
     let allTodos = [
       this.getList('todoList'),
@@ -126,14 +207,18 @@ export class SummaryComponent implements OnInit {
     return urgentTodos.length;
   }
 
+  /**
+   * Finds the nearest due date for urgent tasks.
+   * 
+   * @param allTodos - An array of all tasks.
+   * @returns The nearest due date in `DD.MM.YYYY` format, or `null` if no urgent tasks exist.
+   */
   getNearestDueDate(
     allTodos: { priority: string; dueDate: string }[]
   ): string | null {
     const urgentTodos = allTodos.filter((todo) => todo.priority === 'urgent');
 
     if (urgentTodos.length === 0) return null;
-
-    const today = new Date();
 
     urgentTodos.sort((a, b) => {
       const dateA = new Date(a.dueDate).getTime();

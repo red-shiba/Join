@@ -1,3 +1,13 @@
+/**
+ * TaskCardComponent - Displays and manages the details of a single task (Todo item).
+ *
+ * This component provides:
+ * - A detailed view of a task with title, description, assigned contacts, subtasks, and priority.
+ * - Edit functionality to update an existing task’s fields (title, description, due date, etc.).
+ * - Live subtask creation, editing, and deletion within the task card.
+ * - Contact selection via a dropdown list, with dynamic toggling of the dropdown.
+ * - Tools for visualizing priority, category, and other task properties (e.g., icons, colors).
+ */
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Todo } from '../../interfaces/todos';
 import { TodoListService } from '../../firebase-service/todo-list.service';
@@ -16,27 +26,100 @@ import { AvatarColorService } from '../../services/avatar-color.service';
   styleUrls: ['./task-card.component.scss'],
 })
 export class TaskCardComponent {
+  /**
+   * The task (Todo) to display in this card.
+   */
   @Input() todo: Todo | null = null;
+
+  /**
+   * Emits an event when the overlay displaying this task card should close.
+   */
   @Output() closeOverlay = new EventEmitter<boolean>();
 
+  /**
+   * Determines whether the overlay is in the process of closing.
+   */
   isClosing = false;
+
+  /**
+   * Controls whether the task is being edited.
+   */
   isEditing = false;
+
+  /**
+   * Toggles the dropdown for contact selection.
+   */
   dropdownOpen = false;
+
+  /**
+   * Indicates if subtask input controls (input field + buttons) are visible.
+   */
   showControls = false;
+
+  /**
+   * The index of a subtask currently in edit mode.
+   */
   editedSubtaskIndex: number | null = null;
+
+  /**
+   * Temporary storage for the edited subtask’s title value.
+   */
   editedSubtaskValue: string = '';
+
+  /**
+   * Array of subtasks displayed in the template (initially copies from the Todo).
+   */
   subtasks: { title: string; done: boolean }[] = [];
+
+  /**
+   * Editable subtasks array for the current task’s subtasks.
+   */
   editableSubtasks: { title: string; done: boolean }[] = [];
+
+  /**
+   * Temporarily holds user input for adding a new subtask.
+   */
   subtaskInput = '';
+
+  /**
+   * A list of all contacts available to assign to a task.
+   */
   contactList: Contact[] = [];
+
+  /**
+   * An array of contacts selected for this task.
+   */
   selectedContacts: Contact[] = [];
+
+  /**
+   * The type of the task (usually "todo", "inprogress", etc.).
+   */
   type: any = '';
+
+  /**
+   * Paths to images representing checkbox states.
+   */
   uncheckedImage = '/assets/icons/check_box.png';
   checkedImage = '/assets/icons/check_ed.png';
+
+  /**
+   * Controls the checkbox state.
+   */
   isChecked = false;
+
+  /**
+   * Current priority value of the task.
+   */
   priority: string | undefined;
+
+  /**
+   * Determines which priority button is active (e.g., "urgent", "medium", "low").
+   */
   activePriority: string | undefined;
 
+  /**
+   * Tracks edited Todo properties before saving.
+   */
   editedTodo: Todo = {
     id: '',
     title: '',
@@ -48,12 +131,23 @@ export class TaskCardComponent {
     type: 'todo',
     category: '',
   };
+
+  /**
+   * Injects required services for managing tasks, contacts, and avatar colors.
+   *
+   * @param todoService - Service for CRUD operations on Todo items.
+   * @param contactListService - Service that provides contact data.
+   * @param avatarColorService - Service for determining avatar colors.
+   */
   constructor(
     private todoService: TodoListService,
     private contactListService: ContactListService,
     private avatarColorService: AvatarColorService
   ) {}
 
+  /**
+   * Lifecycle hook that subscribes to the contact list and initializes assigned contacts for the task.
+   */
   ngOnInit() {
     this.contactListService.getContacts().subscribe((contacts) => {
       this.contactList = contacts;
@@ -68,10 +162,18 @@ export class TaskCardComponent {
     });
   }
 
+  /**
+   * Toggles the 'done' state of a subtask.
+   *
+   * @param subtask - The subtask object whose status is toggled.
+   */
   toggleCheckBox(subtask: any) {
     subtask.done = !subtask.done;
   }
 
+  /**
+   * Switches the component into editing mode and initializes editable fields.
+   */
   editTodo() {
     if (this.todo) {
       this.isEditing = true;
@@ -95,21 +197,33 @@ export class TaskCardComponent {
     }
   }
 
+  /**
+   * Saves changes to the currently edited Todo, then closes the overlay.
+   */
   async saveTodo() {
     if (this.editedTodo && this.editedTodo.id) {
+      // Update subtasks and assigned contacts
       this.editedTodo.subtasks = this.editableSubtasks;
       this.editedTodo.assignedTo = this.selectedContacts
         .map((contact) => contact.name)
         .join(', ');
+
       await this.todoService.updateTodo(this.editedTodo);
+
+      // Sync component state with updated Todo
       this.todo = { ...this.editedTodo };
       this.isEditing = false;
       this.dropdownOpen = false;
+
+      // Emit the overlay closing event and reload the page to reflect changes
       this.closeOverlay.emit();
       window.location.reload();
     }
   }
 
+  /**
+   * Deletes the current Todo item and closes the overlay.
+   */
   deleteTodo() {
     if (this.todo && this.todo.id) {
       this.todoService.deleteTodo(this.todo.id).then(() => {
@@ -118,6 +232,12 @@ export class TaskCardComponent {
     }
   }
 
+  /**
+   * Toggles a contact's selection state for assignment.
+   *
+   * @param contact - The contact to select or deselect.
+   * @param event - The change event (checkbox toggle).
+   */
   toggleContactSelection(contact: Contact, event: Event) {
     const isChecked = (event.target as HTMLInputElement).checked;
     if (isChecked) {
@@ -129,10 +249,21 @@ export class TaskCardComponent {
     }
   }
 
+  /**
+   * Removes a contact from the selected contacts list.
+   *
+   * @param contact - The contact to remove.
+   */
   deleteContact(contact: Contact) {
     this.selectedContacts = this.selectedContacts.filter((c) => c !== contact);
   }
 
+  /**
+   * Retrieves the icon path based on the priority level.
+   *
+   * @param priority - A string representing the priority level.
+   * @returns A path to the relevant icon.
+   */
   getPriorityIcon(priority: string | null | undefined): string {
     switch (priority) {
       case 'urgent':
@@ -146,6 +277,12 @@ export class TaskCardComponent {
     }
   }
 
+  /**
+   * Determines a color code for the task's category, using a predefined mapping.
+   *
+   * @param category - The category name.
+   * @returns A string representing the color code (hex).
+   */
   getCategoryColor(category: string | null | undefined): string {
     let categoryColors: { [key: string]: string } = {
       'Technical Task': '#1FD7C1',
@@ -155,10 +292,22 @@ export class TaskCardComponent {
     return category ? categoryColors[category] || '#CCCCCC' : '#CCCCCC';
   }
 
+  /**
+   * Retrieves a dynamically assigned avatar color for a contact.
+   *
+   * @param contact - The contact whose avatar color is requested.
+   * @returns A color string.
+   */
   getAvatarColor(contact: Contact): string {
     return this.avatarColorService.getAvatarColor(contact);
   }
 
+  /**
+   * Generates initials from the given name.
+   *
+   * @param name - The full name to process.
+   * @returns Uppercase initials of the name.
+   */
   getInitials(name: string): string {
     return name
       .split(' ')
@@ -167,6 +316,11 @@ export class TaskCardComponent {
       .toUpperCase();
   }
 
+  /**
+   * Sets the current priority of the edited todo and updates the active priority button styles.
+   *
+   * @param priority - The new priority value ('urgent', 'medium', or 'low').
+   */
   setPriority(priority: string) {
     this.priority = priority;
     this.activePriority = priority;
@@ -174,6 +328,9 @@ export class TaskCardComponent {
     this.updateButtonStyles();
   }
 
+  /**
+   * Updates the button styles to highlight the currently active priority button.
+   */
   private updateButtonStyles() {
     const buttons = document.querySelectorAll('.priority-btn');
     buttons.forEach((button) => {
@@ -187,26 +344,47 @@ export class TaskCardComponent {
     });
   }
 
+  /**
+   * Toggles the dropdown menu visibility for assigning contacts.
+   */
   toggleDropdown() {
     this.dropdownOpen = !this.dropdownOpen;
   }
 
+  /**
+   * Checks if a particular contact is currently selected for the task.
+   *
+   * @param contact - The contact to verify.
+   * @returns `true` if the contact is in the selectedContacts array, otherwise `false`.
+   */
   isSelected(contact: Contact): boolean {
     return this.selectedContacts.includes(contact);
   }
 
+  /**
+   * Rotates the dropdown arrow icon when the dropdown gains focus.
+   */
   onFocus() {
     document.querySelector('.arrow-icon')?.classList.add('rotate');
   }
 
+  /**
+   * Removes the rotation from the dropdown arrow icon when it loses focus.
+   */
   onBlur() {
     document.querySelector('.arrow-icon')?.classList.remove('rotate');
   }
 
+  /**
+   * Displays the subtask input controls.
+   */
   activateInput() {
     this.showControls = true;
   }
 
+  /**
+   * Confirms the creation of a new subtask and adds it to the editable subtasks array.
+   */
   confirmSubtask() {
     if (this.subtaskInput.trim() !== '') {
       this.editableSubtasks.push({
@@ -218,11 +396,17 @@ export class TaskCardComponent {
     }
   }
 
+  /**
+   * Cancels subtask creation and clears the input.
+   */
   cancelSubtask() {
     this.subtaskInput = '';
     this.showControls = false;
   }
 
+  /**
+   * Delays hiding the subtask input controls to allow other interactions (e.g., button clicks).
+   */
   hideControls() {
     if (this.subtaskInput.trim() === '') {
       setTimeout(() => {
@@ -231,15 +415,30 @@ export class TaskCardComponent {
     }
   }
 
+  /**
+   * Removes a subtask from the editable subtasks array by index.
+   *
+   * @param index - The index of the subtask to delete.
+   */
   deleteSubtask(index: number) {
     this.editableSubtasks.splice(index, 1);
   }
 
+  /**
+   * Enables editing mode for a specific subtask.
+   *
+   * @param index - The index of the subtask to edit.
+   */
   editSubtask(index: number) {
     this.editedSubtaskIndex = index;
     this.editedSubtaskValue = this.editableSubtasks[index].title;
   }
 
+  /**
+   * Saves an edited subtask and exits edit mode.
+   *
+   * @param index - The index of the subtask being edited.
+   */
   saveSubtask(index: number) {
     if (this.editedSubtaskValue.trim() !== '') {
       this.editableSubtasks[index].title = this.editedSubtaskValue.trim();
@@ -247,6 +446,9 @@ export class TaskCardComponent {
     }
   }
 
+  /**
+   * Cancels subtask edit mode and clears temporary input values.
+   */
   cancelEdit() {
     this.editedSubtaskIndex = null;
     this.editedSubtaskValue = '';
