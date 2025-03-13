@@ -25,15 +25,8 @@ import { AvatarColorService } from '../../services/avatar-color.service';
   styleUrl: './add-task-dialog.component.scss'
 })
 export class AddTaskDialogComponent {
-  /**
-   * Preselected task type (e.g., "inprogress", "todo") received from the parent component.
-   */
-  @Input() defaultType: string | null = null;
-
-  /**
-   * Event emitted when the dialog is closed, indicating whether it should remain open (`true`) or closed (`false`).
-   */
-  @Output() addDialogClosed = new EventEmitter<boolean>();
+  @Input() defaultType: string | null = null; // Preselected task type (e.g., "inprogress", "todo") received from the parent component.
+  @Output() addDialogClosed = new EventEmitter<boolean>(); // Event emitted when the dialog is closed, indicating whether it should remain open (`true`) or closed (`false`).
 
   /**
    * Basic task information fields.
@@ -53,30 +46,11 @@ export class AddTaskDialogComponent {
   subtasks: any[] = [];
   showControls = false;
 
-  /**
-   * Array of available contacts from the ContactListService.
-   */
-  contactList: Contact[] = [];
-
-  /**
-   * Contacts assigned to the current task.
-   */
-  selectedContacts: Contact[] = [];
-
-  /**
-   * Controls the dropdown menu's open/close state.
-   */
-  dropdownOpen = false;
-
-  /**
-   * Determines if the dialog is in the process of closing.
-   */
-  isClosing = false;
-
-  /**
-   * The task type (e.g., "todo", "inprogress"). Defaults to 'todo' if not specified.
-   */
-  type: any = '';
+  contactList: Contact[] = []; // Array of available contacts from the ContactListService.
+  selectedContacts: Contact[] = []; // Contacts assigned to the current task.
+  dropdownOpen = false; // Controls the dropdown menu's open/close state.
+  isClosing = false; // Determines if the dialog is in the process of closing.
+  type: any = ''; // The task type (e.g., "todo", "inprogress"). Defaults to 'todo' if not specified.
 
   /**
    * Subtask editing state.

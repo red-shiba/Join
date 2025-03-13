@@ -26,96 +26,26 @@ import { AvatarColorService } from '../../services/avatar-color.service';
   styleUrls: ['./task-card.component.scss'],
 })
 export class TaskCardComponent {
-  /**
-   * The task (Todo) to display in this card.
-   */
-  @Input() todo: Todo | null = null;
+  @Input() todo: Todo | null = null; // The task (Todo) to display in this card.
+  @Output() closeOverlay = new EventEmitter<boolean>(); // Emits an event when the overlay displaying this task card should close.
 
-  /**
-   * Emits an event when the overlay displaying this task card should close.
-   */
-  @Output() closeOverlay = new EventEmitter<boolean>();
-
-  /**
-   * Determines whether the overlay is in the process of closing.
-   */
-  isClosing = false;
-
-  /**
-   * Controls whether the task is being edited.
-   */
-  isEditing = false;
-
-  /**
-   * Toggles the dropdown for contact selection.
-   */
-  dropdownOpen = false;
-
-  /**
-   * Indicates if subtask input controls (input field + buttons) are visible.
-   */
-  showControls = false;
-
-  /**
-   * The index of a subtask currently in edit mode.
-   */
-  editedSubtaskIndex: number | null = null;
-
-  /**
-   * Temporary storage for the edited subtask’s title value.
-   */
-  editedSubtaskValue: string = '';
-
-  /**
-   * Array of subtasks displayed in the template (initially copies from the Todo).
-   */
-  subtasks: { title: string; done: boolean }[] = [];
-
-  /**
-   * Editable subtasks array for the current task’s subtasks.
-   */
-  editableSubtasks: { title: string; done: boolean }[] = [];
-
-  /**
-   * Temporarily holds user input for adding a new subtask.
-   */
-  subtaskInput = '';
-
-  /**
-   * A list of all contacts available to assign to a task.
-   */
-  contactList: Contact[] = [];
-
-  /**
-   * An array of contacts selected for this task.
-   */
-  selectedContacts: Contact[] = [];
-
-  /**
-   * The type of the task (usually "todo", "inprogress", etc.).
-   */
-  type: any = '';
-
-  /**
-   * Paths to images representing checkbox states.
-   */
-  uncheckedImage = '/assets/icons/check_box.png';
-  checkedImage = '/assets/icons/check_ed.png';
-
-  /**
-   * Controls the checkbox state.
-   */
-  isChecked = false;
-
-  /**
-   * Current priority value of the task.
-   */
-  priority: string | undefined;
-
-  /**
-   * Determines which priority button is active (e.g., "urgent", "medium", "low").
-   */
-  activePriority: string | undefined;
+  isClosing = false; // Determines whether the overlay is in the process of closing.
+  isEditing = false; // Controls whether the task is being edited.
+  dropdownOpen = false; // Toggles the dropdown for contact selection.
+  showControls = false; // Indicates if subtask input controls (input field + buttons) are visible.
+  editedSubtaskIndex: number | null = null; // The index of a subtask currently in edit mode.
+  editedSubtaskValue: string = ''; // Temporary storage for the edited subtask’s title value.
+  subtasks: { title: string; done: boolean }[] = []; // Array of subtasks displayed in the template (initially copies from the Todo).
+  editableSubtasks: { title: string; done: boolean }[] = []; // Editable subtasks array for the current task’s subtasks.
+  subtaskInput = ''; // Temporarily holds user input for adding a new subtask.
+  contactList: Contact[] = []; // A list of all contacts available to assign to a task.
+  selectedContacts: Contact[] = []; // An array of contacts selected for this task.
+  type: any = ''; // The type of the task (usually "todo", "inprogress", etc.).
+  uncheckedImage = '/assets/icons/check_box.png'; // Paths to images representing checkbox states.
+  checkedImage = '/assets/icons/check_ed.png'; // Paths to images representing checkbox states.
+  isChecked = false; // Controls the checkbox state.
+  priority: string | undefined; // Current priority value of the task.
+  activePriority: string | undefined; // Determines which priority button is active (e.g., "urgent", "medium", "low").
 
   /**
    * Tracks edited Todo properties before saving.

@@ -28,15 +28,8 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class TodoListService {
-  /**
-   * BehaviorSubject that holds the current array of Todo items.
-   */
-  private todosSubject = new BehaviorSubject<Todo[]>([]);
-
-  /**
-   * Observable stream of Todo items from the BehaviorSubject.
-   */
-  todos$ = this.todosSubject.asObservable();
+  private todosSubject = new BehaviorSubject<Todo[]>([]); // BehaviorSubject that holds the current array of Todo items.
+  todos$ = this.todosSubject.asObservable(); // Observable stream of Todo items from the BehaviorSubject.
 
   /**
    * Arrays holding tasks of different types.
@@ -54,10 +47,7 @@ export class TodoListService {
   unsubInprogress: () => void;
   unsubDone: () => void;
 
-  /**
-   * Injected Firestore instance for database operations.
-   */
-  firestore: Firestore = inject(Firestore);
+  firestore: Firestore = inject(Firestore); // Injected Firestore instance for database operations.
 
   /**
    * Initializes snapshot subscriptions for all task collections.

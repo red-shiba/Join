@@ -22,56 +22,22 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './edit-contact-dialog.component.scss',
 })
 export class EditContactDialogComponent {
-  /**
-   * The contact object being edited. When changed, local fields are updated via ngOnChanges().
-   */
-  @Input() contact: Contact | null = null;
+  @Input() contact: Contact | null = null; // The contact object being edited. When changed, local fields are updated via ngOnChanges().
 
   /**
    * Emits an event to signal the parent component that the dialog has closed.
    * Sends a boolean (currently always `false`) to indicate closure.
    */
   @Output() editDialogClosed: EventEmitter<boolean> = new EventEmitter();
+  @Output() contactUpdated: EventEmitter<Contact> = new EventEmitter(); // Emits an event with the updated contact once changes are saved.
 
-  /**
-   * Emits an event with the updated contact once changes are saved.
-   */
-  @Output() contactUpdated: EventEmitter<Contact> = new EventEmitter();
-
-  /**
-   * The full name to be edited.
-   */
-  name: string = '';
-
-  /**
-   * The email address to be edited.
-   */
-  email: string = '';
-
-  /**
-   * The phone number to be edited.
-   */
-  phone: string = '';
-
-  /**
-   * Determines whether the email input has focus (for styling or other UI logic).
-   */
-  isFocused: boolean = false;
-
-  /**
-   * Determines whether the name input has focus.
-   */
-  isNameFocused: boolean = false;
-
-  /**
-   * Determines whether the phone input has focus.
-   */
-  isPhoneFocused: boolean = false;
-
-  /**
-   * Controls a closing animation state. When `true`, initiates the close dialog animation.
-   */
-  isClosing = false;
+  name: string = ''; // The full name to be edited.
+  email: string = ''; // The email address to be edited.
+  phone: string = ''; // The phone number to be edited.
+  isFocused: boolean = false; // Determines whether the email input has focus (for styling or other UI logic).
+  isNameFocused: boolean = false; // Determines whether the name input has focus.
+  isPhoneFocused: boolean = false; // Determines whether the phone input has focus.
+  isClosing = false; // Controls a closing animation state. When `true`, initiates the close dialog animation.
 
   /**
    * Initializes the contact list and avatar color services.

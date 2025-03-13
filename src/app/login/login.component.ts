@@ -23,16 +23,8 @@ import { CommonModule } from '@angular/common';
   imports: [FormsModule, CommonModule]
 })
 export class LoginComponent {
-
-  /**
-   * Router instance for navigation.
-   */
-  constructor(private router: Router) {}
-
-  /**
-   * AuthService instance used to perform authentication actions.
-   */
-  authService = inject(AuthService);
+  constructor(private router: Router) {} // Router instance for navigation.
+  authService = inject(AuthService); // AuthService instance used to perform authentication actions.
 
   /**
    * User-provided email input.

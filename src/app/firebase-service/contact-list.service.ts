@@ -24,20 +24,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ContactListService {
-  /**
-   * Local cache of contacts, updated in real-time by the Firestore snapshot subscription.
-   */
-  contacts: Contact[] = [];
-
-  /**
-   * A function that unsubscribes from Firestore snapshot changes.
-   */
-  unsubContacts: () => void;
-
-  /**
-   * The injected Firestore instance.
-   */
-  firestore: Firestore = inject(Firestore);
+  contacts: Contact[] = []; // Local cache of contacts, updated in real-time by the Firestore snapshot subscription.
+  unsubContacts: () => void; // A function that unsubscribes from Firestore snapshot changes.
+  firestore: Firestore = inject(Firestore); // The injected Firestore instance.
 
   /**
    * Initializes Firestore snapshot subscription for contacts.

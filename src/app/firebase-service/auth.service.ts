@@ -22,10 +22,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  /**
-   * An observable that emits the currently authenticated user or null if not authenticated.
-   */
-  user$: Observable<any>;
+  user$: Observable<any>; // An observable that emits the currently authenticated user or null if not authenticated.
 
   /**
    * Initializes the service with the AngularFire Auth and Firestore instances.

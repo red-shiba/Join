@@ -33,15 +33,9 @@ export class AddContactDialogComponent {
   email = '';
   phone = '';
 
-  /**
-   * Tracks whether the dialog is in the process of closing (for animations).
-   */
-  isClosing = false;
+  isClosing = false; // Tracks whether the dialog is in the process of closing (for animations).
 
-  /**
-   * Default avatar color for the contact.
-   */
-  avatarColor: string = '#ccc';
+  avatarColor: string = '#ccc'; // Default avatar color for the contact.
 
   /**
    * Flags indicating focus states for name, email, and phone inputs.
