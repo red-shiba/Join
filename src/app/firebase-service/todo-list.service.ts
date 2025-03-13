@@ -1,3 +1,12 @@
+/**
+ * TodoListService - Manages to-do items in multiple status collections with Firebase Firestore.
+ *
+ * This service provides:
+ * - CRUD operations (Create, Read, Update, Delete) for Todo items.
+ * - Real-time syncing for different status collections (e.g., 'todo', 'inprogress', 'awaitfeedback', 'done').
+ * - Methods to move Todo items between collections.
+ * - An internal BehaviorSubject to stream updates (e.g., for items in progress).
+ */
 import { Injectable, inject } from '@angular/core';
 import { Todo } from '../interfaces/todos';
 import {
@@ -11,28 +20,48 @@ import {
   doc,
   onSnapshot,
   updateDoc,
+  getDoc,
 } from '@angular/fire/firestore';
 import { BehaviorSubject } from 'rxjs';
-import { getDoc } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TodoListService {
+  /**
+   * BehaviorSubject that holds the current array of Todo items.
+   */
   private todosSubject = new BehaviorSubject<Todo[]>([]);
+
+  /**
+   * Observable stream of Todo items from the BehaviorSubject.
+   */
   todos$ = this.todosSubject.asObservable();
+
+  /**
+   * Arrays holding tasks of different types.
+   */
   todos: Todo[] = [];
   awaitfeedbacks: Todo[] = [];
   inprogress: Todo[] = [];
   done: Todo[] = [];
 
-  unsubTodos;
-  unsubAwaitfeedbacks;
-  unsubInprogress;
-  unsubDone;
+  /**
+   * Functions that unsubscribe from Firestore snapshot listeners.
+   */
+  unsubTodos: () => void;
+  unsubAwaitfeedbacks: () => void;
+  unsubInprogress: () => void;
+  unsubDone: () => void;
 
+  /**
+   * Injected Firestore instance for database operations.
+   */
   firestore: Firestore = inject(Firestore);
 
+  /**
+   * Initializes snapshot subscriptions for all task collections.
+   */
   constructor() {
     this.unsubTodos = this.subTodosList();
     this.unsubAwaitfeedbacks = this.subAwaitfeedbackList();
@@ -40,18 +69,29 @@ export class TodoListService {
     this.unsubDone = this.subDoneList();
   }
 
+  /**
+   * Adds a new Todo item to the specified collection in Firestore.
+   *
+   * @param item - The Todo item to add.
+   * @param colId - One of 'todo', 'inprogress', 'awaitfeedback', or 'done'.
+   */
   async addTodo(
     item: Todo,
     colId: 'todo' | 'inprogress' | 'awaitfeedback' | 'done'
   ) {
     try {
       const docRef = await addDoc(collection(this.firestore, colId), item);
-      console.log(`Task wurde in "${colId}" gespeichert mit ID:`, docRef.id);
+      console.log(`Task saved in "${colId}" with ID:`, docRef.id);
     } catch (err) {
-      console.error(`Fehler beim Speichern in "${colId}":`, err);
+      console.error(`Error saving in "${colId}":`, err);
     }
   }
 
+  /**
+   * Attempts to delete a Todo item with the given docId from all possible collections.
+   *
+   * @param docId - The document ID of the Todo item to delete.
+   */
   async deleteTodo(docId: string) {
     const collections = ['todo', 'inprogress', 'awaitfeedback', 'done'];
 
@@ -62,21 +102,26 @@ export class TodoListService {
       if (docSnap.exists()) {
         try {
           await deleteDoc(docRef);
-          console.log(`Dokument ${docId} erfolgreich aus ${colId} gelöscht.`);
+          console.log(`Document ${docId} successfully deleted from ${colId}.`);
         } catch (err) {
-          console.error(`Fehler beim Löschen von ${docId} aus ${colId}:`, err);
+          console.error(`Error deleting ${docId} from ${colId}:`, err);
         }
       }
     }
   }
 
+  /**
+   * Updates an existing Todo item in Firestore based on its current 'type'.
+   *
+   * @param todo - The Todo object with updated properties (must include an `id`).
+   */
   async updateTodo(todo: Todo) {
     if (!todo.id) return;
 
-    const colId = this.getColIdFromTodo(todo); // Holt den richtigen Collection-Namen
+    const colId = this.getColIdFromTodo(todo); // Dynamically retrieves collection name
 
     try {
-      const docRef = doc(this.firestore, `${colId}/${todo.id}`); // Dynamischer Pfad
+      const docRef = doc(this.firestore, `${colId}/${todo.id}`);
       await updateDoc(docRef, {
         title: todo.title,
         description: todo.description,
@@ -86,32 +131,46 @@ export class TodoListService {
         subtasks: todo.subtasks,
         category: todo.category,
       });
-      console.log('Todo erfolgreich aktualisiert');
+      console.log('Todo updated successfully');
     } catch (error) {
-      console.error('Fehler beim Aktualisieren des Todos:', error);
+      console.error('Error updating the Todo:', error);
     }
   }
 
+  /**
+   * Moves a Todo item to a new collection (new status) by:
+   * 1. Deleting the item from its current collection.
+   * 2. Creating a new document in the target collection.
+   *
+   * @param todo - The Todo item being moved.
+   * @param newStatus - The new collection name (status) for the Todo item.
+   */
   async moveTodo(
     todo: Todo,
     newStatus: 'todo' | 'inprogress' | 'awaitfeedback' | 'done'
   ) {
     if (!todo.id) return;
 
-    // Zuerst den Task aus allen Sammlungen löschen
+    // First delete the task from all collections
     await this.deleteTodo(todo.id);
 
-    // Neuen Task in der Ziel-Sammlung erstellen
+    // Create a new task in the target collection
     const newDocRef = doc(this.firestore, `${newStatus}/${todo.id}`);
 
     try {
       await setDoc(newDocRef, { ...todo, type: newStatus });
-      console.log('Task erfolgreich verschoben!');
+      console.log('Task moved successfully!');
     } catch (error) {
-      console.error('Fehler beim Verschieben:', error);
+      console.error('Error moving the task:', error);
     }
   }
 
+  /**
+   * Creates a Firestore-ready JSON object from a Todo item.
+   *
+   * @param todo - The Todo item to transform.
+   * @returns A plain object with the item's properties.
+   */
   getCleanJson(todo: Todo): {} {
     return {
       type: todo.type,
@@ -125,10 +184,23 @@ export class TodoListService {
     };
   }
 
+  /**
+   * Retrieves the Firestore collection ID (e.g., 'todo', 'inprogress', etc.) from a Todo item.
+   *
+   * @param todo - The Todo item to analyze.
+   * @returns The appropriate collection ID.
+   */
   getColIdFromTodo(todo: Todo) {
-    return todo.type; // Gibt "todo", "inprogress", "awaitfeedback" oder "done" zurück
+    return todo.type;
   }
 
+  /**
+   * Constructs a strongly typed Todo object from raw Firestore data.
+   *
+   * @param obj - The raw data object from Firestore.
+   * @param id - The document ID associated with the data.
+   * @returns A fully typed Todo object.
+   */
   setTodoObject(obj: any, id: string): Todo {
     return {
       id: id,
@@ -143,6 +215,10 @@ export class TodoListService {
     };
   }
 
+  /**
+   * Cleans up all subscriptions to Firestore snapshots.
+   * Should be called when the service or component is destroyed.
+   */
   ngonDestroy() {
     this.unsubTodos();
     this.unsubAwaitfeedbacks();
@@ -150,6 +226,11 @@ export class TodoListService {
     this.unsubDone();
   }
 
+  /**
+   * Subscribes to changes in the 'todo' collection. Updates `this.todos` in real-time.
+   *
+   * @returns An unsubscribe function to stop listening to the snapshot.
+   */
   subTodosList() {
     return onSnapshot(this.getTodosRef(), (list) => {
       this.todos = [];
@@ -159,33 +240,48 @@ export class TodoListService {
     });
   }
 
+  /**
+   * Subscribes to changes in the 'awaitfeedback' collection. Updates `this.awaitfeedbacks` in real-time.
+   *
+   * @returns An unsubscribe function to stop listening to the snapshot.
+   */
   subAwaitfeedbackList() {
     return onSnapshot(this.getAwaitfeedbackRef(), (list) => {
       this.awaitfeedbacks = [];
       list.forEach((element) => {
-        this.awaitfeedbacks.push(
-          this.setTodoObject(element.data(), element.id)
-        );
+        this.awaitfeedbacks.push(this.setTodoObject(element.data(), element.id));
       });
     });
   }
 
+  /**
+   * Subscribes to changes in the 'inprogress' collection. Updates `this.inprogress` in real-time
+   * and also emits the updated list via the `todosSubject`.
+   *
+   * @returns An unsubscribe function to stop listening to the snapshot.
+   */
   subInprogressList() {
     return onSnapshot(this.getInprogressRef(), (list) => {
       this.inprogress = [];
 
       if (list.empty) {
-        console.warn('Keine Tasks in "inprogress".');
+        console.warn('No tasks in "inprogress".');
       } else {
         list.forEach((element) => {
           this.inprogress.push(this.setTodoObject(element.data(), element.id));
         });
       }
 
-      this.todosSubject.next([...this.inprogress]); // Immer aktualisieren!
+      // Always emit the updated list via the BehaviorSubject
+      this.todosSubject.next([...this.inprogress]);
     });
   }
 
+  /**
+   * Subscribes to changes in the 'done' collection. Updates `this.done` in real-time.
+   *
+   * @returns An unsubscribe function to stop listening to the snapshot.
+   */
   subDoneList() {
     return onSnapshot(this.getDoneRef(), (list) => {
       this.done = [];
@@ -195,22 +291,41 @@ export class TodoListService {
     });
   }
 
+  /**
+   * Retrieves a Firestore reference to the 'todo' collection.
+   */
   getTodosRef() {
     return collection(this.firestore, 'todo');
   }
 
+  /**
+   * Retrieves a Firestore reference to the 'awaitfeedback' collection.
+   */
   getAwaitfeedbackRef() {
     return collection(this.firestore, 'awaitfeedback');
   }
 
+  /**
+   * Retrieves a Firestore reference to the 'inprogress' collection.
+   */
   getInprogressRef() {
     return collection(this.firestore, 'inprogress');
   }
 
+  /**
+   * Retrieves a Firestore reference to the 'done' collection.
+   */
   getDoneRef() {
     return collection(this.firestore, 'done');
   }
 
+  /**
+   * Creates a Firestore document reference for the specified collection and document ID.
+   *
+   * @param colId - The Firestore collection name.
+   * @param docId - The document ID within that collection.
+   * @returns A reference to the specified document.
+   */
   getSingleDocRef(colId: string, docId: string) {
     return doc(this.firestore, colId, docId);
   }
