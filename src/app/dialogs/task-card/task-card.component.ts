@@ -28,7 +28,6 @@ import { AvatarColorService } from '../../services/avatar-color.service';
 export class TaskCardComponent {
   @Input() todo: Todo | null = null; // The task (Todo) to display in this card.
   @Output() closeOverlay = new EventEmitter<boolean>(); // Emits an event when the overlay displaying this task card should close.
-
   isClosing = false; // Determines whether the overlay is in the process of closing.
   isEditing = false; // Controls whether the task is being edited.
   dropdownOpen = false; // Toggles the dropdown for contact selection.

@@ -51,10 +51,13 @@ import { TaskNavigationService } from '../../services/task-navigation.service';
   styleUrl: './board.component.scss',
 })
 export class BoardComponent {
-  /**
-   * Task input property.
-   */
-  @Input() todo!: Todo;
+  @Input() todo!: Todo; // Task input property.
+  isOverlayOpen = false; // Indicates if the task overlay is open.
+  selectedTodo: Todo | null = null; // Stores the currently selected task.
+  searchTerm: string = ''; // The search term used to filter tasks.
+  isDialogOpen = false; // Indicates if the add-task dialog is open.
+  preselectedType: string | null = null; // Stores the preselected task type for the dialog.
+  isMobile = false; // Indicates if the view is in mobile mode.
 
   /**
    * Arrays storing tasks based on their statuses.
@@ -64,35 +67,6 @@ export class BoardComponent {
   inProgressList: Todo[] = [];
   doneList: Todo[] = [];
 
-  /**
-   * Indicates if the task overlay is open.
-   */
-  isOverlayOpen = false;
-
-  /**
-   * Stores the currently selected task.
-   */
-  selectedTodo: Todo | null = null;
-
-  /**
-   * The search term used to filter tasks.
-   */
-  searchTerm: string = '';
-
-  /**
-   * Indicates if the add-task dialog is open.
-   */
-  isDialogOpen = false;
-
-  /**
-   * Stores the preselected task type for the dialog.
-   */
-  preselectedType: string | null = null;
-
-  /**
-   * Indicates if the view is in mobile mode.
-   */
-  isMobile = false;
 
   /**
    * Initializes services for task management and navigation.

@@ -26,20 +26,9 @@ import { Router, RouterLink } from '@angular/router';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  /**
-   * The display name or initials of the logged-in user.
-   */
-  displayName: string | null = '';
-
-  /**
-   * Indicates whether the dropdown menu is open.
-   */
-  isDropdownOpen = false;
-
-  /**
-   * Indicates whether the application is in mobile view mode (width < 769px).
-   */
-  isMobileView = false;
+  displayName: string | null = ''; // The display name or initials of the logged-in user.
+  isDropdownOpen = false; // Indicates whether the dropdown menu is open.
+  isMobileView = false; // Indicates whether the application is in mobile view mode (width < 769px).
 
   /**
    * Initializes the component with authentication and routing services.

@@ -23,58 +23,18 @@ import { CommonModule } from '@angular/common';
   imports: [FormsModule, CommonModule]
 })
 export class LoginComponent {
-  constructor(private router: Router) {} // Router instance for navigation.
+  constructor(private router: Router) { } // Router instance for navigation.
   authService = inject(AuthService); // AuthService instance used to perform authentication actions.
-
-  /**
-   * User-provided email input.
-   */
-  email = '';
-
-  /**
-   * User-provided password input.
-   */
-  password = '';
-
-  /**
-   * Validation error message for the email input.
-   */
-  emailError = '';
-
-  /**
-   * Validation error message for the password input.
-   */
-  passwordError = '';
-
-  /**
-   * General error message for login-related issues.
-   */
-  generalError = '';
-
-  /**
-   * Regex pattern used for validating email addresses.
-   */
-  emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
-
-  /**
-   * Error message displayed when the email format is invalid.
-   */
-  emailPatternError = 'Please enter a valid email address.';
-
-  /**
-   * Tracks whether the email field has been touched (for validation).
-   */
-  emailTouched = false;
-
-  /**
-   * Tracks whether the password field has been touched (for validation).
-   */
-  passwordTouched = false;
-
-  /**
-   * Controls whether the password is displayed in plain text.
-   */
-  showPassword = false;
+  email = ''; // User-provided email input.
+  password = ''; //User-provided password input.
+  emailError = ''; // Validation error message for the email input.
+  passwordError = ''; // Validation error message for the password input.
+  generalError = ''; // General error message for login-related issues.
+  emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'; //Regex pattern used for validating email addresses.
+  emailPatternError = 'Please enter a valid email address.'; // Error message displayed when the email format is invalid.
+  emailTouched = false; // Tracks whether the email field has been touched (for validation).
+  passwordTouched = false; // Tracks whether the password field has been touched (for validation).
+  showPassword = false; // Controls whether the password is displayed in plain text.
 
   /**
    * Attempts to authenticate the user with the provided email and password.

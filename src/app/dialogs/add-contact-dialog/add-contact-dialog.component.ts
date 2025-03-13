@@ -25,6 +25,8 @@ export class AddContactDialogComponent {
    * The boolean indicates whether a new contact was successfully added (`true`) or simply closed (`false`).
    */
   @Output() addDialogCloseed: EventEmitter<boolean> = new EventEmitter();
+  isClosing = false; // Tracks whether the dialog is in the process of closing (for animations).
+  avatarColor: string = '#ccc'; // Default avatar color for the contact.
 
   /**
    * Contact input fields.
@@ -32,10 +34,6 @@ export class AddContactDialogComponent {
   name = '';
   email = '';
   phone = '';
-
-  isClosing = false; // Tracks whether the dialog is in the process of closing (for animations).
-
-  avatarColor: string = '#ccc'; // Default avatar color for the contact.
 
   /**
    * Flags indicating focus states for name, email, and phone inputs.

@@ -26,80 +26,21 @@ import { Router, ActivatedRoute } from '@angular/router';
   imports: [CommonModule, FormsModule],
 })
 export class AddTaskComponent {
-  /**
-   * ViewChild reference to the form element for validation and control.
-   */
-  @ViewChild('taskForm') taskForm!: NgForm;
-
-  /**
-   * Title of the new task.
-   */
-  title: string = '';
-
-  /**
-   * Description of the new task.
-   */
-  description: string = '';
-
-  /**
-   * Currently selected contact's name.
-   */
-  assignedTo: string = '';
-
-  /**
-   * Due date for the task.
-   */
-  dueDate: string = '';
-
-  /**
-   * Priority level of the task (e.g. high, medium, low).
-   */
-  priority: string = '';
-
-  /**
-   * Indicates the active priority button for highlighting.
-   */
-  activePriority: string = '';
-
-  /**
-   * Task category (e.g. "Development", "Design").
-   */
-  category: string = '';
-
-  /**
-   * User input for new subtask creation.
-   */
-  subtaskInput: string = '';
-
-  /**
-   * List of all subtasks associated with the task.
-   */
-  subtasks: Subtask[] = [];
-
-  /**
-   * Toggles the visibility of subtask controls (input and buttons).
-   */
-  showControls: boolean = false;
-
-  /**
-   * List of contacts retrieved from the ContactListService.
-   */
-  contactList: Contact[] = [];
-
-  /**
-   * Array of currently selected contacts for task assignment.
-   */
-  selectedContacts: Contact[] = [];
-
-  /**
-   * Controls the open/close state of the contact dropdown.
-   */
-  dropdownOpen = false;
-
-  /**
-   * Determines the task type for creation (e.g. "todo", "inprogress").
-   */
-  type: any = 'todo';
+  @ViewChild('taskForm') taskForm!: NgForm; // ViewChild reference to the form element for validation and control.
+  title: string = ''; // Title of the new task.
+  description: string = ''; // Description of the new task.
+  assignedTo: string = ''; // Currently selected contact's name.
+  dueDate: string = ''; // Due date for the task.
+  priority: string = ''; // Priority level of the task (e.g. high, medium, low).
+  activePriority: string = ''; // Indicates the active priority button for highlighting.
+  category: string = ''; // Task category (e.g. "Development", "Design").
+  subtaskInput: string = ''; // User input for new subtask creation.
+  subtasks: Subtask[] = []; // List of all subtasks associated with the task.
+  showControls: boolean = false; // Toggles the visibility of subtask controls (input and buttons).
+  contactList: Contact[] = []; // List of contacts retrieved from the ContactListService.
+  selectedContacts: Contact[] = []; // Array of currently selected contacts for task assignment.
+  dropdownOpen = false; // Controls the open/close state of the contact dropdown.
+  type: any = 'todo'; // Determines the task type for creation (e.g. "todo", "inprogress").
 
   /**
    * Tracks validation errors for specific form fields.
@@ -120,20 +61,9 @@ export class AddTaskComponent {
     return this.selectedContacts.includes(contact);
   }
 
-  /**
-   * Index of a subtask currently being edited.
-   */
-  editedSubtaskIndex: number | null = null;
-
-  /**
-   * Temporary value for editing an existing subtask.
-   */
-  editedSubtaskValue: string = '';
-
-  /**
-   * Animation toggle for a successful save operation.
-   */
-  showSuccessAnimation: boolean = false;
+  editedSubtaskIndex: number | null = null; // Index of a subtask currently being edited.
+  editedSubtaskValue: string = ''; // Temporary value for editing an existing subtask.
+  showSuccessAnimation: boolean = false; // Animation toggle for a successful save operation.
 
   /**
    * Initializes required services and subscribes to contact data.

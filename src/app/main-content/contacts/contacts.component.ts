@@ -40,40 +40,13 @@ import { AvatarColorService } from '../../services/avatar-color.service';
   styleUrl: './contacts.component.scss',
 })
 export class ContactsComponent {
-  /**
-   * List of contacts.
-   */
-  contactList: Contact[] = [];
-
-  /**
-   * Indicates if the add/edit contact dialog is open.
-   */
-  isDialogOpen = false;
-
-  /**
-   * The currently selected contact.
-   */
-  selectedContact: Contact | null = null;
-
-  /**
-   * Indicates if the view is in mobile mode.
-   */
-  isMobileView = false;
-
-  /**
-   * Controls whether the dropdown menu is open.
-   */
-  isDropdownOpen = false;
-
-  /**
-   * Controls whether the dropdown dialog is open.
-   */
-  DropdownDialogOpen = false;
-
-  /**
-   * Stores the media query object for detecting screen size changes.
-   */
-  private mobileQuery!: MediaQueryList;
+  contactList: Contact[] = []; // List of contacts.
+  isDialogOpen = false; // Indicates if the add/edit contact dialog is open.
+  selectedContact: Contact | null = null; // The currently selected contact.
+  isMobileView = false; // Indicates if the view is in mobile mode.
+  isDropdownOpen = false; // Controls whether the dropdown menu is open.
+  DropdownDialogOpen = false; // Controls whether the dropdown dialog is open.
+  private mobileQuery!: MediaQueryList; // Stores the media query object for detecting screen size changes.
 
   /**
    * Initializes the component with necessary services.

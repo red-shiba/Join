@@ -49,20 +49,13 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   ]
 })
 export class SignupComponent {
-  /**
-   * Whether the user has accepted the terms and conditions.
-   */
-  accept: boolean = false;
-
-  /**
-   * Instance of the authentication service.
-   */
-  authService = inject(AuthService);
-
-  /**
-   * Router instance for navigation.
-   */
-  constructor(private router: Router) {}
+  accept: boolean = false; // Whether the user has accepted the terms and conditions.
+  authService = inject(AuthService); // Instance of the authentication service.
+  constructor(private router: Router) {} // Router instance for navigation.
+  emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'; // Email validation pattern.
+  emailPatternError = 'Please enter a valid email address.'; // Error message for an invalid email pattern.
+  isSuccess = false; // Indicates whether the registration was successful.
+  showPassword = false; // Controls password visibility.
 
   /**
    * User input fields.
@@ -83,31 +76,11 @@ export class SignupComponent {
   generalError = '';
 
   /**
-   * Email validation pattern.
-   */
-  emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
-
-  /**
-   * Error message for an invalid email pattern.
-   */
-  emailPatternError = 'Please enter a valid email address.';
-
-  /**
    * Tracks whether form fields have been touched.
    */
   nameTouched = false;
   emailTouched = false;
   passwordTouched = false;
-
-  /**
-   * Indicates whether the registration was successful.
-   */
-  isSuccess = false;
-
-  /**
-   * Controls password visibility.
-   */
-  showPassword = false;
 
   /**
    * Registers a new user.

@@ -23,14 +23,12 @@ import { FormsModule } from '@angular/forms';
 })
 export class EditContactDialogComponent {
   @Input() contact: Contact | null = null; // The contact object being edited. When changed, local fields are updated via ngOnChanges().
-
   /**
    * Emits an event to signal the parent component that the dialog has closed.
    * Sends a boolean (currently always `false`) to indicate closure.
    */
   @Output() editDialogClosed: EventEmitter<boolean> = new EventEmitter();
   @Output() contactUpdated: EventEmitter<Contact> = new EventEmitter(); // Emits an event with the updated contact once changes are saved.
-
   name: string = ''; // The full name to be edited.
   email: string = ''; // The email address to be edited.
   phone: string = ''; // The phone number to be edited.

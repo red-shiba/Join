@@ -62,30 +62,13 @@ import { TodoListService } from '../../firebase-service/todo-list.service';
   ],
 })
 export class SummaryComponent implements OnInit {
-  /**
-   * Task object received as an input property.
-   */
-  @Input() todo!: Todo;
-
-  /**
-   * The display name of the logged-in user.
-   */
-  displayName: string | null = '';
-
-  /**
-   * Greeting message based on the time of day.
-   */
-  greeting: string = '';
-
-  /**
-   * State of the animated introduction text.
-   */
-  textState: 'center' | 'moved' = 'center';
-
-  /**
-   * Determines whether the application is in mobile view.
-   */
-  isMobileView: boolean = false;
+  @Input() todo!: Todo; // Task object received as an input property.
+  displayName: string | null = ''; // The display name of the logged-in user.
+  greeting: string = ''; // Greeting message based on the time of day.
+  textState: 'center' | 'moved' = 'center'; // State of the animated introduction text.
+  isMobileView: boolean = false; // Determines whether the application is in mobile view.
+  urgentNearestDueDate: string | null = null; // Stores the nearest due date of urgent tasks.
+  showText: boolean = true; // Controls whether the introduction text is visible.
 
   /**
    * Arrays storing tasks based on their statuses.
@@ -95,15 +78,6 @@ export class SummaryComponent implements OnInit {
   inProgressList: Todo[] = [];
   doneList: Todo[] = [];
 
-  /**
-   * Stores the nearest due date of urgent tasks.
-   */
-  urgentNearestDueDate: string | null = null;
-
-  /**
-   * Controls whether the introduction text is visible.
-   */
-  showText: boolean = true;
 
   /**
    * Initializes authentication and task services.

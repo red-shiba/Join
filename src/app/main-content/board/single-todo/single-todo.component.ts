@@ -31,20 +31,9 @@ import { AvatarColorService } from '../../../services/avatar-color.service';
   imports: [CommonModule],
 })
 export class SingleTodoComponent implements OnInit {
-  /**
-   * The task object passed as an input from the parent component.
-   */
-  @Input() todo: Todo | null = null;
-
-  /**
-   * List of all available contacts.
-   */
-  contactList: Contact[] = [];
-
-  /**
-   * List of contacts assigned to this task.
-   */
-  selectedContacts: Contact[] = [];
+  @Input() todo: Todo | null = null; // The task object passed as an input from the parent component.
+  contactList: Contact[] = []; // List of all available contacts.
+  selectedContacts: Contact[] = []; // List of contacts assigned to this task.
 
   /**
    * Initializes the component with required services.

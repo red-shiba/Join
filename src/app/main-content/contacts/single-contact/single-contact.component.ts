@@ -30,20 +30,9 @@ import { AvatarColorService } from '../../../services/avatar-color.service';
   styleUrl: './single-contact.component.scss',
 })
 export class SingleContactComponent {
-  /**
-   * The contact object passed as an input from the parent component.
-   */
-  @Input() contact: any;
-
-  /**
-   * Indicates if the edit contact dialog is open.
-   */
-  isDialogOpen = false;
-
-  /**
-   * Stores the currently selected contact for editing.
-   */
-  selectedContact: any = null;
+  @Input() contact: any; // The contact object passed as an input from the parent component.
+  isDialogOpen = false; // Indicates if the edit contact dialog is open.
+  selectedContact: any = null; // Stores the currently selected contact for editing.
 
   /**
    * Initializes the component with required services.

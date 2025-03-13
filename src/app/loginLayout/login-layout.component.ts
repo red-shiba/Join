@@ -53,15 +53,8 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
   ]
 })
 export class LoginLayoutComponent {
-  /**
-   * Indicates if the current route contains 'signup'. Used to conditionally display signup-related UI.
-   */
-  isSignupRoute = false;
-
-  /**
-   * Tracks the logo's animation state (e.g., 'center' or 'moved').
-   */
-  logoState: 'center' | 'moved' = 'center';
+  isSignupRoute = false; // Indicates if the current route contains 'signup'. Used to conditionally display signup-related UI.
+  logoState: 'center' | 'moved' = 'center'; // Tracks the logo's animation state (e.g., 'center' or 'moved').
 
   /**
    * Subscribes to router events and updates `isSignupRoute` based on the URL.
