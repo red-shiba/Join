@@ -132,13 +132,13 @@ label {
   display: flex;
   position: fixed;
   box-sizing: border-box;
-  width: 396px;
-  max-height: calc(100% - 20px);
-  max-width: calc(100% - 20px);
+  // width: 396px;
+  // max-height: calc(100% - 20px);
+  // max-width: calc(100% - 20px);
   background-color: #ffffff;
   border-radius: 32px;
-  left: 45%;
-  top: 20%;
+  left: 50%;
+  top: 14%;
   animation: slideIn 0.5s ease-in-out;
   // transform: translate(-25%, -50%);
 }
@@ -159,11 +159,18 @@ label {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  width: 100%;
+  width: clamp(230px, 50vw, 400px);
+  height: 75vh;
   padding: 30px;
   overflow: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  position: absolute;
+  top: 10%;
+  left: clamp(5%, 20vw, 50%);
+  transform: translateX(-50%);
+  background-color: #ffffff;
+  border-radius: 16px;
 }
 
 .task-container::-webkit-scrollbar {
@@ -634,12 +641,10 @@ textarea {
   gap: 3px;
   background-color: white;
 }
+
 @media (max-width: 770px) {
-  .task_card_wrapper {
-    top: 45%;
-    max-height: 85vh;
-    overflow-y: scroll;
-    overflow-x: hidden;
+  .task-container {
+    height: 64vh;
   }
 
   .task_card_wrapper::-webkit-scrollbar {
