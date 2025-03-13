@@ -52,6 +52,16 @@ section {
     width: 100%;
     box-sizing: border-box;
 
+    &:hover {
+      background-color: #2A3D59;
+      color: white;
+    }
+
+    &:focus {
+      background-color: #091931;
+      color: white;
+    }
+
     img {
       width: 24px;
       height: 24px;
