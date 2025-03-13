@@ -30,7 +30,7 @@ export class LoginComponent {
   emailError = ''; // Validation error message for the email input.
   passwordError = ''; // Validation error message for the password input.
   generalError = ''; // General error message for login-related issues.
-  emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'; //Regex pattern used for validating email addresses.
+  emailPattern = '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$'; // Regex pattern used for validating email addresses, allowing uppercase letters.
   emailPatternError = 'Please enter a valid email address.'; // Error message displayed when the email format is invalid.
   emailTouched = false; // Tracks whether the email field has been touched (for validation).
   passwordTouched = false; // Tracks whether the password field has been touched (for validation).

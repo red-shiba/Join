@@ -52,7 +52,7 @@ export class SignupComponent {
   accept: boolean = false; // Whether the user has accepted the terms and conditions.
   authService = inject(AuthService); // Instance of the authentication service.
   constructor(private router: Router) {} // Router instance for navigation.
-  emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'; // Email validation pattern.
+  emailPattern = '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$'; // Regex pattern used for validating email addresses, allowing uppercase letters.
   emailPatternError = 'Please enter a valid email address.'; // Error message for an invalid email pattern.
   isSuccess = false; // Indicates whether the registration was successful.
   showPassword = false; // Controls password visibility.
