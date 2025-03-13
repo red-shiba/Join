@@ -1,5 +1,16 @@
 @import "../../../styles.scss";
 
+/* Animation für das Einfliegen von rechts nach links */
+@keyframes slideIn {
+  from {
+    transform: translate(150%, 0);
+  }
+
+  to {
+    transform: translate(0, 0);
+  }
+}
+
 .assign-container {
   max-height: 200px;
   overflow-y: auto;
@@ -126,9 +137,10 @@ label {
   max-width: calc(100% - 20px);
   background-color: #ffffff;
   border-radius: 32px;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  left: 45%;
+  top: 20%;
+  animation: slideIn 0.5s ease-in-out;
+  // transform: translate(-25%, -50%);
 }
 .task-category {
   display: flex;
@@ -150,7 +162,6 @@ label {
   width: 100%;
   padding: 30px;
   overflow: scroll;
-
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
