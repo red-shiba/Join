@@ -49,7 +49,11 @@ export class LoginComponent {
     
       this.router.navigate(['/summary']);
     } catch (error: any) {
-      this.generalError = error.message;
+      if (error?.code === 'auth/wrong-password') {
+        this.generalError = 'Your password is wrong';
+      } else {
+        this.passwordError = 'Your password is wrong';
+      }
     }
   }
 
