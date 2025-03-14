@@ -7,8 +7,9 @@
       class="custom-input" 
       type="email" 
       name="email"
+      pattern="{{ emailPattern }}"
       placeholder="E-Mail"
-      [(ngModel)]="email"  
+      [(ngModel)]="email"
       required 
       (blur)="validateEmail()" 
       (focus)="emailTouched = true" 

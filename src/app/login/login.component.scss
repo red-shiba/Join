@@ -27,13 +27,13 @@
   padding-left: 21px;
 }
 
+.custom-input.ng-invalid {
+  border-color: #ff3c00;
+}
+
 .custom-input:focus {
   outline: none;
   border-color: #29abe2;
-}
-
-.custom-input.ng-invalid {
-  border-color: #ff3c00;
 }
 
 .custom-input:not(:focus):not(.ng-invalid.ng-touched) {
