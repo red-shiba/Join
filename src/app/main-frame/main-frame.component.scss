@@ -1,21 +1,30 @@
 .section-container {
-  max-width: 1920px;
   width: 100%;
   height: 100vh;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   box-sizing: border-box;
 }
 
 .section-inner {
   width: 100%;
-  max-width: 1920px;
   display: flex;
 }
 
+.topFrame {
+  width: 100%;
+}
+
 .masterFrame {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   overflow-x: hidden;
+}
+
+.mainFrame {
+  max-width: 1688px;
+  width: 100%;
 }
 
 .leftFrame {
