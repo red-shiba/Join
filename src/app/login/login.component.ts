@@ -10,7 +10,7 @@
  */
 import { Component, inject } from '@angular/core';
 import { AuthService } from './../firebase-service/auth.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -35,6 +35,7 @@ export class LoginComponent {
   emailTouched = false; // Tracks whether the email field has been touched (for validation).
   passwordTouched = false; // Tracks whether the password field has been touched (for validation).
   showPassword = false; // Controls whether the password is displayed in plain text.
+  emailWrong = false; // Tracks whether the email is invalid.
 
   /**
    * Attempts to authenticate the user with the provided email and password.
@@ -44,19 +45,26 @@ export class LoginComponent {
    * Upon success, navigates to the "summary" route. 
    * Sets the generalError property if login fails.
    */
-  async login() {
+
+  async onSubmit(loginForm: NgForm) {
+    if (!loginForm.valid) {
+      // Markiert alle Felder als "touched", damit .ng-invalid greift
+      loginForm.form.markAllAsTouched();
+      // return;
+    }
     this.emailError = '';
     this.passwordError = '';
     this.generalError = '';
 
     if (!this.email) {
       this.emailError = 'Email is required.';
+      this.emailWrong = true;
     }
     if (!this.password) {
       this.passwordError = 'Password is required.';
     }
     if (this.emailError || this.passwordError) {
-      return;
+
     }
 
     try {

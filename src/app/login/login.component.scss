@@ -32,8 +32,8 @@
   border-color: #29abe2;
 }
 
-.custom-input.ng-invalid.ng-touched {
-  border-color: #ff3c00b6;
+.custom-input.ng-invalid {
+  border-color: #ff3c00;
 }
 
 .custom-input:not(:focus):not(.ng-invalid.ng-touched) {
@@ -135,10 +135,6 @@ h2 {
   padding-top: 5px;
   padding-left: 5px;
   font-size: 10px;
-}
-
-.error-border {
-  border-color: #ff3d00;
 }
 
 @media (max-width: 640px) {

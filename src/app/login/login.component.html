@@ -1,16 +1,16 @@
 <div class="loginFrame">
 <h2>Log in</h2>
 <img src="/assets/icons/blueLine.png" alt="blueline" class="blueline">
-<form (submit)="login(); $event.preventDefault()">
+<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
   <div class="emailRaw">
     <input 
       class="custom-input" 
       type="email" 
-      [(ngModel)]="email" 
-      [ngModelOptions]="{standalone: true}" placeholder="E-Mail" 
+      name="email"
+      placeholder="E-Mail"
+      [(ngModel)]="email"  
       required 
       (blur)="validateEmail()" 
-      [ngClass]="{'error-border': emailError && emailTouched}" 
       (focus)="emailTouched = true" 
     />
     <img src="/assets/icons/mail.png" alt="mailIcon" class="mailIcon">
@@ -19,13 +19,12 @@
   <div class="lockRaw">
     <input 
       class="custom-input" 
+      name="password"
       [type]="showPassword ? 'text' : 'password'" 
       [(ngModel)]="password" 
-      [ngModelOptions]="{standalone: true}" 
       placeholder="Passwort" 
       required 
       (blur)="validatePassword()" 
-      [ngClass]="{'error-border': passwordError && passwordTouched}" 
       (focus)="passwordTouched = true"
     />
     <img
@@ -49,10 +48,11 @@
       (click)="togglePasswordVisibility()"
     />
     <div *ngIf="passwordError" class="error-message">{{ passwordError }}</div>
+    <div *ngIf="generalError" class="error-message">{{ generalError }}</div>
   </div>
-  <div *ngIf="generalError" class="error-message">{{ generalError }}</div>
+  
   <div class="button">
-    <button class="btn" (click)="login()">Log in</button>
+    <button class="btn" type="submit">Log In</button>
     <button class="cbtn" (click)="guestLogin()">Guest Log in</button>
   </div>
 </form>
