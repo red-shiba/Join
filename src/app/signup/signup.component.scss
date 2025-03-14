@@ -1,5 +1,5 @@
 .loginFrame {
-  position:relative;
+  position: relative;
   box-sizing: border-box;
   width: 552px;
   display: flex;
@@ -13,8 +13,8 @@
   padding-right: 115px;
   padding-bottom: 48px;
   padding-left: 115px;
-  }
-  
+}
+
 .custom-input {
   box-sizing: border-box;
   border: 0.5px solid #e7e7e7;
@@ -26,7 +26,19 @@
   padding-left: 21px;
   padding-bottom: 12px;
   padding-left: 21px;
-  }
+}
+.custom-input:focus {
+  outline: none;
+  border-color: #29abe2;
+}
+
+.custom-input.ng-invalid.ng-touched {
+  border-color: #ff3c00b6;
+}
+
+.custom-input:not(:focus):not(.ng-invalid.ng-touched) {
+  border-color: #e7e7e7;
+}
 
 .arrowBack {
   position: absolute;
@@ -53,10 +65,10 @@ a {
   gap: 10px;
   margin-top: 20px;
 }
-  
+
 .emailRaw {
   position: relative;
-  margin-bottom: 28px;
+  margin-bottom: 15px;
 }
 
 .mailIcon {
@@ -176,7 +188,7 @@ h2 {
     cursor: pointer;
     margin-top: 20px;
   }
-  
+
   .cbtn {
     font-size: 21px;
     font-weight: 700;
@@ -219,7 +231,6 @@ h2 {
   .button {
     padding-top: 0px;
   }
-
 }
 
 @media (max-width: 420px) {
@@ -251,7 +262,7 @@ h2 {
     height: 36px;
     width: 150px;
   }
-  
+
   .cbtn {
     font-size: 18px;
     height: 36px;
@@ -270,5 +281,4 @@ h2 {
     left: 30px;
     cursor: pointer;
   }
-  
 }

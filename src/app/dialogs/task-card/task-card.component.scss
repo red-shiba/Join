@@ -128,7 +128,7 @@ label {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.task_card_wrapper {
+.task-card-wrapper {
   display: flex;
   position: fixed;
   box-sizing: border-box;
@@ -647,11 +647,11 @@ textarea {
     height: 64vh;
   }
 
-  .task_card_wrapper::-webkit-scrollbar {
+  .task-card-wrapper::-webkit-scrollbar {
     display: none;
   }
 
-  .task_card_wrapper {
+  .task-card-wrapper {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
