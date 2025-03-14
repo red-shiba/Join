@@ -65,9 +65,9 @@ export class LoginComponent {
       this.router.navigate(['/summary']);
     } catch (error: any) {
       if (error?.code === 'auth/wrong-password') {
-        this.generalError = 'Your password is wrong';
+        this.generalError = 'Your email or password is wrong';
       } else {
-        this.passwordError = 'Your password is wrong';
+        this.passwordError = 'Your email or password is wrong';
       }
     }
   }
