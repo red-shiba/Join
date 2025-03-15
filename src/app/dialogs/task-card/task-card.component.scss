@@ -3,11 +3,11 @@
 /* Animation für das Einfliegen von rechts nach links */
 @keyframes slideIn {
   from {
-    transform: translate(150%, 0);
+    transform: translate(100%, 0);
   }
 
   to {
-    transform: translate(0, 0);
+    transform: translate(-45%, 0);
   }
 }
 
