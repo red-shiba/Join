@@ -24,12 +24,12 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes), // Configures application routing
     provideFirebaseApp(() =>
       initializeApp({
-        projectId: 'join-68f95',
-        appId: '1:378653092670:web:7a001b250209e8f3abda6f',
-        storageBucket: 'join-68f95.firebasestorage.app',
-        apiKey: 'AIzaSyBL8izQfHbRN7EjrpWck12XccJxEZkwFUs',
-        authDomain: 'join-68f95.firebaseapp.com',
-        messagingSenderId: '378653092670',
+        projectId: 'join-1f579',
+        appId: '1:469475899953:web:b77dd590afa4dfeab3f310',
+        storageBucket: 'join-1f579.firebasestorage.app',
+        apiKey: 'AIzaSyAKiGyjJcby5rNm0DZxTz60Wxx3RNJFFlg',
+        authDomain: 'join-1f579.firebaseapp.com',
+        messagingSenderId: '469475899953',
       })
     ), // Initializes Firebase with project credentials
     provideFirestore(() => getFirestore()), // Provides Firestore database

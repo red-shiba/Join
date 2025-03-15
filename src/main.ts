@@ -28,12 +28,12 @@ bootstrapApplication(AppComponent, {
     provideAnimations(), // Enables Angular animations
     provideFirestore(() => getFirestore()), // Provides Firestore database
     provideFirebaseApp(() => initializeApp({
-      apiKey: "AIzaSyBL8izQfHbRN7EjrpWck12XccJxEZkwFUs",
-      authDomain: "join-68f95.firebaseapp.com",
-      projectId: "join-68f95",
-      storageBucket: "join-68f95.firebasestorage.app",
-      messagingSenderId: "378653092670",
-      appId: "1:378653092670:web:dcff05e4c6a7828aabda6f"
+      apiKey: "AIzaSyAKiGyjJcby5rNm0DZxTz60Wxx3RNJFFlg",
+      authDomain: "join-1f579.firebaseapp.com",
+      projectId: "join-1f579",
+      storageBucket: "join-1f579.firebasestorage.app",
+      messagingSenderId: "469475899953",
+      appId: "1:469475899953:web:b77dd590afa4dfeab3f310"
     })), // Initializes Firebase app with project credentials
     provideAuth(() => getAuth()) // Provides Firebase authentication services
   ]

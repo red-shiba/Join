@@ -84,8 +84,8 @@ export class LoginComponent {
    * Fills the email and password fields with pre-defined guest credentials.
    */
   guestLogin() {
-    this.email = 'michaelspari@gmx.de';
-    this.password = 'gast123';
+    this.email = 'gast@user.de';
+    this.password = 'Password123';
   }
 
   /**
